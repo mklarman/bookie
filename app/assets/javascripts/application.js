@@ -13,3 +13,30 @@
 //= require rails-ujs
 //= require turbolinks
 //= require_tree .
+
+
+window.onload=function(){
+  	
+  	var clientForm = document.getElementById("new_client")
+	var wordArray = ["baseball", "football", "hockey", "basketball"]
+	var guess = document.getElementById("guess")
+	var submit = document.getElementById("submit")
+
+	submit.addEventListener("click", function(){
+
+		for(i=0; i<wordArray.length; i++){
+
+			if(guess.value == wordArray[i]){
+
+				clientForm.submit()
+
+			}
+		}
+
+
+	})
+}
+
+
+
+

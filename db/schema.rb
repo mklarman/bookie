@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 20180808135734) do
     t.integer "user_id"
     t.string "first_name"
     t.string "last_name"
-    t.string "type"
+    t.string "style"
     t.string "stakes"
     t.string "quantity"
     t.datetime "created_at", null: false

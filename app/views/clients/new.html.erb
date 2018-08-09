@@ -1,0 +1,32 @@
+
+<div><input type="text" name="Guess" id="guess">
+<input type="submit" value="Fish" id="submit">
+
+</div>
+
+<% @names = ["Bill", "Steve", "Mike", "Paul"] %>
+<% @fname = @names.sample %>
+<% @surname = ["Miller", "Johnson", "Curtis", "Smith", "Dunn", "Pitt", "Franklin"] %>
+<% @lname = @surname.sample %>
+<% @styles = ["kamikaze", "degenerate", "handicapper"] %>
+<% @style = @styles.sample %>
+<% @money = ["small timer", "ballsy", "whale"] %>
+<% @stakes = @money.sample %>
+<% @bets = ["single", "three", "five"] %>
+<% @quant = @bets.sample %>
+
+
+
+<div>
+<%= form_for @client do |c| %>
+	<%= c.hidden_field :user_id, :value => current_user.id %>
+	<div> <%=c.text_field :first_name, :value => @fname %></div>
+	<div> <%=c.text_field :last_name, :value => @lname %></div>
+	<div> <%=c.text_field :style, :value => @style %></div>
+	<div> <%=c.text_field :stakes, :value => @stakes %></div>
+	<div> <%=c.text_field :quantity, :value => @quant %></div>
+
+	<% end %>
+
+</div>
+
