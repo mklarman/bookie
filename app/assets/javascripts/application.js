@@ -24,13 +24,12 @@ window.onload=function(){
 
 	submit.addEventListener("click", function(){
 
-		for(i=0; i<wordArray.length; i++){
+		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
 
-			if(guess.value == wordArray[i]){
+		if(word == guess.value){
 
-				clientForm.submit()
+			clientForm.submit()
 
-			}
 		}
 
 

@@ -4,7 +4,7 @@ class CreateWagers < ActiveRecord::Migration[5.1]
 
     	t.integer :user_id
     	t.integer :client_id
-    	t.string :type
+    	t.string :wager_type
     	t.integer :amount
     	t.string :team1
     	t.string :team2, default: "team2"
