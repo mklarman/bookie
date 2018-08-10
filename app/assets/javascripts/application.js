@@ -16,6 +16,9 @@
 
 
 window.onload=function(){
+
+	var hiddenDiv = document.getElementById("hideEdit")
+	hiddenDiv.style.display = "none"
   	
   	var clientForm = document.getElementById("new_client")
 	var wordArray = ["baseball", "football", "hockey", "basketball"]

@@ -3,7 +3,7 @@ class WagersController < ApplicationController
 	def new
 
 		@wager = Wager.new
-		require "date"
+		
 
 
 	end
@@ -28,8 +28,32 @@ class WagersController < ApplicationController
 
 	end
 
+	def edit
+
+		@wager = Wager.find_by_id(params[:id])
+		@client = Client.find_by_id(params[:id])
+
+	end
+
+	def update
+
+		@wager = Wager.find_by_id(params[:id])
+		@wager.user_id = current_user.id
+
+		if @wager.update(wager_params)
+
+			redirect_to users_sportsbook_path
+
+		else
+
+			render clients_path
+
+		end
 
 
+	end
+
+	
 
 
 

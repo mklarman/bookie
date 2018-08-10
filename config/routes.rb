@@ -5,6 +5,8 @@ resources :clients
 resources :wagers
 resources :matchups
 
+get "/users/sportsbook" => "welcome#show"
+
 
 
 
