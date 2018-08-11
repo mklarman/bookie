@@ -1,3 +1,14 @@
+<% @wager_id = @wager.id %>
+
+<%= @wager_id %>
+
+<script>
+	
+	var wagerId = <%= @wager_id %>
+
+</script>
+
+
 
 <% if @wager.wager_type == "straight" %>
 	
@@ -64,6 +75,8 @@
 
 <% end %>
 
+<input type="submit" Value="Grade Wager" id="gradeSubmit">
+
 
 <div id="hideEdit">
 	
@@ -95,3 +108,24 @@
 
 	<% end %>
 </div>
+
+<script>
+
+	console.log(wagerId)
+
+	var cssID = "edit_wager_" + wagerId
+	console.log(cssID)
+
+
+
+	var scoreWager = document.getElementById(cssID) 
+	
+
+
+
+
+</script>
+
+<script src="/assets/grade_wager.js"></script>
+
+

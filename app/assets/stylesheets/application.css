@@ -16,8 +16,5 @@
 
  #hideEdit{
 
- 	height:700px;
- 	width: 500px;
- 	border: 1px solid red;
  	display: none;
  }
