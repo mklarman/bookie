@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 20180808135734) do
 
   create_table "matchups", force: :cascade do |t|
     t.string "date"
+    t.string "start_time"
     t.string "sport"
     t.string "fav"
     t.string "dog"

@@ -1,4 +1,4 @@
-window.onload=function(){
+
 
   	
   	var clientForm = document.getElementById("new_client")
@@ -12,6 +12,7 @@ window.onload=function(){
 		submit.addEventListener("click", function(){
 
 			var word = wordArray[Math.floor(Math.random()*wordArray.length)];
+			console.log(word)
 
 			if(word == guess.value){
 
@@ -22,4 +23,3 @@ window.onload=function(){
 
 		})
 	}
-}

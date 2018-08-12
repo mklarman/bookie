@@ -3,6 +3,7 @@ class CreateMatchups < ActiveRecord::Migration[5.1]
     create_table :matchups do |t|
 
     	t.string :date
+      t.string :start_time
     	t.string :sport
     	t.string :fav
     	t.string :dog

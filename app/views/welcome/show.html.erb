@@ -1,3 +1,5 @@
+<% if current_user %>
+
 <% current_user.clients.each do |c| %>
 
 	<div><%= c.first_name %>
@@ -15,4 +17,5 @@
 
 	<% end %>
 
+<% end %>
 <% end %>

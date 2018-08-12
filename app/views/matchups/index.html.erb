@@ -1,0 +1,24 @@
+<% @date = Time.now %>
+<% @day = @date.strftime("%d") %>
+<% @month = @date.strftime("%b") %>
+<% @year = @date.strftime("%Y") %>
+
+<% @my_date = @day << " " <<@month << " " <<@year %>
+<%= @my_date %>
+
+
+<% @matchup.each do |m| %>
+
+	<% if m.date == @my_date %>
+
+		<div><%= m.date %></div>
+		<div><%= m.start_time %></div>
+		<div><%= m.sport %></div>
+		<div><%= m.fav %></div>
+		<div><%= m.dog %></div>
+
+		<br>
+
+	<% end %>
+
+<% end %>
