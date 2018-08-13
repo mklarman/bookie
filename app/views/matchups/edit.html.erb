@@ -1,0 +1,16 @@
+<%= form_for @matchup do |m| %>
+
+	Date:<div><%= m.text_field :date %></div>
+	Time:<div><%= m.text_field :start_time %></div>
+	Sport:<div><%= m.text_field :sport %></div>
+	Fav:<div><%= m.text_field :fav %></div>
+	Dog:<div><%= m.text_field :dog %></div>
+	Fav_Line:<div><%= m.text_field :fav_line %></div>
+	Dog_Line:<div><%= m.text_field :dog_line %></div>
+	Total:<div><%= m.text_field :total_points %></div>
+	Fav_Score:<div><%= m.text_field :fav_score %></div>
+	Dog_score<div><%= m.text_field :dog_score %></div>
+
+	<%= m.submit %>
+
+<% end %>

@@ -9,16 +9,16 @@
 
 <% @matchup.each do |m| %>
 
-	<% if m.date == @my_date %>
-
 		<div><%= m.date %></div>
+		
 		<div><%= m.start_time %></div>
+		
 		<div><%= m.sport %></div>
 		<div><%= m.fav %></div>
 		<div><%= m.dog %></div>
-
+		<%= link_to "Add Score", edit_matchup_path(m.id), class: 'link_tabs'  %>
 		<br>
 
-	<% end %>
+	
 
 <% end %>

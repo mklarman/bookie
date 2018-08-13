@@ -1,0 +1,16 @@
+<%= form_for @team do |t| %>
+
+	Date:<div><%= t.text_field :date %></div>
+	Name:<div><%= t.text_field :name %></div>
+	Sport:<div><%= t.text_field :sport %></div>
+	Spread:<div><%= t.text_field :spread %></div>
+	Total:<div><%= t.text_field :total %></div>
+	Spread_Result:<div><%= t.text_field :spread_result %></div>
+	2_Ts_Result:<div><%= t.text_field :two_team_teaser_result %></div>
+	3_Ts_Resukt:<div><%= t.text_field :three_team_teaser_result %></div>
+	5_Ts_result:<div><%= t.text_field :five_team_teaser_result %></div>
+
+
+	<%= t.submit %>
+
+<% end %>

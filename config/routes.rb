@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 resources :clients
 resources :wagers
 resources :matchups
+resources :teams
 
 get "/users/sportsbook" => "welcome#show"
 

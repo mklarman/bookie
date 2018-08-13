@@ -30,9 +30,26 @@ class MatchupsController < ApplicationController
 
 	end
 
-	def index
+	def edit
+	
+	@matchup = Matchup.find_by_id(params[:id])
 
-		@matchup = Matchup.all
+	end
+
+
+	def update
+
+		@matchup = Matchup.find_by_id(params[:id])
+
+		if @matchup.update(matchup_params)
+
+			redirect_back(fallback_location: new_matchup_path)
+		else
+
+			render clients_path
+
+		end
+
 
 	end
 
