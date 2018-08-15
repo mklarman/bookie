@@ -18,6 +18,9 @@
 
 				clientForm.submit()
 
+			}else{
+
+				window.location.reload()
 			}
 
 

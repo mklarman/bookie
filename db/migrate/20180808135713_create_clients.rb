@@ -5,9 +5,9 @@ class CreateClients < ActiveRecord::Migration[5.1]
     	t.integer :user_id
     	t.string :first_name
     	t.string :last_name
-    	t.string :style
-    	t.string :stakes
-    	t.string :quantity
+      t.string :stakes
+    	t.string :bet_types
+
 
       t.timestamps
     end

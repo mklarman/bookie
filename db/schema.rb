@@ -19,38 +19,26 @@ ActiveRecord::Schema.define(version: 20180813143849) do
     t.integer "user_id"
     t.string "first_name"
     t.string "last_name"
-    t.string "style"
     t.string "stakes"
-    t.string "quantity"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  create_table "matchups", force: :cascade do |t|
-    t.string "date"
-    t.string "start_time"
-    t.string "sport"
-    t.string "fav"
-    t.string "dog"
-    t.integer "fav_line"
-    t.integer "dog_line"
-    t.integer "total_points"
-    t.integer "fav_score", default: 0
-    t.integer "dog_score", default: 0
+    t.string "bet_types"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "teams", force: :cascade do |t|
+    t.string "date"
     t.string "name"
     t.string "sport"
     t.string "spread"
     t.string "total"
-    t.string "date"
+    t.string "sides_line"
+    t.string "total_line"
+    t.string "score"
+    t.string "opp_score"
+    t.string "total_points"
     t.string "spread_result"
-    t.string "two_team_teaser_result"
-    t.string "three_team_teaser_result"
-    t.string "five_team_teaser_result"
+    t.string "total_result"
+    t.string "display"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

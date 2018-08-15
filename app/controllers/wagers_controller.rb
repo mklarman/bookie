@@ -3,6 +3,7 @@ class WagersController < ApplicationController
 	def new
 
 		@wager = Wager.new
+		@teams = Team.all
 		
 
 

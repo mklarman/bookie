@@ -1,4 +1,22 @@
 
+<% @NFL_sides = [] %>
+<% @NFL_totals = [] %>
+
+<% @MLB_sides = [] %>
+<% @MLB_totals = [] %>
+
+<% @NBA_totals = [] %>
+<% @NBA_sides = [] %>
+
+<% @NHL_sides = [] %>
+<% @NHL_totals = [] %>
+
+<% @CBB_sides = [] %>
+<% @CBB_totals = [] %>
+
+<% @CFB_totals = [] %>
+<% @CFB_sides = [] %>
+
 <% @date = Time.now %>
 <% @day = @date.strftime("%d") %>
 <% @month = @date.strftime("%b") %>
@@ -6,22 +24,77 @@
 
 <% @my_date = @day << " " <<@month << " " <<@year %>
 
-
-
-
-
-
-
-
-
-
-
 <% @client = current_user.clients.sample %>
-<% @select_type = ["straight", "two team teaser", "three team teaser", "five team teaser", "two team parlay", "three team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"] %>
 
-<% @wager_type = @select_type.sample %>
+<% if @client.bet_types == "Straight" %>
+
+	<% @wager_type = "straight" %>
+
+<% elsif @client.bet_types == "Exotics" %>
+
+
+	<% @select_type = ["two team teaser", "three team teaser", "five team teaser", "two team parlay", "three team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"] %>
+
+	<% @wager_type = @select_type.sample %>
+
+<% elsif @client.bet_types == "All" %>
+
+
+	<% @select_type = ["straight", "straight", "straight", "straight", "two team teaser", "three team teaser", "five team teaser", "two team parlay", "three team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse", "straight", "straight"] %>
+
+	<% @wager_type = @select_type.sample %>
+
+<% end %>
+
+<% @teams.each do |t| %>
+
+	<% if t.display == "on" %>
+
+		<% if t.sport == "NFL" %>
+
+			<% @NFL_sides.push(t.sides_line) %>
+			<% @NFL_totals.push(t.total_line) %>
+
+		<% elsif t.sport == "MLB" %>
+
+			<% @MLB_sides.push(t.sides_line) %>
+			<% @MLB_totals.push(t.total_line) %>
+
+		<% elsif t.sport == "NBA" %>
+
+			<% @NBA_sides.push(t.sides_line) %>
+			<% @NBA_totals.push(t.total_line) %>
+
+		<% elsif t.sport == "NHL" %>
+
+			<% @NHL_sides.push(t.sides_line) %>
+			<% @NHL_totals.push(t.total_line) %>
+
+		<% elsif t.sport == "CBB" %>
+
+			<% @CBB_sides.push(t.sides_line) %>
+			<% @CBB_totals.push(t.total_line) %>
+
+		<% elsif t.sport == "CFB" %>
+
+			<% @CFB_sides.push(t.sides_line) %>
+			<% @CFB_totals.push(t.total_line) %>
+
+		<% end %>
+
+	<% end %>
+
+<% end %>
+
+<%= @NFL_sides[0] %>
+<%= @NHL_totals[0] %>
+
+
+
+
 
 <% if (@wager_type == "straight") %>
+
 
 <%= form_for @wager do |w| %>
 

@@ -8,12 +8,10 @@
 <% @fname = @names.sample %>
 <% @surname = ["Miller", "Johnson", "Curtis", "Smith", "Dunn", "Pitt", "Franklin", "Gucci", "O'Mally", "Jones", "Howard", "Cabrerra", "Ortiz", "Stein", "Gold"] %>
 <% @lname = @surname.sample %>
-<% @styles = ["kamikaze", "degenerate", "handicapper"] %>
-<% @style = @styles.sample %>
 <% @money = ["small timer", "ballsy", "whale"] %>
 <% @stakes = @money.sample %>
-<% @bets = ["single", "three", "five"] %>
-<% @quant = @bets.sample %>
+<% @bets = ["Exotics", "Straight", "All"] %>
+<% @bet_types = @bets.sample %>
 
 
 
@@ -22,13 +20,23 @@
 	<%= c.hidden_field :user_id, :value => current_user.id %>
 	<div> <%=c.text_field :first_name, :value => @fname %></div>
 	<div> <%=c.text_field :last_name, :value => @lname %></div>
-	<div> <%=c.text_field :style, :value => @style %></div>
 	<div> <%=c.text_field :stakes, :value => @stakes %></div>
-	<div> <%=c.text_field :quantity, :value => @quant %></div>
+	<div> <%=c.text_field :bet_types, :value => @bet_types %></div>
 
 	<% end %>
 
 </div>
 
+<% current_user.clients.each do |c| %>
+
+	<div><%= c.first_name %>
+		<%= c.last_name %></div>
+		<br>
+
+<% end %>
+
 <script src="/assets/client.js"></script>
+
+
+
 
