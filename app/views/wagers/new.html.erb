@@ -17,11 +17,27 @@
 <% @CFB_totals = [] %>
 <% @CFB_sides = [] %>
 
+<% @stakes = ["100", "200", "500", "1000"] %>
+<% @amount = @stakes.sample %>
+
+<% @pick_1 = ["Ravens +6", "Eagles -5", "Under 48.5 Chargers", "Chiefs -2.5", "Over 50 Saints", "Packers +1"] %>
+<% @team1 = @pick_1.sample %>
+
+<% @pick_2 = ["Giants -3.5", "Redskins +4", "Bears -4", "Seahawks +2", "49ers -7", "Over 49.5 Steelers", "Under 43 Browns", "Titans +2"] %>
+<% @team2 = @pick_2.sample %>
+
+<% @pick_3 = ["Raiders -8", "Broncos +5", "Patriots -10", "Under 46 Dolphins", "Over47.5 Jets"] %>
+<% @team3 = @pick_3.sample %>
+
+
 <% @date = Time.now %>
 <% @day = @date.strftime("%d") %>
 <% @month = @date.strftime("%b") %>
 <% @year = @date.strftime("%Y") %>
 
+
+
+ <div>HERE: <%= self.allo %></div>
 <% @my_date = @day << " " <<@month << " " <<@year %>
 
 <% @client = current_user.clients.sample %>
@@ -89,12 +105,19 @@
 <%= @NFL_sides[0] %>
 <%= @NHL_totals[0] %>
 
+<div><%= @client.first_name %>
+	<%= @client.last_name %></div>
+
 
 
 
 
 <% if (@wager_type == "straight") %>
 
+<div><%= @amount %>
+<%= @wager_type %></div>
+<div><%= @team1 %>
+	<%= @spread1 %></div>
 
 <%= form_for @wager do |w| %>
 
@@ -125,6 +148,15 @@
 <% end %>
 
 <% if (@wager_type == "two team teaser" || @wager_type == "two team parlay" || @wager_type == "two team reverse") %>
+
+	<div><%= @amount %>
+		<%= @wager_type %></div>
+	
+	<div><%= @team1 %>
+		<%= @spread1 %></div>
+
+	<div><%= @team2 %>
+		<%= @spread2 %></div>
 
 	<%= form_for @wager do |w| %>
 
@@ -157,6 +189,18 @@
 
 <% if (@wager_type == "three team teaser" || @wager_type == "three team parlay" || @wager_type == "three team reverse") %>
 
+	<div><%= @amount %>
+		<%= @wager_type %></div>
+	
+	<div><%= @team1 %>
+		<%= @spread1 %></div>
+
+	<div><%= @team2 %>
+		<%= @spread2 %></div>
+
+	<div><%= @team3 %>
+		<%= @spread3 %>
+
 	<%= form_for @wager do |w| %>
 
 	<%= w.hidden_field :user_id, :value => current_user.id %>
@@ -187,6 +231,21 @@
 
 <% if (@wager_type == "four team reverse") %>
 
+	<div><%= @amount %>
+		<%= @wager_type %></div>
+	
+	<div><%= @team1 %>
+		<%= @spread1 %></div>
+
+	<div><%= @team2 %>
+		<%= @spread2 %></div>
+
+	<div><%= @team3 %>
+		<%= @spread3 %></div>
+
+	<div><%= @team4 %>
+		<%= @spread4 %></div>
+
 	<%= form_for @wager do |w| %>
 
 	<%= w.hidden_field :user_id, :value => current_user.id %>
@@ -216,6 +275,24 @@
 <% end %>
 
 <% if (@wager_type == "five team teaser" || @wager_type == "five team parlay") %>
+
+	<div><%= @amount %>
+		<%= @wager_type %></div>
+	
+	<div><%= @team1 %>
+		<%= @spread1 %></div>
+
+	<div><%= @team2 %>
+		<%= @spread2 %></div>
+
+	<div><%= @team3 %>
+		<%= @spread3 %></div>
+
+	<div><%= @team4 %>
+		<%= @spread4 %></div>
+
+	<div><%= @team5 %>
+		<%= @spread5 %></div>
 
 	<%= form_for @wager do |w| %>
 

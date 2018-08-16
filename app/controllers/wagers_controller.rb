@@ -4,7 +4,7 @@ class WagersController < ApplicationController
 
 		@wager = Wager.new
 		@teams = Team.all
-		
+
 
 
 	end
