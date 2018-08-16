@@ -8,10 +8,14 @@
 <% @fname = @names.sample %>
 <% @surname = ["Miller", "Johnson", "Curtis", "Smith", "Dunn", "Pitt", "Franklin", "Gucci", "O'Mally", "Jones", "Howard", "Cabrerra", "Ortiz", "Stein", "Gold"] %>
 <% @lname = @surname.sample %>
-<% @money = ["small timer", "ballsy", "whale"] %>
+<% @money = ["small timer", "pay dumper", "whale"] %>
 <% @stakes = @money.sample %>
 <% @bets = ["Exotics", "Straight", "All"] %>
 <% @bet_types = @bets.sample %>
+
+<% @sport_choices = "NFL", "NBA", "MLB and NHL", "NFL and NBA", "NHL", "MLB", "NFL and MLB", "CBB", "CFB", "NFL and CFB", "CBB and NBA", "NFL", "CFB and NFL", "MLB and NFL", "NFL and NBA" %>
+
+<% @sports = @sport_choices.sample %>
 
 
 
@@ -22,6 +26,7 @@
 	<div> <%=c.text_field :last_name, :value => @lname %></div>
 	<div> <%=c.text_field :stakes, :value => @stakes %></div>
 	<div> <%=c.text_field :bet_types, :value => @bet_types %></div>
+	<div> <%=c.text_field :sports, :value => @sports %></div>
 
 	<% end %>
 

@@ -1,21 +1,23 @@
 <% if current_user %>
 
-<% current_user.clients.each do |c| %>
+	<% current_user.clients.each do |c| %>
 
-	<div><%= c.first_name %>
-	<%= c.last_name %></div>
+		<div><%= c.first_name %>
+		<%= c.last_name %></div>
 
-	<% c.wagers.each do |w| %>
+		<% c.wagers.each do |w| %>
 
-		<div><%= w.amount %>
-		<%= w.wager_type %></div>
-		<br>
+			<div><%= w.amount %>
+			<%= w.wager_type %></div>
+			<br>
 
-		<%= link_to "Grade Wager", edit_wager_path(w.id), class: 'link_tabs'  %>
+			<%= link_to "Grade Wager", edit_wager_path(w.id), class: 'link_tabs'  %>
 
 
+
+		<% end %>
 
 	<% end %>
 
-<% end %>
+	<%= self.get_time %>
 <% end %>
