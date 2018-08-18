@@ -35,6 +35,7 @@
 <% @client = current_user.clients.sample %>
 <% self.pick_amount %>
 <%= self.pick_type  %>
+<%= @client.sports %>
 
 
 <% if @client.bet_types == "Straight" %>

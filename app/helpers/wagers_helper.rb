@@ -38,17 +38,17 @@ module WagersHelper
 		 			elsif t.sport == "NHL" 
 
 						 @NHL_sides.push(t.sides_line) 
-			 			@NHL_totals.push(t.total_line) 
+			 			 @NHL_totals.push(t.total_line) 
 
 		 			elsif t.sport == "CBB" 
 
-			 			@CBB_sides.push(t.sides_line) 
-			 			@CBB_totals.push(t.total_line) 
+			 			 @CBB_sides.push(t.sides_line) 
+			 			 @CBB_totals.push(t.total_line) 
 
 		 			elsif t.sport == "CFB" 
 
-						@CFB_sides.push(t.sides_line) 
-						@CFB_totals.push(t.total_line) 
+						 @CFB_sides.push(t.sides_line) 
+						 @CFB_totals.push(t.total_line) 
 
 					 end 
 
@@ -84,7 +84,7 @@ module WagersHelper
 	  		if @client.bet_types == "Exotics" 
 
 
-	  			if @client.sports[0] + @client.sports[1] + @client.sports[2] == "NFL" || @client.sports[8] + @client.sports[9] + @client.sports[10] == "NFL" 
+	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NFL" 
 
 	  				choices = []
 	  				nfl_sides = ["bears", "falcons", "giants"]
@@ -95,25 +95,38 @@ module WagersHelper
 	  					choices.push(NFL)
 
 	  				end
-
-	  				nfl_totals.each do |totals|
-
-	  					choices.push(totals)
-
-	  				end
-
 	  			end
 
-	  			return choices
+	  			if @client.sports.length > 3
+
+		  			if @client.sports[8] + @client.sports[9] + @client.sports[10] == "NFL" 
+
+		  				choices = []
+		  				nfl_sides = ["bears", "falcons", "giants"]
+		  				nfl_totals = [45, 60, 55, 34]
+
+		  				nfl_sides.each do NFL
+
+		  					choices.push(NFL)
+		  				end
+
+		  			end
+		  		end
+
+	  			
 
 	  		end
 
+	  			
+
 	  	end
 
+	end
 
 
 
 
 
 
-end
+
+

@@ -8,6 +8,7 @@ class CreateTeams < ActiveRecord::Migration[5.1]
     	t.string :spread
       t.string :opp
     	t.string :total
+      t.string :start_time
       t.string :sides_line
       t.string :total_line_over
       t.string :total_line_under

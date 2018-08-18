@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(version: 20180813143849) do
     t.string "spread"
     t.string "opp"
     t.string "total"
+    t.string "start_time"
     t.string "sides_line"
     t.string "total_line_over"
     t.string "total_line_under"
