@@ -1,64 +1,42 @@
 
-<% @nfl_sides = ["Bears", "Falcons", "Saints"] %>
-<% @nfl_totals = ["45", "50", "43", "48"] %>
-
-<% @MLB_sides = [] %>
-<% @MLB_totals = [] %>
-
-<% @NBA_totals = [] %>
-<% @NBA_sides = [] %>
-
-<% @NHL_sides = [] %>
-<% @NHL_totals = [] %>
-
-<% @CBB_sides = [] %>
-<% @CBB_totals = [] %>
-
-<% @CFB_totals = [] %>
-<% @CFB_sides = [] %>
-
-
-<% @pick_1 = ["Ravens +6", "Eagles -5", "Under 48.5 Chargers", "Chiefs -2.5", "Over 50 Saints", "Packers +1"] %>
-<% @team1 = @pick_1.sample %>
-
-<% @pick_2 = ["Giants -3.5", "Redskins +4", "Bears -4", "Seahawks +2", "49ers -7", "Over 49.5 Steelers", "Under 43 Browns", "Titans +2"] %>
-<% @team2 = @pick_2.sample %>
-
-<% @pick_3 = ["Raiders -8", "Broncos +5", "Patriots -10", "Under 46 Dolphins", "Over47.5 Jets"] %>
-<% @team3 = @pick_3.sample %>
-
-
-
-
-
-
 <% @client = current_user.clients.sample %>
+
+<% @pick1 %>
+<% @pick2 %>
+<% @pick3 %>
+<% @pick4 %>
+<% @pick5 %>
+
+
+
+<% @nfl_sides = [] %>
+<% @nfl_totals = [] %>
+
+<% @mlb_sides = [] %>
+<% @mlb_totals = [] %>
+
+<% @nba_totals = [] %>
+<% @nba_sides = [] %>
+
+<% @nhl_sides = [] %>
+<% @nhl_totals = [] %>
+
+<% @cbb_sides = [] %>
+<% @cbb_totals = [] %>
+
+<% @cfb_totals = [] %>
+<% @cfb_sides = [] %>
+
+<% self.display %>
+
+
+
+
+<%= @client.bet_types %>
 <% self.pick_amount %>
 <%= self.pick_type  %>
 <%= @client.sports %>
 
-
-<% if @client.bet_types == "Straight" %>
-
-	<% @wager_type = "straight" %>
-
-<% elsif @client.bet_types == "Exotics" %>
-
-
-	<% @select_type = ["two team teaser", "three team teaser", "five team teaser", "two team parlay", "three team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"] %>
-
-	<% @wager_type = @select_type.sample %>
-
-<% elsif @client.bet_types == "All" %>
-
-
-	<% @select_type = ["straight", "straight", "straight", "straight", "two team teaser", "three team teaser", "five team teaser", "two team parlay", "three team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse", "straight", "straight"] %>
-
-	<% @wager_type = @select_type.sample %>
-
-<% end %>
-
-<% self.display %>
 
 
 <div><%= @client.first_name %>
@@ -279,5 +257,5 @@
 
 <% end %>
 
-<% @amount = "200" %>
+
 
