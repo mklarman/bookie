@@ -90,14 +90,15 @@ module WagersHelper
 
 	  	def pick_type
 
-	  		@hello = "HELLO"
-
 	  		@choices = []
 	  		@teaser_eligible = []
+	  		@num_choices
+	  		@combo
+	  		@teaser_teams
 
 	  		if @client.bet_types == "All"
  
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NFL"
+	  			if @client.sports == "NFL"
 
 	  				@nfl_sides.each do |n|
 	  					
@@ -121,8 +122,8 @@ module WagersHelper
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "MLB"
-
+				if @client.sports == "MLB"
+	  				
 	  				@mlb_sides.each do |m|
 
 	  					@teams.each do |t|
@@ -144,8 +145,8 @@ module WagersHelper
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NBA"
-
+				if @client.sports == "NBA"	
+	  				
 	  				@nba_sides.each do |n|
 
 	  					@teams.each do |t|
@@ -168,8 +169,8 @@ module WagersHelper
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NHL"
-
+				if @client.sports == "NHL"
+	  				
 	  				@nhl_sides.each do |n|
 
 	  					@teams.each do |t|
@@ -191,8 +192,8 @@ module WagersHelper
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "CBB"
-
+				if @client.sports == "CBB"
+	  				
 	  				@cbb_sides.each do |c|
 
 	  					@teams.each do |t|
@@ -215,8 +216,8 @@ module WagersHelper
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "CFB"
-
+				if @client.sports == "CFB"
+	  				
 	  				@cfb_sides.each do |c|
 
 	  					@teams.each do |t|
@@ -378,116 +379,211 @@ module WagersHelper
 	  					
 	  					end
 	  				end
+	  			end
 
-	  				@num_choices = @choices.length * 2
-	  				@teaser_teams = @teaser_eligible.length * 2
-
-
-	  				if @num_choices == 2 && @teaser_teams == 0
-
-	  					print @hello
-
-	  					@bet_options = ["staright", "two team parlay", "two team reverse"]
-	  					@wager_type = @bet_options.sample
-
-	  				end
-
-		  			if @num_choices == 2 && @teaser_teams == 2
-
-			  			@bet_options = ["straight", "two team parlay", "two team teaser", "two team reverse", "three team parlay", "five team parlay", "four team reverse"]
-			  			@wager_type = @bet_options.sample
-
-		  			end
-
-		  			if @num_choices > 3 && @teaser_teams == 2
-
-			  			@bet_options = ["straight", "two team teaser", "two team parlay", "two team reverse", "straight", "three team parlay", "three team reverse", "four team reverse", "five team parlay"]
-			  			@wager_type = @bet_options.sample
-		  		
-		  			end
-
-		  			if @num_choices == 2 && @teaser_teams == 4 
-
-			  			@bet_options = ["straight", "two team teaser", "two team parlay", "two team reverse", "straight", "three team teaser", "three team reverse", "three team parlay", "four team reverse", "five team parlay"]
-			  			@wager_type = @bet_options.sample
-
-		  			end
-
-		  			if @num_choices > 3 && @teaser_teams > 3
-
-		  				print @hello
-
-			  			@bet_options = ["straight", "two team teaser", "two team parlay", "two team reverse", "straight", "three team teaser", "three team reverse", "three team parlay", "four team reverse", "five team teaser", "five team parlay"]
-			  			@wager_type = @bet_options.sample
+	  			@num_choices = @choices.length * 2
+	  			@teaser_teams = @teaser_eligible.length * 2
+	  			@combo = @num_choices + @teaser_teams
 
 
-		  			end	
+	  			if @combo == 2 && @teaser_teams == 0
 
-	  			end		  			
+	  				@bet_options = ["two team parlay", "two team reverse"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo == 2 && @teaser_teams == 2
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo == 4 && @teaser_teams == 0
+
+	  				@bet_options = ["two team parlay", "two team reverse", "three team reverse", "four team reverse", "three team parlay"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo > 4 && @teaser_teams == 0
+
+	  				@bet_options = ["two team parlay", "two team reverse", "three team reverse", "four team reverse", "three team parlay", "five team parlay"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+
+	  			if @combo > 4 && @teaser_teams == 2
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo == 4 && @teaser_teams == 4
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo > 4 && @teaser_teams == 4
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo > 4 && @teaser_teams > 4
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser", "five team teaser"]
+	  				@wager_type = @bet_options.sample
+
+	  			end  					  			
 
 	  		end
- 		
 
 	  		if @client.bet_types == "Exotics"
-
-	  			@choices = [] 
-
-
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NFL"
+ 
+	  			if @client.sports == "NFL"
 
 	  				@nfl_sides.each do |n|
+	  					
+	  					@teams.each do |t|
 
-	  					@choices.push(n)
+	  						if n == t.name
+
+	  							if t.start_time.to_i > @time_check.to_i
+
+	  								
+	  								@teaser_eligible.push(n)
+
+	  							end
+
+	  						end
+
+
+	  					end
 
 	  				end		
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "MLB"
-
+				if @client.sports == "MLB"
+	  				
 	  				@mlb_sides.each do |m|
 
-	  					@choices.push(m)
+	  					@teams.each do |t|
+
+	  						if m == t.name
+
+	  							if t.start_time.to_i > @time_check.to_i
+
+	  								@choices.push(m)
+
+	  							end
+
+	  						end
+
+
+	  					end
 	  					
 	  				end
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NBA"
-
+				if @client.sports == "NBA"	
+	  				
 	  				@nba_sides.each do |n|
 
-	  					@choices.push(n)
+	  					@teams.each do |t|
+
+	  						if n == t.name
+
+	  							if t.start_time.to_i > @time_check.to_i
+
+	  								@teaser_eligible.push(n)
+	  								
+
+	  							end
+
+	  						end
+
+
+	  					end
 	  					
 	  				end
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "NHL"
-
+				if @client.sports == "NHL"
+	  				
 	  				@nhl_sides.each do |n|
 
-	  					@choices.push(n)
+	  					@teams.each do |t|
+
+	  						if n == t.name
+
+	  							if t.start_time.to_i > @time_check.to_i
+
+	  								@choices.push(n)
+
+	  							end
+
+	  						end
+
+
+	  					end
 	  					
 	  				end
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "CBB"
-
+				if @client.sports == "CBB"
+	  				
 	  				@cbb_sides.each do |c|
 
-	  					@choices.push(c)
+	  					@teams.each do |t|
+
+	  						if c == t.name
+
+	  							if t.start_time.to_i > @time_check.to_i
+
+	  								
+	  								@teaser_eligible.push(c)
+
+	  							end
+
+	  						end
+
+
+	  					end
 	  					
 	  				end
 
 	  			end
 
-	  			if @client.sports[0] << @client.sports[1] << @client.sports[2] == "CFB"
-
+				if @client.sports == "CFB"
+	  				
 	  				@cfb_sides.each do |c|
 
-	  					@choices.push(c)
+	  					@teams.each do |t|
+
+	  						if c == t.name
+
+	  							if t.start_time.to_i > @time_check.to_i
+
+	  								
+	  								@teaser_eligible.push(c)
+
+	  							end
+
+	  						end
+
+
+	  					end
 	  					
 	  				end
 
@@ -499,7 +595,21 @@ module WagersHelper
 
 		  				@nfl_sides.each do |n|
 
-	  					@choices.push(n)
+		  					@teams.each do |t|
+
+		  						if n == t.name
+
+		  							if t.start_time.to_i > @time_check.to_i
+
+		  								
+		  								@teaser_eligible.push(n)
+
+		  							end
+
+		  						end
+
+
+	  						end
 	  					
 	  					end
 	  				end
@@ -509,7 +619,20 @@ module WagersHelper
 
 		  				@mlb_sides.each do |m|
 
-	  					@choices.push(m)
+		  					@teams.each do |t|
+
+		  						if m == t.name
+
+		  							if t.start_time.to_i > @time_check.to_i
+
+		  								@choices.push(m)
+
+		  							end
+
+		  						end
+
+
+	  						end
 	  					
 	  					end
 	  				end
@@ -518,7 +641,21 @@ module WagersHelper
 
 		  				@nhl_sides.each do |n|
 
-	  					@choices.push(n)
+		  					@teams.each do |t|
+
+		  						if n == t.name
+
+		  							if t.start_time.to_i > @time_check.to_i
+
+		  								@choices.push(n)
+		  						
+
+		  							end
+
+		  						end
+
+
+	  						end
 	  					
 	  					end
 	  				end
@@ -527,7 +664,21 @@ module WagersHelper
 
 		  				@nba_sides.each do |n|
 
-	  					@choices.push(n)
+		  					@teams.each do |t|
+
+		  						if n == t.name
+
+		  							if t.start_time.to_i > @time_check.to_i
+
+		  								
+		  								@teaser_eligible.push(n)
+
+		  							end
+
+		  						end
+
+
+	  						end
 	  					
 	  					end
 	  				end
@@ -536,7 +687,21 @@ module WagersHelper
 
 		  				@cbb_sides.each do |n|
 
-	  					@choices.push(n)
+		  					@teams.each do |t|
+
+		  						if n == t.name
+
+		  							if t.start_time.to_i > @time_check.to_i
+
+		  								
+		  								@teaser_eligible.push(n)
+
+		  							end
+
+		  						end
+
+
+	  						end
 	  					
 	  					end
 	  				end
@@ -545,63 +710,100 @@ module WagersHelper
 
 		  				@cfb_sides.each do |n|
 
-	  					@choices.push(n)
+		  					@teams.each do |t|
+
+		  						if n == t.name
+
+		  							if t.start_time.to_i > @time_check.to_i
+
+		  								
+		  								@teaser_eligible.push(n)
+
+		  							end
+
+		  						end
+
+
+	  						end
 	  					
 	  					end
-	  				end  			
+	  				end
+	  			end
+
+	  			@num_choices = @choices.length * 2
+	  			@teaser_teams = @teaser_eligible.length * 2
+	  			@combo = @num_choices + @teaser_teams
+
+
+
+	  			if @combo == 2 && @teaser_teams == 0
+
+	  				@bet_options = ["two team parlay", "two team reverse"]
+	  				@wager_type = @bet_options.sample
 
 	  			end
 
-	  			# @num_choices = @choices.length * 2
+	  			if @combo == 2 && @teaser_teams == 2
 
-		  		# if @num_choices == 1
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser"]
+	  				@wager_type = @bet_options.sample
 
-		  		# 	@bet_options = ["straight"]
-		  		# 	@wager_type = @bet_options.sample
-		  		# 	return @num_choices
+	  			end
 
-		  		# end
+	  			if @combo == 4 && @teaser_teams == 0
 
-		  		# if @num_choices == 2
+	  				@bet_options = ["two team parlay", "two team reverse", "three team reverse", "four team reverse", "three team parlay"]
+	  				@wager_type = @bet_options.sample
 
-		  		# 	@bet_options = ["two team teaser", "two team parlay", "two team reverse"]
-		  		# 	@wager_type = @bet_options.sample
-		  		# 	return @num_choices
-		  		
-		  		# end
+	  			end
 
-		  		# if @num_choices == 3
+	  			if @combo > 4 && @teaser_teams == 0
 
-		  		# 	@bet_options = ["two team teaser", "two team parlay", "two team reverse", "three team teaser", "three team reverse", "three team parlay"]
-		  		# 	@wager_type = @bet_options.sample
-		  		# 	return @num_choices
+	  				@bet_options = ["two team parlay", "two team reverse", "three team reverse", "four team reverse", "three team parlay", "five team parlay"]
+	  				@wager_type = @bet_options.sample
 
+	  			end
 
-		  		# end
+	  			if @combo == 4 && @teaser_teams == 4
 
-		  		# if @num_choices == 4
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser"]
+	  				@wager_type = @bet_options.sample
 
-		  		# 	@bet_options = ["two team teaser", "two team parlay", "two team reverse", "three team teaser", "three team reverse", "three team parlay", "four team reverse"]
-		  		# 	@wager_type = @bet_options.sample
-		  		# 	return @num_choices
+	  			end
 
+	  			if @combo == 4 && @teaser_teams == 2
 
-		  		# end
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay"]
+	  				@wager_type = @bet_options.sample
 
-		  		# if @num_choices > 4
-
-		  		# 	@bet_options = ["two team teaser", "two team parlay", "two team reverse", "three team teaser", "three team reverse", "three team parlay", "four team reverse", "five team teaser", "five team parlay"]
-		  		# 	@wager_type = @bet_options.sample
-		  		# 	return @num_choices
+	  			end
 
 
-		  		# end
+	  			if @combo > 4 && @teaser_teams == 2
 
-	  		end	
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay"]
+	  				@wager_type = @bet_options.sample
 
-	  		
+	  			end
 
-	  		if @client.bet_types = "Straight"
+	  			if @combo > 4 && @teaser_teams == 4
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser"]
+	  				@wager_type = @bet_options.sample
+
+	  			end
+
+	  			if @combo > 4 && @teaser_teams > 4
+
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser", "five team teaser"]
+	  				@wager_type = @bet_options.sample
+
+	  			end		  			
+
+	  		end
+
+	  		if @client.bet_types == "Straight"
+
 
 	  			@wager_type = "straight"
 
