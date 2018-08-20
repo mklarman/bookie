@@ -8,6 +8,7 @@
 <% @choices %>
 <% @teaser_eligible  %>
 <% @combo %>
+<% @straight_container %>
 
 <% @wager_type %>
 <% @pick1 %>
@@ -48,23 +49,7 @@
 <%= @combo %>
 <%= @teaser_teams %>
 <%= @wager_type %>
-
-<div> <% @teams.each do |t| %>
-
-
-		<% if t.display == "on" %>
-
-			<% if t.sport == "NBA" %>
-
-				<div><%= t.name %>
-				<%= t.start_time %></div>
-
-			<% end %>
-
-		<% end %>
-
-	<% end %>
-
+<%= @straight_container %>
 
 
 <div><%= @client.first_name %>
@@ -78,6 +63,9 @@
 
 <% if @wager_type == "straight" %>
 
+	<%= self.pick_teams %>
+	<%= @pick1 %>
+
 	<div><%= @amount %>
 	<%= @wager_type %></div>
 	<div><%= @team1 %>
@@ -89,7 +77,7 @@
 		<%= w.hidden_field :client_id, :value => @client.id %>
 		Type:<div><%= w.text_field :wager_type, :value => @wager_type %></div>
 		Amount:<div><%= w.text_field :amount, :value => @amount %></div>
-		Team:<div><%= w.text_field :team1, :value => @team1 %></div>
+		Team:<div><%= w.text_field :team1, :value => @pick1 %></div>
 		<div><%= w.hidden_field :team2 %></div>
 		<div><%= w.hidden_field :team3 %></div>
 		<div><%= w.hidden_field :team4 %></div>
