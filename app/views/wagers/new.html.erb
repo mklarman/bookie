@@ -1,6 +1,14 @@
+<% @time_check %>
+<% self.get_time %>
+<% self.time_check %>
+<%= @time_check.to_i %>
 
 <% @client = current_user.clients.sample %>
 
+<% @choices %>
+<% @teaser_eligible  %>
+
+<% @wager_type %>
 <% @pick1 %>
 <% @pick2 %>
 <% @pick3 %>
@@ -36,6 +44,8 @@
 <% self.pick_amount %>
 <%= self.pick_type  %>
 <%= @client.sports %>
+<%= @choices.length * 2 %>
+<%= @teaser_eligible.length * 2 %>
 
 
 
