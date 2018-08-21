@@ -1111,9 +1111,42 @@ module WagersHelper
 
 	  	end
 
+	  	def test
+
+	  		@test = {hello: "Hello", greeting: "Bye"}
+
+	  		return [@test, @test[:greeting]]
+
+	  	end
+
 	  	def pick_teams
 
+
+
 	  		if @wager_type == "straight"
+
+	  			@team_obj
+
+	  			@teams_chosen = []
+
+	  			@client.wagers.each do |w|
+
+	  				@teams.each do |t|
+
+	  					if w.team1 == t.name
+
+	  						@team_obj = {pick: t.name, opp: t.opp}
+	  					end
+
+		  				if w.wager_type == "straight"
+
+		  					@teams_chosen.push(@team_obj)
+
+		  				end
+
+	  				end		
+
+	  			end
 
 	  			@pick1_holder = @straight_container.sample
 
