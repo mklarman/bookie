@@ -4,6 +4,20 @@
 <%= @time_check.to_i %>
 
 <% @client = current_user.clients.sample %>
+<% @first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2] %>
+<% @second_sport = "none" %>
+
+<% if @client.sports.length > 3 %>
+
+	<% @second_sport = @client.sports[8] + @client.sports[9] + @client.sports[10] %>
+
+
+<% end %>
+
+
+
+<%= @first_sport %>
+<%= @second_sport %>
 
 <% @choices %>
 <% @teaser_eligible  %>
@@ -16,6 +30,8 @@
 <% @pick3 %>
 <% @pick4 %>
 <% @pick5 %>
+
+
 
 
 
@@ -64,7 +80,6 @@
 <% if @wager_type == "straight" %>
 
 	<%= self.pick_teams %>
-	<%= @pick1 %>
 
 	<div><%= @amount %>
 	<%= @wager_type %></div>
@@ -101,6 +116,8 @@
 
 <% if (@wager_type == "two team teaser" || @wager_type == "two team parlay" || @wager_type == "two team reverse") %>
 
+	<% self.pick_teams %>
+
 	<div><%= @amount %>
 		<%= @wager_type %></div>
 	
@@ -116,8 +133,8 @@
 	<%= w.hidden_field :client_id, :value => @client.id %>
 	Type:<div><%= w.text_field :wager_type, :value => @wager_type %></div>
 	Amount:<div><%= w.text_field :amount, :value => @amount %></div>
-	Team1:<div><%= w.text_field :team1, :value => @team1 %></div>
-	Team2:<div><%= w.text_field :team2, :value => @team2 %></div>
+	Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
+	Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
 	<div><%= w.hidden_field :team3 %></div>
 	<div><%= w.hidden_field :team4 %></div>
 	<div><%= w.hidden_field :team5 %></div>
@@ -141,6 +158,8 @@
 
 <% if (@wager_type == "three team teaser" || @wager_type == "three team parlay" || @wager_type == "three team reverse") %>
 
+	<% self.pick_teams %>
+
 	<div><%= @amount %>
 		<%= @wager_type %></div>
 	
@@ -159,9 +178,9 @@
 	<%= w.hidden_field :client_id, :value => @client.id %>
 	Type:<div><%= w.text_field :wager_type, :value => @wager_type %></div>
 	Amount:<div><%= w.text_field :amount, :value => @amount %></div>
-	Team1:<div><%= w.text_field :team1, :value => @team1 %></div>
-	Team2:<div><%= w.text_field :team2, :value => @team2 %></div>
-	Team3:<div><%= w.text_field :team3, :value => @team3 %></div>
+	Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
+	Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
+	Team3:<div><%= w.text_field :team3, :value => @pick3 %></div>
 	<div><%= w.hidden_field :team4 %></div>
 	<div><%= w.hidden_field :team5 %></div>
 	Spread1:<div><%= w.text_field :spread1, :value => @spread1 %></div>
@@ -274,6 +293,8 @@
 
 
 <% end %>
+
+
 
 
 
