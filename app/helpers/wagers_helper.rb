@@ -1114,262 +1114,259 @@ module WagersHelper
 
 	  		@client.wagers.each do |w|
 
-	  			if w.wager_type == "straight"
+	  			if w.graded == false
 
-	  				@teams.each do |t|
+		  			if w.wager_type == "straight"
 
-	  					if w.team1 == t.name
+		  				@teams.each do |t|
 
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
+		  					if w.team1 == t.name
 
-	  					end
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
 
-	  					if w.team1 == t.opp
+		  					end
 
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
+		  					if w.team1 == t.opp
 
-	  					end
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
 
+		  					end
+
+		  				end
+
+
+		  			end
+
+		  			if w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse"
+
+		  				@teams.each do |t|
+
+		  					if w.team1 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team1 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team2 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team2 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  				end
+
+		  			end
+
+		  			if w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse"
+
+		  				@teams.each do |t|
+
+		  					if w.team1 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team1 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team2 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team2 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team3 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team3 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  				end
+
+		  			end
+
+		  			if w.wager_type == "four team reverse"
+
+		  				@teams.each do |t|
+
+		  					if w.team1 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team1 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team2 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team2 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team3 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team3 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team4 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team4 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  				end
+
+		  			end
+
+		  			if w.wager_type == "five team teaser" || w.wager_type == "five team parlay"
+
+		  				@teams.each do |t|
+
+		  					if w.team1 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team1 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team2 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team2 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team3 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team3 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team4 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team4 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  					if w.team5 == t.name
+
+		  						@selections.push(t.name)
+		  						@oppo_picks.push(t.opp)
+
+		  					end
+
+		  					if w.team5 == t.opp
+
+		  						@selections.push(t.opp)
+		  						@oppo_picks.push(t.name)
+
+		  					end
+
+		  				end
 	  				end
-
-
 	  			end
-
-	  			if w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse"
-
-	  				@teams.each do |t|
-
-	  					if w.team1 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team1 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team2 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team2 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  				end
-
-	  			end
-
-	  			if w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse"
-
-	  				@teams.each do |t|
-
-	  					if w.team1 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team1 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team2 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team2 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team3 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team3 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  				end
-
-	  			end
-
-	  			if w.wager_type == "four team reverse"
-
-	  				@teams.each do |t|
-
-	  					if w.team1 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team1 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team2 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team2 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team3 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team3 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team4 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team4 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  				end
-
-	  			end
-
-	  			if w.wager_type == "five team teaser" || w.wager_type == "five team parlay"
-
-	  				@teams.each do |t|
-
-	  					if w.team1 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team1 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team2 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team2 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team3 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team3 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team4 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team4 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  					if w.team5 == t.name
-
-	  						@selections.push(t.name)
-	  						@oppo_picks.push(t.opp)
-
-	  					end
-
-	  					if w.team5 == t.opp
-
-	  						@selections.push(t.opp)
-	  						@oppo_picks.push(t.name)
-
-	  					end
-
-	  				end
-
-
-	  			end
-
-
 	  		end
-
-
 	  	end
 
 	  	def pick_teams
@@ -1393,9 +1390,109 @@ module WagersHelper
 
 	  		end
 	  	end
+	
+
+		def selections
+
+			@matchups.each do |m|
+
+				@team_hash = Hash.new
+				@num_array = [1, 2]
+				@r_num = @num_array.sample
+
+				if @r_num == 1
+
+					@team_hash[:selection] = m[0]
+					@team_hash[:opponent] = m[1]
+
+					@client_picks.push(@team_hash)
+
+				end
+
+				if @r_num == 2
+
+					@team_hash[:selection] = m[1]
+					@team_hash[:opponent] = m[0]
+
+					@client_picks.push(@team_hash)
+
+				end
+
+
+			end
+
+
+		end
+
+		def sort
+
+			@selections.each do |s| 
+
+	 			@client_picks.each do |p| 
+
+		 			if s == p[:opponent] 
+
+						p[:selection] = p[:opponent] 
+
+		 			end 
+
+	 			end 
+
+ 			end 
+
+		end
+
+		def fill_wagers
+
+			@client_picks.each do |p|
+
+				@teams_to_choose.push(p[:selection])
+
+			end
+
+			if @wager_type == "straight"
+
+				@pick1 = @teams_to_choose.sample
+
+
+				@teams.each do |t|
+
+					if t.name == @pick1
+
+						if t.spread.to_i > 0
+
+							@spread1 = 4
+
+							# @spread1 = "+" + t.spread
+
+						else
+
+							@spread1 = t.spread
+
+						end
+
+					elsif t.opp == @pick1
+
+						@spread1 = t.spread.to_i * -1
+
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						end
+
+					elsif t.under_line == @pick1 || t.over_line == @pick1
+
+						@spread1 = t.total 
+
+					end
+
+
+
+				end
+			end
+		end
 	end
-
-
 
 
 	  	# 	if @wager_type == "straight"

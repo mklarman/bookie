@@ -6,6 +6,9 @@
 <% @selections = [] %>
 <% @oppo_picks = [] %>
 <% @matchups = [] %>
+<% @client_picks = [] %>
+<% @teams_to_choose = [] %>
+
 
 <% @client = current_user.clients.sample %>
 <% @first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2] %>
@@ -40,6 +43,11 @@
 <% @pick3 %>
 <% @pick4 %>
 <% @pick5 %>
+<% @spread1 %>
+<% @spread2 %>
+<% @spread3 %>
+<% @spread4 %>
+<% @spread5 %>
 
 
 
@@ -71,16 +79,19 @@
 
 
 
-<%= @client.bet_types %>
+
 <% self.pick_amount %>
 <%= self.pick_type  %>
-<%= @client.sports %>
-<%= @combo %>
-<%= @teaser_teams %>
-<%= @wager_type %>
-<%= @straight_container %>
 <% self.pick_teams %>
-<%= @matchups %>
+<% self.selections %>
+<% self.sort %>
+
+<div><%= @selections %></div>
+<div><%= @client_picks %>
+
+
+
+
 
 
 <div><%= @client.first_name %>
@@ -94,12 +105,13 @@
 
 <% if @wager_type == "straight" %>
 
-	<% self.pick_teams %>
+	<% self.fill_wagers %>
+	<%= @teams_to_choose %>
 
 
 	<div><%= @amount %>
 	<%= @wager_type %></div>
-	<div><%= @team1 %>
+	<div><%= @pick1 %>
 		<%= @spread1 %></div>
 
 	<%= form_for @wager do |w| %>
