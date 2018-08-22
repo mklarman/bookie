@@ -91,8 +91,6 @@ module WagersHelper
 	  	def pick_type
 
 	  		@choices = []
-	  		@teaser_eligible = []
-	  		@straight_container = []
 	  		@num_choices
 	  		@combo
 	  		@teaser_teams
@@ -1111,68 +1109,255 @@ module WagersHelper
 
 	  	end
 
-	  	def test
 
-	  		@test = {hello: "Hello", greeting: "Bye"}
+	  	def get_teams_and_oppo
 
-	  		return [@test, @test[:greeting]]
+	  		@client.wagers.each do |w|
 
-	  	end
-
-	  	def pick_teams
-
-
-
-	  		if @wager_type == "straight"
-
-	  			@team_obj
-
-	  			@teams_chosen = []
-
-	  			@client.wagers.each do |w|
+	  			if w.wager_type == "straight"
 
 	  				@teams.each do |t|
 
 	  					if w.team1 == t.name
 
-	  						@team_obj = {pick: t.name, opp: t.opp}
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
 	  					end
 
-		  				if w.wager_type == "straight"
+	  					if w.team1 == t.opp
 
-		  					@teams_chosen.push(@team_obj)
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
 
-		  				end
+	  					end
 
-	  				end		
+	  				end
+
 
 	  			end
 
-	  			@pick1_holder = @straight_container.sample
+	  			if w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse"
 
-	  			@teams.each do |t|
+	  				@teams.each do |t|
 
-	  				if @pick1_holder == t.name
+	  					if w.team1 == t.name
 
-	  					@array = [1,2,3,4]
-	  					@ran_num = @array.sample
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
 
-	  					if @ran_num == 1
+	  					end
 
-	  						@pick1 = t.home_line
+	  					if w.team1 == t.opp
 
-	  					elsif @ran_num == 2
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
 
-	  						@pick1 = t.opp_line
+	  					end
 
-	  					
-	  					elsif @ran_num == 3
-	  						
-	  						@pick1 = t.over_line
+	  					if w.team2 == t.name
 
-	  					elsif @ran_num == 4
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
 
-	  						@pick1 = t.under_line
+	  					end
+
+	  					if w.team2 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  				end
+
+	  			end
+
+	  			if w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse"
+
+	  				@teams.each do |t|
+
+	  					if w.team1 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team1 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team2 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team2 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team3 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team3 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  				end
+
+	  			end
+
+	  			if w.wager_type == "four team reverse"
+
+	  				@teams.each do |t|
+
+	  					if w.team1 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team1 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team2 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team2 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team3 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team3 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team4 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team4 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  				end
+
+	  			end
+
+	  			if w.wager_type == "five team teaser" || w.wager_type == "five team parlay"
+
+	  				@teams.each do |t|
+
+	  					if w.team1 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team1 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team2 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team2 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team3 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team3 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team4 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team4 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
+
+	  					end
+
+	  					if w.team5 == t.name
+
+	  						@selections.push(t.name)
+	  						@oppo_picks.push(t.opp)
+
+	  					end
+
+	  					if w.team5 == t.opp
+
+	  						@selections.push(t.opp)
+	  						@oppo_picks.push(t.name)
 
 	  					end
 
@@ -1183,421 +1368,520 @@ module WagersHelper
 
 
 	  		end
-
-	  		if @wager_type == "two team teaser"
-
-	  			@pick1_holder = @teaser_eligible.sample
-
-	  			@teams.each do |t|
-
-	  				if t.name == @pick1_holder
-
-	  					@array = [1,2,3,4]
-	  					@ran_num = @array.sample
-
-	  					if @ran_num == 1
-
-	  						@pick1_cont = t.name
-	  						@teaser_line = t.spread.to_i + 6
-
-	  						if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  						end
-	  						
-	  						@pick1 = @pick1_cont + " " + @teaser_line
-
-
-	  					elsif @ran_num == 2
-
-	  						@pick1_cont = t.opp
-	  						@teaser_line = (t.spread.to_i * -1) + 6
-
-	  						if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  						end
-	  						
-	  						@pick1 = @pick1_cont + " " + @teaser_line
-
-	  					
-	  					elsif @ran_num == 3
-	  						
-	  						@pick1_cont = t.total.to_i
-	  						@teaser_line = t.total.to_i - 6
-	  						
-	  						@pick1 = "over " + t.name + " " + @teaser_line.to_s
-
-	  					elsif @ran_num == 4
-
-	  						@pick1_cont = t.total.to_i
-	  						@teaser_line = t.total.to_i + 6
-	  						
-	  						@pick1 = "under " + t.name + " " + @teaser_line.to_s
-	  					end
-
-
-
-
-	  				end
-
-
-
-	  			end
-
-	  			@pick2 = @pick1
-
-	  			while @pick2 === @pick1
-
-	  				@pick2_holder = @teaser_eligible.sample
-
-	  				@teams.each do |t|
-
-	  					if t.name == @pick2_holder
-
-	  						@array = [1,2,3,4]
-	  						@ran_num = @array.sample
-
-	  						if @ran_num == 1
-
-	  							@pick2_cont = t.name
-	  							@teaser_line = t.spread.to_i + 6
-
-	  							if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  							end
-	  							
-	  							@pick2 = @pick2_cont + " " + @teaser_line
-
-
-	  						elsif @ran_num == 2
-
-	  							@pick2_cont = t.opp
-	  							@teaser_line = (t.spread.to_i * -1) + 6
-
-	  							if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  							end
-	  							
-	  							@pick2 = @pick2_cont + " " + @teaser_line
-
-	  					
-	  						elsif @ran_num == 3
-	  						
-	  							@pick2_cont = t.total.to_i
-	  							@teaser_line = t.total.to_i - 6
-	  							
-	  							@pick2 = "over " + t.name + " " + @teaser_line.to_s
-
-	  						elsif @ran_num == 4
-
-	  							@pick2_cont = t.total.to_i
-	  							@teaser_line = t.total.to_i + 6
-	  							
-	  							@pick2 = "under " + t.name + " " + @teaser_line.to_s
-	  						end
-
-
-
-
-	  					end
-
-
-
-	  				end
-
-	  			end
-
-
-
-	  		end
-
-	  		if @wager_type == "three team teaser"
-
-	  			@pick1_holder = @teaser_eligible.sample
-
-	  			@teams.each do |t|
-
-	  				if t.name == @pick1_holder
-
-	  					@array = [1,2,3,4]
-	  					@ran_num = @array.sample
-
-	  					if @ran_num == 1
-
-	  						@pick1_cont = t.name
-
-	  						if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-	  							
-
-	  						if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  						end
-	  						
-	  						@pick1 = @pick1_cont + " " + @teaser_line.to_s
-
-
-	  					elsif @ran_num == 2
-
-	  						@pick1_cont = t.opp
-	  						
-	  						if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-
-	  						if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  						end
-	  						
-	  						@pick1 = @pick1_cont + " " + @teaser_line.to_s
-
-	  					
-	  					elsif @ran_num == 3
-	  						
-	  						@pick1_cont = t.total.to_i
-	  						@teaser_line = @pick1_cont - 6
-	  						
-	  						@pick1 = "over " + t.name + " " + @teaser_line.to_s
-
-	  					elsif @ran_num == 4
-
-	  						@pick1_cont = t.total.to_i
-	  						@teaser_line = @pick1_cont + 6
-	  									
-	  						@pick1 = "under " + t.name + " " + @teaser_line.to_s
-	  					
-	  					end
-
-
-
-
-	  				end
-
-
-
-	  			end
-
-	  			@pick2 = @pick1
-	  			@pick3 = @pick1
-
-	  			while @pick2 === @pick1
-
-	  				@pick2_holder = @teaser_eligible.sample
-
-	  				@teams.each do |t|
-
-	  					if t.name == @pick2_holder
-
-	  						@array = [1,2,3,4]
-	  						@ran_num = @array.sample
-
-	  						if @ran_num == 1
-
-	  							@pick2_cont = t.name
-	  							
-	  							if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-
-	  							if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  							end
-	  							
-	  							@pick2 = @pick2_cont + " " + @teaser_line.to_s
-
-
-	  						elsif @ran_num == 2
-
-	  							@pick2_cont = t.opp
-	  							
-	  							if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-	  							
-	  							if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  							end
-	  							
-	  							@pick2 = @pick2_cont + " " + @teaser_line.to_s
-
-	  					
-	  						elsif @ran_num == 3
-	  						
-	  							@pick2_cont = t.total.to_i
-	  							@teaser_line = @pick2_cont - 6
-	  									
-	  							@pick2 = "over " + t.name + " " + @teaser_line.to_s
-
-	  						elsif @ran_num == 4
-
-	  							@pick2_cont = t.total.to_i
-	  							
-	  							@teaser_line = @pick2_cont + 6
-	  							
-	  							@pick2 = "under " + t.name + " " + @teaser_line.to_s
-	  						end
-
-
-
-
-	  					end
-
-
-
-	  				end
-
-	  			end
-
-	  			while @pick3 == @pick1 || @pick3 == @pick2
-
-	  				@pick3_holder = @teaser_eligible.sample
-
-	  				@teams.each do |t|
-
-	  					if t.name == @pick3_holder
-
-	  						@array = [1,2,3,4]
-	  						@ran_num = @array.sample
-
-	  						if @ran_num == 1
-
-	  							@pick3_cont = t.name
-	  							
-	  							if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-
-	  							if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  							end
-	  							
-	  							@pick3 = @pick3_cont + " " + @teaser_line.to_s
-
-
-	  						elsif @ran_num == 2
-
-	  							@pick3_cont = t.opp
-	  							
-	  							if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-	  							
-	  							if @teaser_line > 0
-
-	  							@teaser_line = "+" + @teaser_line.to_s
-
-	  							end
-	  							
-	  							@pick3 = @pick3_cont + " " + @teaser_line.to_s
-
-	  					
-	  						elsif @ran_num == 3
-	  						
-	  							@pick3_cont = t.total.to_i
-	  							
-	  							if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-	  							
-	  							@pick3 = "over " + t.name + " " + @teaser_line.to_s
-
-	  						elsif @ran_num == 4
-
-	  							@pick3_cont = t.total.to_i
-	  							
-	  							if t.sport == "NFL" || t.sport == "CFB"
-	  							
-	  							@teaser_line = t.spread.to_i + 9
-
-	  						elsif t.sport == "NBA" || t.sport == "CBB"
-
-	  							@teaser_line = t.spread.to_i + 6
-
-	  						end
-	  							
-	  							@pick3 = "under " + t.name + " " + @teaser_line.to_s
-	  						end
-
-
-
-
-	  					end
-
-
-
-	  				end
-
-
-
-	  			end
-
-	  		end
-
 
 
 	  	end
 
+	  	def pick_teams
+
+	  		@straight_container.each do |s|
+
+	  			@teams.each do |t|
+
+	  				if s == t.name
+
+	  					@sides = [t.name, t.opp]
+	  					@total = [t.under_line, t.over_line]
+
+	  					@matchups.push(@sides)
+	  					@matchups.push(@total)
+	  				end
+
+
+	  			end
+
+
+	  		end
+	  	end
 	end
+
+
+
+
+	  	# 	if @wager_type == "straight"
+
+	  	# 		@pick1
+	  	# 		@spread1
+
+	  	# 		@oppo_check = true
+
+	  	# 		while @oppo_check == true
+
+	  	# 			@pick1_holder = @straight_container.sample
+
+	  	# 			@teams.each do |t|
+
+		  # 				if @pick1_holder == t.name
+
+		  # 					@array = [1,2,3,4]
+		  # 					@ran_num = @array.sample
+
+		  # 					if @ran_num == 1
+
+		  # 						@pick1 = t.name
+
+		  # 					elsif @ran_num == 2
+
+		  # 						@pick1 = t.opp
+
+		  					
+		  # 					elsif @ran_num == 3
+		  						
+		  # 						@pick1 = t.over_line
+
+		  # 					elsif @ran_num == 4
+
+		  # 						@pick1 = t.under_line
+
+		  # 					end
+
+		  # 				end
+
+	  	# 			end
+
+	  	# 			@oppo_matches = []
+
+	  	# 			@oppo_picks.each do |o|
+
+	  	# 				if o == @pick1
+
+	  	# 					@oppo_matches.push(o)
+
+	  	# 				end
+
+	  	# 			end
+
+	  	# 			if @oppo_matches.length == 0
+
+	  	# 				@oppo_check == false
+
+	  	# 			else
+
+	  	# 				@oppo_check == true
+
+	  	# 			end
+
+
+	  	# 		end
+
+	  			
+
+	  	# 	end
+
+	  	# 	if @wager_type == "two team teaser"
+
+	  	# 		@pick1_holder = @teaser_eligible.sample
+
+	  	# 		@teams.each do |t|
+
+	  	# 			if t.name == @pick1_holder
+
+	  	# 				@array = [1,2,3,4]
+	  	# 				@ran_num = @array.sample
+
+	  	# 				if @ran_num == 1
+
+	  	# 					@pick1_cont = t.name
+	  	# 					@teaser_line = t.spread.to_i + 6
+
+	  	# 					if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 					end
+	  						
+	  	# 					@pick1 = @pick1_cont + " " + @teaser_line.to_s
+
+
+	  	# 				elsif @ran_num == 2
+
+	  	# 					@pick1_cont = t.opp
+	  	# 					@teaser_line = (t.spread.to_i * -1) + 6
+
+	  	# 					if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 					end
+	  						
+	  	# 					@pick1 = @pick1_cont + " " + @teaser_line.to_s
+
+	  					
+	  	# 				elsif @ran_num == 3
+	  						
+	  	# 					@pick1_cont = t.total.to_i
+	  	# 					@teaser_line = t.total.to_i - 6
+	  						
+	  	# 					@pick1 = "over " + t.name + " " + @teaser_line.to_s
+
+	  	# 				elsif @ran_num == 4
+
+	  	# 					@pick1_cont = t.total.to_i
+	  	# 					@teaser_line = t.total.to_i + 6
+	  						
+	  	# 					@pick1 = "under " + t.name + " " + @teaser_line.to_s
+	  	# 				end
+
+
+
+
+	  	# 			end
+
+
+
+	  	# 		end
+
+	  	# 		@pick2 = @pick1
+
+	  	# 		while @pick2 === @pick1
+
+	  	# 			@pick2_holder = @teaser_eligible.sample
+
+	  	# 			@teams.each do |t|
+
+	  	# 				if t.name == @pick2_holder
+
+	  	# 					@array = [1,2,3,4]
+	  	# 					@ran_num = @array.sample
+
+	  	# 					if @ran_num == 1
+
+	  	# 						@pick2_cont = t.name
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 						if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 						end
+	  							
+	  	# 						@pick2 = @pick2_cont + " " + @teaser_line.to_s
+
+
+	  	# 					elsif @ran_num == 2
+
+	  	# 						@pick2_cont = t.opp
+	  	# 						@teaser_line = (t.spread.to_i * -1) + 6
+
+	  	# 						if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 						end
+	  							
+	  	# 						@pick2 = @pick2_cont + " " + @teaser_line.to_s
+
+	  					
+	  	# 					elsif @ran_num == 3
+	  						
+	  	# 						@pick2_cont = t.total.to_i
+	  	# 						@teaser_line = t.total.to_i - 6
+	  							
+	  	# 						@pick2 = "over " + t.name + " " + @teaser_line.to_s
+
+	  	# 					elsif @ran_num == 4
+
+	  	# 						@pick2_cont = t.total.to_i
+	  	# 						@teaser_line = t.total.to_i + 6
+	  							
+	  	# 						@pick2 = "under " + t.name + " " + @teaser_line.to_s
+	  	# 					end
+
+
+
+
+	  	# 				end
+
+
+
+	  	# 			end
+
+	  	# 		end
+
+
+
+	  	# 	end
+
+	  	# 	if @wager_type == "three team teaser"
+
+	  	# 		@pick1_holder = @teaser_eligible.sample
+
+	  	# 		@teams.each do |t|
+
+	  	# 			if t.name == @pick1_holder
+
+	  	# 				@array = [1,2,3,4]
+	  	# 				@ran_num = @array.sample
+
+	  	# 				if @ran_num == 1
+
+	  	# 					@pick1_cont = t.name
+
+	  	# 					if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+	  							
+
+	  	# 					if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 					end
+	  						
+	  	# 					@pick1 = @pick1_cont + " " + @teaser_line.to_s
+
+
+	  	# 				elsif @ran_num == 2
+
+	  	# 					@pick1_cont = t.opp
+	  						
+	  	# 					if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+
+	  	# 					if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 					end
+	  						
+	  	# 					@pick1 = @pick1_cont + " " + @teaser_line.to_s
+
+	  					
+	  	# 				elsif @ran_num == 3
+	  						
+	  	# 					@pick1_cont = t.total.to_i
+	  	# 					@teaser_line = @pick1_cont - 6
+	  						
+	  	# 					@pick1 = "over " + t.name + " " + @teaser_line.to_s
+
+	  	# 				elsif @ran_num == 4
+
+	  	# 					@pick1_cont = t.total.to_i
+	  	# 					@teaser_line = @pick1_cont + 6
+	  									
+	  	# 					@pick1 = "under " + t.name + " " + @teaser_line.to_s
+	  					
+	  	# 				end
+
+
+
+
+	  	# 			end
+
+
+
+	  	# 		end
+
+	  	# 		@pick2 = @pick1
+	  	# 		@pick3 = @pick1
+
+	  	# 		while @pick2 === @pick1
+
+	  	# 			@pick2_holder = @teaser_eligible.sample
+
+	  	# 			@teams.each do |t|
+
+	  	# 				if t.name == @pick2_holder
+
+	  	# 					@array = [1,2,3,4]
+	  	# 					@ran_num = @array.sample
+
+	  	# 					if @ran_num == 1
+
+	  	# 						@pick2_cont = t.name
+	  							
+	  	# 						if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+
+	  	# 						if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 						end
+	  							
+	  	# 						@pick2 = @pick2_cont + " " + @teaser_line.to_s
+
+
+	  	# 					elsif @ran_num == 2
+
+	  	# 						@pick2_cont = t.opp
+	  							
+	  	# 						if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+	  							
+	  	# 						if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 						end
+	  							
+	  	# 						@pick2 = @pick2_cont + " " + @teaser_line.to_s
+
+	  					
+	  	# 					elsif @ran_num == 3
+	  						
+	  	# 						@pick2_cont = t.total.to_i
+	  	# 						@teaser_line = @pick2_cont - 6
+	  									
+	  	# 						@pick2 = "over " + t.name + " " + @teaser_line.to_s
+
+	  	# 					elsif @ran_num == 4
+
+	  	# 						@pick2_cont = t.total.to_i
+	  							
+	  	# 						@teaser_line = @pick2_cont + 6
+	  							
+	  	# 						@pick2 = "under " + t.name + " " + @teaser_line.to_s
+	  	# 					end
+
+
+
+
+	  	# 				end
+
+
+
+	  	# 			end
+
+	  	# 		end
+
+	  	# 		while @pick3 == @pick1 || @pick3 == @pick2
+
+	  	# 			@pick3_holder = @teaser_eligible.sample
+
+	  	# 			@teams.each do |t|
+
+	  	# 				if t.name == @pick3_holder
+
+	  	# 					@array = [1,2,3,4]
+	  	# 					@ran_num = @array.sample
+
+	  	# 					if @ran_num == 1
+
+	  	# 						@pick3_cont = t.name
+	  							
+	  	# 						if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+
+	  	# 						if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 						end
+	  							
+	  	# 						@pick3 = @pick3_cont + " " + @teaser_line.to_s
+
+
+	  	# 					elsif @ran_num == 2
+
+	  	# 						@pick3_cont = t.opp
+	  							
+	  	# 						if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+	  							
+	  	# 						if @teaser_line > 0
+
+	  	# 						@teaser_line = "+" + @teaser_line.to_s
+
+	  	# 						end
+	  							
+	  	# 						@pick3 = @pick3_cont + " " + @teaser_line.to_s
+
+	  					
+	  	# 					elsif @ran_num == 3
+	  						
+	  	# 						@pick3_cont = t.total.to_i
+	  							
+	  	# 						if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+	  							
+	  	# 						@pick3 = "over " + t.name + " " + @teaser_line.to_s
+
+	  	# 					elsif @ran_num == 4
+
+	  	# 						@pick3_cont = t.total.to_i
+	  							
+	  	# 						if t.sport == "NFL" || t.sport == "CFB"
+	  							
+	  	# 						@teaser_line = t.spread.to_i + 9
+
+	  	# 					elsif t.sport == "NBA" || t.sport == "CBB"
+
+	  	# 						@teaser_line = t.spread.to_i + 6
+
+	  	# 					end
+	  							
+	  	# 						@pick3 = "under " + t.name + " " + @teaser_line.to_s
+	  	# 					end
+
+
+
+
+	  	# 				end
+
+
+
+	  	# 			end
+
+
+
+	  	# 		end
+
+	  	# 	end
+
+
+
+	  	# end
+
+
 
 
 

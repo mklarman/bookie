@@ -3,6 +3,10 @@
 <% self.time_check %>
 <%= @time_check.to_i %>
 
+<% @selections = [] %>
+<% @oppo_picks = [] %>
+<% @matchups = [] %>
+
 <% @client = current_user.clients.sample %>
 <% @first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2] %>
 <% @second_sport = "none" %>
@@ -14,12 +18,11 @@
 
 <% end %>
 
-<div>
+<% self.get_teams_and_oppo %>
 
 
 
 
-</div>
 
 
 
@@ -27,9 +30,9 @@
 <%= @second_sport %>
 
 <% @choices %>
-<% @teaser_eligible  %>
+<% @teaser_eligible = []  %>
 <% @combo %>
-<% @straight_container %>
+<% @straight_container = [] %>
 
 <% @wager_type %>
 <% @pick1 %>
@@ -37,6 +40,8 @@
 <% @pick3 %>
 <% @pick4 %>
 <% @pick5 %>
+
+
 
 
 
@@ -65,6 +70,7 @@
 
 
 
+
 <%= @client.bet_types %>
 <% self.pick_amount %>
 <%= self.pick_type  %>
@@ -73,6 +79,8 @@
 <%= @teaser_teams %>
 <%= @wager_type %>
 <%= @straight_container %>
+<% self.pick_teams %>
+<%= @matchups %>
 
 
 <div><%= @client.first_name %>
@@ -86,7 +94,8 @@
 
 <% if @wager_type == "straight" %>
 
-	<%= self.pick_teams %>
+	<% self.pick_teams %>
+
 
 	<div><%= @amount %>
 	<%= @wager_type %></div>
