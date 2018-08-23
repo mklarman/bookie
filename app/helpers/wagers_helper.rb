@@ -1461,9 +1461,7 @@ module WagersHelper
 
 						if t.spread.to_i > 0
 
-							@spread1 = 4
-
-							# @spread1 = "+" + t.spread
+							@spread1 = "+" + t.spread
 
 						else
 
@@ -1491,6 +1489,442 @@ module WagersHelper
 
 				end
 			end
+
+			if @wager_type == "two team teaser"
+
+				@pick1 = @teams_to_choose.sample 
+				@pick2 = @teams_to_choose.sample
+
+				while @pick1 == @pick2
+
+					@pick2 = @teams_to_choose.sample
+
+				end
+
+				@teams.each do |t|
+
+					if t.sport == "NFL" || t.sport == "CFB"
+
+						if t.name == @pick1
+
+							@spread1 = t.spread.to_i + 6
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick1
+
+							@spread1 = (t.spread.to_i * -1) + 6
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick1
+
+							@spread1 = t.total.to_i - 6
+
+
+						end
+
+						if t.under_line == @pick1
+
+							@spread1 = t.total.to_i + 6
+
+
+						end
+
+						if t.name == @pick2
+
+							@spread2 = t.spread.to_i + 6
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick2
+
+							@spread2 = (t.spread.to_i * -1) + 6
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick2
+
+							@spread2 = t.total.to_i - 6
+
+
+						end
+
+						if t.under_line == @pick2
+
+							@spread2 = t.total.to_i + 6
+
+
+						end
+
+					end
+
+					if t.sport == "NBA" || t.sport == "CBB"
+
+						if t.name == @pick1
+
+							@spread1 = t.spread.to_i + 4
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick1
+
+							@spread1 = (t.spread.to_i * -1) + 4
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick1
+
+							@spread1 = t.total.to_i - 4
+
+
+						end
+
+						if t.under_line == @pick1
+
+							@spread1 = t.total.to_i + 4
+
+
+						end
+
+						if t.name == @pick2
+
+							@spread2 = t.spread.to_i + 4
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick2
+
+							@spread2 = (t.spread.to_i * -1) + 4
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick2
+
+							@spread2 = t.total.to_i - 4
+
+
+						end
+
+						if t.under_line == @pick2
+
+							@spread2 = t.total.to_i + 4
+
+
+						end
+
+					end
+
+
+				end 
+
+
+			end
+
+			if @wager_type == "three team teaser"
+
+				@pick1 = @teams_to_choose.sample
+				@teams_to_choose.delete(@pick1) 
+				
+				@pick2 = @teams_to_choose.sample
+				@teams_to_choose.delete(@pick2)
+				
+				@pick3 = @teams_to_choose.sample
+				@teams_to_choose.delete(@pick3)  
+
+				@teams.each do |t|
+
+					if t.sport == "NFL" || t.sport == "CFB"
+
+						if t.name == @pick1
+
+							@spread1 = t.spread.to_i + 9
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick1
+
+							@spread1 = (t.spread.to_i * -1) + 9
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick1
+
+							@spread1 = t.total.to_i - 9
+
+
+						end
+
+						if t.under_line == @pick1
+
+							@spread1 = t.total.to_i + 9
+
+
+						end
+
+						if t.name == @pick2
+
+							@spread2 = t.spread.to_i + 9
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick2
+
+							@spread2 = (t.spread.to_i * -1) + 9
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick2
+
+							@spread2 = t.total.to_i - 9
+
+
+						end
+
+						if t.under_line == @pick2
+
+							@spread2 = t.total.to_i + 9
+
+
+						end
+
+						if t.name == @pick3
+
+							@spread3 = t.spread.to_i + 9
+
+							if @spread3 > 0
+
+								@spread3 = "+" + @spread3.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick3
+
+							@spread3 = (t.spread.to_i * -1) + 9
+
+							if @spread3 > 0
+
+								@spread3 = "+" + @spread3.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick3
+
+							@spread3 = t.total.to_i - 9
+
+
+						end
+
+						if t.under_line == @pick3
+
+							@spread3 = t.total.to_i + 9
+
+
+						end
+
+					end
+
+					if t.sport == "NBA" || t.sport == "CBB"
+
+						if t.name == @pick1
+
+							@spread1 = t.spread.to_i + 6
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick1
+
+							@spread1 = (t.spread.to_i * -1) + 6
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick1
+
+							@spread1 = t.total.to_i - 6
+
+
+						end
+
+						if t.under_line == @pick1
+
+							@spread1 = t.total.to_i + 6
+
+
+						end
+
+						if t.name == @pick2
+
+							@spread2 = t.spread.to_i + 6
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick2
+
+							@spread2 = (t.spread.to_i * -1) + 6
+
+							if @spread2 > 0
+
+								@spread2 = "+" + @spread2.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick2
+
+							@spread2 = t.total.to_i - 6
+
+
+						end
+
+						if t.under_line == @pick2
+
+							@spread2 = t.total.to_i + 6
+
+
+						end
+
+						if t.name == @pick3
+
+							@spread3 = t.spread.to_i + 6
+
+							if @spread3 > 0
+
+								@spread3 = "+" + @spread3.to_s
+
+							end
+
+						end
+
+						if t.opp == @pick3
+
+							@spread3 = (t.spread.to_i * -1) + 6
+
+							if @spread3 > 0
+
+								@spread3 = "+" + @spread3.to_s
+
+							end
+
+						end
+
+						if t.over_line == @pick3
+
+							@spread3 = t.total.to_i - 6
+
+
+						end
+
+						if t.under_line == @pick3
+
+							@spread3 = t.total.to_i + 6
+
+
+						end
+
+					end
+
+
+				end 
+
+
+			end
+
+
 		end
 	end
 

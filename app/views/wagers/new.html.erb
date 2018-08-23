@@ -85,6 +85,7 @@
 <% self.pick_teams %>
 <% self.selections %>
 <% self.sort %>
+<% self.fill_wagers %>
 
 <div><%= @selections %></div>
 <div><%= @client_picks %>
@@ -105,8 +106,8 @@
 
 <% if @wager_type == "straight" %>
 
+
 	<% self.fill_wagers %>
-	<%= @teams_to_choose %>
 
 
 	<div><%= @amount %>
@@ -140,11 +141,13 @@
 
 		<% end %>
 
+
+
 <% end %>
 
 <% if (@wager_type == "two team teaser" || @wager_type == "two team parlay" || @wager_type == "two team reverse") %>
 
-	<% self.pick_teams %>
+	<% self.fill_wagers %>
 
 	<div><%= @amount %>
 		<%= @wager_type %></div>
@@ -186,7 +189,7 @@
 
 <% if (@wager_type == "three team teaser" || @wager_type == "three team parlay" || @wager_type == "three team reverse") %>
 
-	<% self.pick_teams %>
+
 
 	<div><%= @amount %>
 		<%= @wager_type %></div>
@@ -321,6 +324,7 @@
 
 
 <% end %>
+
 
 
 
