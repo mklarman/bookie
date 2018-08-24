@@ -1,4 +1,102 @@
+<% @time_check %>
+
+<% self.get_time %>
+<%= @my_date %>
+
+
 <% if current_user %>
+
+
+
+	<% current_user.clients.each do |c| %>
+
+	<div id="action">
+
+
+		<div><%= c.first_name %>
+		<%= c.last_name %></div>
+
+		<% c.wagers.each do |w| %>
+
+			<% if @my_date == w.date %>
+
+
+				<div><%= w.amount %>
+				<%= w.wager_type %></div>
+				<br>
+
+				<% if w.wager_type == "straight" %>
+
+					<div><%= w.team1 %>
+						<%= w.spread1 %></div>
+						<br>
+
+				<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
+
+					<div><%= w.team1 %>
+						<%= w.spread1 %></div>
+
+					<div><%= w.team2 %>
+						<%= w.spread2 %></div>
+						<br>
+
+				<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
+
+						<div><%= w.team1 %>
+							<%= w.spread1 %></div>
+
+						<div><%= w.team2 %>
+							<%= w.spread2 %></div>
+
+						<div><%= w.team3 %>
+							<%= w.spread3 %></div>
+							<br>
+
+				<% elsif w.wager_type == "four team reverse" %>
+
+					<div><%= w.team1 %>
+						<%= w.spread1 %></div>
+
+					<div><%= w.team2 %>
+						<%= w.spread2 %></div>
+
+					<div><%= w.team3 %>
+						<%= w.spread3 %></div>
+
+					<div><%= w.team4 %>
+						<%= w.spread4 %></div>
+						<br>
+
+				<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
+
+					<div><%= w.team1 %>
+						<%= w.spread1 %></div>
+
+					<div><%= w.team2 %>
+						<%= w.spread2 %></div>
+
+					<div><%= w.team3 %>
+						<%= w.spread3 %></div>
+
+					<div><%= w.team4 %>
+						<%= w.spread4 %></div>
+
+					<div><%= w.team5 %>
+						<%= w.spread5 %></div>
+
+						<br>
+					
+
+				<% end %>
+
+			
+			<% end %>
+
+		<% end %>
+
+	<% end %>
+
+</div>
 
 	<% current_user.clients.each do |c| %>
 
@@ -7,15 +105,21 @@
 
 		<% c.wagers.each do |w| %>
 
-			<div><%= w.amount %>
-			<%= w.wager_type %></div>
-			<br>
+			<% if w.date != @my_date %>
 
-			<%= link_to "Grade Wager", edit_wager_path(w.id), class: 'link_tabs'  %>
+				<div><%= w.amount %>
+					<%= w.wager_type %></div>
+
+				<%= link_to "Grade Wager", edit_wager_path(w.id), class: 'link_tabs'  %>
+
+
+			<% end %>
 
 
 
 		<% end %>
+
+
 
 	<% end %>
 

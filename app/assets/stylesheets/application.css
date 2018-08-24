@@ -14,7 +14,7 @@
  *= require_self
  */
 
- #hideEdit{
+ .hide{
 
  	display: none;
  }

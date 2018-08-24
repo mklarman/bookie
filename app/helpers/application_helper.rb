@@ -1,9 +1,31 @@
 module ApplicationHelper
 
-	def myFynction
+	def time_check
 
-		@num = 3 + 2
-		return @num
+			@get_hour = Time.now  
+ 			@hour = @get_hour.strftime("%H")
+ 			@min = @get_hour.strftime("%M") 
+		 	@time_check = @hour << @min 
 
 	end
+
+	def get_time
+
+  			 @date = Time.now 
+			 @day = @date.strftime("%d")
+			 @month = @date.strftime("%b") 
+			 @year = @date.strftime("%Y") 
+
+
+			 @my_date = @day << " " <<@month << " " <<@year 
+
+			 return @my_date
+
+  	end
+
+
+
+
+
+
 end

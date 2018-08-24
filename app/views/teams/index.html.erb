@@ -1,9 +1,13 @@
 <% @teams.each do |t| %>
 
-	<%=t.name %>
-	<%=t.start_time.to_i %>
+	<div>
 
-	<%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %>
+		<div><%=t.name %></div>
+
+		<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+	</div>
 
 
 <% end %>
+
