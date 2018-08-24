@@ -43,8 +43,36 @@
 <% @cfb_totals = [] %>
 <% @cfb_sides = [] %>
 
+<% @todays_wagers = [] %>
+
+<% current_user.clients.each do |c| %>
+
+	<% @counter = 0 %>
+
+	<% c.wagers.each do |w| %>
+
+		<% if w.date == @my_date %>
+
+			<% @counter = @counter + 1 %>
+
+		<% end %>
+
+	<% end %>
+
+	<% if @counter < 5 %>
+
+		<% @client_name = c.first_name + c.last_name %>
+		<% @todays_wagers.push(@client_name) %> 
+
+	<% end %>
+
+<% end %>
+
 
 <% @client = current_user.clients.sample %>
+
+
+
 <% @first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2] %>
 <% @second_sport = "none" %>
 
@@ -64,6 +92,8 @@
 <% self.sort %>
 <% self.fill_wagers %>
 
+<div>HERE: <%= @teaser_eligible %>
+
 
 <div id="wager_info">
 	<div><%= @client.first_name %>
@@ -72,7 +102,7 @@
 
 	<% if @wager_type == "straight" %>
 
-		<div><%= @amount %>
+		<div><%= "$" + @amount.to_s %>
 		<%= @wager_type %></div>
 		<div><%= @pick1 %>
 			<%= @spread1 %></div>
@@ -115,7 +145,7 @@
 
 		
 
-		<div><%= @amount %>
+		<div><%= "$" + @amount.to_s %>
 			<%= @wager_type %></div>
 		
 		<div><%= @pick1 %>
@@ -162,7 +192,7 @@
 
 
 
-		<div><%= @amount %>
+		<div><%= "$" + @amount.to_s %>
 			<%= @wager_type %></div>
 		
 		<div><%= @pick1 %>
@@ -208,7 +238,7 @@
 
 	<% if (@wager_type == "four team reverse") %>
 
-		<div><%= @amount %>
+		<div><%= "$" + @amount.to_s %>
 			<%= @wager_type %></div>
 		
 		<div><%= @pick1 %>
@@ -256,7 +286,7 @@
 
 	<% if (@wager_type == "five team teaser" || @wager_type == "five team parlay") %>
 
-		<div><%= @amount %>
+		<div><%= "$" + @amount.to_s %>
 			<%= @wager_type %></div>
 		
 		<div><%= @pick1 %>

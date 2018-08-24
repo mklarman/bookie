@@ -2113,7 +2113,7 @@ module WagersHelper
 
 						if t.opp == @pick5
 
-							@spread3 = (t.spread.to_i * -1) + 6
+							@spread5 = (t.spread.to_i * -1) + 6
 
 							if @spread5 > 0
 
@@ -2354,7 +2354,9 @@ module WagersHelper
 
 						if t.name == @pick1
 
-							if t.spread.to_i > 0
+							@spread1 = t.spread.to_i
+
+							if @spread1 > 0
 
 								@spread1 = "+" + t.spread.to_s
 
