@@ -2531,7 +2531,7 @@ module WagersHelper
 
 						if t.name == @pick1
 
-							if t.spread > 0
+							if t.spread.to_i > 0
 
 								@spread1 = "+" + t.spread.to_s
 
