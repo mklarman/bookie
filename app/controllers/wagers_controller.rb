@@ -4,6 +4,7 @@ class WagersController < ApplicationController
 
 		@wager = Wager.new
 		@teams = Team.all
+		@team = Team.where(display: "on")
 
 
 

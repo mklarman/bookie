@@ -6,13 +6,13 @@
 	var guess = document.getElementById("guess")
 	var submit = document.getElementById("submit")
 
+	var word = wordArray[Math.floor(Math.random()*wordArray.length)];
+	console.log(word)
+
 
 	if(submit){
 
 		submit.addEventListener("click", function(){
-
-			var word = wordArray[Math.floor(Math.random()*wordArray.length)];
-			console.log(word)
 
 			if(word == guess.value){
 
