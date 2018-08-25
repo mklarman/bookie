@@ -29,39 +29,44 @@ module WagersHelper
 
 				 if t.display == "on"
 
-		 			if t.sport == "NFL" 
+				 	if t.start_time.to_i > @time_check.to_i
 
-			 			@nfl_sides.push(t.name) 
-						# @NFL_totals.push(t.total_line) 
 
-		 			elsif t.sport == "MLB" 
+			 			if t.sport == "NFL" 
 
-			 			@mlb_sides.push(t.name) 
-			 			# @MLB_totals.push(t.total_line) 
+				 			@nfl_sides.push(t.name) 
+							# @NFL_totals.push(t.total_line) 
 
-		 			elsif t.sport == "NBA" 
+			 			elsif t.sport == "MLB" 
 
-					 	@nba_sides.push(t.name) 
-			 			# @NBA_totals.push(t.total_line) 
+				 			@mlb_sides.push(t.name) 
+				 			# @MLB_totals.push(t.total_line) 
 
-		 			elsif t.sport == "NHL" 
+			 			elsif t.sport == "NBA" 
 
-						 @nhl_sides.push(t.name) 
-			 			  
+						 	@nba_sides.push(t.name) 
+				 			# @NBA_totals.push(t.total_line) 
 
-		 			elsif t.sport == "CBB" 
+			 			elsif t.sport == "NHL" 
 
-			 			 @cbb_sides.push(t.name) 
-			 			 # @CBB_totals.push(t.total_line) 
+							 @nhl_sides.push(t.name) 
+				 			  
 
-		 			elsif t.sport == "CFB" 
+			 			elsif t.sport == "CBB" 
 
-						 @cfb_sides.push(t.name) 
-						 # @CFB_totals.push(t.total_line) 
+				 			 @cbb_sides.push(t.name) 
+				 			 # @CBB_totals.push(t.total_line) 
 
-					 end 
+			 			elsif t.sport == "CFB" 
 
-		 		end 
+							 @cfb_sides.push(t.name) 
+							 # @CFB_totals.push(t.total_line) 
+
+						 end 
+
+		 			end
+		 		 
+		 		 end
 
 	 		end 
 
