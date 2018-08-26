@@ -100,8 +100,26 @@ module WagersHelper
 	  		@combo
 	  		@teaser_teams
 
+	  		@first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2]
+			@second_sport = "none" 
+
+			 if @client.sports.length > 3 
+
+				 @second_sport = @client.sports[8] + @client.sports[9] + @client.sports[10] 
+			
+			 end
+
 
 	  		if @client.bet_types == "All"
+
+	  			@first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2]
+				@second_sport = "none" 
+
+			 	if @client.sports.length > 3 
+
+				 	@second_sport = @client.sports[8] + @client.sports[9] + @client.sports[10] 
+			
+			 	end
  
 	  			if @first_sport == "NFL"
 
@@ -863,6 +881,7 @@ module WagersHelper
 	  							if t.start_time.to_i > @time_check.to_i
 
 	  								@choices.push(m)
+	  								@straight_container.push(m)
 
 	  							end
 
@@ -909,6 +928,7 @@ module WagersHelper
 	  							if t.start_time.to_i > @time_check.to_i
 
 	  								@choices.push(n)
+	  								@straight_container.push(n)
 
 	  							end
 
@@ -1003,6 +1023,7 @@ module WagersHelper
 		  							if t.start_time.to_i > @time_check.to_i
 
 		  								@choices.push(m)
+		  								@straight_container.push(m)
 
 		  							end
 
@@ -1025,6 +1046,8 @@ module WagersHelper
 		  							if t.start_time.to_i > @time_check.to_i
 
 		  								@choices.push(n)
+		  								@straight_container.push(n)
+
 		  						
 
 		  							end
@@ -1497,14 +1520,9 @@ module WagersHelper
 
 			if @wager_type == "two team teaser"
 
-				@pick1 = @teams_to_choose.sample 
-				@pick2 = @teams_to_choose.sample
-
-				while @pick1 == @pick2
-
-					@pick2 = @teams_to_choose.sample
-
-				end
+				@pick1 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick1) 
+				@pick2 = @teaser_eligible.sample
 
 				@teams.each do |t|
 
@@ -1676,14 +1694,14 @@ module WagersHelper
 
 			if @wager_type == "three team teaser"
 
-				@pick1 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick1) 
+				@pick1 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick1) 
 				
-				@pick2 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick2)
+				@pick2 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick2)
 				
-				@pick3 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick3)  
+				@pick3 = @teaser_eligible.sample
+				  
 
 				@teams.each do |t|
 
@@ -1931,20 +1949,20 @@ module WagersHelper
 
 			if @wager_type == "five team teaser"
 
-				@pick1 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick1) 
+				@pick1 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick1) 
 				
-				@pick2 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick2)
+				@pick2 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick2)
 				
-				@pick3 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick3) 
+				@pick3 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick3) 
 
-				@pick4 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick4) 
+				@pick4 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick4) 
 
-				@pick5 = @teams_to_choose.sample
-				@teams_to_choose.delete(@pick5)  
+				@pick5 = @teaser_eligible.sample
+				@teaser_eligible.delete(@pick5)  
  
  
 
@@ -2355,7 +2373,7 @@ module WagersHelper
 
 				@teams.each do |t|
 
-					if t.sport == "NFL" || t.sport == "CFB"
+					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "MLB" || t.sport == "NHL"
 
 						if t.name == @pick1
 
@@ -2534,13 +2552,15 @@ module WagersHelper
 
 				@teams.each do |t|
 
-					if t.sport == "NFL" || t.sport == "CFB"
+					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "MLB" || t.sport == "NHL"
 
 						if t.name == @pick1
 
-							if t.spread.to_i > 0
+							@spread1 = t.spread.to_i
 
-								@spread1 = "+" + t.spread.to_s
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
 
 							end
 
@@ -3160,6 +3180,45 @@ module WagersHelper
 						end
 
 				end
+
+			end
+
+		end
+
+		def qualify_clients
+
+			current_user.clients.each do |c|
+
+				@client = c
+
+				@counter = 0
+
+				c.wagers.each do |w|
+
+					if w.graded == false
+
+						@counter = @counter + 1
+
+					end
+
+				end
+
+				if @counter < 30
+
+					@qualify = true
+
+					display()
+					pick_type()
+
+				end
+
+
+				if @qualify == true && @straight_container.length > 0
+
+					@todays_wagers.push(c.id)
+
+				end
+
 
 			end
 
