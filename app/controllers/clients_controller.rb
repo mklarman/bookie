@@ -42,7 +42,7 @@ class ClientsController < ApplicationController
 
 	def client_params
 
-		params.require(:client).permit(:user_id, :first_name, :last_name, :stakes, :bet_types, :sports)
+		params.require(:client).permit(:user_id, :first_name, :last_name, :stakes, :bet_types, :sports, :wager_limit)
 
 	end
 

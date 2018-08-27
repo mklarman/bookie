@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 20180813143849) do
     t.string "last_name"
     t.string "stakes"
     t.string "bet_types"
+    t.string "wager_limit"
     t.string "sports"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

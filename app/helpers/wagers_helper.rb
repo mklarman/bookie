@@ -3203,7 +3203,7 @@ module WagersHelper
 
 				end
 
-				if @counter < 30
+				if @counter < c.wager_limit.to_i
 
 					@qualify = true
 
