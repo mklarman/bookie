@@ -4,7 +4,7 @@
 
 </div>
 
-<% @names = ["Bill", "Steve", "Mike", "Paul", "John", "Pete", "Dave", "Vinny", "Bobby", "Tony", "Jack" "Hector", "Greg", "Brian", "Ralph", "Chris", "Sandy", "Zip", "Ty", "Andy", "Andre", "Jesus", "Luke", "Scotty", "Odell", "Lamar", "Lance", "Lincoln", "Guido", "Azhull", "Enis", "Ray", "Rob", "Randolph", "Rhys", "Carlos", "Wilson", "Caeser", "Mikel", "Jacob", "Max", "Charles", "Larry", "Al", "Martin", "Marty", "Mickey", "Brad", "Bradley", "Christian", "Jeremy", "Allan", "Ewan", "Ian", "James", "Doug"] %>
+<% @names = ["Bill", "Steve", "Mike", "Paul", "John", "Pete", "Dave", "Vinny", "Bobby", "Tony", "Jack", "Hector", "Greg", "Brian", "Ralph", "Chris", "Sandy", "Zip", "Ty", "Andy", "Andre", "Jesus", "Luke", "Scotty", "Odell", "Lamar", "Lance", "Lincoln", "Guido", "Azhull", "Enis", "Ray", "Rob", "Randolph", "Rhys", "Carlos", "Wilson", "Caeser", "Mikel", "Jacob", "Max", "Charles", "Larry", "Al", "Martin", "Marty", "Mickey", "Brad", "Bradley", "Christian", "Jeremy", "Allan", "Ewan", "Ian", "James", "Doug"] %>
 <% @fname = @names.sample %>
 <% @surname = ["Miller", "Johnson", "Curtis", "Smith", "Dunn", "Pitt", "Franklin", "Gucci", "O'Mally", "Jones", "Howard", "Cabrerra", "Ortiz", "Stein", "Gold", "Capone", "Anastasia", "Gotti", "Gabbagool", "Baloney", "Sfincter", "Azstein", "Wojohowski", "McMally", "O'Alchy", "Simmons", "Rollins", "Nafir", "Cezanne", "Pino", "Yurmum", "Iritini", "Fox", "Jenkins", "Washington", "Jefferson", "Adams", "Brady", "Rogers", "Smitstane", "Jerko", "Balls", "Hateme", "Killmooney", "Moon", "DeStefano", "Condina", "Lombardo", "Birthman", "Tooman", "Hong", "Sung", "Long", "Chow", "Chin", "Parx", "Xavier", "Sydney", "Dipo", "Embiid", "Al-Qomo", "Nasim", "Nasser", "McDonald", "McConnel", "McMick", "Blue", "Red", "Filamino", "Black", "White", "Madison", "Monroe", "Jackson", "Van Buren", "Van", "Van Willi", "Harrison", "Tyler", "Polk","Taylor", "Pierce", "Brown", "Buchanan", "Cleveland", "Kennedy", "Baines", "Songdove", "Bookman", "Bagman", "Bergman"] %>
 <% @lname = @surname.sample %>
@@ -17,13 +17,13 @@
 
 <% @limit = @num_of_wagers.sample %>
 
-<% @sport_choices = "NFL", "NBA", "MLB and NHL", "NFL and NBA", "NHL", "MLB", "NFL and MLB", "CBB", "CFB", "NFL and CFB", "CBB and NBA", "NFL", "NFL and CFB", "MLB and NFL", "NFL and NBA" %>
+<% @sport_choices = "NFL", "NBA", "MLB and NHL", "NFL", "NFL and NBA", "NHL", "MLB", "NFL and MLB", "CBB", "CFB", "NFL and CFB", "CBB and NBA", "NFL", "NFL and CFB", "MLB and NFL", "NFL and NBA" %>
 
 <% @sports = @sport_choices.sample %>
 
 
 
-<div>
+<div class = "hide">
 <%= form_for @client do |c| %>
 	<%= c.hidden_field :user_id, :value => current_user.id %>
 	<div> <%=c.text_field :first_name, :value => @fname %></div>
@@ -36,6 +36,43 @@
 	<% end %>
 
 </div>
+
+<% if @stakes == "small timer" %>
+
+	<% @job_list = ["Bank Teller", "Phone Marketer", "Waiter", "Uber Driver", "Pizza Delivery Man", "Office Manager", "Cashier", "Target Stock Room Manager", "Service Rep At Comcast", "Mechanic", "Internet Marketer", "Herr's Truck Driver", "UPS Driver", "Postal Worker", "Garbage Man", "Teacher", "Valet Driver At The Hilton", "Blackjack Dealer", "Landscaper", "Bread Truck Driver", "Bowling Alley Mechanic", "Therapist", "Verizon Store Associate", "Lifeguard", "Retail Associate At Macy's", "Kiosk Operator", "Food Truck Operator", "Custodian", "Librarian", "Law Office Assisstant", "College Student", "Pizza Cook", "Line Worker at TGI Friday's", "Cop", "Sleepy's Mattress Salesman", "Encyclopedia Salesman", "Window Installer", "Roofer", "Construction Worker", "Cafeteria Worker", "School Custodian", "Liquor Salesman", "Car Detailer", "Gas Pump Operator", "Denny's Line Cook"] %>
+
+	<% @job = @job_list.sample %>
+
+<% elsif @stakes == "pay dumper" %>
+
+	<% @job_list = ["Accountant", "Web Designer", "Pizza Shop Owner", "Lawyer", "Cable Technician at Comcast", "Real Estate Broker", "Small Business Owner", "Psychiatrist", "McDonald's Franchise Owner", "Casino Executive", "Bank Manager", "Architect", "Chemical Engineer", "Photagrapher", "Fine Dining Chef", "Pharmacist", "Dunkin Donuts Franchisee", "Burger King Franchisee", "Chemist", "College Professor", "Stock Broker", "Day Trader", "Contractor", "Civil Engineer", "Graphic Designer", "Kmart District Manager", "Motivational Speaker", "Professional Poker Player", "Casino Host", "Bartender", "Art Dealer", "Auctioneer", "Car Dealership Proprietor", "Writer", "Orthodontist", "Plumber", "HVAC Repair Man", "Online Wholesaler", "Information Systems Manager", "Speech Therpaist", "Law Professor", "Astronomer", "Scientist", "Economist", "Anesthesiologist"]
+
+	<% @job = @job_list.sample
+
+<% elsif @stakes == "whale" %>
+
+<% end %>
+	
+
+<div id="client_intro">
+
+	<p>
+
+		Meet <%= @fname %><%= " " %><%= @lname %>, he's a lawyer who likes to bet <%= @sports %>
+
+
+
+	</p>
+
+
+
+
+</div>
+
+
+
+
+
 
 <% current_user.clients.each do |c| %>
 
