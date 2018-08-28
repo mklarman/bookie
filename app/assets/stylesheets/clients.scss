@@ -1,3 +1,27 @@
 // Place all the styles related to the clients controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#client_intro{
+
+	height: 300px;
+	width: 800px;
+	border: 1px solid red;
+	margin-left: 400px;
+	margin-top: 200px;
+	font-size: 25px;
+	overflow: none;
+}
+
+#client_name{
+
+	height: 100px;
+	width: 400px;
+	border: 1px solid red;
+	text-align: center;
+	font-size: 45px;
+	margin-left: 200px;
+	font-size: 45px;
+
+}
