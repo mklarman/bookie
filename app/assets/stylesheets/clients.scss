@@ -7,9 +7,8 @@
 
 	height: 300px;
 	width: 800px;
-	border: 1px solid red;
 	margin-left: 400px;
-	margin-top: 200px;
+	margin-top: -350px;
 	font-size: 25px;
 	overflow: none;
 }
@@ -18,10 +17,49 @@
 
 	height: 100px;
 	width: 400px;
-	border: 1px solid red;
 	text-align: center;
 	font-size: 45px;
 	margin-left: 200px;
 	font-size: 45px;
+
+}
+
+#pageLabel{
+
+	height: 40px;
+	width: 300px;
+	margin: auto;
+	margin-top: 50px;
+	font-size: 30px;
+
+
+}
+
+#wordBank{
+
+	height: 350px;
+	width: 190px;
+	margin-top: 0px;
+	text-align: center;
+	font-size: 25px;
+	overflow: none;
+	display: block;
+}
+
+#label{
+
+	height: 30px;
+	width: 190px;
+	margin-top: 50px;
+	font-size: 25px;
+
+}
+
+#message{
+
+	height: 50px;
+	width: 200px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 
 }
