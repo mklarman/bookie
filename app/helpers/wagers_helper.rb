@@ -101,7 +101,7 @@ module WagersHelper
 	  		@teaser_teams
 
 	  		@first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2]
-			@second_sport = "none" 
+			@second_sport 
 
 			 if @client.sports.length > 3 
 
@@ -111,35 +111,13 @@ module WagersHelper
 
 
 	  		if @client.bet_types == "All"
-
-	  			@first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2]
-				@second_sport = "none" 
-
-			 	if @client.sports.length > 3 
-
-				 	@second_sport = @client.sports[8] + @client.sports[9] + @client.sports[10] 
-			
-			 	end
  
 	  			if @first_sport == "NFL"
 
 	  				@nfl_sides.each do |n|
-	  					
-	  					@teams.each do |t|
 
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(n)
-	  								@teaser_eligible.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
 	  				end		
 
@@ -150,22 +128,9 @@ module WagersHelper
 	  				
 	  				@mlb_sides.each do |m|
 
-	  					@teams.each do |t|
+	  					@choices.push(m)
+	  					@straight_container.push(m)
 
-	  						if m == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@choices.push(m)
-	  								@straight_container.push(m)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
@@ -175,21 +140,9 @@ module WagersHelper
 	  				
 	  				@nba_sides.each do |n|
 
-	  					@teams.each do |t|
-
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(n)
-	  								@teaser_eligible.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
+	  					
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  					
 	  					
 	  				end
 
@@ -200,22 +153,9 @@ module WagersHelper
 	  				
 	  				@nhl_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@choices.push(n)
+	  					@straight_container.push(n)
 
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@choices.push(n)
-	  								@straight_container.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
@@ -223,24 +163,11 @@ module WagersHelper
 				if @first_sport == "CBB"
 
 	  				
-	  				@cbb_sides.each do |c|
+	  				@cbb_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  		
 
-	  						if c == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(c)
-	  								@teaser_eligible.push(c)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
@@ -248,24 +175,11 @@ module WagersHelper
 				if @first_sport == "CFB"
 
 	  				
-	  				@cfb_sides.each do |c|
+	  				@cfb_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  		
 
-	  						if c == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(c)
-	  								@teaser_eligible.push(c)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
@@ -276,23 +190,10 @@ module WagersHelper
 
 		  				@nfl_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								@teaser_eligible.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
 
@@ -300,22 +201,9 @@ module WagersHelper
 
 		  				@mlb_sides.each do |m|
 
-		  					@teams.each do |t|
+	  					@choices.push(m)
+	  					@straight_container.push(m)
 
-		  						if m == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@choices.push(m)
-		  								@straight_container.push(m)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
 	  					end
 	  				end
 
@@ -323,23 +211,9 @@ module WagersHelper
 
 		  				@nhl_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@choices.push(n)
+	  					@straight_container.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@choices.push(n)
-		  								@straight_container.push(n)
-		  						
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
 	  					end
 	  				end
 
@@ -347,69 +221,30 @@ module WagersHelper
 
 		  				@nba_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								@teaser_eligible.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
 	  				if @second_sport == "CBB"
 
 		  				@cbb_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								@teaser_eligible.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
 	  				if @second_sport == "CFB"
 
 		  				@cfb_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								@teaser_eligible.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 	  			end
 
@@ -479,297 +314,139 @@ module WagersHelper
 
 	  		if @client.bet_types == "Exotics"
  
-	  			if @first_sports == "NFL"
+	  			if @first_sport == "NFL"
 
 	  				@nfl_sides.each do |n|
-	  					
-	  					@teams.each do |t|
 
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								
-	  								@teaser_eligible.push(n)
-	  								@straight_container.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
 	  				end		
 
 	  			end
 
 				if @first_sport == "MLB"
+
 	  				
 	  				@mlb_sides.each do |m|
 
-	  					@teams.each do |t|
+	  					@choices.push(m)
+	  					@straight_container.push(m)
 
-	  						if m == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@choices.push(m)
-	  								@straight_container.push(m)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
 				if @first_sport == "NBA"
+
 	  				
 	  				@nba_sides.each do |n|
 
-	  					@teams.each do |t|
-
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@teaser_eligible.push(n)
-	  								@straight_container.push(n)
-	  								
-
-	  							end
-
-	  						end
-
-
-	  					end
+	  					
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  					
 	  					
 	  				end
 
 	  			end
 
 				if @first_sport == "NHL"
+
 	  				
 	  				@nhl_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@choices.push(n)
+	  					@straight_container.push(n)
 
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@choices.push(n)
-	  								@straight_container.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
 				if @first_sport == "CBB"
+
 	  				
-	  				@cbb_sides.each do |c|
+	  				@cbb_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  		
 
-	  						if c == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								
-	  								@teaser_eligible.push(c)
-	  								@straight_container.push(c)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
 				if @first_sport == "CFB"
+
 	  				
-	  				@cfb_sides.each do |c|
+	  				@cfb_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  		
 
-	  						if c == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								
-	  								@teaser_eligible.push(c)
-	  								@straight_container.push(c)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
 	  			if @client.sports.length > 3
 
-		  			if @second_sport == "NFL" 
+		  			if @second_sport == "NFL"  
 
 		  				@nfl_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								
-		  								@teaser_eligible.push(n)
-		  								@straight_container.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
 
-					if @second_sport == "MLB" 
-		  				
+	  				if @second_sport == "MLB"
+
 		  				@mlb_sides.each do |m|
 
-		  					@teams.each do |t|
+	  					@choices.push(m)
+	  					@straight_container.push(m)
 
-		  						if m == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@choices.push(m)
-		  								@straight_container.push(m)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
 	  					end
 	  				end
 
-	  				if @second_sport == "NHL" 
+	  				if @second_sport == "NHL"
 
 		  				@nhl_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@choices.push(n)
+	  					@straight_container.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@choices.push(n)
-		  								@straight_container.push(n)
-		  						
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
 	  					end
 	  				end
 
-	  				if @second_sport == "NBA" 
+	  				if @second_sport == "NBA"
 
 		  				@nba_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								
-		  								@teaser_eligible.push(n)
-		  								@straight_container.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
-	  				if @second_sport == "CBB" 
+	  				if @second_sport == "CBB"
 
 		  				@cbb_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								
-		  								@teaser_eligible.push(n)
-		  								@straight_container.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
-	  				if @second_sport == "CFB" 
+	  				if @second_sport == "CFB"
 
 		  				@cfb_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								@teaser_eligible.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 	  			end
 
@@ -809,14 +486,14 @@ module WagersHelper
 
 	  			if @combo == 4 && @teaser_teams == 4
 
-	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay", "three team teaser"]
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "three team teaser"]
 	  				@wager_type = @bet_options.sample
 
 	  			end
 
 	  			if @combo == 4 && @teaser_teams == 2
 
-	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay", "five team parlay"]
+	  				@bet_options = ["two team parlay", "two team reverse", "two team teaser", "three team reverse", "four team reverse", "three team parlay"]
 	  				@wager_type = @bet_options.sample
 
 	  			end
@@ -847,289 +524,141 @@ module WagersHelper
 
 	  		if @client.bet_types == "Straight"
 
-	  			if @client.sports == "NFL"
+	  			if @first_sport == "NFL"
 
 	  				@nfl_sides.each do |n|
-	  					
-	  					@teams.each do |t|
 
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
 	  				end		
 
 	  			end
 
-				if @client.sports == "MLB"
+				if @first_sport == "MLB"
+
 	  				
 	  				@mlb_sides.each do |m|
 
-	  					@teams.each do |t|
+	  					@choices.push(m)
+	  					@straight_container.push(m)
 
-	  						if m == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@choices.push(m)
-	  								@straight_container.push(m)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
-				if @client.sports == "NBA"	
+				if @first_sport == "NBA"
+
 	  				
 	  				@nba_sides.each do |n|
 
-	  					@teams.each do |t|
-
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
+	  					
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  					
 	  					
 	  				end
 
 	  			end
 
-				if @client.sports == "NHL"
+				if @first_sport == "NHL"
+
 	  				
 	  				@nhl_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@choices.push(n)
+	  					@straight_container.push(n)
 
-	  						if n == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@choices.push(n)
-	  								@straight_container.push(n)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
-				if @client.sports == "CBB"
+				if @first_sport == "CBB"
+
 	  				
-	  				@cbb_sides.each do |c|
+	  				@cbb_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  		
 
-	  						if c == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(c)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
-				if @client.sports == "CFB"
+				if @first_sport == "CFB"
+
 	  				
-	  				@cfb_sides.each do |c|
+	  				@cfb_sides.each do |n|
 
-	  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)  		
 
-	  						if c == t.name
-
-	  							if t.start_time.to_i > @time_check.to_i
-
-	  								@straight_container.push(c)
-
-	  							end
-
-	  						end
-
-
-	  					end
-	  					
 	  				end
 
 	  			end
 
 	  			if @client.sports.length > 3
 
-		  			if @client.sports[8] << @client.sports[9] << @client.sports[10] == "NFL" 
+		  			if @second_sport == "NFL"  
 
 		  				@nfl_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
 
-	  				if @client.sports[8] << @client.sports[9] << @client.sports[10] == "MLB" 
+	  				if @second_sport == "MLB"
 
 		  				@mlb_sides.each do |m|
 
-		  					@teams.each do |t|
+	  					@choices.push(m)
+	  					@straight_container.push(m)
 
-		  						if m == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@choices.push(m)
-		  								@straight_container.push(m)
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
 	  					end
 	  				end
 
-	  				if @client.sports[8] << @client.sports[9] << @client.sports[10] == "NHL" 
+	  				if @second_sport == "NHL"
 
 		  				@nhl_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@choices.push(n)
+	  					@straight_container.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@choices.push(n)
-		  								@straight_container.push(n)
-
-		  						
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
 	  					end
 	  				end
 
-	  				if @client.sports[8] << @client.sports[9] << @client.sports[10] == "NBA" 
+	  				if @second_sport == "NBA"
 
 		  				@nba_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
-	  				if @client.sports[8] << @client.sports[9] << @client.sports[10] == "CBB" 
+	  				if @second_sport == "CBB"
 
 		  				@cbb_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  								
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 
-	  				if @client.sports[8] << @client.sports[9] << @client.sports[10] == "CFB" 
+	  				if @second_sport == "CFB"
 
 		  				@cfb_sides.each do |n|
 
-		  					@teams.each do |t|
+	  					@straight_container.push(n)
+	  					@teaser_eligible.push(n)
 
-		  						if n == t.name
-
-		  							if t.start_time.to_i > @time_check.to_i
-
-		  								@straight_container.push(n)
-		  						
-
-		  							end
-
-		  						end
-
-
-	  						end
-	  					
-	  					end
+	  					end		
 	  				end
 	  			end
-
 
 	  			@wager_type = "straight"
 
@@ -1399,18 +928,21 @@ module WagersHelper
 
 	  	def pick_teams
 
-	  		@straight_container.each do |s|
+	  		@teams.each do |t|
 
-	  			@teams.each do |t|
+	  			@straight_container.each do |s|
 
-	  				if s == t.name
+	  				if t.name == s
 
 	  					@sides = [t.name, t.opp]
 	  					@total = [t.under_line, t.over_line]
 
 	  					@matchups.push(@sides)
 	  					@matchups.push(@total)
+
 	  				end
+
+	  				
 
 
 	  			end
@@ -1474,8 +1006,69 @@ module WagersHelper
 
 			@client_picks.each do |p|
 
-				@teams_to_choose.push(p[:selection])
+				@teams.each do |t|
 
+					if t.name == p[:selection]
+
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+
+							@teams_to_choose.push(p[:selection])
+							@teams_for_teaser.push(p[:selection])
+
+						else
+
+							@teams_to_choose.push(p[:selection])
+
+						end
+
+					end
+
+					if t.opp == p[:selection]
+
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+
+							@teams_to_choose.push(p[:selection])
+							@teams_for_teaser.push(p[:selection])
+
+						else
+
+							@teams_to_choose.push(p[:selection])
+
+						end
+
+					end
+
+					if t.over_line == p[:selection]
+
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+
+							@teams_to_choose.push(p[:selection])
+							@teams_for_teaser.push(p[:selection])
+
+						else
+
+							@teams_to_choose.push(p[:selection])
+
+						end
+
+					end
+
+					if t.under_line == p[:selection]
+
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+
+							@teams_to_choose.push(p[:selection])
+							@teams_for_teaser.push(p[:selection])
+
+						else
+
+							@teams_to_choose.push(p[:selection])
+
+						end
+
+					end
+
+				end
 			end
 
 			if @wager_type == "straight"
@@ -1520,9 +1113,11 @@ module WagersHelper
 
 			if @wager_type == "two team teaser"
 
-				@pick1 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick1) 
-				@pick2 = @teaser_eligible.sample
+				@pick1 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick1) 
+				
+				@pick2 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick2) 
 
 				@teams.each do |t|
 
@@ -1694,13 +1289,13 @@ module WagersHelper
 
 			if @wager_type == "three team teaser"
 
-				@pick1 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick1) 
+				@pick1 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick1) 
 				
-				@pick2 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick2)
+				@pick2 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick2) 
 				
-				@pick3 = @teaser_eligible.sample
+				@pick3 = @teams_for_teaser.sample
 				  
 
 				@teams.each do |t|
@@ -1949,20 +1544,20 @@ module WagersHelper
 
 			if @wager_type == "five team teaser"
 
-				@pick1 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick1) 
+				@pick1 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick1) 
 				
-				@pick2 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick2)
+				@pick2 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick2) 
 				
-				@pick3 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick3) 
-
-				@pick4 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick4) 
-
-				@pick5 = @teaser_eligible.sample
-				@teaser_eligible.delete(@pick5)  
+				@pick3 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick3) 
+				
+				@pick4 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick4) 
+				
+				@pick5 = @teams_for_teaser.sample
+				@teams_for_teaser.delete(@pick5)  
  
  
 
