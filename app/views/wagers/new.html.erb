@@ -5,13 +5,13 @@
 
 
 
-
+<% @spread_pk = "pk" %>
 <% @selections = [] %>
 <% @oppo_picks = [] %>
 <% @matchups = [] %>
 <% @client_picks = [] %>
 <% @teams_to_choose = [] %>
-<% @choices %>
+<% @choices = [] %>
 <% @teaser_eligible = []  %>
 <% @combo %>
 <% @straight_container = [] %>
@@ -63,7 +63,7 @@
 <% @matchups = [] %>
 <% @client_picks = [] %>
 <% @teams_to_choose = [] %>
-<% @choices %>
+<% @choices = [] %>
 <% @teaser_eligible = []  %>
 <% @combo %>
 <% @straight_container = [] %>
@@ -146,7 +146,17 @@
 				<div><%= "$" + @amount.to_s %>
 					<%= @wager_type %></div>
 					<div><%= @pick1 %>
-					<%= @spread1 %></div>
+
+					<% if @spread1 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread1 %>
+
+					<% end %>
+					</div>
 
 				<div class = "hide">
 
@@ -188,10 +198,29 @@
 			<%= @wager_type %></div>
 					
 			<div><%= @pick1 %>
-				<%= @spread1 %></div>
+				
+				<% if @spread1 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread1 %>
+
+					<% end %>
+					</div>
 
 			<div><%= @pick2 %>
-				<%= @spread2 %></div>
+				<% if @spread2 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread2 %>
+
+					<% end %>
+					</div>
 
 
 			<div class = "hide">
@@ -235,13 +264,41 @@
 				<%= @wager_type %></div>
 						
 			<div><%= @pick1 %>
-				<%= @spread1 %></div>
+				
+				<% if @spread1 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread1 %>
+
+					<% end %>
+					</div>
 
 			<div><%= @pick2 %>
-				<%= @spread2 %></div>
+				<% if @spread2 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread2 %>
+
+					<% end %>
+					</div>
 
 			<div><%= @pick3 %>
-				<%= @spread3 %>
+				<% if @spread3 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread3 %>
+
+					<% end %>
+					</div>
 
 			<div class="hide">
 
@@ -277,20 +334,57 @@
 
 		<% if (@wager_type == "four team reverse") %>
 
-						<div><%= "$" + @amount.to_s %>
-							<%= @wager_type %></div>
+				<div><%= "$" + @amount.to_s %>
+					<%= @wager_type %></div>
 						
-						<div><%= @pick1 %>
-							<%= @spread1 %></div>
+				<div><%= @pick1 %>
+				
+				<% if @spread1 == 0 %>
 
-						<div><%= @pick2 %>
-							<%= @spread2 %></div>
+						<%= @spread_pk %>
 
-						<div><%= @pick3 %>
-							<%= @spread3 %></div>
+					<% else %>
+
+						<%= @spread1 %>
+
+					<% end %>
+					</div>
+
+			<div><%= @pick2 %>
+				<% if @spread2 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread2 %>
+
+					<% end %>
+					</div>
+
+			<div><%= @pick3 %>
+				<% if @spread3 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread3 %>
+
+					<% end %>
+					</div>
 
 						<div><%= @pick4 %>
-							<%= @spread4 %></div>
+				<% if @spread4 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread4 %>
+
+					<% end %>
+					</div>
 
 					<div class="hide">
 						<%= form_for @wager do |w| %>
@@ -325,23 +419,69 @@
 
 		<% if (@wager_type == "five team teaser" || @wager_type == "five team parlay") %>
 
-						<div><%= "$" + @amount.to_s %>
-							<%= @wager_type %></div>
+				<div><%= "$" + @amount.to_s %>
+					<%= @wager_type %></div>
 						
-						<div><%= @pick1 %>
-							<%= @spread1 %></div>
+				<div><%= @pick1 %>
+				
+				<% if @spread1 == 0 %>
 
-						<div><%= @pick2 %>
-							<%= @spread2 %></div>
+						<%= @spread_pk %>
 
-						<div><%= @pick3 %>
-							<%= @spread3 %></div>
+					<% else %>
 
-						<div><%= @pick4 %>
-							<%= @spread4 %></div>
+						<%= @spread1 %>
 
-						<div><%= @pick5 %>
-							<%= @spread5 %></div>
+					<% end %>
+					</div>
+
+				<div><%= @pick2 %>
+				<% if @spread2 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread2 %>
+
+					<% end %>
+					</div>
+
+				<div><%= @pick3 %>
+				<% if @spread3 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread3 %>
+
+					<% end %>
+					</div>
+
+				<div><%= @pick4 %>
+				<% if @spread4 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread4 %>
+
+					<% end %>
+					</div>
+
+				<div><%= @pick5 %>
+				<% if @spread5 == 0 %>
+
+						<%= @spread_pk %>
+
+					<% else %>
+
+						<%= @spread5 %>
+
+					<% end %>
+					</div>
 
 					<div class="hide">
 

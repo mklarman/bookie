@@ -95,11 +95,6 @@ module WagersHelper
 
 	  	def pick_type
 
-	  		@choices = []
-	  		@num_choices
-	  		@combo
-	  		@teaser_teams
-
 	  		@first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2]
 			@second_sport 
 
@@ -1087,6 +1082,8 @@ module WagersHelper
 						else
 
 							@spread1 = t.spread
+							
+
 
 						end
 
@@ -2819,7 +2816,83 @@ module WagersHelper
 
 		end
 
-	end
+		def score_straight
+
+			@teams.each do |t|
+
+				if t.name == @wager.team1
+
+				elsif t.opp == @wager.team1
+
+				elsif t.over_line == @wager.team1
+
+				elsif t.under_line == @wager.team1
+
+
+				end
+
+			end
+		end
+
+end
+
+		# 	@teams.each do |t|
+
+		# 		if t.name == @wager.team1
+
+		# 			if t.sport == "NFL" || if t.sport == "CFB" || if t.sport == "NBA" || if t.sport == "CBB" ||
+
+		# 				if t.spread_result == "loss"
+
+		# 					@net_p_l = (@wager.amount.to_i * 1.1) * -1
+
+		# 				elsif t.spread_result == "win"
+
+		# 					@net_p_l = @wager.amount.to_i
+
+		# 				end
+
+		# 			elsif t.sport == "MLB" || t.sport == "NHL"
+
+		# 				if t.spread_result == "loss"
+
+		# 					if t.spread.to_i > 0
+
+		# 						@net_p_l = @wager.amount.to_i * -1
+
+		# 					elsif t.spread.to_i < 0
+
+		# 						@net_p_l = @wager.amount.to_i * (t.spread.to_i/100)
+
+
+		# 					end
+
+
+
+		# 				end
+
+
+		# 			end 
+
+		# 				# elsif t.opp == @wager.team1
+
+		# 				# if t.spread_result == "loss"
+
+		# 				# 	@net_p_l = @wager.amount.to_i
+
+		# 				# end
+
+
+
+
+		# 		end
+
+
+		# 	end
+
+		# end
+
+	
 
 
 
