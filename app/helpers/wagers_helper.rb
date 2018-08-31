@@ -2832,6 +2832,10 @@ module WagersHelper
 
 							@net_p_l = @wager.amount.to_i
 
+						elsif t.spread_result == "push"
+
+							@net_p_l = "push"
+
 						end
 
 					elsif t.sport == "MLB" || t.sport == "NHL"
@@ -2862,6 +2866,10 @@ module WagersHelper
 
 							end
 
+						elsif t.spread_result == "push"
+
+							@net_p_l = "push"
+
 						end
 
 					end
@@ -2870,20 +2878,270 @@ module WagersHelper
 
 					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB"
 
+						if t.spread_result == "loss"
+
+							@net_p_l = @wager.amount.to_i
+
+
+						elsif t.spread_result == "win"
+
+							@net_p_l = (@wager.amount.to_i * 1.1) * -1
+
+						elsif t.spread_result == "push"
+
+							@net_p_l = "push"
+
+						end
+
 					elsif t.sport == "MLB" || t.sport == "NHL"
 
+						if t.spread_result == "loss"
 
+							if t.spread.to_i > 0
+
+								
+								@wager.amount.to_i * (t.spread.to_i/100)
+
+							elsif t.spread.to_i < 0
+
+								@net_p_l = @net_p_l = @wager.amount.to_i * -1
+							
+							end
+
+						elsif t.spread_result == "win"
+
+							if t.spread.to_i > 0
+
+								@net_p_l = @wager.amount.to_i
+
+
+							elsif t.spread.to_i < 0
+
+								@net_p_l = @wager.amount.to_i * (t.spread.to_i/100)
+
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@net_p_l = "push"
+
+						end
 
 					end
 
 				elsif t.over_line == @wager.team1
 
+					if t.total_points > t.total
+
+						@net_p_l = @wager.amount.to_i
+
+					elsif t.total_points < t.total
+
+						@net_p_l = @wager.amount.to_i * -1.1
+
+					else
+
+						if t.total_points == t.total 
+
+							@net_p_l = "push"
+
+						end
+
+					end
+
 				elsif t.under_line == @wager.team1
+
+					if t.total_points > t.total
+
+						@net_p_l = @wager.amount.to_i * -1.1 
+						
+
+					elsif t.total_points < t.total
+
+						@net_p_l = @wager.amount.to_i 
+
+					else
+
+						if t.total_points == t.total 
+
+							@net_p_l = "push"
+
+						end
+
+					end
 
 
 				end
 
 			end
+		end
+
+		def score two_team_parlay
+
+			@winners = []
+			@losers = []
+			@pushes = []
+
+			if @wager.wager_type == "two team parlay"
+
+				@teams.each do |t|
+
+					if t.name == @wager.team1
+
+						if t.spread_result == "win"
+
+							@winners.push(t.name)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team1
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@winners.push(t.opp)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					elsif t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							@winners.push(t.name)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@winners.push(t.opp)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end
+
+
+				end
+
+				if @losers.length > 0
+
+					@net_p_l = @wager.amount.to_i * -1
+
+				elsif @losers.length == 0
+
+					if @winners.length == 0
+
+						@net_p_l = "push"
+
+					end
+
+
+
+				end
+
+
+
+			end
+
+
+
 		end
 
 end
