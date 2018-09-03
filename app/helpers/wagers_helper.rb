@@ -4346,6 +4346,134 @@ module WagersHelper
 
 		end
 
+		def two_team_teaser
+
+			@winners = []
+			@losers = []
+
+			if @wager.wager_type == "two team teaser"
+
+				@teams.each do |t|
+
+					if t.name == @wager.team1
+
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score
+
+							@winners.push(@wager.team1)
+
+						else
+
+							@losers.push(@wager.team1)
+
+						end
+
+					elsif t.opp == @wager.team1
+
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score
+
+							@winners.push(@wager.team1)
+
+						else
+
+							@losers.push(@wager.team1)
+
+						end
+
+					elsif t.over_line == @wager.team1
+
+						if t.total_points > @wager.spread1
+
+							@winners.push(@wager.team1)
+
+						else
+
+							@losers.push(@wager.team1)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_points < @wager.spread1
+
+							@winners.push(@wager.team1)
+
+						else
+
+							@losers.push(@wager.team1)
+
+						end
+
+					end
+
+					if t.name == @wager.team2
+
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+
+							@winners.push(@wager.team2)
+
+						else
+
+							@losers.push(@wager.team2)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+
+							@winners.push(@wager.team2)
+
+						else
+
+							@losers.push(@wager.team2)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_points > @wager.spread2
+
+							@winners.push(@wager.team2)
+
+						else
+
+							@losers.push(@wager.team1)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_points < @wager.spread2
+
+							@winners.push(@wager.team2)
+
+						else
+
+							@losers.push(@wager.team2)
+
+						end
+
+					end
+
+
+				end
+
+				if @losers.length > 0
+
+					@net_p_l = @wager.amount * -1.2
+
+				else
+
+					@net_p_l = @wager.amount.to_i
+
+				end
+
+
+			end
+
+
+		end
+
 end
 
 			
