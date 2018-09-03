@@ -3567,7 +3567,7 @@ module WagersHelper
 
 						if @ml_counter == 0
 
-							@net_p_l = @wager.amount.to_i * 2.5
+							@net_p_l = @wager.amount.to_i * 5
 
 						elsif @ml_counter > 0
 
@@ -3617,11 +3617,728 @@ module WagersHelper
 
 						end
 
+					end
+
+				end
+
+			end
+
+		end
+
+		def five_team_parlay
+
+			@winners = []
+			@losers = []
+			@pushes = []
+
+			if @wager.wager_type == "five team parlay"
+
+				@teams.each do |t|
+
+					if t.name == @wager.team1
+
+						if t.spread_result == "win"
+
+							@wager_hash = Hash.new
+
+							@wager_hash[:team] = t.name
+							@wager_hash[:spread] = t.spread
+
+							@winners.push(@wager_hash)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team1
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash = Hash.new
+
+							@wager_hash[:team] = t.opp
+							@wager_hash[:spread] = t.spread.to_i * -1
+
+							@winners.push(@wager_hash)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end 
+
+					if t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							@wager_hash_two = Hash.new
+
+							@wager_hash_two[:team] = t.name
+							@wager_hash_two[:spread] = t.spread
+
+							@winners.push(@wager_hash_two)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_two = Hash.new
+
+							@wager_hash_two[:team] = t.opp
+							@wager_hash_two[:spread] = t.spread.to_i * -1
+
+							@winners.push(@wager_hash_two)
 
 
+						elsif t.spread_result == "push"
 
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
 
 					end
+
+					if t.name == @wager.team3
+
+						if t.spread_result == "win"
+
+							@wager_hash_three = Hash.new
+
+							@wager_hash_three[:team] = t.name
+							@wager_hash_three[:spread] = t.spread
+
+							@winners.push(@wager_hash_three)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team3
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_three = Hash.new
+
+							@wager_hash_three[:team] = t.opp
+							@wager_hash_three[:spread] = t.spread.to_i * -1
+
+							@winners.push(@wager_hash_three)
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end
+
+					if t.name == @wager.team4
+
+						if t.spread_result == "win"
+
+							@wager_hash_four = Hash.new
+
+							@wager_hash_four[:team] = t.name
+							@wager_hash_four[:spread] = t.spread
+
+							@winners.push(@wager_hash_four)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team4
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_four = Hash.new
+
+							@wager_hash_four[:team] = t.opp
+							@wager_hash_four[:spread] = t.spread.to_i * -1
+
+							@winners.push(@wager_hash_four)
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team4
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team4
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end
+
+					if t.name == @wager.team5
+
+						if t.spread_result == "win"
+
+							@wager_hash_five = Hash.new
+
+							@wager_hash_five[:team] = t.name
+							@wager_hash_five[:spread] = t.spread
+
+							@winners.push(@wager_hash_five)
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team5
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_five = Hash.new
+
+							@wager_hash_five[:team] = t.opp
+							@wager_hash_five[:spread] = t.spread.to_i * -1
+
+							@winners.push(@wager_hash_three)
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team5
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team5
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end
+
+
+				end
+
+				if @losers.length > 0
+
+					@net_p_l = @wager.amount.to_i * -1
+
+				elsif @losers.length == 0
+
+					if @winners.length == 0
+
+						@net_p_l = "push"
+
+					elsif @winners.length == 1
+
+						if @winners[0].spread > 100
+
+							@net_p_l = @wager.amount.to_i * (@winners[0].spread.to_i/100)
+
+						else 
+
+							@net_p_l = @wager.amount.to_i
+
+						end
+
+					elsif @winners.length == 2
+
+						@ml_counter = 0
+
+						@winners.each do |w|
+
+							if w.spread > 100 || w.spread < -100
+
+								@ml_counter = @ml_counter + 1
+
+							end
+
+						end
+
+						if @ml_counter == 0
+
+							@net_p_l = @wager.amount.to_i * 2.5
+
+						elsif @ml_counter > 0
+
+							if @winners[0].spread.to_i > 100
+
+								@parlay_one = (@winners[0].spread.to_i/100) + 1
+
+							elsif @winners[0].spread.to_i < -100
+
+								@parlay_one = (100/(@winners[0].spread * -1)) + 1
+
+							else
+
+								@parlay_one = (100/110) + 1
+
+							end
+
+							if @winners[1].spread.to_i > 100
+
+								@parlay_two = (@winners[1].spread.to_i/100) + 1
+
+							elsif @winners[1].spread.to_i < -100
+
+								@parlay_two = (100/(@winners[1].spread * -1)) + 1
+
+							else
+
+								@parlay_two = (100/110) + 1
+
+							end
+
+							@net_p_l = @wager.amount.to_i * parlay_one * parlay_two
+
+						end
+
+					elsif @winners.length == 3
+
+						@ml_counter = 0
+
+						@winners.each do |w|
+
+							if w.spread > 100 || w.spread < -100
+
+								@ml_counter = @ml_counter + 1
+
+							end
+
+						end
+
+						if @ml_counter == 0
+
+							@net_p_l = @wager.amount.to_i * 5
+
+						elsif @ml_counter > 0
+
+							if @winners[0].spread.to_i > 100
+
+								@parlay_one = (@winners[0].spread.to_i/100) + 1
+
+							elsif @winners[0].spread.to_i < -100
+
+								@parlay_one = (100/(@winners[0].spread * -1)) + 1
+
+							else
+
+								@parlay_one = (100/110) + 1
+
+							end
+
+							if @winners[1].spread.to_i > 100
+
+								@parlay_two = (@winners[1].spread.to_i/100) + 1
+
+							elsif @winners[1].spread.to_i < -100
+
+								@parlay_two = (100/(@winners[1].spread * -1)) + 1
+
+							else
+
+								@parlay_two = (100/110) + 1
+
+							end
+
+							if @winners[2].spread.to_i > 100
+
+								@parlay_three = (@winners[2].spread.to_i/100) + 1
+
+							elsif @winners[2].spread.to_i < -100
+
+								@parlay_three = (100/(@winners[2].spread * -1)) + 1
+
+							else
+
+								@parlay_three = (100/110) + 1
+
+							end
+
+							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three
+
+						end
+
+					elsif @winners.length == 4
+
+						@ml_counter = 0
+
+						@winners.each do |w|
+
+							if w.spread > 100 || w.spread < -100
+
+								@ml_counter = @ml_counter + 1
+
+							end
+
+						end
+
+						if @ml_counter == 0
+
+							@net_p_l = @wager.amount.to_i * 10
+
+						elsif @ml_counter > 0
+
+							if @winners[0].spread.to_i > 100
+
+								@parlay_one = (@winners[0].spread.to_i/100) + 1
+
+							elsif @winners[0].spread.to_i < -100
+
+								@parlay_one = (100/(@winners[0].spread * -1)) + 1
+
+							else
+
+								@parlay_one = (100/110) + 1
+
+							end
+
+							if @winners[1].spread.to_i > 100
+
+								@parlay_two = (@winners[1].spread.to_i/100) + 1
+
+							elsif @winners[1].spread.to_i < -100
+
+								@parlay_two = (100/(@winners[1].spread * -1)) + 1
+
+							else
+
+								@parlay_two = (100/110) + 1
+
+							end
+
+							if @winners[2].spread.to_i > 100
+
+								@parlay_three = (@winners[2].spread.to_i/100) + 1
+
+							elsif @winners[2].spread.to_i < -100
+
+								@parlay_three = (100/(@winners[2].spread * -1)) + 1
+
+							else
+
+								@parlay_three = (100/110) + 1
+
+							end
+
+							if @winners[3].spread.to_i > 100
+
+								@parlay_four = (@winners[3].spread.to_i/100) + 1
+
+							elsif @winners[3].spread.to_i < -100
+
+								@parlay_four = (100/(@winners[3].spread * -1)) + 1
+
+							else
+
+								@parlay_four = (100/110) + 1
+
+							end
+
+							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four 
+
+						end
+
+					elsif @winners.length == 5
+
+						@ml_counter = 0
+
+						@winners.each do |w|
+
+							if w.spread > 100 || w.spread < -100
+
+								@ml_counter = @ml_counter + 1
+
+							end
+
+						end
+
+						if @ml_counter == 0
+
+							@net_p_l = @wager.amount.to_i * 20
+
+						elsif @ml_counter > 0
+
+							if @winners[0].spread.to_i > 100
+
+								@parlay_one = (@winners[0].spread.to_i/100) + 1
+
+							elsif @winners[0].spread.to_i < -100
+
+								@parlay_one = (100/(@winners[0].spread * -1)) + 1
+
+							else
+
+								@parlay_one = (100/110) + 1
+
+							end
+
+							if @winners[1].spread.to_i > 100
+
+								@parlay_two = (@winners[1].spread.to_i/100) + 1
+
+							elsif @winners[1].spread.to_i < -100
+
+								@parlay_two = (100/(@winners[1].spread * -1)) + 1
+
+							else
+
+								@parlay_two = (100/110) + 1
+
+							end
+
+							if @winners[2].spread.to_i > 100
+
+								@parlay_three = (@winners[2].spread.to_i/100) + 1
+
+							elsif @winners[2].spread.to_i < -100
+
+								@parlay_three = (100/(@winners[2].spread * -1)) + 1
+
+							else
+
+								@parlay_three = (100/110) + 1
+
+							end
+
+							if @winners[3].spread.to_i > 100
+
+								@parlay_four = (@winners[3].spread.to_i/100) + 1
+
+							elsif @winners[3].spread.to_i < -100
+
+								@parlay_four = (100/(@winners[3].spread * -1)) + 1
+
+							else
+
+								@parlay_four = (100/110) + 1
+
+							end
+
+							if @winners[4].spread.to_i > 100
+
+								@parlay_five = (@winners[3].spread.to_i/100) + 1
+
+							elsif @winners[4].spread.to_i < -100
+
+								@parlay_five = (100/(@winners[4].spread * -1)) + 1
+
+							else
+
+								@parlay_five = (100/110) + 1
+
+							end
+
+							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four * parlay_five
+
+						end
+
+					end
+
+
 
 				end
 
