@@ -5217,7 +5217,7 @@ module WagersHelper
 
 					if @rev_lose[0].spread > 100 && @rev_lose[1].spread > 100
 
-						@net_p_l = @wager.amount.to_i * 2
+						@net_p_l = @wager.amount.to_i * -2
 
 					elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread < -100
 
@@ -5662,6 +5662,110 @@ module WagersHelper
 
 				elsif @rev_win.length == 1 && @rev_lose.length == 2
 
+					if @rev_win[0].spread > 100
+
+						if @rev_lose[0].spread > 100 && @rev_lose[1].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * -6) + ((@rev_win[0].spread/100) * @wager.amount.to_i) * 2
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100) * 3) + (@wager.amount.to_i * (@rev_lose[1].spread/100) * 3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100) * 3) + (@wager.amount.to_i * -3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						elsif @rev_lose[0].spread > 100 && @rev_lose[1].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1].spread/100) * 3) + (@wager.amount.to_i * -3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						elsif @rev_lose[0].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * -6.3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						elsif @rev_lose[0].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100) * 3) + (@wager.amount.to_i * -3.3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						elsif @rev_lose[1].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1].spread/100) * 3) + (@wager.amount.to_i * -3.3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+						
+						elsif @rev_lose[1].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * -6.3) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * -6.6) + (((@rev_win[0].spread/100) * @wager.amount.to_i) * 2)
+
+						end
+
+					elsif @rev_win[0].spread < -100
+
+						if @rev_lose[0].spread > 100 && @rev_lose[1].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * -6) + (@wager.amount.to_i * 2)
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100) * 3) + (@wager.amount.to_i * (@rev_lose[1].spread/100) * 3) + (@wager.amount.to_i * 2)
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
+
+						elsif @rev_lose[0].spread > 100 && @rev_lose[1].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1].spread/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
+
+						elsif @rev_lose[0].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
+
+						elsif @rev_lose[0].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
+
+						elsif @rev_lose[1].spread < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1].spread/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
+						
+						elsif @rev_lose[1].spread > 100
+
+							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * 2)
+
+						end
+
+					else
+
+						if @rev_lose[0].spread > 100 && @rev_lose[1].spread > 100
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread < -100
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread > 100
+
+						elsif @rev_lose[0].spread > 100 && @rev_lose[1].spread < -100
+
+						elsif @rev_lose[0].spread > 100
+
+						elsif @rev_lose[0].spread < -100
+
+						elsif @rev_lose[1].spread < -100
+						
+						elsif @rev_lose[1].spread > 100
+
+						else
+
+						end
+
+					end
+
 				elsif @rev_win.length == 2 && rev_lose.length == 1
 
 				elsif @rev_win.length == 3
@@ -5670,10 +5774,7 @@ module WagersHelper
 
 				end
 
-
-
 			end
-
 
 		end
 
