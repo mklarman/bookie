@@ -4939,6 +4939,246 @@ module WagersHelper
 
 			if @wager.wager_type == "two team reverse"
 
+				@teams.each do |t|
+
+					if t.name == @wager.team1
+
+						if t.spread_result == "win"
+
+							@wager_hash = Hash.new
+
+							@wager_hash[:team] = t.name
+							@wager_hash[:spread] = t.spread
+
+							@rev_win.push(@wager_hash)
+
+						elsif t.spread_result == "loss"
+
+							@rev_lose.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team1
+
+						if t.spread_result == "win"
+
+							@rev_lose.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash = Hash.new
+
+							@wager_hash[:team] = t.opp
+							@wager_hash[:spread] = t.spread.to_i * -1
+
+							@rev_win.push(@wager_hash)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end 
+
+					if t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							@wager_hash_two = Hash.new
+
+							@wager_hash_two[:team] = t.name
+							@wager_hash_two[:spread] = t.spread
+
+							@rev_win.push(@wager_hash_two)
+
+						elsif t.spread_result == "loss"
+
+							@rev_lose.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@rev_lose.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_two = Hash.new
+
+							@wager_hash_two[:team] = t.opp
+							@wager_hash_two[:spread] = t.spread.to_i * -1
+
+							@rev_win.push(@wager_hash_two)
+
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end
+
+
+				end
+
+				if @rev_push.length == 2
+
+					@net_p_l = "push"
+
+				elsif @rev_push.length == 1 && @rev_lose.length == 1
+
+					if @rev_lose[0].spread > 100
+
+						@net_p_l = @wager.amount.to_i * -1
+
+					elsif @rev_lose[0].spread < -100
+
+						@net_p_l = @wager.amount * (@rev_lose[0].spread/100)
+
+					else
+
+						@net_p_l = @wager.amount.to_i * -1.1
+
+					end
+
+				elsif @rev_push.length == 1 && @rev_win.length == 1
+
+					if @rev_win[0].spread > 100
+
+						@net_p_l = @wager.amount.to_i * (@rev_win[0].spread/100)
+
+					elsif @rev_win[0].spread < -100
+
+						@net_p_l = @wager.amount.to_i
+
+					else
+
+						@net_p_l = @wager.amount.to_i
+
+					end
+
+				elsif @rev_win.length == 1 && @rev_lose.length == 1
+
+					if @rev_win[0].spread > 100 && @rev_lose[0].spread > 100
+
+						@net_p_l = @wager.amount * (@rev_win[0].spread/100) + @wager.amount * -2
+
+					elsif @rev_win[0].spread < -100 && @rev_lose[0].spread < -100
+					
+						@net_p_l = (((@rev_lose[0].spread/100) +1) * @wager.amount) + (@wager.amount * (@rev_lose[0].spread/100))
+
+					elsif @rev_win[0].spread > 100 && @rev_lose[0].spread < -100
+
+						@net_p_l = (@wager.amount * (@rev_win[0].spread/100)) + ((@wager.amount * (@rev_lose[0].spread.to_i/100)) * 2)
+
+					elsif @rev_win[0].spread < -100 && @rev_lose[0].spread > 100
+
+						@net_p_l = @wager.amount.to_i + (@wager.amount * -2)
+
+					elsif @rev_win[0].spread < -100
+
+						@net_p_l = @wager.amount.to_i + (@wager.amount.to_i * -2.2)
+
+					elsif @rev_win[0].spread > 100
+
+						@net_p_l = (@wager.amount.to_i * (@rev_win[0].spread/100)) + (@wager.amount * -2.2)
+
+					elsif @rev_lose.spread > 100
+
+						@net_p_l = @wager.amount * -1
+
+					elsif @rev_lose.spread < -100
+
+						@net_p_l = (((@rev_lose.spread.to_i/100) + 1) * @wager.amount) + (@wager.amount * (@rev_lose.spread.to_i/100))
+
+					else
+
+						@net_p_l = @wager.amount * -1.2
+
+					end
+
+				elsif @rev_win.length == 2
+
+					
+
+				end
+
 			end
 
 
