@@ -5175,9 +5175,357 @@ module WagersHelper
 
 				elsif @rev_win.length == 2
 
-					
+					if @rev_win[0].spread > 100 && @rev_win[1].spread > 100
+
+						@net_p_l = ((@wager.amount.to_i * (@rev_win[0].spread/100)) * 2) + ((@wager.amount.to_i * (@rev_win[1].spread/100)) * 2) 
+
+					elsif @rev_win[0].spread < -100 && @rev_win[1].spread < -100
+
+						@net_p_l = @wager.amount.to_i * 4
+
+					elsif @rev_win[0].spread < -100 && @rev_win[1].spread > 100
+
+						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[1].spread/100)) * 2)
+
+					elsif @rev_win[0].spread > 100 && @rev_win[1].spread < -100
+
+						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[0].spread/100)) * 2)
+
+					elsif @rev_win[0].spread < -100
+
+						@net_p_l = @wager.amount.to_i * 4
+
+					elsif @rev_win[0].spread > 100
+
+						@net_p_l = ((@wager.amount.to_i * (@rev_win[0].spread/100)) * 2) + (@wager.amount.to_i * 2)
+
+					elsif @rev_win[1].spread > 100
+
+						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[1].spread/100)) * 2)
+
+					elsif @rev_win[1].spread < -100
+
+						@net_p_l = @wager.amount.to_i * 4
+
+					else
+
+						@net_p_l = @wager.amount.to_i * 4
+
+					end
+
+				elsif @rev_lose.length == 2
+
+					if @rev_lose[0].spread > 100 && @rev_lose[1].spread > 100
+
+						@net_p_l = @wager.amount.to_i * 2
+
+					elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread < -100
+
+						@net_p_l = (@wager.amount.to_i * (@rev_lose[0].spread/100)) + (@wager.amount.to_i * (@rev_lose[1].spread/100))
+
+					elsif @rev_lose[0].spread < -100 && @rev_lose[1].spread > 100
+
+						@net_p_l = (@wager.amount.to_i * -1) + (@wager.amount.to_i * (@rev_lose[0].spread/100))
+
+					elsif @rev_lose[0].spread > 100 && @rev_lose[1].spread < -100
+
+						@net_p_l = (@wager.amount.to_i * -1) + (@wager.amount.to_i * (@rev_lose[1].spread/100))
+
+					elsif @rev_lose[0].spread > 100
+
+						@net_p_l = @wager.amount * -2.1
+
+					elsif @rev_lose[0].spread < -100
+
+						@net_p_l = (@wager.amount.to_i * -1.1) + (@wager.amount.to_i * (@rev_lose[0].spread/100))
+
+					elsif @rev_lose[1].spread < -100
+
+						@net_p_l = (@wager.amount.to_i * -1.1) + (@wager.amount.to_i * (@rev_lose[1].spread/100))
+
+					elsif @rev_lose[1].spread > 100
+
+						@net_p_l = @wager.amount * -2.1
+
+					else
+
+						@net_p_l = @wager.amount.to_i * -2.2
+
+					end
 
 				end
+
+			end
+
+
+		end
+
+		def three_team_reverse
+
+			@rev_win = []
+			@rev_lose = []
+			@rev_push = []
+
+			if @wager.wager_type == "three team reverse"
+
+				@teams.each do |t|
+
+					if t.name == @wager.team1
+
+						if t.spread_result == "win"
+
+							@wager_hash = Hash.new
+
+							@wager_hash[:team] = t.name
+							@wager_hash[:spread] = t.spread
+
+							@rev_win.push(@wager_hash)
+
+						elsif t.spread_result == "loss"
+
+							@rev_lose.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team1
+
+						if t.spread_result == "win"
+
+							@rev_lose.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash = Hash.new
+
+							@wager_hash[:team] = t.opp
+							@wager_hash[:spread] = t.spread.to_i * -1
+
+							@rev_win.push(@wager_hash)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end 
+
+					if t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							@wager_hash_two = Hash.new
+
+							@wager_hash_two[:team] = t.name
+							@wager_hash_two[:spread] = t.spread
+
+							@rev_win.push(@wager_hash_two)
+
+						elsif t.spread_result == "loss"
+
+							@rev_lose.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@rev_lose.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_two = Hash.new
+
+							@wager_hash_two[:team] = t.opp
+							@wager_hash_two[:spread] = t.spread.to_i * -1
+
+							@rev_win.push(@wager_hash_two)
+
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end
+
+					if t.name == @wager.team3
+
+						if t.spread_result == "win"
+
+							@wager_hash_three = Hash.new
+
+							@wager_hash_three[:team] = t.name
+							@wager_hash_three[:spread] = t.spread.to_i
+
+							@rev_win.push(@wager_hash_three)
+
+						elsif t.spread_result == "loss"
+
+							@rev_lose.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team3
+
+						if t.spread_result == "win"
+
+							@rev_lose.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							@wager_hash_three = Hash.new
+
+							@wager_hash_three[:team] = t.opp
+							@wager_hash_three[:spread] = t.spread.to_i * -1
+
+							@rev_win.push(@wager_hash_three)
+
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end
+
+
+				end
+
+				if @rev_push.length == 3
+
+				elsif @rev_push.length == 2 && @rev_lose.length == 1
+
+				elsif @rev_push.length == 2 && @rev_win.length == 1
+
+				elsif @rev_push.length == 1 && @rev_win.length == 2
+
+				elsif @rev_push.length == 1 && @rev_lose.length == 2
+
+				elsif @rev_push.length == 1 && @rev_lose.length == 1 && @rev_win.length == 1 
+
+				elsif @rev_win.length == 1 && @rev_lose.length == 2
+
+				elsif @rev_win.length == 2 && rev_lose.length == 1
+
+				elsif @rev_win.length == 3
+				
+				elsif @rev_lose.length == 3
+
+				end
+
+
 
 			end
 
