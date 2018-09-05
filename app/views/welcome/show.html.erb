@@ -8,16 +8,14 @@
 
 
 
-	<% current_user.clients.each do |c| %>
-
-	<br>
-
-		<div class="name_font"><%= c.first_name %>
-		<%= c.last_name %></div>
+	<% current_user.clients.each do |c| %>	
 
 		<% c.wagers.each do |w| %>
 
 			<% if @my_date == w.date %>
+
+			<div class="name_font"><%= c.first_name %>
+								<%= c.last_name %></div>
 
 				<div id="amount_type"><%= "$" + w.amount.to_s %>
 				<%= w.wager_type %></div>
