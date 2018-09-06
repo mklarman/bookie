@@ -3536,7 +3536,7 @@ module WagersHelper
 
 								@parlay_two = (@winners[1][:spread]/100) + 1
 
-							elsif @winners[1].[:spread] < -100
+							elsif @winners[1][:spread] < -100
 
 								@parlay_two = (100/(@winners[1][:spread] * -1)) + 1
 
@@ -6619,7 +6619,7 @@ module WagersHelper
 
 					elsif @rev_lose[:spread] < -100
 
-						@net_p_l = ((((@rev_lose[:spread]/100) + 1) * 3) * @wager.amount) + (@wager.amount * (@rev_lose[:spread]/100)
+						@net_p_l = ((((@rev_lose[:spread]/100) + 1) * 3) * @wager.amount) + (@wager.amount * (@rev_lose[:spread]/100))
 
 					else
 
@@ -6645,64 +6645,68 @@ module WagersHelper
 
 				elsif @rev_lose.length == 4 
 
-
-				elsif rev_win[0][:spread] > 100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
-					
-				elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
-
-				elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
-
-				elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
-
-				elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
-
-				elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
-
-				elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
-
-				elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
-
-				elsif @rev_win[0][:spread] > 100
-
-				elsif @rev_win[0][:spread] < -100
-
-				elsif @rev_win[1][:spread] < -100
-
-				elsif @rev_win[1][:spread] > 100
-
-				elsif @rev_win[2][:spread] > 100
-
-				elsif @rev_win[2][:spread] < -100
-
-				else					 
-
 				end
+
+
+				
+
+				# elsif rev_win[0][:spread] > 100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
+					
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
+
+				# elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
+
+				# elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
+
+				# elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
+
+				# elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
+
+				# elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
+
+				# elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
+
+				# elsif @rev_win[0][:spread] > 100
+
+				# elsif @rev_win[0][:spread] < -100
+
+				# elsif @rev_win[1][:spread] < -100
+
+				# elsif @rev_win[1][:spread] > 100
+
+				# elsif @rev_win[2][:spread] > 100
+
+				# elsif @rev_win[2][:spread] < -100
+
+				# else					 
+
+				# end
 
 
 			end
