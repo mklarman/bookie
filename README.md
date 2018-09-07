@@ -125,7 +125,31 @@ Users:
 
  Next is to pick the teams to fill the wager, the if statements here will work off of wager type.  As a selection is made, have that selection fall out of the array of choices.  To do that, once a selection is made and stored in a variable, loop through the selection array and ask where the selection and selection array are equal and cut that element from the array.  This way a selection can't appear in the same wager twice.
 
- once client, amount, type, and teams are set, the wager is ready to be saved. 
+ once client, amount, type, and teams are set, the wager is ready to be saved.
+
+ PAGES:
+
+ Landing Page: A thematic page that speaks to the theme, has the login, and a link to sign up.
+
+ SIGN UP: Holds the registration form for new members
+
+ Your SportsBook, if user.clients == niil, show a message that they need to get some clients and how to get clients.  If they have users but no current wagers, display "You Haven't booked any bets today yet". If their is current wagers then this page will display today's action.
+
+ Clients New: Fish for clients
+
+ Wagers New: Action contracts
+
+ Wagers Edit: Grade Action Contracts, display User bankroll here.
+
+ Sports Book info: Client list with net profit/loss figure.  The net p/l for last ten.  The net p/l for various wager types.  This may be client/index.  Give aggregate info, for specific client info you click on the client and are brought to..
+
+ Client/show page where the detailed stats of a specific client can be seen
+
+ How to Play: explain the object for the game
+
+
+
+
 
 
 
