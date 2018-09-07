@@ -7443,6 +7443,61 @@ module WagersHelper
 
 				elsif @rev_win.length == 2 && @rev_lose.length == 2
 
+					@rev_team1
+					@rev_team2
+					@rev_team3
+					@rev_team4
+
+					if @rev_win[0][:spread] > 100
+
+						@rev_team1 = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4)
+
+					else 
+						
+						@rev_team1 = (@wager.amount.to_i * 4)
+
+					end
+
+					if @rev_win[1][:spread] > 100
+
+						@rev_team2 = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4)
+
+					else
+
+						@rev_team2 = (@wager.amount.to_i * 4)
+
+					end
+
+					if @rev_lose[0][:spread] > 100
+
+						@rev_team3 = (@wager.amount.to_i * -5)
+
+					elsif @rev_lose[0][:spread] < -100 
+
+						@rev_team3 = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+					else
+
+						@rev_team3 = (@wager.amount.to_i * -5.5)
+
+					end
+
+					if @rev_lose[1][:spread] > 100
+
+						@rev_team4 = (@wager.amount.to_i * -5)
+
+					elsif @rev_lose[1][:spread] < -100 
+
+						@rev_team4 = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 5)
+
+					else
+
+						@rev_team4 = (@wager.amount.to_i * -5.5)
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
+
 				elsif @rev_win.length == 3 && @rev_lose.length == 1
 
 					
@@ -7789,76 +7844,133 @@ module WagersHelper
 
 					end
 
-				elsif @rev_win.length == 4 
+				elsif @rev_win.length == 4
 
-				elsif @rev_lose.length == 4 
+					@rev_team1
+					@rev_team2
+					@rev_team3
+					@rev_team4
+
+					if @rev_win[0][:spread] > 100
+
+						@rev_team1 = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 6)
+
+					else 
+						
+						@rev_team1 = (@wager.amount.to_i * 6)
+
+					end
+
+					if @rev_win[1][:spread] > 100
+
+						@rev_team2 = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 6)
+
+					else
+
+						@rev_team2 = (@wager.amount.to_i * 6)
+
+					end
+
+					if @rev_win[2][:spread] > 100
+
+						@rev_team3 = (@wager.amount.to_i * 6)
+
+					elsif @rev_win[2][:spread] < -100 
+
+						@rev_team3 = (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 6)
+
+					else
+
+						@rev_team3 = (@wager.amount.to_i * 6)
+
+					end
+
+					if @rev_win[3][:spread] > 100
+
+						@rev_team4 = (@wager.amount.to_i * 6)
+
+					elsif @rev_win[3][:spread] < -100 
+
+						@rev_team4 = (@wager.amount.to_i * (@rev_lose[3][:spread]/100) * 6)
+
+					else
+
+						@rev_team4 = (@wager.amount.to_i * 6)
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
+
+
+
+				elsif @rev_lose.length == 4
+
+					@rev_team1
+					@rev_team2
+					@rev_team3
+					@rev_team4
+
+					if @rev_lose[0][:spread] > 100
+
+						@rev_team1 = (@wager.amount.to_i * -3)
+
+					elsif @rev_lose[0][:spread] < -100
+
+						@rev_team1 = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
+
+					else 
+						
+						@rev_team1 = (@wager.amount.to_i * -3.3)
+
+					end
+
+					if @rev_lose[1][:spread] > 100
+
+						@rev_team2 = (@wager.amount.to_i * -3)
+
+					elsif @rev_lose[1][:spread] < -100
+
+						@rev_team2 = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					else 
+						
+						@rev_team2 = (@wager.amount.to_i * -3.3)
+
+					end
+
+					if @rev_lose[2][:spread] > 100
+
+						@rev_team3 = (@wager.amount.to_i * -3)
+
+					elsif @rev_lose[2][:spread] < -100 
+
+						@rev_team3 = (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					else
+
+						@rev_team3 = (@wager.amount.to_i * -3.3)
+
+					end
+
+					if @rev_lose[3][:spread] > 100
+
+						@rev_team4 = (@wager.amount.to_i * -3.3)
+
+					elsif @rev_lose[3][:spread] < -100 
+
+						@rev_team4 = (@wager.amount.to_i * (@rev_lose[3][:spread]/100) * 3)
+
+					else
+
+						@rev_team4 = (@wager.amount.to_i * -3.3)
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
 
 				end
 
-
-				
-
-				# elsif rev_win[0][:spread] > 100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
-					
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
-
-				# elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
-
-				# elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
-
-				# elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
-
-				# elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
-
-				# elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
-
-				# elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
-
-				# elsif @rev_win[0][:spread] > 100
-
-				# elsif @rev_win[0][:spread] < -100
-
-				# elsif @rev_win[1][:spread] < -100
-
-				# elsif @rev_win[1][:spread] > 100
-
-				# elsif @rev_win[2][:spread] > 100
-
-				# elsif @rev_win[2][:spread] < -100
-
-				# else					 
-
-				# end
-
-
 			end
-
 
 		end
 
