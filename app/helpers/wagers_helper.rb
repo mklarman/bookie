@@ -6070,110 +6070,110 @@ module WagersHelper
 				
 				elsif @rev_lose.length == 3
 
-					if @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
+					if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 						@net_p_l = @wager.amount.to_i * -6
 					
-					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2)	
+						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)	
 
-					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2) 
+							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) 
 
-					elsif @rev_win[0].spread < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
+					elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.2)  
 
-					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
 
-						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
 
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
 
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.2)
 
-					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
+					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * -6.2) 
 
-					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
+					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 					
-					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
+					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
+					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-					elsif @rev_win[0][:spread] > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.4) 
-
-					elsif @rev_win[0][:spread] < -100
-
-							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2)
-
-					elsif @rev_win[1][:spread] < -100
-
-							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 2)
-
-					elsif @rev_win[1][:spread] > 100
+					elsif @rev_lose[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.4) 
 
-					elsif @rev_win[2][:spread] > 100
+					elsif @rev_lose[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
+
+					elsif @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
+
+					elsif @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.4) 
 
-					elsif @rev_win[2][:spread] < -100
+					elsif @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 2)
+							@net_p_l = (@wager.amount.to_i * -6.4) 
+
+					elsif @rev_lose[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
 					else
 
@@ -6628,12 +6628,475 @@ module WagersHelper
 					end
 
 				elsif @rev_push.length == 1 && @rev_win.length == 2 && @rev_lose.length == 1
+
+					if @rev_lose[0][:spread] > 100
+
+						if @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1].spread/100) * 4) + (@wager.amount.to_i * -5)
+
+						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4) 
+
+						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5) 
+
+						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
+
+						elsif @rev_win[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
+						
+						elsif @rev_win[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0].spread/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
+
+						elsif @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
+
+						elsif @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
+
+						end
+
+
+					elsif @rev_lose[0][:spread] < -100
+
+						if @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
+
+						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						elsif @rev_win[0].spread < -100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						elsif @rev_win[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+						
+						elsif @rev_win[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						elsif @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						elsif @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
+
+						end
+
+					else
+
+						if @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount * -5.5)
+
+						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount * -5.5)
+
+						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
+
+						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
+
+						elsif @rev_win[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
+						
+						elsif @rev_win[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
+
+						elsif @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
+
+						elsif @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -5.5)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -5.5)
+
+						end
+
+					end
 				
 				elsif @rev_push.length == 1 && @rev_win.length == 1 && @rev_lose.length == 2
 
+					if @rev_win[0][:spread] > 100
+
+						if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8) + ((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3
+
+						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						elsif @rev_lose[0].spread > 100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						elsif @rev_lose[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						elsif @rev_lose[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+						
+						elsif @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * -8.8) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
+
+						end
+
+					elsif @rev_win[0][:spread] < -100
+
+						if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
+						
+						elsif @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
+
+						else
+
+							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * 3)
+
+						end
+
+					else
+
+						if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = @wager.amount.to_i * 3 + (@wager.amount.to_i * -8)
+
+						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
+						
+						elsif @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
+
+						end
+
+					end
+
 				elsif @rev_push.length == 1 && @rev_win.length == 3
 
+					if @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+					
+					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
+
+						@net_p_l = @wager.amount.to_i * 15
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)	
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * 5) 
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
+
+						@net_p_l = @wager.amount.to_i * 15
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
+
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5) + (@wager.amount.to_i * )
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
+
+							@net_p_l = @wager.amount.to_i * 15
+
+					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
+
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
+
+					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5) + (@wager.amount.to_i * 5)
+
+					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = @wager.amount.to_i * 15
+
+					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+
+					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * 10) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
+
+					elsif @rev_win[0][:spread] < -100
+
+							@net_p_l = @wager.amount.to_i * 15
+
+					elsif @rev_win[1][:spread] < -100
+
+							@net_p_l = @wager.amount.to_i * 15
+
+					elsif @rev_win[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * 10) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+
+					elsif @rev_win[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * 10) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+
+					elsif @rev_win[2][:spread] < -100
+
+							@net_p_l = @wager.amount.to_i * 15
+
+					else
+
+							@net_p_l = @wager.amount.to_i * 15
+					
+					end
+
 				elsif @rev_push.length == 1 && @rev_lose.length == 3
+
+					if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
+
+						@net_p_l = @wager.amount.to_i * -9
+					
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
+
+						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)	
+
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) 
+
+					elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -9.3)  
+
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
+
+						@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
+
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
+
+						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -9.3)
+
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
+
+						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
+
+						@net_p_l = (@wager.amount.to_i * -9.3) 
+
+					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+					
+					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					elsif @rev_lose[0][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -9.6) 
+
+					elsif @rev_lose[0][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
+
+					elsif @rev_lose[1][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+
+					elsif @rev_lose[1][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -9.6) 
+
+					elsif @rev_lose[2][:spread] > 100
+
+							@net_p_l = (@wager.amount.to_i * -9.6) 
+
+					elsif @rev_lose[2][:spread] < -100
+
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+
+					else
+
+							@net_p_l = @wager.amount.to_i * -9.9
+					
+					end
 
 				elsif @rev_win.length == 1 && @rev_lose.length == 3
 
