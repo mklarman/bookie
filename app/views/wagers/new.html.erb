@@ -3,6 +3,34 @@
 <% self.get_time %>
 <% self.time_check %>
 
+<% @user_b = [] %>
+<% @client_br = [] %>
+<% @current_br %>
+<% @current_client_br %>
+
+<% if current_user.wagers %>
+
+	<% current_user.wagers.each do |w| %>
+
+		<% if w.graded === true %>
+
+			<div><% @user_b.push(w.user_bankroll) %></div>		
+
+		<% end %>
+
+	<% end %>
+
+	<%= @current_br = @user_b.last %>
+
+<% else %>
+
+	<% @current_br = 5000 %>
+
+<% end %>
+
+
+
+
 
 
 <% @spread_pk = "pk" %>
@@ -128,6 +156,23 @@
 
 			<% @client = c %>
 
+			<% @client.wagers.each do |w| %>
+
+				<% if w.graded == true %>
+
+					<% @client_br.push(w.client_bankroll) %>
+
+					<% @current_client_br = @client_br.last %>
+
+				<% else %>
+
+					<% @current_client_br = 0 %>
+
+				<% end %>
+
+
+			<% end %>
+
 			<div id="wager_info">
 			<div><%= c.first_name %>
 			<%= c.last_name %></div>
@@ -178,7 +223,7 @@
 					<div><%= w.hidden_field :spread5 %></div>
 					Date:<div><%= w.text_field :date, :value => @my_date %></div>
 					<div><%= w.hidden_field :net_result %></div>
-					<div><%= w.hidden_field :user_bankroll %></div>
+					<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div>
 					<div><%= w.hidden_field :client_bankroll %></div>
 					<div><%= w.hidden_field :outcome %></div>
 					<div><%= w.hidden_field :graded %></div>
@@ -243,7 +288,7 @@
 				<div><%= w.hidden_field :spread5 %></div>
 				Date:<div><%= w.text_field :date, :value => @my_date %></div>
 				<div><%= w.hidden_field :net_result %></div>
-				<div><%= w.hidden_field :user_bankroll %></div>
+				<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
 				<div><%= w.hidden_field :client_bankroll %></div>
 				<div><%= w.hidden_field :outcome %></div>
 				<div><%= w.hidden_field :graded %></div>
@@ -320,7 +365,7 @@
 						<div><%= w.hidden_field :spread5 %></div>
 						Date:<div><%= w.text_field :date, :value => @my_date %></div>
 						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :user_bankroll %></div>
+						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
 						<div><%= w.hidden_field :client_bankroll %></div>
 						<div><%= w.hidden_field :outcome %></div>
 						<div><%= w.hidden_field :graded %></div>
@@ -405,7 +450,7 @@
 						<div><%= w.hidden_field :spread5 %></div>
 						Date:<div><%= w.text_field :date, :value => @my_date %></div>
 						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :user_bankroll %></div>
+						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
 						<div><%= w.hidden_field :client_bankroll %></div>
 						<div><%= w.hidden_field :outcome %></div>
 						<div><%= w.hidden_field :graded %></div>
@@ -503,7 +548,7 @@
 						Spread5:<div><%= w.text_field :spread5, :value => @spread5 %></div>
 						Date:<div><%= w.text_field :date, :value => @my_date %></div>
 						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :user_bankroll %></div>
+						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
 						<div><%= w.hidden_field :client_bankroll %></div>
 						<div><%= w.hidden_field :outcome %></div>
 						<div><%= w.hidden_field :graded %></div>
