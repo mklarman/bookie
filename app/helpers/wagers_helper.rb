@@ -2829,8 +2829,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 1.1) * -1
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif t.spread_result == "win"
@@ -2838,16 +2838,20 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
+
 
 						elsif t.spread_result == "push"
 
 							@net_p_l = "push"
 
 							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br
+							@wager.user_bankroll = @current_br 
 							@wager.outcome = "push"
+
 
 						end
 
@@ -2860,17 +2864,18 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i * -1
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "loss"
+
 
 							elsif t.spread.to_i < 0
 
 								@net_p_l = @wager.amount.to_i * (t.spread.to_i/100)
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "loss"
 
 
@@ -2883,8 +2888,8 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i * (t.spread.to_i/100)
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "win"
 
 							elsif t.spread.to_i < 0
@@ -2892,8 +2897,8 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "win"
 
 
@@ -2904,7 +2909,8 @@ module WagersHelper
 							@net_p_l = "push"
 
 							@wager.net_result = @net_p_l
-				
+							@wager.client_bankroll = @current_client_br 
+							@wager.user_bankroll = @current_br 
 							@wager.outcome = "push"
 
 						end
@@ -2920,9 +2926,9 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win"
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
+								@wager.outcome = "win"
 
 
 						elsif t.spread_result == "win"
@@ -2930,16 +2936,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -1.1)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
+								@wager.outcome = "loss"
 
 						elsif t.spread_result == "push"
 
 							@net_p_l = "push"
 
 							@wager.net_result = @net_p_l
-							
+							@wager.client_bankroll = @current_client_br 
+							@wager.user_bankroll = @current_br 
 							@wager.outcome = "push"
 
 						end
@@ -2954,8 +2961,8 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i * (t.opp_line.to_i/100)
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "win"
 
 							elsif t.opp_line.to_i < 0
@@ -2963,8 +2970,8 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i 
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "win"
 							
 							end
@@ -2976,8 +2983,8 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i * -1
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "loss"
 
 
@@ -2986,8 +2993,8 @@ module WagersHelper
 								@net_p_l = @wager.amount.to_i * (t.opp_line.to_i/100)
 
 								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+								@wager.client_bankroll = @current_client_br + @net_p_l
+								@wager.user_bankroll = @current_br + (@net_p_l * -1)
 								@wager.outcome = "loss"
 
 
@@ -2995,11 +3002,12 @@ module WagersHelper
 
 						elsif t.spread_result == "push"
 
-							@net_p_l = "push"
+								@net_p_l = "push"
 
-							@wager.net_result = @net_p_l
-						
-							@wager.outcome = "push"
+								@wager.net_result = @net_p_l
+								@wager.client_bankroll = @current_client_br 
+								@wager.user_bankroll = @current_br 
+								@wager.outcome = "push"
 
 						end
 
@@ -3012,17 +3020,17 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
-
+					
 					elsif t.total_points < t.total
 
 						@net_p_l = @wager.amount.to_i * -1.1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					else
@@ -3032,7 +3040,8 @@ module WagersHelper
 							@net_p_l = "push"
 
 							@wager.net_result = @net_p_l
-						
+							@wager.client_bankroll = @current_client_br 
+							@wager.user_bankroll = @current_br 
 							@wager.outcome = "push"
 
 						end
@@ -3046,8 +3055,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -1.1 
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 						
 
@@ -3056,8 +3065,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i 
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					else
@@ -3067,7 +3076,8 @@ module WagersHelper
 							@net_p_l = "push"
 
 							@wager.net_result = @net_p_l
-					
+							@wager.client_bankroll = @current_client_br 
+							@wager.user_bankroll = @current_br 
 							@wager.outcome = "push"
 
 						end
@@ -3250,8 +3260,8 @@ module WagersHelper
 					@net_p_l = @wager.amount.to_i * -1
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss"
 
 				elsif @losers.length == 0
@@ -3261,7 +3271,8 @@ module WagersHelper
 						@net_p_l = "push"
 
 						@wager.net_result = @net_p_l
-						
+						@wager.client_bankroll = @current_client_br 
+						@wager.user_bankroll = @current_br 
 						@wager.outcome = "push"
 
 					elsif @winners.length == 1
@@ -3271,8 +3282,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * (@winners[0][:spread]/100)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						else 
@@ -3280,8 +3291,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -3306,8 +3317,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 2.5
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter == 1 || @ml_counter == 2 
@@ -3351,8 +3362,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -3613,8 +3624,8 @@ module WagersHelper
 					@net_p_l = @wager.amount.to_i * -1
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss"
 
 				elsif @losers.length == 0
@@ -3624,9 +3635,10 @@ module WagersHelper
 						@net_p_l = "push"
 
 						@wager.net_result = @net_p_l
-						
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "push"
-
+					
 					elsif @winners.length == 1
 
 						if @winners[0][:spread] > 100
@@ -3634,8 +3646,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * (@winners[0][:spread]/100)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						else 
@@ -3643,8 +3655,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -3668,8 +3680,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 2.5
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter > 0
@@ -3705,8 +3717,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * parlay_one * parlay_two
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -3728,9 +3740,10 @@ module WagersHelper
 						if @ml_counter == 0
 
 							@net_p_l = @wager.amount.to_i * 5
+							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter > 0
@@ -3780,8 +3793,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -4196,8 +4209,8 @@ module WagersHelper
 					@net_p_l = @wager.amount.to_i * -1
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss"
 
 				elsif @losers.length == 0
@@ -4207,7 +4220,8 @@ module WagersHelper
 						@net_p_l = "push"
 
 						@wager.net_result = @net_p_l
-					
+						@wager.client_bankroll = @current_client_br 
+						@wager.user_bankroll = @current_br 
 						@wager.outcome = "push"
 
 					elsif @winners.length == 1
@@ -4217,8 +4231,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * (@winners[0][:spread]/100)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						else 
@@ -4226,8 +4240,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -4249,9 +4263,10 @@ module WagersHelper
 						if @ml_counter == 0
 
 							@net_p_l = @wager.amount.to_i * 2.5
+							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter > 0
@@ -4287,8 +4302,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * parlay_one * parlay_two
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -4310,9 +4325,10 @@ module WagersHelper
 						if @ml_counter == 0
 
 							@net_p_l = @wager.amount.to_i * 5
+							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter > 0
@@ -4362,8 +4378,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -4385,9 +4401,10 @@ module WagersHelper
 						if @ml_counter == 0
 
 							@net_p_l = @wager.amount.to_i * 10
+							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter > 0
@@ -4451,8 +4468,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -4474,9 +4491,10 @@ module WagersHelper
 						if @ml_counter == 0
 
 							@net_p_l = @wager.amount.to_i * 20
+							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @ml_counter > 0
@@ -4554,8 +4572,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four * parlay_five
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -4687,8 +4705,8 @@ module WagersHelper
 					@net_p_l = @wager.amount * -1.2
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss"
 
 				else
@@ -4696,8 +4714,8 @@ module WagersHelper
 					@net_p_l = @wager.amount.to_i
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "win"
 
 				end
@@ -4875,18 +4893,20 @@ module WagersHelper
 					@net_p_l = @wager.amount * -1.3
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss"
+
 
 				else
 
 					@net_p_l = @wager.amount.to_i
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "win"
+
 
 				end
 
@@ -4901,7 +4921,7 @@ module WagersHelper
 			@winners = []
 			@losers = []
 
-			if @wager.wager_type == "three team teaser"
+			if @wager.wager_type == "five team teaser"
 
 				@teams.each do |t|
 
@@ -5163,18 +5183,19 @@ module WagersHelper
 					@net_p_l = @wager.amount * -1.2
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-					@wager.outcome = "win"
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 				else
 
 					@net_p_l = @wager.amount.to_i * 1.5
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "win"
+
 
 				end
 
@@ -5377,7 +5398,8 @@ module WagersHelper
 					@net_p_l = "push"
 
 					@wager.net_result = @net_p_l
-					
+					@wager.client_bankroll = @current_client_br 
+					@wager.user_bankroll = @current_br 
 					@wager.outcome = "push"
 
 				elsif @rev_push.length == 1 && @rev_lose.length == 1
@@ -5387,27 +5409,30 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
+
 
 					elsif @rev_lose[0].spread < -100
 
 						@net_p_l = @wager.amount * (@rev_lose[0][:spread]/100)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
+
 
 					else
 
 						@net_p_l = @wager.amount.to_i * -1.1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
+
 
 					end
 
@@ -5418,8 +5443,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * (@rev_win[0][:spread]/100)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100
@@ -5427,17 +5452,18 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
+
 
 					else
 
 						@net_p_l = @wager.amount.to_i
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					end
@@ -5447,73 +5473,82 @@ module WagersHelper
 					if @rev_win[0][:spread] > 100 && @rev_lose[0][:spread] > 100
 
 						@net_p_l = @wager.amount * (@rev_win[0][:spread]/100) + @wager.amount * -2
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_lose[0][:spread] < -100
 					
 						@net_p_l = (((@rev_lose[0][:spread]/100) +1) * @wager.amount) + (@wager.amount * (@rev_lose[0][:spread]/100))
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_lose[0][:spread] < -100
 
 						@net_p_l = (@wager.amount * (@rev_win[0][:spread]/100)) + ((@wager.amount * (@rev_lose[0][:spread]/100)) * 2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_lose[0][:spread] > 100
 
 						@net_p_l = @wager.amount.to_i + (@wager.amount * -2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] < -100
 
 						@net_p_l = @wager.amount.to_i + (@wager.amount.to_i * -2.2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100)) + (@wager.amount * -2.2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[:spread] > 100
 
 						@net_p_l = @wager.amount * -1
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
-
+					
 					elsif @rev_lose[:spread] < -100
 
 						@net_p_l = (((@rev_lose[:spread]/100) + 1) * @wager.amount) + (@wager.amount * (@rev_lose[:spread]/100))
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
-
+					
 					else
 
 						@net_p_l = @wager.amount * -1.2
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					end
@@ -5525,72 +5560,80 @@ module WagersHelper
 						@net_p_l = ((@wager.amount.to_i * (@rev_win[0][:spread]/100)) * 2) + ((@wager.amount.to_i * (@rev_win[1].spread/100)) * 2) 
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
 						@net_p_l = @wager.amount.to_i * 4
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[1][:spread]/100)) * 2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 					
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
 
 						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[0][:spread]/100)) * 2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 					
 					elsif @rev_win[0][:spread] < -100
 
 						@net_p_l = @wager.amount.to_i * 4
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100
 
 						@net_p_l = ((@wager.amount.to_i * (@rev_win[0][:spread]/100)) * 2) + (@wager.amount.to_i * 2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[1][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[1][:spread]/100)) * 2)
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[1][:spread] < -100
 
 						@net_p_l = @wager.amount.to_i * 4
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					else
 
 						@net_p_l = @wager.amount.to_i * 4
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					end
@@ -5600,9 +5643,10 @@ module WagersHelper
 					if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
 
 						@net_p_l = @wager.amount.to_i * -2
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -5610,8 +5654,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100)) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100))
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -5619,8 +5663,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -1) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100))
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -5628,8 +5672,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -1) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100))
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100
@@ -5637,8 +5681,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -2.1
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100
@@ -5646,8 +5690,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -1.1) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100))
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[1][:spread] < -100
@@ -5655,8 +5699,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -1.1) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100))
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[1][:spread] > 100
@@ -5664,8 +5708,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -2.1
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					else
@@ -5673,8 +5717,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -2.2
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					end
@@ -5964,7 +6008,8 @@ module WagersHelper
 					@net_p_l = "push"
 					
 					@wager.net_result = @net_p_l
-					
+					@wager.client_bankroll = @current_client_br 
+					@wager.user_bankroll = @current_br
 					@wager.outcome = "push"
 
 				elsif @rev_push.length == 2 && @rev_lose.length == 1
@@ -5972,9 +6017,10 @@ module WagersHelper
 					if @rev_lose[0][:spread] > 100
 
 						@net_p_l = @wager.amount.to_i * -1
+						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100
@@ -5982,8 +6028,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * (@rev_lose[0][:spread]/100)
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					else
@@ -5991,8 +6037,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -1.1
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					end
@@ -6005,8 +6051,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100
@@ -6015,8 +6061,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					else
@@ -6025,8 +6071,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					end
@@ -6039,9 +6085,9 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
@@ -6049,8 +6095,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -6059,8 +6105,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -6069,8 +6115,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100
@@ -6079,8 +6125,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100
@@ -6089,8 +6135,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[1][:spread] > 100
@@ -6099,8 +6145,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[1][:spread] < -100
@@ -6109,8 +6155,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					else
@@ -6119,8 +6165,8 @@ module WagersHelper
 
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					end
@@ -6132,8 +6178,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -4
 						
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -6141,8 +6187,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -6150,8 +6196,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -6159,8 +6205,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100
@@ -6168,8 +6214,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -4.2
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100
@@ -6177,8 +6223,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[1][:spread] < -100
@@ -6186,8 +6232,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[1][:spread] > 100
@@ -6195,8 +6241,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -4.2
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					else
@@ -6204,8 +6250,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -4.4
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					end
@@ -6217,8 +6263,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * ((@rev_win[0][:spread]/100) * 2) + (@wager.amount * -3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_lose[0][:spread] < -100
@@ -6226,8 +6272,8 @@ module WagersHelper
 						@net_p_l = ((((@rev_lose[0][:spread]/100) +1) * 2) * @wager.amount) + (@wager.amount * (@rev_lose[0][:spread]/100))
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_lose[0][:spread] < -100
@@ -6235,8 +6281,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount * (@rev_win[0][:spread]/100) * 2) + ((@wager.amount * (@rev_lose[0][:spread]/100)) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_lose[0][:spread] > 100
@@ -6244,8 +6290,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 2) + (@wager.amount * -3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] < -100
@@ -6253,8 +6299,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 2) + (@wager.amount.to_i * -3.3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_win[0][:spread] > 100
@@ -6262,8 +6308,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 2) + (@wager.amount * -3.3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[:spread] > 100
@@ -6271,8 +6317,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[:spread] < -100
@@ -6280,17 +6326,17 @@ module WagersHelper
 						@net_p_l = ((((@rev_lose[:spread]/100) + 1) * 2) * @wager.amount) + (@wager.amount * (@rev_lose[:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
-
+					
 					else
 
 						@net_p_l = @wager.amount * -1.3
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					end
@@ -6305,8 +6351,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6) + ((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -6314,8 +6360,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100
@@ -6323,8 +6369,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * -3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0].spread > 100 && @rev_lose[1][:spread] < -100
@@ -6332,8 +6378,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * -3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100
@@ -6341,8 +6387,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100
@@ -6350,8 +6396,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * -3.3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] < -100
@@ -6359,8 +6405,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * -3.3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 						
 						elsif @rev_lose[1][:spread] > 100
@@ -6368,8 +6414,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						else
@@ -6377,8 +6423,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.6) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						end
@@ -6390,8 +6436,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -6399,8 +6445,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -6408,8 +6454,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -6417,8 +6463,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100
@@ -6426,8 +6472,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100
@@ -6435,8 +6481,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] < -100
@@ -6444,8 +6490,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 						
 						elsif @rev_lose[1][:spread] > 100
@@ -6453,8 +6499,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						else
@@ -6462,8 +6508,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						end
@@ -6475,8 +6521,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 2 + (@wager.amount.to_i * -6)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -6484,8 +6530,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -6493,8 +6539,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -6502,8 +6548,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100
@@ -6511,8 +6557,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100
@@ -6520,8 +6566,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] < -100
@@ -6529,8 +6575,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 						
 						elsif @rev_lose[1][:spread] > 100
@@ -6538,8 +6584,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						end
@@ -6555,8 +6601,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_win[1].spread/100) * 3) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -6564,17 +6610,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4) 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -6582,8 +6628,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
@@ -6591,8 +6637,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 						
 						elsif @rev_win[0][:spread] > 100
@@ -6600,8 +6646,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0].spread/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
@@ -6609,8 +6655,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
@@ -6618,8 +6664,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						else
@@ -6627,8 +6673,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -6641,8 +6687,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -6650,8 +6696,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -6659,8 +6705,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0].spread < -100 && @rev_win[1][:spread] > 100
@@ -6668,8 +6714,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
@@ -6677,8 +6723,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 						
 						elsif @rev_win[0][:spread] > 100
@@ -6686,8 +6732,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
@@ -6695,8 +6741,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
@@ -6704,8 +6750,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						else
@@ -6713,8 +6759,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -6726,8 +6772,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -6735,8 +6781,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -6744,8 +6790,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -6753,8 +6799,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
@@ -6762,8 +6808,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 						
 						elsif @rev_win[0][:spread] > 100
@@ -6771,8 +6817,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
@@ -6780,8 +6826,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
@@ -6789,8 +6835,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						else
@@ -6798,8 +6844,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 						end
@@ -6813,8 +6859,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 					
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
@@ -6822,8 +6868,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 12
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -6831,8 +6877,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)	
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
@@ -6840,62 +6886,62 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4)
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
 						@net_p_l = @wager.amount.to_i * 12
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -6903,8 +6949,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 
@@ -6913,17 +6959,17 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
@@ -6931,17 +6977,17 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12
 
 							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
@@ -6949,8 +6995,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
@@ -6958,8 +7004,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"
 
 					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -6967,8 +7013,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12
 							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -6976,8 +7022,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -6985,8 +7031,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] > 100
@@ -6994,8 +7040,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[0][:spread] < -100
@@ -7003,8 +7049,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[1][:spread] < -100
@@ -7012,17 +7058,17 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
-
+					
 					elsif @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[2][:spread] > 100
@@ -7030,8 +7076,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					elsif @rev_win[2][:spread] < -100
@@ -7039,8 +7085,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 
 					else
@@ -7048,8 +7094,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"
 					
 					end
@@ -7059,14 +7105,19 @@ module WagersHelper
 					if @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 						@net_p_l = @wager.amount.to_i * -6
+
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 					
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
 
 						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
@@ -7074,71 +7125,71 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss"	
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -6.2)
+						@net_p_l = (@wager.amount.to_i * -6.2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss"  
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -7146,8 +7197,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 
@@ -7156,26 +7207,26 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -6.2)
+						@net_p_l = (@wager.amount.to_i * -6.2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
@@ -7183,8 +7234,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -7192,8 +7243,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss"
 
 					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
@@ -7201,99 +7252,99 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -6.2)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 					
 					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -6.4)
+						@net_p_l = (@wager.amount.to_i * -6.4)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
+					
 					elsif @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
+						@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 2)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
+					
 					elsif @rev_lose[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -6.4)
+						@net_p_l = (@wager.amount.to_i * -6.4)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 					elsif @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 2)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 					else
 
 							@net_p_l = @wager.amount.to_i * -6.6
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 					
 					end
 
@@ -7672,8 +7723,9 @@ module WagersHelper
 					@net_p_l = "push"
 
 					@wager.net_result = @net_p_l
-					
-					@wager.outcome = "push" 
+					@wager.client_bankroll = @current_client_br 
+					@wager.user_bankroll = @current_br 
+					@wager.outcome = "push"
 
 				elsif @rev_push.length == 3 && @rev_lose.length == 1
 
@@ -7682,27 +7734,27 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					elsif @rev_lose[0][:spread] < -100
 
 						@net_p_l = @wager.amount.to_i * (@rev_lose[0][:spread]/100)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					else
 
 						@net_p_l = @wager.amount * -1.1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"
 
 					end
 
@@ -7713,8 +7765,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * (@rev_win[0][:spread]/100)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] < -100
@@ -7722,8 +7774,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					else
@@ -7731,8 +7783,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					end
@@ -7744,17 +7796,17 @@ module WagersHelper
 						@net_p_l = @wager.amount * ((@rev_win[0][:spread]/100) * 3) + @wager.amount * -4
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"  
 
 					elsif @rev_win[0][:spread] < -100 && @rev_lose[0][:spread] < -100
 					
 						@net_p_l = ((((@rev_lose[0][:spread]/100) +1) * 3) * @wager.amount) + (@wager.amount * (@rev_lose[0][:spread]/100))
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_win[0][:spread] > 100 && @rev_lose[0][:spread] < -100
@@ -7762,8 +7814,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount * (@rev_win[0][:spread]/100) * 3) + ((@wager.amount * (@rev_lose[0][:spread]/100)) * 4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_win[0][:spread] < -100 && @rev_lose[0][:spread] > 100
@@ -7771,8 +7823,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 3) + (@wager.amount * -4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_win[0][:spread] < -100
@@ -7780,8 +7832,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4.4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 
@@ -7791,8 +7843,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 3) + (@wager.amount * -4.4)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[:spread] > 100
@@ -7800,8 +7852,8 @@ module WagersHelper
 						@net_p_l = @wager.amount * -1
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[:spread] < -100
@@ -7809,8 +7861,8 @@ module WagersHelper
 						@net_p_l = ((((@rev_lose[:spread]/100) + 1) * 3) * @wager.amount) + (@wager.amount * (@rev_lose[:spread]/100))
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					else
@@ -7818,9 +7870,9 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -1.4
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"  
 
 					end
 
@@ -7833,8 +7885,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1].spread/100) * 4) + (@wager.amount.to_i * -5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -7842,17 +7894,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"  
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -7860,54 +7912,54 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 						
 						elsif @rev_win[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0].spread/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						else
 
 							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * -4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						end
 
@@ -7919,53 +7971,53 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 7) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0].spread < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 						
 						elsif @rev_win[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[1][:spread] > 100
@@ -7973,27 +8025,27 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						else
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						end
 
@@ -8004,53 +8056,53 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 						
 						elsif @rev_win[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[1][:spread] > 100
@@ -8058,27 +8110,27 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						else
 
 							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -5.5)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						end
 
@@ -8093,8 +8145,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8) + ((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -8102,8 +8154,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100
@@ -8111,8 +8163,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0].spread > 100 && @rev_lose[1][:spread] < -100
@@ -8120,8 +8172,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100
@@ -8129,8 +8181,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100
@@ -8138,8 +8190,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[1][:spread] < -100
@@ -8147,8 +8199,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 						
 						elsif @rev_lose[1][:spread] > 100
@@ -8156,8 +8208,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						else
@@ -8165,8 +8217,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.8) + (((@rev_win[0][:spread]/100) * @wager.amount.to_i) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						end
@@ -8178,8 +8230,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -8187,17 +8239,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -8205,17 +8257,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100
@@ -8223,8 +8275,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[1][:spread] < -100
@@ -8232,8 +8284,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 						
 						elsif @rev_lose[1][:spread] > 100
@@ -8241,17 +8293,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						else
 
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						end
@@ -8263,8 +8315,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 3 + (@wager.amount.to_i * -8)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -8272,8 +8324,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -8281,8 +8333,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -8290,8 +8342,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100
@@ -8299,8 +8351,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100
@@ -8308,8 +8360,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[1][:spread] < -100
@@ -8317,8 +8369,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 						
 						elsif @rev_lose[1][:spread] > 100
@@ -8326,8 +8378,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						end
@@ -8341,8 +8393,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 					
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
@@ -8350,8 +8402,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -8359,62 +8411,62 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 	
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "win"  
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "win"  
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
+						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * 5)
+						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * 5)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win"  
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -8422,8 +8474,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -8431,8 +8483,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 
@@ -8441,35 +8493,35 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5) + (@wager.amount.to_i * 5)
+						@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5) + (@wager.amount.to_i * 5)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "win"  
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
 
-							@net_p_l = @wager.amount.to_i * 15
+						@net_p_l = @wager.amount.to_i * 15
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
@@ -8477,8 +8529,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
@@ -8486,8 +8538,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5) + (@wager.amount.to_i * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -8495,8 +8547,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
@@ -8504,8 +8556,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -8513,8 +8565,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 5) + (@wager.amount.to_i * 5) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] > 100
@@ -8522,8 +8574,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 10) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[0][:spread] < -100
@@ -8531,8 +8583,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[1][:spread] < -100
@@ -8540,8 +8592,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[1][:spread] > 100
@@ -8549,8 +8601,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 10) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[2][:spread] > 100
@@ -8558,8 +8610,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * 10) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 5)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					elsif @rev_win[2][:spread] < -100
@@ -8567,8 +8619,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "win" 
 
 					else
@@ -8576,9 +8628,9 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * 15
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "win" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "win"  
 					
 					end
 
@@ -8589,8 +8641,8 @@ module WagersHelper
 						@net_p_l = @wager.amount.to_i * -9
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 					
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -8598,34 +8650,35 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"  
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 						@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) 
+						@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) 
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+							
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -8633,8 +8686,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
@@ -8642,8 +8695,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -8651,8 +8704,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
@@ -8660,17 +8713,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -9.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"   
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"    
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 						@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -8678,8 +8731,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -8687,26 +8740,26 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -9.3)
+						@net_p_l = (@wager.amount.to_i * -9.3)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
@@ -8714,8 +8767,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -8723,8 +8776,8 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
@@ -8732,99 +8785,99 @@ module WagersHelper
 						@net_p_l = (@wager.amount.to_i * -9.3) 
 
 						@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 
 					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
 						@wager.outcome = "loss" 
 					
 					elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"  
 
 					elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-						@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-						@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-						@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"  
 
 					elsif @rev_lose[0][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -9.6) 
+						@net_p_l = (@wager.amount.to_i * -9.6) 
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"  
 
 					elsif @rev_lose[0][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss" 
 
 					elsif @rev_lose[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss" 
 
 					elsif @rev_lose[1][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -9.6)
+						@net_p_l = (@wager.amount.to_i * -9.6)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss" 
 
 					elsif @rev_lose[2][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * -9.6)
+						@net_p_l = (@wager.amount.to_i * -9.6)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss"   
 
 					elsif @rev_lose[2][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
+						@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3)
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss" 
 
 					else
 
-							@net_p_l = @wager.amount.to_i * -9.9
+						@net_p_l = @wager.amount.to_i * -9.9
 
-							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+						@wager.net_result = @net_p_l
+						@wager.client_bankroll = @current_client_br + @net_p_l
+						@wager.user_bankroll = @current_br + (@net_p_l * -1)
+						@wager.outcome = "loss" 
 					
 					end
 
@@ -8837,8 +8890,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3)) + (@wager.amount.to_i * -9)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 					
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -8846,90 +8899,90 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 	
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"	
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3)) 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -9.3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"   
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100
@@ -8937,35 +8990,35 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -9.3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -8973,8 +9026,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
@@ -8982,8 +9035,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -9.3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3)) 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
@@ -8991,90 +9044,90 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 						
 						elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -9.6) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100
 
-								@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss" 
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] < -100
 
-								@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss" 
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 
 						elsif @rev_lose[1][:spread] > 100
 
-								@net_p_l = (@wager.amount.to_i * -9.6)  + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
+							@net_p_l = (@wager.amount.to_i * -9.6)  + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss" 
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] > 100
 
-								@net_p_l = (@wager.amount.to_i * -9.6) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
+							@net_p_l = (@wager.amount.to_i * -9.6) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"  
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] < -100
 
-								@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
+							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 3) + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss" 
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						else
 
-								@net_p_l = @wager.amount.to_i * -9.9 + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
+							@net_p_l = @wager.amount.to_i * -9.9 + (@wager.amount.to_i * (((@rev_win[0][:spread]/100) +1) * 3))
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss" 
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 						
 						end
 
@@ -9085,8 +9138,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -12) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"  
 					
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -9094,80 +9147,80 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 	
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-								@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
+							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"  
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-								@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
+							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"  
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
 
-								@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
+							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"  
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
-								@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
+							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"  
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
 
-								@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i) + (@wager.amount.to_i * 3)
+							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i) + (@wager.amount.to_i * 3)
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"  
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
 
-								@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3) 
+							@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3) 
 
-								@wager.net_result = @net_p_l
-								@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-								@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-								@wager.outcome = "loss"   
+							@wager.net_result = @net_p_l
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -9175,8 +9228,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 
@@ -9185,8 +9238,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
@@ -9194,8 +9247,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -9203,17 +9256,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -9221,8 +9274,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
@@ -9230,44 +9283,44 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 
 						elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 						
 						elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.9) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] < -100
@@ -9275,17 +9328,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[1][:spread] > 100
@@ -9293,36 +9346,36 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -12.8) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss" 
 
 						elsif @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.8) + (@wager.amount.to_i * 3) 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						else
 
 							@net_p_l = (@wager.amount.to_i * -13.2) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 						
 						end
 
@@ -9333,8 +9386,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -12) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"  
 					
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -9342,26 +9395,26 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 	
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"	
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0].spread < -100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -9369,8 +9422,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] < -100
@@ -9378,8 +9431,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] < -100 && @rev_lose[2][:spread] > 100
@@ -9387,8 +9440,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -9396,35 +9449,35 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -4) + (@wager.amount.to_i * -4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"   
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"  
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 
@@ -9433,35 +9486,35 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100 && @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[0][:spread] > 100 && @rev_lose[2][:spread] < -100
@@ -9469,26 +9522,26 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 						
 						elsif @rev_lose[2][:spread] < -100 && @rev_lose[1][:spread] > 100
@@ -9496,62 +9549,62 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] > 100 && @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -8.4) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.9) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[0][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * (@rev_lose[1][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.8) + (@wager.amount.to_i * 3) 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						elsif @rev_lose[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * -12.8) + (@wager.amount.to_i * 3) 
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss" 
 
 						elsif @rev_lose[2][:spread] < -100
@@ -9559,18 +9612,18 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * -8.8) + (@wager.amount.to_i * (@rev_lose[2][:spread]/100) * 4) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 
 						else
 
 							@net_p_l = (@wager.amount.to_i * -13.2) + (@wager.amount.to_i * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "loss" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
 						
 						end
 
@@ -9634,9 +9687,9 @@ module WagersHelper
 					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-					@wager.outcome = "loss" 
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 				elsif @rev_win.length == 3 && @rev_lose.length == 1
 
@@ -9648,8 +9701,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 					
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
@@ -9657,8 +9710,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -9666,44 +9719,44 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)	+ (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
@@ -9711,8 +9764,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
@@ -9720,27 +9773,27 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win"  
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -9748,8 +9801,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -9757,17 +9810,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
@@ -9775,44 +9828,44 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -9820,17 +9873,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100
@@ -9838,35 +9891,35 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[2][:spread] < -100
@@ -9874,18 +9927,18 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						else
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 						
 						end
 
@@ -9896,17 +9949,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 					
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -9914,8 +9967,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
@@ -9923,107 +9976,107 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
-
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
+						
 						elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
@@ -10031,8 +10084,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
@@ -10040,8 +10093,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -10049,62 +10102,62 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[2][:spread] > 100
@@ -10112,17 +10165,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						else
@@ -10130,9 +10183,9 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * (@rev_lose[0][:spread]/100) * 3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 						
 						end
 
@@ -10145,8 +10198,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 					
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
@@ -10154,8 +10207,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -10163,17 +10216,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4)	+ (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
@@ -10181,26 +10234,26 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100 && @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100 && @rev_win[2][:spread] < -100
@@ -10208,17 +10261,17 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win"  
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] < -100
@@ -10226,18 +10279,18 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[1][:spread] < -100
@@ -10245,8 +10298,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] > 100
@@ -10254,8 +10307,8 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] < -100
@@ -10263,8 +10316,8 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[0][:spread] < -100 && @rev_win[2][:spread] > 100
@@ -10272,45 +10325,45 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] > 100 && @rev_win[2][:spread] < -100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] < -100 && @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] > 100 && @rev_win[1][:spread] < -100
 
@@ -10326,44 +10379,44 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[0][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[0][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] < -100
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[1][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[1][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						elsif @rev_win[2][:spread] > 100
 
 							@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[2][:spread]/100) * 4) + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
 							@wager.outcome = "win" 
 
 						elsif @rev_win[2][:spread] < -100
@@ -10371,18 +10424,18 @@ module WagersHelper
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
 						else
 
 							@net_p_l = @wager.amount.to_i * 12 + (@wager.amount.to_i * -3.3)
 
 							@wager.net_result = @net_p_l
-							@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-							@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-							@wager.outcome = "win" 
+							@wager.client_bankroll = @current_client_br + @net_p_l
+							@wager.user_bankroll = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 						
 						end
 
@@ -10447,9 +10500,9 @@ module WagersHelper
 					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
 					
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
-					@wager.outcome = "win" 
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
+					@wager.outcome = "win"
 
 
 				elsif @rev_lose.length == 4
@@ -10518,8 +10571,8 @@ module WagersHelper
 					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @wager.client_bankroll + @net_p_l
-					@wager.user_bankroll = @wager.user_bankroll + (@net_p_l * -1)
+					@wager.client_bankroll = @current_client_br + @net_p_l
+					@wager.user_bankroll = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss" 
 
 				end
