@@ -3,6 +3,34 @@
 <% self.get_time %>
 <%= @my_date %>
 
+<% @user_b = [] %>
+<% @current_br %>
+
+<% current_user.wagers.each do |w| %>
+
+	<% if w.graded === true %>
+
+		<div><% @user_b.push(w.user_bankroll) %></div>		
+
+	<% end %>
+
+<% end %>
+
+
+
+<%= @current_br = @user_b.last %>
+
+<% if @current_br == 0 %>
+
+	<% @current_br = 5000 %>
+
+
+<% end %>
+
+HERE: <%= @current_br %>
+
+
+
 <% if current_user %>
 
 
@@ -12,6 +40,8 @@
 		<% c.wagers.each do |w| %>
 
 			<% if @my_date == w.date %>
+
+			<br>
 
 			<div class="name_font"><%= c.first_name %>
 								<%= c.last_name %></div>

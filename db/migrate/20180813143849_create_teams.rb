@@ -18,6 +18,7 @@ class CreateTeams < ActiveRecord::Migration[5.1]
       t.string :total_points, default: 0
     	t.string :spread_result, default: 0
       t.string :total_result, default: 0     
+      t.string :updated, default: false     
       t.string :display, default: "off"
       
 
