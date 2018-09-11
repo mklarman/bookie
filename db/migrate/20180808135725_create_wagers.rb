@@ -20,6 +20,7 @@ class CreateWagers < ActiveRecord::Migration[5.1]
     	t.integer :net_result, default: 0
     	t.integer :client_bankroll, default: 0
     	t.integer :user_bankroll, default: 0
+        t.string :serial_num, default: "none"
     	t.string :outcome, default: "none"
     	t.boolean :graded, default: false
 

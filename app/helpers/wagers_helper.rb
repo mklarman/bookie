@@ -2818,6 +2818,8 @@ module WagersHelper
 
 		def score_straight
 
+			@current_client_br = 0
+
 			@teams.each do |t|
 
 				if t.name == @wager.team1
@@ -3091,6 +3093,7 @@ module WagersHelper
 			@winners = []
 			@losers = []
 			@pushes = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "two team parlay"
 
@@ -3378,6 +3381,7 @@ module WagersHelper
 			@winners = []
 			@losers = []
 			@pushes = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "three team parlay"
 
@@ -3725,7 +3729,7 @@ module WagersHelper
 
 						@winners.each do |w|
 
-							if w.spread > 100 || w.spread < -100
+							if w[1].to_i > 100 || w[1].to_i < -100
 
 								@ml_counter = @ml_counter + 1
 
@@ -3808,6 +3812,7 @@ module WagersHelper
 			@winners = []
 			@losers = []
 			@pushes = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "five team parlay"
 
@@ -4587,6 +4592,7 @@ module WagersHelper
 
 			@winners = []
 			@losers = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "two team teaser"
 
@@ -4594,7 +4600,7 @@ module WagersHelper
 
 					if t.name == @wager.team1
 
-						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team1)
 
@@ -4606,7 +4612,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team1
 
-						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
 
 							@winners.push(@wager.team1)
 
@@ -4644,7 +4650,7 @@ module WagersHelper
 
 					if t.name == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -4656,7 +4662,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -4725,6 +4731,7 @@ module WagersHelper
 
 			@winners = []
 			@losers = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "three team teaser"
 
@@ -4732,7 +4739,7 @@ module WagersHelper
 
 					if t.name == @wager.team1
 
-						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team1)
 
@@ -4768,7 +4775,7 @@ module WagersHelper
 
 					elsif t.under_line == @wager.team1
 
-						if t.total_points < @wager.spread1
+						if t.total_points.to_i < @wager.spread1.to_i
 
 							@winners.push(@wager.team1)
 
@@ -4782,7 +4789,7 @@ module WagersHelper
 
 					if t.name == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -4832,7 +4839,7 @@ module WagersHelper
 
 					if t.name == @wager.team3
 
-						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
 
 							@winners.push(@wager.team3)
 
@@ -4844,7 +4851,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team3
 
-						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
 
 							@winners.push(@wager.team3)
 
@@ -4915,6 +4922,7 @@ module WagersHelper
 
 			@winners = []
 			@losers = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "five team teaser"
 
@@ -4922,7 +4930,7 @@ module WagersHelper
 
 					if t.name == @wager.team1
 
-						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team1)
 
@@ -4934,7 +4942,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team1
 
-						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
 
 							@winners.push(@wager.team1)
 
@@ -4972,7 +4980,7 @@ module WagersHelper
 
 					if t.name == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -4984,7 +4992,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -5022,7 +5030,7 @@ module WagersHelper
 
 					if t.name == @wager.team3
 
-						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
 
 							@winners.push(@wager.team3)
 
@@ -5034,7 +5042,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team3
 
-						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
 
 							@winners.push(@wager.team3)
 
@@ -5072,7 +5080,7 @@ module WagersHelper
 
 					if t.name == @wager.team4
 
-						if (t.opp_score.to_i + @wager.spread4.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread4.to_i) > t.score.to_i
 
 							@winners.push(@wager.team4)
 
@@ -5084,7 +5092,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team4
 
-						if (t.opp_score.to_i + @wager.spread4.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread4.to_i) > t.score.to_i
 
 							@winners.push(@wager.team4)
 
@@ -5122,7 +5130,7 @@ module WagersHelper
 
 					if t.name == @wager.team5
 
-						if (t.opp_score.to_i + @wager.spread5.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread5.to_i) > t.score.to_i
 
 							@winners.push(@wager.team5)
 
@@ -5134,7 +5142,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team5
 
-						if (t.opp_score.to_i + @wager.spread5.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread5.to_i) > t.score.to_i
 
 							@winners.push(@wager.team5)
 
@@ -5206,6 +5214,7 @@ module WagersHelper
 			@rev_win = []
 			@rev_lose = []
 			@rev_push = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "two team reverse"
 
@@ -5730,6 +5739,7 @@ module WagersHelper
 			@rev_win = []
 			@rev_lose = []
 			@rev_push = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "three team reverse"
 
@@ -7356,6 +7366,7 @@ module WagersHelper
 			@rev_win = []
 			@rev_lose = []
 			@rev_push = []
+			@current_client_br = 0
 
 			if @wager.wager_type == "four team reverse"
 

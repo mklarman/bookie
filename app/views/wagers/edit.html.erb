@@ -1,6 +1,68 @@
 <% @wager_id = @wager.id %>
 
+<% @date = Time.now %> 
+<% @day = @date.strftime("%d") %>
+<% @month = @date.strftime("%b") %>
+<% @year = @date.strftime("%Y") %>
+
+<% if @month == "Sep" %>
+
+	<% @month = "09" %>
+
+<% elsif @month == "Jan" %>
+
+	<% @month = "01" %>
+
+<% elsif @month == "Feb" %>
+
+	<% @month = "02" %>
+
+<% elsif @month == "Mar" %>
+
+	<% @month = "03" %>
+
+<% elsif @month == "Apr" %>
+
+	<% @month = "04" %>
+
+<% elsif @month == "May" %>
+
+	<% @month = "05" %>
+
+<% elsif @month == "Jun" %>
+
+	<% @month = "06" %>
+
+<% elsif @month == "Jul" %>
+
+	<% @month = "07" %>
+
+<% elsif @month == "Aug" %>
+
+	<% @month = "08" %>
+
+<% elsif @month == "Oct" %>
+
+	<% @month = "10" %>
+
+<% elsif @month == "Nov" %>
+
+	<% @month = "11" %>
+
+<% elsif @month == "Dec" %>
+
+	<% @month = "12" %>
+
+<% end %>
+
+<% @holder_s = @year + @month + @day %>
+
+<% @serial_num = @holder_s %>
+
+<%= @serial_num.to_i %>
+
 <% @user_b = [] %>
+<% @user_b2 = [] %>
 <% @client_br = [] %>
 <% @current_br %>
 <% @current_client_br %>
@@ -11,16 +73,9 @@
 <% @rev_lose %>
 <% @rev_push %>
 
-<% @test_spread = [] %>
 
-<% @test_hash = Hash.new %>
 
-<% @test_hash[:name] = "Eagles" %>
-<% @test_hash[:spread] = -6 %>
 
-<% @test_spread.push(@test_hash) %>
-
-<%= @test_spread[0][:spread] %>
 
 <% if current_user.wagers %>
 
@@ -34,15 +89,21 @@
 
 			<% end %>
 
-			<div><% @user_b.push(w.user_bankroll) %></div>		
+				<% @user_b.push(w) %>
+						
 
 		<% end %>
 
 	<% end %>
 
-	<%= @current_br = @user_b.last %>
+	<% @user_b2.push(@user_b.last) %>
+
+	<% @current_br = @user_b2[0].user_bankroll %>
 
 <% end %>
+
+<%= @current_br %>
+<%= @user_b2 %>
 
 <% current_user.clients.each do |c| %>
 
@@ -66,6 +127,9 @@
 <% end %>
 
 <% @current_client_br = @client_br.last %>
+
+<%= @current_client_br %>
+<%= @client_br %>
 
 
 
@@ -214,11 +278,11 @@
 		Spread4:<div><%= w.text_field :spread4 %></div>
 		Spread5:<div><%= w.text_field :spread5 %></div>
 		Date:<div><%= w.text_field :date %></div>
-		<div><%= w.text_field :net_result, :value => @net_p_l.round %></div>
-		<div><%= w.text_field :user_bankroll, :value => @current_br.round %></div>
-		<div><%= w.text_field :client_bankroll, :value => @current_client_br.round %></div>
-		<div><%= w.text_field :outcome, :value => @wager.outcome  %></div>
-		<div><%= w.text_field :graded, :value => true %></div>
+		Net W/L:<div><%= w.text_field :net_result, :value => @net_p_l %></div>
+		User_BR:<div><%= w.text_field :user_bankroll, :value => @current_br %></div>
+		Client_BR:<div><%= w.text_field :client_bankroll, :value => @current_client_br %></div>
+		Outcome:<div><%= w.text_field :outcome, :value => @wager.outcome  %></div>
+		Graded:<div><%= w.text_field :graded, :value => true %></div>
 		<div><%= w.submit%></div>
 
 	<% end %>

@@ -3,32 +3,6 @@
 <% self.get_time %>
 <% self.time_check %>
 
-<% @user_b = [] %>
-<% @client_br = [] %>
-<% @current_br %>
-<% @current_client_br %>
-
-<% if current_user.wagers %>
-
-	<% current_user.wagers.each do |w| %>
-
-		<% if w.graded === true %>
-
-			<div><% @user_b.push(w.user_bankroll) %></div>		
-
-		<% end %>
-
-	<% end %>
-
-	<%= @current_br = @user_b.last %>
-
-<% else %>
-
-	<% @current_br = 5000 %>
-
-<% end %>
-
-
 
 
 
