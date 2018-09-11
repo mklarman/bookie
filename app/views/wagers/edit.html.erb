@@ -5,6 +5,13 @@
 <% @month = @date.strftime("%b") %>
 <% @year = @date.strftime("%Y") %>
 
+<% @get_hour = Time.now %>  
+<% @hour = @get_hour.strftime("%H") %>
+<% @min = @get_hour.strftime("%M") %>
+<% @sec = @get_hour.strftime("%3N") %>
+
+<% @time_check = @hour << @min << @sec %>
+
 <% if @month == "Sep" %>
 
 	<% @month = "09" %>
@@ -57,7 +64,9 @@
 
 <% @holder_s = @year + @month + @day %>
 
-<% @serial_num = @holder_s %>
+
+
+<% @serial_num = @holder_s + @time_check %>
 
 <%= @serial_num.to_i %>
 
