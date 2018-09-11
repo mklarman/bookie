@@ -35,6 +35,7 @@ class WagersController < ApplicationController
 		@wager = Wager.find_by_id(params[:id])
 		@client = Client.find_by_id(params[:id])
 		@team = Team.find_by_id(params[:id])
+		@teams = Team.all
 
 	end
 
