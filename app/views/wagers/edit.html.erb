@@ -1,5 +1,29 @@
 <% @wager_id = @wager.id %>
 
+<% @t_array = [5, 7, 10, 2, 1, 0] %>
+
+<% @num_is %>
+
+<% @t_array.each do |t| %>
+
+	<% if t == @t_array.first %>
+
+		<% @num_is = t %>
+
+	<% else %>
+
+		<% if t > @num_is %>
+
+			<% @num_is = t %>
+
+		<% end %>
+
+	<% end %>
+
+<% end %>
+
+<%= @num_is %>
+
 <% @date = Time.now %> 
 <% @day = @date.strftime("%d") %>
 <% @month = @date.strftime("%b") %>
