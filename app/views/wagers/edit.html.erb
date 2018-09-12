@@ -168,6 +168,7 @@
 
 
 
+
 <script>
 	
 	var wagerId = <%= @wager_id %>
@@ -322,7 +323,6 @@
 <!-- </div> -->
 
 HERE: <%= @net_p_l %>
-<%= @wager.user_bankroll %>
 <div>
 
 	<%= @wager_hash_one %>
@@ -330,7 +330,11 @@ HERE: <%= @net_p_l %>
 
 	<%= @rev_win %>
 	<%= @rev_lose %>
-	<%= @rev_push %>
+
+	<%= @rev_lose[0][:spread].to_i/100.0 %> 
+	        
+
+	
 
 </div>
 
