@@ -23,6 +23,13 @@
 <% end %>
 
 <%= @num_is %>
+<% @ml_counter %>
+<% @get_val %>
+
+<% @winners %>
+<% @losers %>
+<% @parlay_one %>
+<% @parlay_two %>
 
 <% @date = Time.now %> 
 <% @day = @date.strftime("%d") %>
@@ -322,7 +329,7 @@
 	<% end %>
 <!-- </div> -->
 
-HERE: <%= @net_p_l %>
+ HERE:<%= @ml_counter %> HERE: <%= @winners %> HERE: <%= @parlay_one %> HERE: <%= @parlay_two %> Here: <%= @parlay_two %>
 <div>
 
 	<%= @wager_hash_one %>
@@ -331,7 +338,7 @@ HERE: <%= @net_p_l %>
 	<%= @rev_win %>
 	<%= @rev_lose %>
 
-	<%= @rev_lose[0][:spread].to_i/100.0 %> 
+	
 	        
 
 	
