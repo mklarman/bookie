@@ -4321,18 +4321,21 @@ module WagersHelper
 
 								if @winners[0][:spread].to_i > 100
 
-									@parlay_one = (@winners[0][:spread].to_i/100.00) + 1
-								end
+									@parlay_one = (@winners[0][:spread].to_i/100.00) + 9/10.00
 
-								if @winners[0][:spread].to_i < -100
+								elsif @winners[0][:spread].to_i < -100
 
-									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 1
+									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_one = (100.00/110) + 9/10.00
 
 								end
 
 							else
 
-									@parlay_one = (100.00/110) + 1
+									@parlay_one = (100.00/110) + 9/10.00
 
 							end
 
@@ -4341,18 +4344,18 @@ module WagersHelper
 
 								if @winners[1][:spread].to_i > 100
 
-									@parlay_two = (@winners[1][:spread].to_i/100.00) + 1
+									@parlay_two = (@winners[1][:spread].to_i/100.00) + 9/10.00
 								end
 
 								if @winners[1][:spread].to_i < -100
 
-									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 1
+									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 9/10.00
 
 								end
 
 							else
 
-									@parlay_two = (100.00/110) + 1
+									@parlay_two = (100.00/110) + 9/10.00
 
 							end
 
@@ -4449,6 +4452,10 @@ module WagersHelper
 								@parlay_three = (100.00/110) + 9/10.00
 
 							end
+
+						else 
+
+							@parlay_three = (100.00/110) + 9/10.00
 						
 						end
 
@@ -4545,6 +4552,11 @@ module WagersHelper
 									@parlay_three = (100.00/110) + 9/10.00
 
 								end
+
+							else
+
+								@parlay_three = (100.00/110) + 9/10.00
+
 						
 							end
 
@@ -4564,6 +4576,10 @@ module WagersHelper
 									@parlay_four = (100.00/110) + 9/10.00
 
 								end
+
+							else
+
+								@parlay_four = (100.00/110) + 9/10.00
 						
 							end
 
