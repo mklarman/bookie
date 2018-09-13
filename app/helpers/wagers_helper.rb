@@ -4390,7 +4390,7 @@ module WagersHelper
 							@wager.outcome = "win"
 
 
-						elsif @ml_counter == 1 || @ml_counter == 2
+						elsif @ml_counter == 1 || @ml_counter == 2 || @ml_counter == 3
 
 
 							if @winners[0].class == Hash
@@ -4398,12 +4398,12 @@ module WagersHelper
 
 								if @winners[0][:spread].to_i > 100
 
-									@parlay_one = (@winners[0][:spread].to_i/100.00) + 1
+									@parlay_one = (@winners[0][:spread].to_i/100.00) + 9/10.00
 								end
 
 								if @winners[0][:spread].to_i < -100
 
-									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 1
+									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 9/10.00
 
 								end
 
@@ -4418,22 +4418,41 @@ module WagersHelper
 
 								if @winners[1][:spread].to_i > 100
 
-									@parlay_two = (@winners[1][:spread].to_i/100.00) + 1
+									@parlay_two = (@winners[1][:spread].to_i/100.00) + 9/10.00
 								end
 
 								if @winners[1][:spread].to_i < -100
 
-									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 1
+									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 9/10.00
 
 								end
 
 							else
 
-									@parlay_two = (100.00/110) + 1
+									@parlay_two = (100.00/110) + 9/10.00
 
 							end
 
-							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two
+						if @winners[2].class == Hash
+
+
+							if @winners[2][:spread].to_i > 100
+
+								@parlay_three = (@winners[2][:spread].to_i/100.00) + 9/10.00
+
+							elsif @winners[2][:spread].to_i < -100
+
+								@parlay_three = (100.00/(@winners[2][:spread].to_i * -1)) + 9/10.00
+
+							else
+
+								@parlay_three = (100.00/110) + 9/10.00
+
+							end
+						
+						end
+
+							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three
 
 							@wager.net_result = @net_p_l
 							@current_client_br = @current_client_br + @net_p_l
@@ -4442,26 +4461,7 @@ module WagersHelper
 
 						end
 
-
-						if @winners[2].class == Hash
-
-
-							if @winners[2][:spread].to_i > 100
-
-								@parlay_three = (@winners[2][:spread].to_i/100.00) + 1
-
-							elsif @winners[2][:spread].to_i < -100
-
-								@parlay_three = (100.00/(@winners[2][:spread].to_i * -1)) + 1
-
-							else
-
-								@parlay_three = (100.00/110) + 1
-
-							end
-						end
-
-					elsif @winners.length == 3
+					elsif @winners.length == 4
 
 						@ml_counter = 0
 
@@ -4486,7 +4486,7 @@ module WagersHelper
 							@wager.outcome = "win"
 
 
-						elsif @ml_counter == 1 || @ml_counter == 2
+						elsif @ml_counter == 1 || @ml_counter == 2 || @ml_counter == 3 || @ml_counter == 4 || @ml_counter == 5
 
 
 							if @winners[0].class == Hash
@@ -4494,12 +4494,12 @@ module WagersHelper
 
 								if @winners[0][:spread].to_i > 100
 
-									@parlay_one = (@winners[0][:spread].to_i/100.00) + 1
+									@parlay_one = (@winners[0][:spread].to_i/100.00) + 9/10.00
 								end
 
 								if @winners[0][:spread].to_i < -100
 
-									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 1
+									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 9/10.00
 
 								end
 
@@ -4514,22 +4514,60 @@ module WagersHelper
 
 								if @winners[1][:spread].to_i > 100
 
-									@parlay_two = (@winners[1][:spread].to_i/100.00) + 1
+									@parlay_two = (@winners[1][:spread].to_i/100.00) + 9/10.00
 								end
 
 								if @winners[1][:spread].to_i < -100
 
-									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 1
+									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 9/10.00
 
 								end
 
 							else
 
-									@parlay_two = (100.00/110) + 1
+									@parlay_two = (100.00/110) + 9/10.00
 
 							end
 
-							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two
+							if @winners[2].class == Hash
+
+
+								if @winners[2][:spread].to_i > 100
+
+									@parlay_three = (@winners[2][:spread].to_i/100.00) + 9/10.00
+
+								elsif @winners[2][:spread].to_i < -100
+
+									@parlay_three = (100.00/(@winners[2][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_three = (100.00/110) + 9/10.00
+
+								end
+						
+							end
+
+							if @winners[3].class == Hash
+
+
+								if @winners[3][:spread].to_i > 100
+
+									@parlay_four = (@winners[3][:spread].to_i/100.00) + 9/10.00
+
+								elsif @winners[3][:spread].to_i < -100
+
+									@parlay_four = (100.00/(@winners[3][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_four = (100.00/110) + 9/10.00
+
+								end
+						
+							end
+
+							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four
 
 							@wager.net_result = @net_p_l
 							@current_client_br = @current_client_br + @net_p_l
@@ -4538,25 +4576,7 @@ module WagersHelper
 
 						end
 
-
-						if @winners[2].class == Hash
-
-
-							if @winners[2][:spread].to_i > 100
-
-								@parlay_three = (@winners[2][:spread].to_i/100.00) + 1
-
-							elsif @winners[2][:spread].to_i < -100
-
-								@parlay_three = (100.00/(@winners[2][:spread].to_i * -1)) + 1
-
-							else
-
-								@parlay_three = (100.00/110) + 1
-
-							end
-						end
-					elsif @winners.length == 3
+					elsif @winners.length == 5
 
 						@ml_counter = 0
 
@@ -4581,7 +4601,7 @@ module WagersHelper
 							@wager.outcome = "win"
 
 
-						elsif @ml_counter == 1 || @ml_counter == 2
+						elsif @ml_counter == 1 || @ml_counter == 2 || @ml_counter == 3 || @ml_counter == 4
 
 
 							if @winners[0].class == Hash
@@ -4589,12 +4609,15 @@ module WagersHelper
 
 								if @winners[0][:spread].to_i > 100
 
-									@parlay_one = (@winners[0][:spread].to_i/100.00) + 1
-								end
+									@parlay_one = (@winners[0][:spread].to_i/100.00) + 9/10.00
 
-								if @winners[0][:spread].to_i < -100
+								elsif @winners[0][:spread].to_i < -100
 
-									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 1
+									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_one = (100.00/110) + 1
 
 								end
 
@@ -4609,22 +4632,97 @@ module WagersHelper
 
 								if @winners[1][:spread].to_i > 100
 
-									@parlay_two = (@winners[1][:spread].to_i/100.00) + 1
-								end
+									@parlay_two = (@winners[1][:spread].to_i/100.00) + 9/10.00
+								
 
-								if @winners[1][:spread].to_i < -100
+								elsif @winners[1][:spread].to_i < -100
 
-									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 1
+									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 9/10.00
+
+
+								else
+
+									@parlay_two = (100.00/110) + 9/10.00
 
 								end
 
 							else
 
-									@parlay_two = (100.00/110) + 1
+									@parlay_two = (100.00/110) + 9/10.00
 
 							end
 
-							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two
+							if @winners[2].class == Hash
+
+
+								if @winners[2][:spread].to_i > 100
+
+									@parlay_three = (@winners[2][:spread].to_i/100.00) + 9/10.00
+
+								elsif @winners[2][:spread].to_i < -100
+
+									@parlay_three = (100.00/(@winners[2][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_three = (100.00/110) + 9/10.00
+
+								end
+
+							else
+
+									@parlay_three = (100.00/110) + 9/10.00
+						
+							end
+
+							if @winners[3].class == Hash
+
+
+								if @winners[3][:spread].to_i > 100
+
+									@parlay_four = (@winners[3][:spread].to_i/100.00) + 9/10.00
+
+								elsif @winners[3][:spread].to_i < -100
+
+									@parlay_four = (100.00/(@winners[3][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_four = (100.00/110) + 9/10.00
+
+								end
+
+							else
+
+									@parlay_four = (100.00/110) + 9/10.00
+						
+							end
+
+							if @winners[4].class == Hash
+
+
+								if @winners[4][:spread].to_i > 100
+
+									@parlay_five = (@winners[4][:spread].to_i/100.00) + 9/10.00
+
+								elsif @winners[4][:spread].to_i < -100
+
+									@parlay_five = (100.00/(@winners[4][:spread].to_i * -1)) + 9/10.00
+
+								else
+
+									@parlay_five = (100.00/110) + 9/10.00
+
+								end
+
+							else
+
+								@parlay_five = (100.00/110) + 9/10.00
+
+						
+							end
+
+							@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four * @parlay_five
 
 							@wager.net_result = @net_p_l
 							@current_client_br = @current_client_br + @net_p_l
@@ -4633,24 +4731,6 @@ module WagersHelper
 
 						end
 
-
-						if @winners[2].class == Hash
-
-
-							if @winners[2][:spread].to_i > 100
-
-								@parlay_three = (@winners[2][:spread].to_i/100.00) + 1
-
-							elsif @winners[2][:spread].to_i < -100
-
-								@parlay_three = (100.00/(@winners[2][:spread].to_i * -1)) + 1
-
-							else
-
-								@parlay_three = (100.00/110) + 1
-
-							end
-						end
 
 					end
 
