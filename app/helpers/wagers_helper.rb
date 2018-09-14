@@ -3388,6 +3388,9 @@ module WagersHelper
 			@losers = []
 			@pushes = []
 			@current_client_br = 0
+			@parlay_one
+			@parlay_two
+			@parlay_three
 			
 
 			if @wager.wager_type == "three team parlay"
@@ -3702,11 +3705,16 @@ module WagersHelper
 								if @winners[0][:spread].to_i > 100
 
 									@parlay_one = (@winners[0][:spread].to_i/100.00) + 1
-								end
+							
 
-								if @winners[0][:spread].to_i < -100
+								elsif @winners[0][:spread].to_i < -100
 
 									@parlay_one = (100.00/(@winners[0][:spread].to_i * -1)) + 1
+
+
+								else
+								
+								@parlay_one = (100.00/110) + 1
 
 								end
 
@@ -3722,11 +3730,17 @@ module WagersHelper
 								if @winners[1][:spread].to_i > 100
 
 									@parlay_two = (@winners[1][:spread].to_i/100.00) + 1
-								end
+								
 
-								if @winners[1][:spread].to_i < -100
+								elsif @winners[1][:spread].to_i < -100
 
 									@parlay_two = (100.00/(@winners[1][:spread].to_i * -1)) + 1
+
+
+								else
+
+									@parlay_two = (100.00/110) + 1
+
 
 								end
 
@@ -3864,22 +3878,42 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@winners.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						elsif t.spread_result == "loss"
+								@winners.push(@wager_hash)
 
-							@losers.push(t.name)
+								elsif t.spread_result == "loss"
 
-						elsif t.spread_result == "push"
+									@losers.push(t.name)
 
-							@pushes.push(t.name)
+								elsif t.spread_result == "push"
 
-						end
+									@pushes.push(t.name)
+
+								end
+
+							else
+
+								if t.spread_result == "win"
+
+									@winners.push(t.name)
+
+								elsif t.spread_result == "loss"
+
+									@losers.push(t.name)
+
+								elsif t.spread_result == "push"
+
+									@losers.push(t.name)
+
+								end
+
+							end
 
 					elsif t.opp == @wager.team1
 
@@ -3888,19 +3922,43 @@ module WagersHelper
 							@losers.push(t.opp)
 
 						elsif t.spread_result == "loss"
+							
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash = Hash.new
+								@wager_hash = Hash.new
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-							@winners.push(@wager_hash)
+								@winners.push(@wager_hash)
 
-						elsif t.spread_result == "push"
+								elsif t.spread_result == "loss"
 
-							@pushes.push(t.opp)
+									@losers.push(t.opp)
 
-						end
+								elsif t.spread_result == "push"
+
+									@pushes.push(t.opp)
+
+								end
+
+							else
+
+								if t.spread_result == "win"
+
+									@winners.push(t.opp)
+
+								elsif t.spread_result == "loss"
+
+									@losers.push(t.opp)
+
+								elsif t.spread_result == "push"
+
+									@losers.push(t.opp)
+
+								end
+
+							end
 
 					elsif t.over_line == @wager.team1
 
@@ -3940,22 +3998,30 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@winners.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_two)
+
+							else
+
+								@winners.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@losers.push(t.name)
+								@losers.push(t.name)
 
 						elsif t.spread_result == "push"
 
-							@pushes.push(t.name)
+								@pushes.push(t.name)
 
-						end
+							end
 
 					elsif t.opp == @wager.team2
 
@@ -3965,12 +4031,20 @@ module WagersHelper
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@winners.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_two)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -4017,12 +4091,20 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
+								@wager_hash_three = Hash.new
 
-							@winners.push(@wager_hash_three)
+								@wager_hash_three[:team] = t.name
+								@wager_hash_three[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_three)
+
+							else
+
+								@winners.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
@@ -4042,12 +4124,20 @@ module WagersHelper
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
+								@wager_hash_three = Hash.new
 
-							@winners.push(@wager_hash_three)
+								@wager_hash_three[:team] = t.opp
+								@wager_hash_three[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_three)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -4094,12 +4184,20 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_four = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_four[:team] = t.name
-							@wager_hash_four[:spread] = t.spread.to_i
+								@wager_hash_four = Hash.new
 
-							@winners.push(@wager_hash_four)
+								@wager_hash_four[:team] = t.name
+								@wager_hash_four[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_four)
+
+							else
+
+								@winners.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
@@ -4119,12 +4217,20 @@ module WagersHelper
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_four = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_four[:team] = t.opp
-							@wager_hash_four[:spread] = t.opp_line.to_i
+								@wager_hash_four = Hash.new
 
-							@winners.push(@wager_hash_four)
+								@wager_hash_four[:team] = t.opp
+								@wager_hash_four[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_four)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -4171,12 +4277,20 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_five = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_five[:team] = t.name
-							@wager_hash_five[:spread] = t.spread.to_i
+								@wager_hash_five = Hash.new
 
-							@winners.push(@wager_hash_five)
+								@wager_hash_five[:team] = t.name
+								@wager_hash_five[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_five)
+
+							else
+
+								@winners.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
@@ -4196,12 +4310,20 @@ module WagersHelper
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_five = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_five[:team] = t.opp
-							@wager_hash_five[:spread] = t.opp_line.to_i
+								@wager_hash_five = Hash.new
 
-							@winners.push(@wager_hash_three)
+								@wager_hash_five[:team] = t.opp
+								@wager_hash_five[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_three)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -4385,7 +4507,7 @@ module WagersHelper
 
 						if @ml_counter == 0
 
-							@net_p_l = @wager.amount.to_i * 2.5
+							@net_p_l = @wager.amount.to_i * 5
 
 							@wager.net_result = @net_p_l
 							@current_client_br = @current_client_br + @net_p_l
@@ -4485,7 +4607,7 @@ module WagersHelper
 
 						if @ml_counter == 0
 
-							@net_p_l = @wager.amount.to_i * 2.5
+							@net_p_l = @wager.amount.to_i * 10
 
 							@wager.net_result = @net_p_l
 							@current_client_br = @current_client_br + @net_p_l
@@ -4609,7 +4731,7 @@ module WagersHelper
 
 						if @ml_counter == 0
 
-							@net_p_l = @wager.amount.to_i * 2.5
+							@net_p_l = @wager.amount.to_i * 20
 
 							@wager.net_result = @net_p_l
 							@current_client_br = @current_client_br + @net_p_l
@@ -4817,7 +4939,7 @@ module WagersHelper
 
 					if t.name == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -4956,7 +5078,7 @@ module WagersHelper
 
 					if t.name == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -5006,7 +5128,7 @@ module WagersHelper
 
 					if t.name == @wager.team3
 
-						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread3.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team3)
 
@@ -5147,7 +5269,7 @@ module WagersHelper
 
 					if t.name == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team2)
 
@@ -5197,7 +5319,7 @@ module WagersHelper
 
 					if t.name == @wager.team3
 
-						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread3.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team3)
 
@@ -5247,7 +5369,7 @@ module WagersHelper
 
 					if t.name == @wager.team4
 
-						if (t.opp_score.to_i + @wager.spread4.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread4.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team4)
 
@@ -5297,7 +5419,7 @@ module WagersHelper
 
 					if t.name == @wager.team5
 
-						if (t.opp_score.to_i + @wager.spread5.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread5.to_i) > t.opp_score.to_i
 
 							@winners.push(@wager.team5)
 

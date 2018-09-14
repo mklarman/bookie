@@ -30,6 +30,9 @@
 <% @losers %>
 <% @parlay_one %>
 <% @parlay_two %>
+<% @parlay_three %>
+<% @parlay_four %>
+<% @parlay_five %>
 
 <% @date = Time.now %> 
 <% @day = @date.strftime("%d") %>
@@ -329,8 +332,14 @@
 	<% end %>
 <!-- </div> -->
 
- HERE:<%= @ml_counter %> HERE: <%= @winners %> HERE: <%= @parlay_one %> HERE: <%= @parlay_two %> Here: <%= @parlay_two %>
+ <!-- HERE:<%= @ml_counter %> HERE: <%= @winners %> HERE: <%= @parlay_one %> HERE: <%= @parlay_two %> Here: <%= @parlay_three %>
+<%= @parlay_four %>
+<%= @parlay_five %> -->
 <div>
+
+	<div> <%= @winners.length %> <%= @winners %>  </div>
+	
+	<div> <%= @losers.length %> <%= @losers %>  </div>
 
 	<%= @wager_hash_one %>
 	<%= @wager_hash_two %>
