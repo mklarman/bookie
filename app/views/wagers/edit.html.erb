@@ -33,6 +33,9 @@
 <% @parlay_three %>
 <% @parlay_four %>
 <% @parlay_five %>
+<% @rev_team1 %>
+<% @rev_team2 %>
+<% @rev_team3 %>
 
 <% @date = Time.now %> 
 <% @day = @date.strftime("%d") %>
@@ -337,15 +340,12 @@
 <%= @parlay_five %> -->
 <div>
 
-	<div> <%= @winners.length %> <%= @winners %>  </div>
-	
-	<div> <%= @losers.length %> <%= @losers %>  </div>
+<%= @rev_win %>
+<%= @rev_lose %>
 
-	<%= @wager_hash_one %>
-	<%= @wager_hash_two %>
-
-	<%= @rev_win %>
-	<%= @rev_lose %>
+<%= @rev_team1 %>
+<%= @rev_team2 %>
+<%= @rev_team3 %>
 
 	
 	        

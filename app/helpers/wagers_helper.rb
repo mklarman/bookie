@@ -5865,7 +5865,7 @@ module WagersHelper
 
 					else
 
-						@rev_team2 = @wager.amount.to_i * 2.2
+						@rev_team2 = @wager.amount.to_i * -2.2
 
 					end
 
@@ -5878,173 +5878,93 @@ module WagersHelper
 
 				elsif @rev_win.length == 2
 
-					if @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						@net_p_l = ((@wager.amount.to_i * (@rev_win[0][1].to_i/100)) * 2) + ((@wager.amount.to_i * (@rev_win[1][1].to_i/100)) * 2) 
+						if @rev_win[0][:spread] < -100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@rev_team1 = @wager.amount.to_i * 2
 
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100
+						elsif @rev_win[0][:spread] > 100
 
-						@net_p_l = @wager.amount.to_i * 4
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 2
 
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[1][1].to_i/100)) * 2)
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-					
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[0][1].to_i/100)) * 2)
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-					
-					elsif @rev_win[0][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 4
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100
-
-						@net_p_l = ((@wager.amount.to_i * (@rev_win[0][1].to_i/100)) * 2) + (@wager.amount.to_i * 2)
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 2) + ((@wager.amount.to_i * (@rev_win[1][1].to_i/100)) * 2)
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[1][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 4
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i * 4
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+						@rev_team1 = @wager.amount.to_i * 2
 
 					end
+
+					if @rev_win[1].class == Hash
+
+						if @rev_win[1][:spread] < -100
+
+							@rev_team2 = @wager.amount.to_i * 2
+
+						elsif @rev_win[1][:spread] > 100
+
+							@rev_team2 = @wager.amount * (@rev_win[1][:spread].to_i/100.00) * 2
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * 2
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "win"
 
 				elsif @rev_lose.length == 2
 
-					if @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100
+					if @rev_lose[0].class == Hash
 
-						@net_p_l = @wager.amount.to_i * -2
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						if @rev_lose[0][:spread] > 100
 
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100
+							@rev_team1 = @wager.amount.to_i * -1
 
-						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100)) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100))
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						elsif @rev_lose[0][:spread] < -100
 
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100
+							@rev_team1 = @wager.amount * (@rev_lose[0][:spread].to_i/100.00) 
 
-						@net_p_l = (@wager.amount.to_i * -1) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100))
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -1) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100))
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100
-
-						@net_p_l = @wager.amount * -2.1
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -1.1) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100))
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -1.1) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100))
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[1][1] > 100
-
-						@net_p_l = @wager.amount * -2.1
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i * -2.2
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						@rev_team1 = @wager.amount.to_i * -1.1
 
 					end
+
+					if @rev_lose[1].class == Hash
+
+						if @rev_lose[1][:spread] > 100
+
+							@rev_team2 = @wager.amount.to_i * -1
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@rev_team2 = @wager.amount * (@rev_lose[1][:spread].to_i/100.00)
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * -1.1
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 				end
 
@@ -6069,21 +5989,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -6095,21 +6031,38 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -6155,21 +6108,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -6181,21 +6150,38 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_two)
-						
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
 						elsif t.spread_result == "loss"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
+
 
 						elsif t.spread_result == "push"
 
@@ -6241,21 +6227,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -6267,22 +6269,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -6338,28 +6355,32 @@ module WagersHelper
 
 				elsif @rev_push.length == 2 && @rev_lose.length == 1
 
-					if @rev_lose[0][1].to_i > 100
+					if @rev_lose[0].class == Hash
 
-						@net_p_l = @wager.amount.to_i * -1
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						if @rev_lose[0][:spread] > 100
 
-					elsif @rev_lose[0][1].to_i < -100
+							@net_p_l = @wager.amount.to_i * -1
 
-						@net_p_l = @wager.amount.to_i * (@rev_lose[0][1].to_i/100)
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+							@wager.net_result = @net_p_l
+							@current_client_br = @current_client_br + @net_p_l
+							@current_br = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
+
+						elsif @rev_lose[0][:spread] < -100
+
+							@net_p_l = @wager.amount * (@rev_lose[0][:spread].to_i/100.00)
+
+							@wager.net_result = @net_p_l
+							@current_client_br = @current_client_br + @net_p_l
+							@current_br = @current_br + (@net_p_l * -1)
+							@wager.outcome = "loss"
+
+						end
 
 					else
 
-						@net_p_l = @wager.amount * -1.1
-						
+						@net_p_l = @wager.amount.to_i * -1.1
+
 						@wager.net_result = @net_p_l
 						@current_client_br = @current_client_br + @net_p_l
 						@current_br = @current_br + (@net_p_l * -1)
@@ -6369,31 +6390,32 @@ module WagersHelper
 
 				elsif @rev_push.length == 2 && @rev_win.length == 1
 
-					if @rev_win[0][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						@net_p_l = @wager.amount.to_i * (@rev_win[0][1].to_i/100)
+						if @rev_win[0][:spread] < -100
 
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@net_p_l = @wager.amount.to_i 
 
-					elsif @rev_win[0][1].to_i < -100
+							@wager.net_result = @net_p_l
+							@current_client_br = @current_client_br + @net_p_l
+							@current_br = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
 
-						@net_p_l = @wager.amount.to_i
+						elsif @rev_win[0][:spread] > 100
 
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@net_p_l = @wager.amount * (@rev_win[0][:spread].to_i/100.00)
+
+							@wager.net_result = @net_p_l
+							@current_client_br = @current_client_br + @net_p_l
+							@current_br = @current_br + (@net_p_l * -1)
+							@wager.outcome = "win"
+
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i
+						@net_p_l = @wager.amount.to_i 
 
-						
 						@wager.net_result = @net_p_l
 						@current_client_br = @current_client_br + @net_p_l
 						@current_br = @current_br + (@net_p_l * -1)
@@ -6403,1276 +6425,393 @@ module WagersHelper
 
 				elsif @rev_push.length == 1 && @rev_win.length == 2
 
-					if @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						@net_p_l = ((@wager.amount.to_i * (@rev_win[0][1].to_i/100)) * 3) + ((@wager.amount.to_i * (@rev_win[1][1].to_i/100)) * 3)
+						if @rev_win[0][:spread] < -100
 
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@rev_team1 = @wager.amount.to_i * 3
 
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100
+						elsif @rev_win[0][:spread] > 100
 
-						@net_p_l = @wager.amount.to_i * 6
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 3
 
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 3) + ((@wager.amount.to_i * (@rev_win[1][1].to_i/100)) * 3)
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 3) + ((@wager.amount.to_i * (@rev_win[0][1].to_i/100)) * 3)
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 6
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100
-
-						@net_p_l = ((@wager.amount.to_i * (@rev_win[0][1].to_i/100)) * 3) + (@wager.amount.to_i * 3)
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 3) + ((@wager.amount.to_i * (@rev_win[1][1].to_i/100)) * 3)
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[1][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 6
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i * 6
-
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+						@rev_team1 = @wager.amount.to_i * 3
 
 					end
+
+					if @rev_win[1].class == Hash
+
+						if @rev_win[1][:spread] < -100
+
+							@rev_team2 = @wager.amount.to_i * 3
+
+						elsif @rev_win[1][:spread] > 100
+
+							@rev_team2 = @wager.amount * (@rev_win[1][:spread].to_i/100.00) * 3
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * 3
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "win"
 
 				elsif @rev_push.length == 1 && @rev_lose.length == 2
 
-					if @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100
+					if @rev_lose[0].class == Hash
 
-						@net_p_l = @wager.amount.to_i * -4
-						
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						if @rev_lose[0][:spread] > 100
 
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100
+							@rev_team1 = @wager.amount.to_i * -2
 
-						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
+						elsif @rev_lose[0][:spread] < -100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+							@rev_team1 = @wager.amount * (@rev_lose[0][:spread].to_i/100.00) * 2 
 
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100
-
-						@net_p_l = @wager.amount * -4.2
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[1][1].to_i > 100
-
-						@net_p_l = @wager.amount * -4.2
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i * -4.4
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						@rev_team1 = @wager.amount.to_i * -2.2
 
 					end
+
+					if @rev_lose[1].class == Hash
+
+						if @rev_lose[1][:spread] > 100
+
+							@rev_team2 = @wager.amount.to_i * -2
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@rev_team2 = @wager.amount * (@rev_lose[1][:spread].to_i/100.00) * 2
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * -2.2
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 				elsif @rev_push.length == 1 && @rev_lose.length == 1 && @rev_win.length == 1
 
-					if @rev_win[0][1].to_i > 100 && @rev_lose[0][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						@net_p_l = @wager.amount * ((@rev_win[0][1].to_i/100) * 2) + (@wager.amount * -3)
+						if @rev_win[0][:spread] < -100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+							@rev_team1 = @wager.amount.to_i * 2
 
-					elsif @rev_win[0][1].to_i < -100 && @rev_lose[0][1].to_i < -100
-					
-						@net_p_l = ((((@rev_lose[0][1].to_i/100) +1) * 2) * @wager.amount) + (@wager.amount * (@rev_lose[0][1].to_i/100))
+						elsif @rev_win[0][:spread] > 100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 2
 
-					elsif @rev_win[0][1].to_i > 100 && @rev_lose[0][1].to_i < -100
+						end
 
-						@net_p_l = (@wager.amount * (@rev_win[0][1].to_i/100) * 2) + ((@wager.amount * (@rev_lose[0][1].to_i/100)) * 3)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_lose[0][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 2) + (@wager.amount * -3)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_win[0][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 2) + (@wager.amount.to_i * -3.3)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_win[0][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 2) + (@wager.amount * -3.3)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100
-
-						@net_p_l = @wager.amount * -1
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100
-
-						@net_p_l = ((((@rev_lose[0][1].to_i/100) + 1) * 2) * @wager.amount) + (@wager.amount * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-					
 					else
 
-						@net_p_l = @wager.amount * -1.3
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						@rev_team1 = @wager.amount.to_i * 2 
 
 					end
+
+					if @rev_lose[0].class == Hash
+
+						if @rev_lose[0][:spread] > 100
+
+							@rev_team2 = @wager.amount.to_i * -3
+
+						elsif @rev_lose[0][:spread] < -100
+
+							@rev_team2 = (@wager.amount * (@rev_lose[0][:spread].to_i/100.00)) * 3
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * -3.3
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 
 				elsif @rev_win.length == 1 && @rev_lose.length == 2
 
-					if @rev_win[0][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						if @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100
+						if @rev_win[0][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * -6) + ((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2
+							@rev_team1 = @wager.amount.to_i * 2
 
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
+						elsif @rev_win[0][:spread] > 100
 
-						elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * -3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * -3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * -3.3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * -3.3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-						
-						elsif @rev_lose[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.3) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						else
-
-							@net_p_l = (@wager.amount.to_i * -6.6) + (((@rev_win[0][1].to_i/100) * @wager.amount.to_i) * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						end
-
-					elsif @rev_win[0][1].to_i < -100
-
-						if @rev_lose[0][1].to_i > 100 && @rev_lose[1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-						
-						elsif @rev_lose[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						else
-
-							@net_p_l = (@wager.amount.to_i * -6.6) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 2
 
 						end
 
 					else
 
-						if @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100
+						@rev_team1 = @wager.amount.to_i * 2 
 
-							@net_p_l = @wager.amount.to_i * 2 + (@wager.amount.to_i * -6)
+					end
 
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
+					if @rev_lose[0].class == Hash
 
-						elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100
+						if @rev_lose[0][:spread] > 100
 
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * 2)
+							@rev_team2 = @wager.amount.to_i * -3
 
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
+						elsif @rev_lose[0][:spread] < -100
 
-						elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * -3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[0][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-
-						elsif @rev_lose[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 3) + (@wager.amount.to_i * -3.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
-						
-						elsif @rev_lose[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * -6.3) + (@wager.amount.to_i * 2)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "loss"
+							@rev_team2 = (@wager.amount * (@rev_lose[0][:spread].to_i/100.00)) * 3
 
 						end
 
+					else
+
+						@rev_team2 = @wager.amount.to_i * -3.3
+
 					end
+
+					if @rev_lose[1].class == Hash
+
+						if @rev_lose[1][:spread] > 100
+
+							@rev_team3 = @wager.amount.to_i * -3
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@rev_team3 = (@wager.amount * (@rev_lose[1][:spread].to_i/100.00)) * 3
+
+						end
+
+					else
+
+						@rev_team3 = @wager.amount.to_i * -3.3
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 				elsif @rev_win.length == 2 && @rev_lose.length == 1
 
-					if @rev_lose[0][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						if @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100
+						if @rev_win[0][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * -4)
+							@rev_team1 = @wager.amount.to_i * 3
 
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
+						elsif @rev_win[0][:spread] > 100
 
-						elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4) 
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-						
-						elsif @rev_win[0][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						else
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * -4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						end
-
-
-					elsif @rev_lose[0][1].to_i < -100
-
-						if @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-						
-						elsif @rev_win[0][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						else
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 3
 
 						end
 
 					else
 
-						if @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100
+						@rev_team1 = @wager.amount.to_i * 3 
 
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount * -4.4)
+					end
 
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
+					if @rev_win[1].class == Hash
 
-						elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100
+						if @rev_win[1][:spread] < -100
 
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
+							@rev_team2 = @wager.amount.to_i * 3
 
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
+						elsif @rev_win[1][:spread] > 100
 
-						elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[0][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-						
-						elsif @rev_win[0][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[1][1].to_i > 100
-
-							@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 3) + (@wager.amount.to_i * 3) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						elsif @rev_win[1][1].to_i < -100
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
-
-						else
-
-							@net_p_l = (@wager.amount.to_i * 6) + (@wager.amount * -4.4)
-
-							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
-							@wager.outcome = "win"
+							@rev_team2 = @wager.amount * (@rev_win[1][:spread].to_i/100.00) * 3
 
 						end
 
+					else
+
+						@rev_team2 = @wager.amount.to_i * 3 
+
 					end
+
+					if @rev_lose[0].class == Hash
+
+						if @rev_lose[0][:spread] > 100
+
+							@rev_team3 = @wager.amount.to_i * -4
+
+						elsif @rev_lose[0][:spread] < -100
+
+							@rev_team3 = (@wager.amount * (@rev_lose[0][:spread].to_i/100.00)) * 4
+
+						end
+
+					else
+
+						@rev_team3 = @wager.amount.to_i * -4.4
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "win"
+
+	
 
 				elsif @rev_win.length == 3
 
-					if @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100 && @rev_win[2][1].to_i > 100
+					if @rev_win[0].class == Hash
 
-						@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
+						if @rev_win[0][:spread] < -100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-					
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100 && @rev_win[2][1].to_i < -100
+							@rev_team1 = @wager.amount.to_i * 4
 
-						@net_p_l = @wager.amount.to_i * 12
+						elsif @rev_win[0][:spread] > 100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 4
 
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100 && @rev_win[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)	
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100 && @rev_win[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100 && @rev_win[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100 && @rev_win[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100 && @rev_win[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100 && @rev_win[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4) + (@wager.amount.to_i * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 12
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4) + (@wager.amount.to_i * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[2][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 12
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100 && @rev_win[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100 && @rev_win[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[2][1].to_i > 100 && @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4) + (@wager.amount.to_i * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[2][1].to_i < -100 && @rev_win[1][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 12
-							
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[2][1].to_i < -100 && @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[2][1].to_i > 100 && @rev_win[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * 4) + (@wager.amount.to_i * 4) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[0][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[0][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 12
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[1][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 12
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-					
-					elsif @rev_win[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[1][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * 8) + (@wager.amount.to_i * (@rev_win[2][1].to_i/100) * 4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-
-					elsif @rev_win[2][1].to_i < -100
-
-						@net_p_l = @wager.amount.to_i * 12
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i * 12
+						@rev_team1 = @wager.amount.to_i * 4 
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "win"
-					
 					end
+
+					if @rev_win[1].class == Hash
+
+						if @rev_win[1][:spread] < -100
+
+							@rev_team2 = @wager.amount.to_i * 4
+
+						elsif @rev_win[1][:spread] > 100
+
+							@rev_team2 = @wager.amount * (@rev_win[1][:spread].to_i/100.00) * 4
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * 4
+
+					end
+
+					if @rev_win[2].class == Hash
+
+						if @rev_win[2][:spread] < -100
+
+							@rev_team3 = @wager.amount.to_i * 4
+
+						elsif @rev_win[2][:spread] > 100
+
+							@rev_team3 = (@wager.amount * (@rev_win[2][:spread].to_i/100.00)) * 4
+
+						end
+
+					else
+
+						@rev_team3 = @wager.amount.to_i * 4
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "win"
 				
 				elsif @rev_lose.length == 3
 
-					if @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100 && @rev_lose[2][1].to_i > 100
+					if @rev_lose[0].class == Hash
 
-						@net_p_l = @wager.amount.to_i * -6
+						if @rev_lose[0][:spread] > 100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-					
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100 && @rev_lose[2][1].to_i < -100
+							@rev_team1 = @wager.amount.to_i * -2
 
-						@net_p_l = (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
+						elsif @rev_lose[0][:spread] < -100
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+							@rev_team1 = @wager.amount * (@rev_lose[0][:spread].to_i/100.00) * 2
 
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100 && @rev_lose[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100 && @rev_lose[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100 && @rev_lose[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100 && @rev_lose[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100 && @rev_lose[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100 && @rev_lose[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2) + (@wager.amount.to_i * -2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -6.2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -6.2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100 && @rev_lose[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100 && @rev_lose[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[2][1].to_i > 100 && @rev_lose[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -6.2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[2][1].to_i < -100 && @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -2.2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-					
-					elsif @rev_lose[2][1].to_i < -100 && @rev_lose[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[2][1].to_i > 100 && @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -4.2) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -6.4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[0][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[0][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-					
-					elsif @rev_lose[1][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[1][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-					
-					elsif @rev_lose[1][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -6.4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[2][1].to_i > 100
-
-						@net_p_l = (@wager.amount.to_i * -6.4)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-
-					elsif @rev_lose[2][1].to_i < -100
-
-						@net_p_l = (@wager.amount.to_i * -4.4) + (@wager.amount.to_i * (@rev_lose[2][1].to_i/100) * 2)
-
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
+						end
 
 					else
 
-						@net_p_l = @wager.amount.to_i * -6.6
+						@rev_team1 = @wager.amount.to_i * -2.2 
 
-						@wager.net_result = @net_p_l
-						@current_client_br = @current_client_br + @net_p_l
-						@current_br = @current_br + (@net_p_l * -1)
-						@wager.outcome = "loss"
-					
 					end
 
+					if @rev_lose[1].class == Hash
 
+						if @rev_lose[1][:spread] > 100
+
+							@rev_team2 = @wager.amount.to_i * -2
+
+						elsif @rev_lose[1][:spread] < -100
+
+							@rev_team2 = (@wager.amount * (@rev_lose[1][:spread].to_i/100.00)) * 2
+
+						end
+
+					else
+
+						@rev_team2 = @wager.amount.to_i * -2.2
+
+					end
+
+					if @rev_lose[2].class == Hash
+
+						if @rev_lose[2][:spread] > 100
+
+							@rev_team3 = @wager.amount.to_i * -2
+
+						elsif @rev_lose[2][:spread] < -100
+
+							@rev_team3 = (@wager.amount * (@rev_lose[2][:spread].to_i/100.00)) * 2
+
+						end
+
+					else
+
+						@rev_team3 = @wager.amount.to_i * -2.2
+
+					end
+
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "loss"
 
 				end
 
@@ -7695,21 +6834,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -7721,23 +6876,38 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
+								@rev_win.push(@wager_hash)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -7783,21 +6953,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -7809,21 +6995,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -7870,21 +7072,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -7896,21 +7114,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_three = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_three)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -7957,21 +7191,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_four = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_four[:team] = t.name
-							@wager_hash_four[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_four)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_four = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_four[:team] = t.name
-							@wager_hash_four[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_four)
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
 
 						elsif t.spread_result == "push"
 
@@ -7983,21 +7233,37 @@ module WagersHelper
 
 						if t.spread_result == "win"
 
-							@wager_hash_four = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_four[:team] = t.opp
-							@wager_hash_four[:spread] = t.opp_line.to_i 
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_four)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
 
 						elsif t.spread_result == "loss"
 
-							@wager_hash_four = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_four[:team] = t.opp
-							@wager_hash_four[:spread] = t.opp_line.to_i 
+								@wager_hash_two = Hash.new
 
-							@rev_win.push(@wager_hash_four)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
 
 
 						elsif t.spread_result == "push"
@@ -8048,8 +7314,7 @@ module WagersHelper
 					@net_p_l = "push"
 
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @current_client_br 
-					@wager.user_bankroll = @current_br 
+	
 					@wager.outcome = "push"
 
 				elsif @rev_push.length == 3 && @rev_lose.length == 1
