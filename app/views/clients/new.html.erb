@@ -131,9 +131,15 @@ Your Client Count: <%= current_user.clients.count %>
 
 	</div>
 
+	<% if @bet_types == "Exotics" %>
+
+		<% @bet_types = "Exotic" %>
+
+	<% end %>
+
 	<p>
 
-		Meet <%= @fname %>, he is <%= @job %> from<%= " " %><%= @city %>that likes to bet on <%= @sports %> games. <%= @fname %> likes to make <%=  @bet_types %> wager types, and he will make up to <%= @limit %> wager bets per night. <%= @fname %> will bet anywhere between <%= "$" %><%= @bet_amounts.first %> and <%= "$" %><%= @bet_amounts.last %> per wager. <%= @comment %>
+		Meet <%= @fname %>, he is <%= @job %> from<%= " " %><%= @city %>that likes to bet on <%= @sports %> games. <%= @fname %> likes to bet <%=  @bet_types %> wagers, and he will make up to <%= @limit %> wager bets per night. <%= @fname %> will bet anywhere between <%= "$" %><%= @bet_amounts.first %> and <%= "$" %><%= @bet_amounts.last %> per wager. <%= @comment %>
 
 
 

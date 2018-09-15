@@ -44,6 +44,8 @@ ActiveRecord::Schema.define(version: 20180813143849) do
     t.string "total_points", default: "0"
     t.string "spread_result", default: "0"
     t.string "total_result", default: "0"
+    t.boolean "money_line", default: false
+    t.string "updated", default: "f"
     t.string "display", default: "off"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -87,6 +89,7 @@ ActiveRecord::Schema.define(version: 20180813143849) do
     t.integer "net_result", default: 0
     t.integer "client_bankroll", default: 0
     t.integer "user_bankroll", default: 0
+    t.string "serial_num", default: "none"
     t.string "outcome", default: "none"
     t.boolean "graded", default: false
     t.datetime "created_at", null: false

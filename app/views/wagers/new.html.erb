@@ -147,7 +147,7 @@
 
 			<% end %>
 
-			<div id="wager_info">
+		<div id="wager_info">
 			<div><%= c.first_name %>
 			<%= c.last_name %></div>
 
@@ -177,7 +177,7 @@
 					<% end %>
 					</div>
 
-				<div class = "hide">
+				<div>
 
 					<%= form_for @wager do |w| %>
 
@@ -242,7 +242,7 @@
 					</div>
 
 
-			<div class = "hide">
+			<div>
 
 				<%= form_for @wager do |w| %>
 
@@ -262,7 +262,7 @@
 				<div><%= w.hidden_field :spread5 %></div>
 				Date:<div><%= w.text_field :date, :value => @my_date %></div>
 				<div><%= w.hidden_field :net_result %></div>
-				<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
+				<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div>
 				<div><%= w.hidden_field :client_bankroll %></div>
 				<div><%= w.hidden_field :outcome %></div>
 				<div><%= w.hidden_field :graded %></div>
@@ -319,7 +319,7 @@
 					<% end %>
 					</div>
 
-			<div class="hide">
+			<div>
 
 						<%= form_for @wager do |w| %>
 
@@ -339,7 +339,7 @@
 						<div><%= w.hidden_field :spread5 %></div>
 						Date:<div><%= w.text_field :date, :value => @my_date %></div>
 						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
+						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div>
 						<div><%= w.hidden_field :client_bankroll %></div>
 						<div><%= w.hidden_field :outcome %></div>
 						<div><%= w.hidden_field :graded %></div>
@@ -405,7 +405,7 @@
 					<% end %>
 					</div>
 
-					<div class="hide">
+					<div>
 						<%= form_for @wager do |w| %>
 
 						<%= w.hidden_field :user_id, :value => current_user.id %>
@@ -424,7 +424,7 @@
 						<div><%= w.hidden_field :spread5 %></div>
 						Date:<div><%= w.text_field :date, :value => @my_date %></div>
 						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
+						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div>
 						<div><%= w.hidden_field :client_bankroll %></div>
 						<div><%= w.hidden_field :outcome %></div>
 						<div><%= w.hidden_field :graded %></div>
@@ -502,7 +502,7 @@
 					<% end %>
 					</div>
 
-					<div class="hide">
+					<div>
 
 						<%= form_for @wager do |w| %>
 
@@ -522,7 +522,7 @@
 						Spread5:<div><%= w.text_field :spread5, :value => @spread5 %></div>
 						Date:<div><%= w.text_field :date, :value => @my_date %></div>
 						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div> %></div>
+						<div><%= w.hidden_field :user_bankroll, :value => @current_br %></div>
 						<div><%= w.hidden_field :client_bankroll %></div>
 						<div><%= w.hidden_field :outcome %></div>
 						<div><%= w.hidden_field :graded %></div>
@@ -550,18 +550,7 @@
 
 	<% end %>
 
-	<div><%= @straight_container %></div>
-	<div><%= @teams_to_choose %></div>
-	<div><%= @client_picks %></div>
 	
-	<div>HERE: <%= @teams_for_teaser %></div>
-	<div>PICK 3: <%= @pick3 %></div>
-	<div>PICK 5: <%= @pick5 %></div>
-	<div><% @teaser_teams = @teaser_eligible.length * 2 %></div>
-	<div><% @num_choices = @choices.length * 2 %></div>
-	<div><% @combo = @teaser_teams + @num_choices %></div>
-	<div>Teaser Options<%= @teaser_teams %></div>
-	<div>Combo Options<%= @combo %></div>
 
 	
 	

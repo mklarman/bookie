@@ -65,7 +65,7 @@ private
 
 def wager_params
 
-	params.require(:wager).permit(:user_id, :client_id, :wager_type, :amount, :team1, :team2, :team3, :team4, :team5, :spread1, :spread2, :spread3, :spread4, :spread5, :date, :net_result, :user_bankroll, :client_bankroll, :outcome, :graded)
+	params.require(:wager).permit(:user_id, :client_id, :wager_type, :amount, :team1, :team2, :team3, :team4, :team5, :spread1, :spread2, :spread3, :spread4, :spread5, :date, :net_result, :user_bankroll, :client_bankroll, :outcome, :graded, :serial_num)
 
 end
 

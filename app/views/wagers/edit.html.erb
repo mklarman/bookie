@@ -1,30 +1,12 @@
 <% @wager_id = @wager.id %>
 
-<% @t_array = [5, 7, 10, 2, 1, 0] %>
 
-<% @num_is %>
 
-<% @t_array.each do |t| %>
 
-	<% if t == @t_array.first %>
 
-		<% @num_is = t %>
-
-	<% else %>
-
-		<% if t > @num_is %>
-
-			<% @num_is = t %>
-
-		<% end %>
-
-	<% end %>
-
-<% end %>
-
-<%= @num_is %>
 <% @ml_counter %>
-<% @get_val %>
+<% @get_val = 0 %>
+
 
 <% @winners %>
 <% @losers %>
@@ -36,6 +18,17 @@
 <% @rev_team1 %>
 <% @rev_team2 %>
 <% @rev_team3 %>
+<% @user_b = [] %>
+<% @user_b2 = [] %>
+<% @client_br = [] %>
+<% @current_br %>
+<% @current_client_br %>
+<% @net_p_l %>
+<% @wager_hash_one %>
+<% @wager_hash_two %>
+<% @rev_win %>
+<% @rev_lose %>
+<% @rev_push %>
 
 <% @date = Time.now %> 
 <% @day = @date.strftime("%d") %>
@@ -101,26 +94,9 @@
 
 <% @holder_s = @year + @month + @day %>
 
-
-
 <% @serial_num = @holder_s + @time_check %>
 
 <%= @serial_num.to_i %>
-
-<% @user_b = [] %>
-<% @user_b2 = [] %>
-<% @client_br = [] %>
-<% @current_br %>
-<% @current_client_br %>
-<% @net_p_l %>
-<% @wager_hash_one %>
-<% @wager_hash_two %>
-<% @rev_win %>
-<% @rev_lose %>
-<% @rev_push %>
-
-
-
 
 
 <% if current_user.wagers %>
@@ -129,54 +105,46 @@
 
 		<% if w.graded === true %>
 
-			<% if w.user_bankroll == 0 %>
-
-				<% w.user_bankroll = 5000 %>
-
-			<% end %>
-
-				<% @user_b.push(w) %>
-						
+			<% @user_b.push(w.serial_num) %>
 
 		<% end %>
 
 	<% end %>
 
-	<% @user_b2.push(@user_b.last) %>
+	<% if @user_b.length == 0 %>
 
-	<% @current_br = @user_b2[0].user_bankroll %>
+		<% @current_br = 5000 %>
 
-<% end %>
+	<% else %>
 
-<%= @current_br %>
-<%= @user_b2 %>
+		<% @user_b.each do |u| %>
 
-<% current_user.clients.each do |c| %>
+			<% if u > @get_val %>
 
-	<% if c.id == @wager.client_id %>
+				<% @get_val = u %>
 
-		<% c.wagers.each do |w| %>
+			<% end %>
+
+		<% end %>
+
+		<% current_user.wagers.each do |w| %>
 
 			<% if w.graded == true %>
 
-				<% @client_br.push(w.client_bankroll) %>
+				<% if w.serial_num == @get_val %>
 
+					<% @current_br = w.user_bankroll %>
+
+				<% end %>
 
 			<% end %>
 
 		<% end %>
 
-
 	<% end %>
 
 
 <% end %>
-
-<% @current_client_br = @client_br.last %>
-
-<%= @current_client_br %>
-<%= @client_br %>
-
 
 
 
@@ -330,29 +298,12 @@
 		Client_BR:<div><%= w.text_field :client_bankroll, :value => @current_client_br %></div>
 		Outcome:<div><%= w.text_field :outcome, :value => @wager.outcome  %></div>
 		Graded:<div><%= w.text_field :graded, :value => true %></div>
+		Serial#:<div><%= w.text_field :serial_num, :value => @serial_num %></div>
 		<div><%= w.submit%></div>
 
 	<% end %>
-<!-- </div> -->
-
- <!-- HERE:<%= @ml_counter %> HERE: <%= @winners %> HERE: <%= @parlay_one %> HERE: <%= @parlay_two %> Here: <%= @parlay_three %>
-<%= @parlay_four %>
-<%= @parlay_five %> -->
-<div>
-
-<%= @rev_win %>
-<%= @rev_lose %>
-
-<%= @rev_team1 %>
-<%= @rev_team2 %>
-<%= @rev_team3 %>
-
-	
-	        
-
-	
-
 </div>
+
 
 <script>
 

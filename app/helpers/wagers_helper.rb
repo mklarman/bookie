@@ -7784,7 +7784,7 @@ module WagersHelper
 
 						if @rev_win[0][:spread] < -100
 
-							@rev_team1 = @wager.amount.to_i * 3
+							@rev_team1 = @wager.amount.to_i * 3 + 5
 
 						elsif @rev_win[0][:spread] > 100
 
@@ -8017,23 +8017,32 @@ module WagersHelper
 
 					end
 
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
+
+					@wager.net_result = @net_p_l
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
+					@wager.outcome = "win"
+
+
+
 				elsif @rev_win.length == 4
 
 					if @rev_win[0].class == Hash
 
 						if @rev_win[0][:spread] < -100
 
-							@rev_team1 = @wager.amount.to_i * 4
+							@rev_team1 = @wager.amount.to_i * 6
 
 						elsif @rev_win[0][:spread] > 100
 
-							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 4
+							@rev_team1 = @wager.amount * (@rev_win[0][:spread].to_i/100.00) * 6
 
 						end
 
 					else
 
-						@rev_team1 = @wager.amount.to_i * 4 
+						@rev_team1 = @wager.amount.to_i * 6 
 
 					end
 
@@ -8041,17 +8050,17 @@ module WagersHelper
 
 						if @rev_win[1][:spread] < -100
 
-							@rev_team2 = @wager.amount.to_i * 4
+							@rev_team2 = @wager.amount.to_i * 6
 
 						elsif @rev_win[1][:spread] > 100
 
-							@rev_team2 = @wager.amount * (@rev_win[1][:spread].to_i/100.00) * 4
+							@rev_team2 = @wager.amount * (@rev_win[1][:spread].to_i/100.00) * 6
 
 						end
 
 					else
 
-						@rev_team2 = @wager.amount.to_i * 4
+						@rev_team2 = @wager.amount.to_i * 6
 
 					end
 
@@ -8059,17 +8068,17 @@ module WagersHelper
 
 						if @rev_win[2][:spread] < -100
 
-							@rev_team3 = @wager.amount.to_i * 4
+							@rev_team3 = @wager.amount.to_i * 6
 
 						elsif @rev_win[2][:spread] > 100
 
-							@rev_team3 = (@wager.amount * (@rev_win[2][:spread].to_i/100.00)) * 4
+							@rev_team3 = (@wager.amount * (@rev_win[2][:spread].to_i/100.00)) * 6
 
 						end
 
 					else
 
-						@rev_team3 = @wager.amount.to_i * 4
+						@rev_team3 = @wager.amount.to_i * 6
 
 					end
 
@@ -8077,25 +8086,25 @@ module WagersHelper
 
 						if @rev_win[3][:spread] < -100
 
-							@rev_team4 = @wager.amount.to_i * 4
+							@rev_team4 = @wager.amount.to_i * 6
 
 						elsif @rev_win[3][:spread] > 100
 
-							@rev_team4 = (@wager.amount * (@rev_win[3][:spread].to_i/100.00)) * 4
+							@rev_team4 = (@wager.amount * (@rev_win[3][:spread].to_i/100.00)) * 6
 
 						end
 
 					else
 
-						@rev_team4 = @wager.amount.to_i * 4
+						@rev_team4 = @wager.amount.to_i * 6
 
 					end
-
-					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
 					
+					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
+
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @current_client_br + @net_p_l
-					@wager.user_bankroll = @current_br + (@net_p_l * -1)
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
 					@wager.outcome = "win"
 
 
@@ -8174,10 +8183,10 @@ module WagersHelper
 					end
 
 					@net_p_l = @rev_team1 + @rev_team2 + @rev_team3 + @rev_team4
-					
+
 					@wager.net_result = @net_p_l
-					@wager.client_bankroll = @current_client_br + @net_p_l
-					@wager.user_bankroll = @current_br + (@net_p_l * -1)
+					@current_client_br = @current_client_br + @net_p_l
+					@current_br = @current_br + (@net_p_l * -1)
 					@wager.outcome = "loss"
 
 				end
