@@ -119,9 +119,9 @@
 
 		<% @user_b.each do |u| %>
 
-			<% if u > @get_val %>
+			<% if u.to_i > @get_val %>
 
-				<% @get_val = u %>
+				<% @get_val = u.to_i %>
 
 			<% end %>
 
@@ -131,7 +131,7 @@
 
 			<% if w.graded == true %>
 
-				<% if w.serial_num == @get_val %>
+				<% if w.serial_num.to_i == @get_val %>
 
 					<% @current_br = w.user_bankroll %>
 
