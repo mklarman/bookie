@@ -1,11 +1,14 @@
 <% @wager_id = @wager.id %>
 
+<% @cl_id = @wager.client_id %>
+
 
 
 
 
 <% @ml_counter %>
 <% @get_val = 0 %>
+<% @client_ser = [] %>
 
 
 <% @winners %>
@@ -145,6 +148,68 @@
 
 
 <% end %>
+
+<% if current_user.clients %>
+
+	<% current_user.clients.each do |c| %>
+
+		<% if c.id == @cl_id %>
+
+			<% c.wagers.each do |w| %>
+
+				<% if w.graded == true %>
+
+					<% @client_ser.push(w.serial_num) %>
+
+				<% end %>
+
+			<% end %>
+
+
+		<% end %>
+
+
+	<% end %>
+
+
+<% end %>
+
+<% if @client_ser.length == 0 %>
+
+	<% @current_client_br = 0 %>
+
+<% else %>
+
+	<% @get_val = 0 %>
+
+	<% @client_ser.each do |c| %>
+
+		<% if c.to_i > @get_val %>
+
+			<% @get_val = c.to_i %>
+
+		<% end %>
+
+	<% end %>
+
+
+<% end %>
+
+<% current_user.wagers.each do |w| %>
+
+
+	<% if w.serial_num.to_i == @get_val %>
+
+		<%= w.client_bankroll.to_i %>
+
+		<% @current_client_br = w.client_bankroll.to_i %>
+
+	<% end %>
+
+
+<% end %>
+
+HERE: <%= @get_val %>
 
 
 
