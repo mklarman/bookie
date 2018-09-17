@@ -1,4 +1,5 @@
 <% @current_client_br %>
+<% @sports_book_bank = [] %>
 
 <% if current_user %>
 
@@ -28,7 +29,10 @@
 
 			<div><% @current_client_br = @get_val.inject(0){|sum,x| sum + x } %></div>
 
+
+
 			<div><%= @current_client_br %></div>
+			<div><% @sports_book_bank.push(@current_client_br) %></div>
 
 			<div><%= link_to "Client Stats", client_path(c.id), class: 'link_tabs'  %></div>
 
@@ -38,6 +42,10 @@
 
 
 	<% end %>
+
+	<% @sports_book_profit = (@sports_book_bank.inject(0){|sum,x| sum + x }) * -1 %>
+
+	<div><%= @sports_book_profit %>
 
 <% end %>
 
