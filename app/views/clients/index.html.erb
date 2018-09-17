@@ -1,1 +1,49 @@
-<%= @user %>
+<% @current_client_br %>
+
+<% if current_user %>
+
+	<% if current_user.wagers %>
+
+		<% current_user.clients.each do |c| %>
+
+			<% @get_val = 0 %>
+
+			<div><%= c.first_name %>
+				<%= c.last_name %></div>
+
+			<% c.wagers.each do |w| %>
+
+				<% if w.serial_num.to_i > @get_val %>
+
+					<% @get_val = w.serial_num.to_i %>
+
+
+				<% end %>
+
+			<% end %>
+
+			<% c.wagers.each do |w| %>
+
+				<% if w.serial_num.to_i == @get_val %>
+
+					<% @current_client_br = w.client_bankroll %>
+
+				<% end %>
+
+
+			<% end %>
+
+			<div><%= @current_client_br %></div>
+
+
+		<% end %>
+
+
+
+	<% end %>
+
+<% end %>
+
+
+
+

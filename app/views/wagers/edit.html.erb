@@ -210,6 +210,8 @@
 <% end %>
 
 HERE: <%= @get_val %>
+HERE: <%= @current_client_br %>
+HERE: <%= @current_br %>
 
 
 
@@ -228,11 +230,29 @@ HERE: <%= @get_val %>
 <% if @wager.wager_type == "straight" %>
 
 	<% self.score_straight %>
+
+<% if @wager.team1.length < 12 %>
+
+	<% if @wager.spread1 > 0 %>
+
+		<% @wager_spread1 = "+" + @wager.spread1.to_s %>
+
+	<% else %>
+
+		<% @wager_spread1 = @wager.spread1 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread1 = @wager.spread1 %>
+
+<% end %>
 	
 	<div><%= "$" + @wager.amount.to_s %></div>
 	<div><%= @wager.wager_type %></div>
 	<div><%= @wager.team1 %>
-	<%= @wager.spread1 %></div>
+	<%= @wager_spread1 %></div>
 
 <% end %>
 
@@ -253,13 +273,49 @@ HERE: <%= @get_val %>
 		<% self.two_team_reverse %>
 
 	<% end %>
+
+<% if @wager.team1.length < 12 %>
+
+	<% if @wager.spread1 > 0 %>
+
+		<% @wager_spread1 = "+" + @wager.spread1.to_s %>
+
+	<% else %>
+
+		<% @wager_spread1 = @wager.spread1 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread1 = @wager.spread1 %>
+
+<% end %>
+
+<% if @wager.team2.length < 12 %>
+
+	<% if @wager.spread2 > 0 %>
+
+		<% @wager_spread2 = "+" + @wager.spread2.to_s %>
+
+	<% else %>
+
+		<% @wager_spread2 = @wager.spread2 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread2 = @wager.spread2 %>
+
+<% end %>
 		
 	<div><%= "$" + @wager.amount.to_s %></div>
 	<div><%= @wager.wager_type %></div>
 	<div><%= @wager.team1 %>
-	<%= @wager.spread1 %></div>
+	<%= @wager_spread1 %></div>
 	<div><%= @wager.team2 %>
-	<%= @wager.spread2 %></div>
+	<%= @wager_spread2 %></div>
 
 <% end %>
 
@@ -279,14 +335,72 @@ HERE: <%= @get_val %>
 
 	<% end %>
 
+<% if @wager.team1.length < 12 %>
+
+	<% if @wager.spread1 > 0 %>
+
+		<% @wager_spread1 = "+" + @wager.spread1.to_s %>
+
+	<% else %>
+
+		<% @wager_spread1 = @wager.spread1 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread1 = @wager.spread1 %>
+
+<% end %>
+
+<% if @wager.team2.length < 12 %>
+
+	<% if @wager.spread2 > 0 %>
+
+		<% @wager_spread2 = "+" + @wager.spread2.to_s %>
+
+	<% else %>
+
+		<% @wager_spread2 = @wager.spread2 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread2 = @wager.spread2 %>
+
+<% end %>
+
+
+
+<% if @wager.team3.length < 12 %>
+
+	<% if @wager.spread3 > 0 %>
+
+		<% @wager_spread3 = "+" + @wager.spread3.to_s %>
+
+	<% else %>
+
+		<% @wager_spread3 = @wager.spread3 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread3 = @wager.spread3 %>
+
+<% end %>
+
+
+
 	<div><%= "$" + @wager.amount.to_s %></div>
 	<div><%= @wager.wager_type %></div>
 	<div><%= @wager.team1 %>
-	<%= @wager.spread1 %></div>
+	<%= @wager_spread1 %></div>
 	<div><%= @wager.team2 %>
-	<%= @wager.spread2 %></div>
+	<%= @wager_spread2 %></div>
 	<div><%= @wager.team3 %>
-	<%= @wager.spread3 %></div>
+	<%= @wager_spread3 %></div>
 
 <% end %>
 
@@ -294,16 +408,90 @@ HERE: <%= @get_val %>
 
 	<% self.four_team_reverse %>
 
+<% if @wager.team1.length < 12 %>
+
+	<% if @wager.spread1 > 0 %>
+
+		<% @wager_spread1 = "+" + @wager.spread1.to_s %>
+
+	<% else %>
+
+		<% @wager_spread1 = @wager.spread1 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread1 = @wager.spread1 %>
+
+<% end %>
+
+<% if @wager.team2.length < 12 %>
+
+	<% if @wager.spread2 > 0 %>
+
+		<% @wager_spread2 = "+" + @wager.spread2.to_s %>
+
+	<% else %>
+
+		<% @wager_spread2 = @wager.spread2 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread2 = @wager.spread2 %>
+
+<% end %>
+
+
+
+<% if @wager.team3.length < 12 %>
+
+	<% if @wager.spread3 > 0 %>
+
+		<% @wager_spread3 = "+" + @wager.spread3.to_s %>
+
+	<% else %>
+
+		<% @wager_spread3 = @wager.spread3 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread3 = @wager.spread3 %>
+
+<% end %>
+
+<% if @wager.team4.length < 12 %>
+
+	<% if @wager.spread4 > 0 %>
+
+		<% @wager_spread4 = "+" + @wager.spread4.to_s %>
+
+	<% else %>
+
+		<% @wager_spread4 = @wager.spread4 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread4 = @wager.spread4 %>
+
+<% end %>
+
 	<div><%= "$" + @wager.amount.to_s %></div>
 	<div><%= @wager.wager_type %></div>
 	<div><%= @wager.team1 %>
-	<%= @wager.spread1 %></div>
+	<%= @wager_spread1 %></div>
 	<div><%= @wager.team2 %>
-	<%= @wager.spread2 %></div>
+	<%= @wager_spread2 %></div>
 	<div><%= @wager.team3 %>
-	<%= @wager.spread3 %></div>
+	<%= @wager_spread3 %></div>
 	<div><%= @wager.team4 %>
-	<%= @wager.spread4 %></div>
+	<%= @wager_spread4 %></div>
 
 <% end %>
 
@@ -319,18 +507,110 @@ HERE: <%= @get_val %>
 
 	<% end %>
 
+<% if @wager.team1.length < 12 %>
+
+	<% if @wager.spread1 > 0 %>
+
+		<% @wager_spread1 = "+" + @wager.spread1.to_s %>
+
+	<% else %>
+
+		<% @wager_spread1 = @wager.spread1 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread1 = @wager.spread1 %>
+
+<% end %>
+
+<% if @wager.team2.length < 12 %>
+
+	<% if @wager.spread2 > 0 %>
+
+		<% @wager_spread2 = "+" + @wager.spread2.to_s %>
+
+	<% else %>
+
+		<% @wager_spread2 = @wager.spread2 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread2 = @wager.spread2 %>
+
+<% end %>
+
+
+
+<% if @wager.team3.length < 12 %>
+
+	<% if @wager.spread3 > 0 %>
+
+		<% @wager_spread3 = "+" + @wager.spread3.to_s %>
+
+	<% else %>
+
+		<% @wager_spread3 = @wager.spread3 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread3 = @wager.spread3 %>
+
+<% end %>
+
+<% if @wager.team4.length < 12 %>
+
+	<% if @wager.spread4 > 0 %>
+
+		<% @wager_spread4 = "+" + @wager.spread4.to_s %>
+
+	<% else %>
+
+		<% @wager_spread4 = @wager.spread4 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread4 = @wager.spread4 %>
+
+<% end %>
+
+<% if @wager.team5.length < 12 %>
+
+	<% if @wager.spread5 > 0 %>
+
+		<% @wager_spread5 = "+" + @wager.spread5.to_s %>
+
+	<% else %>
+
+		<% @wager_spread5 = @wager.spread5 %>
+
+	<% end %>
+
+<% else %>
+
+	<% @wager_spread5 = @wager.spread5 %>
+
+<% end %>
+
 	<div><%= "$" + @wager.amount.to_s %></div>
 	<div><%= @wager.wager_type %></div>
 	<div><%= @wager.team1 %>
-	<%= @wager.spread1 %></div>
+	<%= @wager_spread1 %></div>
 	<div><%= @wager.team2 %>
-	<%= @wager.spread2 %></div>
+	<%= @wager_spread2 %></div>
 	<div><%= @wager.team3 %>
-	<%= @wager.spread3 %></div>
+	<%= @wager_spread3 %></div>
 	<div><%= @wager.team4 %>
-	<%= @wager.spread4 %></div>
+	<%= @wager_spread4 %></div>
 	<div><%= @wager.team5 %>
-	<%= @wager.spread5 %></div>
+	<%= @wager_spread5 %></div>
 
 <% end %>
 

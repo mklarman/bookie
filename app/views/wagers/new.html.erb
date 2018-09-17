@@ -130,23 +130,6 @@
 
 			<% @client = c %>
 
-			<% @client.wagers.each do |w| %>
-
-				<% if w.graded == true %>
-
-					<% @client_br.push(w.client_bankroll) %>
-
-					<% @current_client_br = @client_br.last %>
-
-				<% else %>
-
-					<% @current_client_br = 0 %>
-
-				<% end %>
-
-
-			<% end %>
-
 		<div id="wager_info">
 			<div><%= c.first_name %>
 			<%= c.last_name %></div>

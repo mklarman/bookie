@@ -14,7 +14,6 @@ class ClientsController < ApplicationController
 
 	def index
 
-		@user = User.all
 
 
 	end
