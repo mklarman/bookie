@@ -18,6 +18,12 @@ class ClientsController < ApplicationController
 
 	end
 
+	def show
+
+		@client = Client.find_by_id(params[:id])
+
+	end
+
 	def create
 
 		user = current_user

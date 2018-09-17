@@ -1,1 +1,10 @@
-<%= @user %>
+<% @client.wagers.each do |w| %>
+
+	<% if w.graded == true %>
+
+		<div><%= w.wager_type %></div>
+		<div><%= w.net_result %></div>
+
+	<% end %>
+
+<% end %>
