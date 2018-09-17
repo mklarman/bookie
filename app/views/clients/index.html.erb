@@ -6,32 +6,27 @@
 
 		<% current_user.clients.each do |c| %>
 
-			<% @get_val = 0 %>
+			<% @get_val = [] %>
 
 			<div><%= c.first_name %>
 				<%= c.last_name %></div>
 
 			<% c.wagers.each do |w| %>
 
-				<% if w.serial_num.to_i > @get_val %>
+				<% if w.graded == true %>
 
-					<% @get_val = w.serial_num.to_i %>
+					<% if w.net_result != 0 %>
 
+						<% @get_val.push(w.net_result) %>
 
-				<% end %>
-
-			<% end %>
-
-			<% c.wagers.each do |w| %>
-
-				<% if w.serial_num.to_i == @get_val %>
-
-					<% @current_client_br = w.client_bankroll %>
+					<% end %>
 
 				<% end %>
 
 
 			<% end %>
+
+			<div><% @current_client_br = @get_val.inject(0){|sum,x| sum + x } %></div>
 
 			<div><%= @current_client_br %></div>
 
