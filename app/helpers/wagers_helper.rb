@@ -8324,6 +8324,7 @@ module WagersHelper
 
 		end
 
+
 end
 
 			

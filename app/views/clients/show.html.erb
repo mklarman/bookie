@@ -1,10 +1,303 @@
-<% @client.wagers.each do |w| %>
+<div id="client_name">
 
-	<% if w.graded == true %>
+	<%= @client.first_name %>
+	<%= @client.last_name %>
 
-		<div><%= w.wager_type %></div>
-		<div><%= w.net_result %></div>
+</div>
+
+<% @sum_results = [] %>
+
+
+
+
+<% @straight_results = [] %>
+<% @straight_net = 0 %>
+<% @two_t_results = [] %>
+<% @two_t_net = 0  %>
+<% @three_t_results = [] %>
+<% @three_t_net = 0  %>
+<% @five_t_results = [] %>
+<% @five_t_net = 0  %>
+<% @two_p_results = [] %>
+<% @two_p_net = 0  %>
+<% @three_p_results = [] %>
+<% @three_p_net = 0  %>
+<% @five_p_results = [] %>
+<% @five_p_net = 0  %>
+<% @two_r_results = [] %>
+<% @two_r_net = 0  %>
+<% @three_r_results = [] %>
+<% @three_r_net = 0  %>
+<% @four_r_results = [] %>
+<% @four_r_net = 0  %>
+
+<% self.display_straight_stats %>
+<% self.display_teaser_stats %>
+<% self.display_parlay_stats %>
+<% self.display_reverse_stats %>
+
+<% @sum_results.push(@straight_net) %>
+<% @sum_results.push(@two_t_net) %>
+<% @sum_results.push(@three_t_net) %>
+<% @sum_results.push(@five_t_net) %>
+<% @sum_results.push(@two_p_net) %>
+<% @sum_results.push(@three_p_net) %>
+<% @sum_results.push(@five_p_net) %>
+<% @sum_results.push(@two_r_net) %>
+<% @sum_results.push(@three_r_net) %>
+<% @sum_results.push(@four_r_net) %>
+
+<% @current_client_br = @sum_results.inject(0){|sum,x| sum + x } %>
+
+<% if @current_client_br > 0 %>
+
+	<% @current_client_br = "+" + @current_client_br.to_s %>
+
+<% else %>
+
+	<% @current_client_br = @current_client_br.to_s %>
+
+<% end %>
+
+<div id="client_figure">
+
+	Figure: <%= @current_client_br %>
+
+</div>
+
+<div id="stat_container">
+
+	<% if @straight_net.to_i != 0 %>
+
+		
+		<% if @straight_net.to_i > 0 %>
+
+			<% @straight_net = "+" + @straight_net.to_s %>
+
+
+		<% else %>
+
+			<% @straight_net = @straight_net.to_s %>
+
+		<% end %>
+
+		<div id="straight_results">
+
+			Straight Wagers: <%= @straight_net %>
+
+		</div>
 
 	<% end %>
 
-<% end %>
+	<% if @two_t_net.to_i != 0 %>
+
+		
+
+		<% if @two_t_net.to_i > 0 %>
+
+			<% @two_t_net = "+" + @two_t_net.to_s %>
+
+
+		<% else %>
+
+			<% @two_t_net = @two_t_net.to_s %>
+
+		<% end %>
+
+
+		<div id="two_t_results">
+
+			Two Team Teasers: <%= @two_t_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @three_t_net.to_i != 0 %>
+
+		
+
+		<% if @three_t_net.to_i > 0 %>
+
+			<% @three_t_net = "+" + @three_t_net.to_s %>
+
+
+		<% else %>
+
+			<% @three_t_net = @three_t_net.to_s %>
+
+		<% end %>
+
+		<div id="three_t_results">
+
+			Three Team Teasers: <%= @three_t_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @five_t_net.to_i != 0 %>
+
+		
+
+		<% if @five_t_net.to_i > 0 %>
+
+			<% @five_t_net = "+" + @two_t_net.to_s %>
+
+
+		<% else %>
+
+			<% @five_t_net = @two_t_net.to_s %>
+
+		<% end %>
+
+		<div id="five_t_results">
+
+			Five Team Teasers: <%= @five_t_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @two_p_net.to_i != 0 %>
+
+		
+
+		<% if @two_p_net.to_i > 0 %>
+
+			<% @two_p_net = "+" + @two_p_net.to_s %>
+
+
+		<% else %>
+
+			<% @two_p_net = @two_p_net.to_s %>
+
+		<% end %>
+
+		<div id="two_p_results">
+
+			Two Team Parlays: <%= @two_p_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @three_p_net.to_i != 0 %>
+
+		
+
+		<% if @three_p_net.to_i > 0 %>
+
+			<% @three_p_net = "+" + @three_p_net.to_s %>
+
+
+		<% else %>
+
+			<% @three_p_net = @three_p_net.to_s %>
+
+		<% end %>
+
+		<div id="three_p_results">
+
+			Three Team Parlays: <%= @three_p_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @five_p_net.to_i != 0 %>
+
+		
+
+		<% if @five_p_net.to_i > 0 %>
+
+			<% @five_p_net = "+" + @five_p_net.to_s %>
+
+
+		<% else %>
+
+			<% @five_p_net = @five_p_net.to_s %>
+
+		<% end %>
+
+		<div id="five_p_results">
+
+			Five Team Parlays: <%= @five_p_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @two_r_net.to_i != 0 %>
+
+		
+
+		<% if @two_r_net.to_i > 0 %>
+
+			<% @two_r_net = "+" + @two_r_net.to_s %>
+
+
+		<% else %>
+
+			<% @two_r_net = @two_r_net.to_s %>
+
+		<% end %>
+
+		<div id="two_r_results">
+
+			Two Team Reverses: <%= @two_r_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @three_r_net.to_i != 0 %>
+
+		
+
+		<% if @three_r_net.to_i > 0 %>
+
+			<% @three_r_net = "+" + @three_r_net.to_s %>
+
+
+		<% else %>
+
+			<% @three_r_net = @three_r_net.to_s %>
+
+		<% end %>
+
+		<div id="three_r_results">
+
+			Three Team Reverses: <%= @three_r_net %>
+
+		</div>
+
+	<% end %>
+
+	<% if @four_r_net.to_i != 0 %>
+
+		
+
+		<% if @four_r_net.to_i > 0 %>
+
+			<% @four_r_net = "+" + @four_r_net.to_s %>
+
+
+		<% else %>
+
+			<% @four_r_net = @four_r_net.to_s %>
+
+		<% end %>
+
+		<div id="four_r_results">
+
+			Four Team Reverses: <%= @four_r_net %>
+
+		</div>
+
+	<% end %>
+
+</div>
+
+
+
