@@ -1,53 +1,390 @@
 <% @current_client_br %>
-<% @sports_book_bank = [] %>
+<% @current_br %>
+<% @user_results = [] %>
+<% @client_results = [] %>
+<% @array_of_results = [] %>
+<% @backed_wagers = 0 %>
+<% @straight_bets = 0 %>
+<% @two_t_bets = 0 %>
+<% @three_t_bets = 0 %>
+<% @five_t_bets = 0 %>
+<% @two_p_bets = 0 %>
+<% @three_p_bets = 0 %>
+<% @five_p_bets = 0 %>
+<% @two_r_bets = 0 %>
+<% @three_r_bets = 0 %>
+<% @four_r_bets = 0 %>
+<% @straight_results = [] %>
+<% @two_t_results = [] %>
+<% @three_t_results = [] %>
+<% @five_t_results = [] %>
+<% @two_p_results = [] %>
+<% @three_p_results = [] %>
+<% @five_p_results = [] %>
+<% @two_r_results = [] %>
+<% @three_r_results = [] %>
+<% @four_r_results = [] %>
+<% @pending = 0 %>
+
 
 <% if current_user %>
 
 	<% if current_user.wagers %>
 
-		<% current_user.clients.each do |c| %>
+		<% self.get_user_br %>
+		<% self.client_bank %>
 
-			<% @get_val = [] %>
+	<% end %>
 
-			<div><%= c.first_name %>
-				<%= c.last_name %></div>
+<% end %>
 
-			<% c.wagers.each do |w| %>
+<% @array_of_results.each do |r| %>
 
-				<% if w.graded == true %>
+	<div><%= r[:name] %></div>
+	<div><%= r[:bank] %></div>
 
-					<% if w.net_result != 0 %>
+<% end %>
 
-						<% @get_val.push(w.net_result) %>
+<div>
 
-					<% end %>
+	<% current_user.wagers.each do |w| %>
+
+		<% if w.graded == true %>
+
+			<% @backed_wagers = @backed_wagers + 1 %>
+
+			<% if w.wager_type == "straight" %>
+
+				<% @straight_bets = @straight_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @straight_results.push(w.net_result) %>
+
+				<% end %>			
+
+			<% elsif w.wager_type == "two team teaser" %>
+
+				<% @two_t_bets = @two_t_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @two_t_results.push(w.net_result) %>
+
+				<% end %>	
+
+			<% elsif w.wager_type == "three team teaser" %>
+
+				<% @three_t_bets = @three_t_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @three_t_results.push(w.net_result) %>
 
 				<% end %>
 
+			<% elsif w.wager_type == "five team teaser" %>
+
+				<% @five_t_bets = @five_t_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @five_t_results.push(w.net_result) %>
+
+				<% end %>
+
+			<% elsif w.wager_type == "two team parlay" %>
+
+				<% @two_p_bets = @two_p_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @two_p_results.push(w.net_result) %>
+
+				<% end %>
+
+			<% elsif w.wager_type == "three team parlay" %>
+
+				<% @three_p_bets = @three_p_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @three_p_results.push(w.net_result) %>
+
+				<% end %>
+
+			<% elsif w.wager_type == "five team parlay" %>
+
+				<% @five_p_bets = @five_p_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @five_p_results.push(w.net_result) %>
+
+				<% end %>
+
+			<% elsif w.wager_type == "two team reverse" %>
+
+				<% @two_r_bets = @two_r_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @two_r_results.push(w.net_result) %>
+
+				<% end %>
+
+			<% elsif w.wager_type == "three team reverse" %>
+
+				<% @three_r_bets = @three_r_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @three_r_results.push(w.net_result) %>
+
+				<% end %>
+
+			<% elsif w.wager_type == "four team reverse" %>
+
+				<% @four_r_bets = @four_r_bets + 1 %>
+
+				<% if w.net_result != "push" %>
+
+					<% @four_r_results.push(w.net_result) %>
+
+				<% end %>
 
 			<% end %>
-
-			<div><% @current_client_br = @get_val.inject(0){|sum,x| sum + x } %></div>
-
-
-
-			<div><%= @current_client_br %></div>
-			<div><% @sports_book_bank.push(@current_client_br) %></div>
-
-			<div><%= link_to "Client Stats", client_path(c.id), class: 'link_tabs'  %></div>
 
 
 		<% end %>
 
+	<% end %> 
+
+	BACKED WAGERS: <%= @backed_wagers %>
+
+	<div class="wager_data">
+
+		<div>STRAIGHT DATA</div>
+
+		<div>BACKED: <%= @straight_bets %></div>
+
+		<% @straight_profit = (@straight_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @straight_profit > 0 %>
+
+			<% @straight_profit = "+" + @straight_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @straight_profit %></div>
 
 
-	<% end %>
 
-	<% @sports_book_profit = (@sports_book_bank.inject(0){|sum,x| sum + x }) * -1 %>
+	</div>
 
-	<div><%= @sports_book_profit %>
+<div class="wager_data">
 
-<% end %>
+		<div>TWO TEAM TEASER DATA</div>
+
+		<div>BACKED: <%= @two_t_bets %></div>
+
+		<% @two_t_profit = (@two_t_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @two_t_profit > 0 %>
+
+			<% @two_t_profit = "+" + @two_t_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @two_t_profit %></div>
+
+
+
+	</div>
+
+	<div class="wager_data">
+
+		<div>THREE TEAM TEASER DATA</div>
+
+		<div>BACKED: <%= @three_t_bets %></div>
+
+		<% @three_t_profit = (@three_t_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @three_t_profit > 0 %>
+
+			<% @three_t_profit = "+" + @three_t_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @three_t_profit %></div>
+
+
+
+	</div>
+
+	<div class="wager_data">
+
+		<div>FIVE TEAM TEASER DATA</div>
+
+		<div>BACKED: <%= @five_t_bets %></div>
+
+		<% @five_t_profit = (@five_t_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @five_t_profit > 0 %>
+
+			<% @five_t_profit = "+" + @five_t_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @five_t_profit %></div>
+
+
+
+	</div>
+
+	<div class="wager_data">
+
+		<div>TWO TEAM PARLAY DATA</div>
+
+		<div>BACKED: <%= @two_p_bets %></div>
+
+		<% @two_p_profit = (@two_p_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @two_p_profit > 0 %>
+
+			<% @two_p_profit = "+" + @two_p_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @two_p_profit %></div>
+
+
+
+	</div>
+
+	<div class="wager_data">
+
+		<div>THREE TEAM PARLAY DATA</div>
+
+		<div>BACKED: <%= @three_p_bets %></div>
+
+		<% @three_p_profit = (@three_p_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @three_p_profit > 0 %>
+
+			<% @three_p_profit = "+" + @three_p_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @three_p_profit %></div>
+
+
+
+	</div>
+
+	<div class="wager_data">
+
+		<div>FIVE TEAM PARLAY DATA</div>
+
+		<div>BACKED: <%= @five_p_bets %></div>
+
+		<% @five_p_profit = (@five_p_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @five_p_profit > 0 %>
+
+			<% @five_p_profit = "+" + @five_p_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @five_p_profit %></div>
+
+
+
+	</div>
+
+	<div class="wager_data">
+
+		<div>TWO TEAM REVERSE DATA</div>
+
+		<div>BACKED: <%= @two_r_bets %></div>
+
+		<% @two_r_profit = (@two_r_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @two_r_profit > 0 %>
+
+			<% @two_r_profit = "+" + @two_r_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @two_r_profit %></div>
+
+
+
+	</div>
+
+<div class="wager_data">
+
+		<div>THREE TEAM REVERSE DATA</div>
+
+		<div>BACKED: <%= @three_r_bets %></div>
+
+		<% @three_r_profit = (@three_r_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @three_r_profit > 0 %>
+
+			<% @three_r_profit = "+" + @three_r_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @three_r_profit %></div>
+
+
+
+	</div>
+
+<div class="wager_data">
+
+		<div>FOUR TEAM REVERSE DATA</div>
+
+		<div>BACKED: <%= @four_r_bets %></div>
+
+		<% @four_r_profit = (@four_r_results.inject(0){|sum,x| sum + x }) * -1 %>
+
+		<% if @four_r_profit > 0 %>
+
+			<% @four_r_profit = "+" + @four_r_profit.to_s %> 
+
+		<% end %>
+		
+		<div>PROFIT: <%= @four_r_profit %></div>
+
+
+
+</div>
+
+
+
+
+
+</div>
+
+<br>
+
+<div>
+
+
+	<% self.count_pending %>
+
+
+	<div>PENDING WAGERS: <%= @pending  %>
+	<div><%= current_user.sports_book_name.upcase %> PROFIT: <%= @current_br  %></div>
+
+
+
+
+</div>
+
+
 
 
 
