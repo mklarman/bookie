@@ -1,3 +1,7 @@
+<% @heading =  "THE " + current_user.sports_book_name.upcase + " SPORTS BOOK" %>
+
+<div id= "client_index_heading" ><%= @heading %></div>
+
 <% @current_client_br %>
 <% @current_br %>
 <% @user_results = [] %>
@@ -160,7 +164,13 @@
 
 	<% end %> 
 
-	BACKED WAGERS: <%= @backed_wagers %>
+	<% self.count_pending %>
+
+	<div>BACKED WAGERS: <%= @backed_wagers %></div>
+	<div>PENDING WAGERS: <%= @pending  %></div>
+	<div>TOTAL WAGERS: <%= @pending + @backed_wagers %></div>
+
+
 
 	<div class="wager_data">
 
@@ -372,11 +382,6 @@
 
 <div>
 
-
-	<% self.count_pending %>
-
-
-	<div>PENDING WAGERS: <%= @pending  %>
 	<div><%= current_user.sports_book_name.upcase %> PROFIT: <%= @current_br  %></div>
 
 
