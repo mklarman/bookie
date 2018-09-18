@@ -9,6 +9,8 @@
 <% @ml_counter %>
 <% @get_val = 0 %>
 <% @client_ser = [] %>
+<% @client_results = [] %>
+<% @user_results = [] %>
 
 
 <% @winners %>
@@ -101,113 +103,11 @@
 
 <%= @serial_num.to_i %>
 
-
-<% if current_user.wagers %>
-
-	<% current_user.wagers.each do |w| %>
-
-		<% if w.graded === true %>
-
-			<% @user_b.push(w.serial_num) %>
-
-		<% end %>
-
-	<% end %>
-
-	<% if @user_b.length == 0 %>
-
-		<% @current_br = 5000 %>
-
-	<% else %>
-
-		<% @user_b.each do |u| %>
-
-			<% if u.to_i > @get_val %>
-
-				<% @get_val = u.to_i %>
-
-			<% end %>
-
-		<% end %>
-
-		<% current_user.wagers.each do |w| %>
-
-			<% if w.graded == true %>
-
-				<% if w.serial_num.to_i == @get_val %>
-
-					<% @current_br = w.user_bankroll %>
-
-				<% end %>
-
-			<% end %>
-
-		<% end %>
-
-	<% end %>
+<% self.get_client_br %>
+<% self.get_user_br %>
 
 
-<% end %>
 
-<% if current_user.clients %>
-
-	<% current_user.clients.each do |c| %>
-
-		<% if c.id == @cl_id %>
-
-			<% c.wagers.each do |w| %>
-
-				<% if w.graded == true %>
-
-					<% @client_ser.push(w.serial_num) %>
-
-				<% end %>
-
-			<% end %>
-
-
-		<% end %>
-
-
-	<% end %>
-
-
-<% end %>
-
-<% if @client_ser.length == 0 %>
-
-	<% @current_client_br = 0 %>
-
-<% else %>
-
-	<% @get_val = 0 %>
-
-	<% @client_ser.each do |c| %>
-
-		<% if c.to_i > @get_val %>
-
-			<% @get_val = c.to_i %>
-
-		<% end %>
-
-	<% end %>
-
-
-<% end %>
-
-<% current_user.wagers.each do |w| %>
-
-
-	<% if w.serial_num.to_i == @get_val %>
-
-		<%= w.client_bankroll.to_i %>
-
-		<% @current_client_br = w.client_bankroll.to_i %>
-
-	<% end %>
-
-
-<% end %>
 
 HERE: <%= @get_val %>
 HERE: <%= @current_client_br %>

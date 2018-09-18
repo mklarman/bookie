@@ -5115,7 +5115,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team1
 
-						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
 
 							@winners.push(@wager.team1)
 
@@ -8267,6 +8267,60 @@ module WagersHelper
 				end
 
 			end
+
+		end
+
+		def get_client_br
+
+			current_user.clients.each do |c|
+
+				if c.id == @wager.client_id
+
+					c.wagers.each do |w|
+
+						if w.graded == true
+
+							if w.net_result == "push"
+
+								w.net_result = "push"
+
+							else
+
+								@client_results.push(w.net_result)
+
+							end
+
+						end
+
+					end
+
+				end
+
+			end
+
+			@current_client_br = @client_results.inject(0){|sum,x| sum + x }
+
+		end
+
+		def get_user_br
+
+			current_user.wagers.each do |w|
+
+				if w.graded == true
+
+					if w.net_result == "push"
+
+					else
+
+						@user_results.push(w.net_result)
+
+					end
+
+				end
+
+			end
+
+			@current_br = (@user_results.inject(0){|sum,x| sum + x }) * -1
 
 		end
 
