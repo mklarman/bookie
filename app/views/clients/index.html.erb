@@ -2,6 +2,8 @@
 
 <div id= "client_index_heading" ><%= @heading %></div>
 
+
+<% @my_date %>
 <% @current_client_br %>
 <% @current_br %>
 <% @user_results = [] %>
@@ -29,6 +31,10 @@
 <% @three_r_results = [] %>
 <% @four_r_results = [] %>
 <% @pending = 0 %>
+<% @ungraded = 0 %>
+
+<% self.get_time %>
+<%= @my_date %>
 
 
 <% if current_user %>
@@ -42,12 +48,22 @@
 
 <% end %>
 
+<div id= "client_index_profit">BANK: <%= @current_br  %></div>
+
+<div id= "client_list_heading"> CLIENT LIST</div>
+
 <% @array_of_results.each do |r| %>
 
-	<div><%= r[:name] %></div>
-	<div><%= r[:bank] %></div>
+	<div class= "client_list">
+
+		<div><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
+
+		<div>FIGURE: <%= r[:bank] %></div>
+	
+	</div>
 
 <% end %>
+</div>
 
 <div>
 
@@ -380,14 +396,7 @@
 
 <br>
 
-<div>
 
-	<div><%= current_user.sports_book_name.upcase %> PROFIT: <%= @current_br  %></div>
-
-
-
-
-</div>
 
 
 

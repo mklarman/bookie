@@ -9,7 +9,7 @@ module ApplicationHelper
 
 	end
 
-	def get_time
+	def get_date
 
   			 @date = Time.now 
 			 @day = @date.strftime("%d")

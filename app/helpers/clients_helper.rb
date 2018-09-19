@@ -11,6 +11,7 @@ module ClientsHelper
 			@combo_name = c.first_name + " " + c.last_name
 
 			@client_hash[:name] = @combo_name
+			@client_hash[:c_id] = c.id
 
 			c.wagers.each do |w|
 
@@ -39,8 +40,6 @@ module ClientsHelper
 			end
 
 			@client_hash[:bank] = @current_client_br
-
-
 
 			@array_of_results.push(@client_hash)
 
