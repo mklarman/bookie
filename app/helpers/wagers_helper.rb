@@ -5165,7 +5165,7 @@ module WagersHelper
 
 					elsif t.opp == @wager.team2
 
-						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
 							@winners.push(@wager.team2)
 

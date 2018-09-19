@@ -63,4 +63,29 @@ module ClientsHelper
 
 	end
 
+	def sort_clients
+
+		current_user.clients.each do |c|
+
+			if c.stakes == "small timer"
+
+				@small_timers = "Small Timers"
+				@small = @small + 1
+
+			elsif c.stakes == "pay dumper"
+
+				@pay_dumpers = "Pay Dumpers"
+				@pay = @pay + 1
+
+			elsif c.stakes == "whale"
+
+				@whales = "Whales"
+				@high_roll = @high_roll + 1
+
+			end
+
+		end
+
+	end
+
 end

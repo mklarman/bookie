@@ -32,6 +32,12 @@
 <% @four_r_results = [] %>
 <% @pending = 0 %>
 <% @ungraded = 0 %>
+<% @small_timers %>
+<% @pay_dumpers %>
+<% @whales %>
+<% @high_roll = 0 %>
+<% @pay = 0 %>
+<% @small = 0 %>
 
 <% self.get_time %>
 
@@ -53,6 +59,19 @@
 <div id= "info_heading">SPORTS BOOK INFO</div>
 
 <div id= "client_list_heading"> CLIENT LIST</div>
+
+
+
+<% self.sort_clients %>
+
+<div id= "client_info">
+
+
+	<div><%= @small_timers %>: <%= @small %></div>
+	<div><%= @pay_dumpers %>: <%= @pay %></div>
+	<div><%= @whales %>: <%= @high_roll %></div>
+
+</div>
 
 
 <% @array_of_results.each do |r| %>

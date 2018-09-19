@@ -149,7 +149,7 @@ module ApplicationHelper
 
 			@two_t_net = (@two_t_results.inject(0){|sum,x| sum + x })
 			@three_t_net = (@three_t_results.inject(0){|sum,x| sum + x })
-			@five_t_net = (@three_t_results.inject(0){|sum,x| sum + x })
+			@five_t_net = (@five_t_results.inject(0){|sum,x| sum + x })
 
 		end
 
@@ -199,7 +199,7 @@ module ApplicationHelper
 
 			@two_p_net = (@two_p_results.inject(0){|sum,x| sum + x })
 			@three_p_net = (@three_p_results.inject(0){|sum,x| sum + x })
-			@five_p_net = (@three_p_results.inject(0){|sum,x| sum + x })
+			@five_p_net = (@five_p_results.inject(0){|sum,x| sum + x })
 
 
 
@@ -251,7 +251,7 @@ module ApplicationHelper
 
 			@two_r_net = (@two_r_results.inject(0){|sum,x| sum + x })
 			@three_r_net = (@three_r_results.inject(0){|sum,x| sum + x })
-			@four_r_net = (@three_r_results.inject(0){|sum,x| sum + x })
+			@four_r_net = (@four_r_results.inject(0){|sum,x| sum + x })
 
 		end
 

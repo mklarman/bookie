@@ -1,4 +1,7 @@
 <% @time_check %>
+<% @pending_action = 0 %>
+<% @my_bool = 0 %>
+<% @user_results = [] %>
 
 <% self.get_time %>
 <%= @my_date %>
@@ -6,43 +9,56 @@
 <% @user_b = [] %>
 <% @current_br %>
 
-<% current_user.wagers.each do |w| %>
 
-	<% if w.graded === true %>
+<div id="book_heading">TONIGHT'S ACTION</div>
 
-		<div><% @user_b.push(w.user_bankroll) %></div>		
-
-	<% end %>
-
-<% end %>
+<% self.sum_pending %>
+<div id="pending_action">PENDING: <%= @pending_action %></div>
 
 
-
-<%= @current_br = @user_b.last %>
-
-<% if @current_br == 0 %>
-
-	<% @current_br = 5000 %>
-
-
-<% end %>
+	
 
 
 <% if current_user %>
 
+	<% current_user.wagers.each do |w| %>
+
+		<% if w.graded == true %>
+
+			<% @my_bool = @my_bool + 1 %>
+
+		<% end %>
+
+	<% end %>
+
+	<% if @my_bool == 0 %>
+
+		<% @current_br = 5000 %>
+
+	<% elsif @my_bool > 0 %>
+
+		<% self.get_user_br %>
+
+	<% end %>
 
 
-	<% current_user.clients.each do |c| %>	
+
+
+<br>
+	<% current_user.clients.each do |c| %>
+
+		<div class="name_font"><%= c.first_name %>
+								<%= c.last_name %></div>	
 
 		<% c.wagers.each do |w| %>
 
 			<% if @my_date == w.date %>
 
+				<% @pending_action = @pending_action + w.amount.to_i %>
+
 			<br>
 
-			<div class="name_font"><%= c.first_name %>
-								<%= c.last_name %></div>
-
+		
 				<div id="amount_type"><%= "$" + w.amount.to_s %>
 				<%= w.wager_type %></div>
 
@@ -362,6 +378,8 @@
 
 
 	<% end %>
+
+	
 
 	
 <% end %>
