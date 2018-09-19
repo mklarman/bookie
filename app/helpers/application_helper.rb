@@ -259,7 +259,7 @@ module ApplicationHelper
 
 			current_user.wagers.each do |w|
 
-				if w.graded == false
+				if w.graded == false && w.date != @my_date
 
 					@ungraded = @ungraded + 1
 
