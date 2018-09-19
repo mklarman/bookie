@@ -50,7 +50,10 @@
 
 <div class= "client_index_profit">BANK: <%= @current_br  %></div>
 
+<div id= "info_heading">SPORTS BOOK INFO</div>
+
 <div id= "client_list_heading"> CLIENT LIST</div>
+
 
 <% @array_of_results.each do |r| %>
 
@@ -180,13 +183,18 @@
 
 	<% end %> 
 
-	<% self.count_pending %>
+	<% self.get_pending %>
+	<% self.get_ungraded %>
+
+
 
 	<div class= "client_index_stats">
 
-		<div>BACKED WAGERS: <%= @backed_wagers %></div>
+		<div>GRADED WAGERS: <%= @backed_wagers %></div>
 		<div>PENDING WAGERS: <%= @pending  %></div>
-		<div>TOTAL WAGERS: <%= @pending + @backed_wagers %></div>
+		<div>UNGRADED WAGERS: <%= @ungraded %></div>
+		<div>TOTAL WAGERS: <%= @pending + @backed_wagers + @ungraded  %></div>
+		
 
 	</div>
 

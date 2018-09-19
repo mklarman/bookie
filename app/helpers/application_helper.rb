@@ -9,7 +9,7 @@ module ApplicationHelper
 
 	end
 
-	def get_date
+	def get_time
 
   			 @date = Time.now 
 			 @day = @date.strftime("%d")
@@ -255,13 +255,13 @@ module ApplicationHelper
 
 		end
 
-		def count_pending
+		def get_ungraded
 
 			current_user.wagers.each do |w|
 
 				if w.graded == false
 
-					@pending = @pending + 1
+					@ungraded = @ungraded + 1
 
 				end
 

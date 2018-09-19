@@ -111,6 +111,7 @@
 
 	font-size: 22px;
 	margin-left: 33px;
+	margin-top: -120px;
 
 
 
@@ -118,15 +119,25 @@
 
 .client_index_stats{
 
-	height: 100px;
-	width: 240px;
+	height: 120px;
+	width: 280px;
 	border: 1px solid red;
 	font-size: 22px;
 	margin: auto;
-	margin-top: -940px
+	margin-top: -825px;
+	margin-left: 580px;
 }
 
 #data_cont{
 
 	margin-left: 580px;
+}
+
+#info_heading{
+
+	height: 60px;
+	width: 240px;
+	border: 1px solid red;
+	font-size: 24px;
+	margin: auto;
 }

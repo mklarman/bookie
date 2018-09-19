@@ -48,4 +48,19 @@ module ClientsHelper
 
 	end
 
+	def get_pending
+
+		current_user.wagers.each do |w|
+
+			if w.date == @my_date
+
+					@pending = @pending + 1
+
+			end
+
+
+		end
+
+	end
+
 end
