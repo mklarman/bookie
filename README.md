@@ -147,6 +147,20 @@ Users:
 
  How to Play: explain the object for the game
 
+ Well, the hard coding is complete.  Users get to own and operate their personal sports book equipped with real clients with varying betting habits, ten different wager options to choose from, a complete breakdown of all the stats for each client, clients as a whole, and the sports book.
+
+ What's left to do?
+
+ 1. Sew up the details of the core functionality.
+ 2. Integrate fantasy player vs player betting.
+ 3. Figure out how leagues will work and integrate that.
+ 4. Launch to Heroku.
+ 5. Think about timezones and how start times will work.
+
+ LEAGUE PLAY:
+
+ There will have to be a league model that will take a user_id, league_password, league_clients.  This password will be distributed by the league creator: current_user.  League Players come to the site and hit the league play icon, where they are prompted for their league's password.  Once the password is entered they are brought to that league's index page where it will list the participants and the league creator.  League players will have to fill out a form that will take a user_id, league bank, other paramaters.  The user_id of the league creator will have access to the tools that create the league clients, or have the league clients created at the point that the league is created. Create three of each type of client and then just call the league client list and perform action in the normal way.  Give the current_user the ability to set which group of clients will make what kind of bets: "Straight", "Teasers", "Reverses + Parlays".  Have to find a way for the user to make that determination.  JS maybe for that.  Have each client class type listed and under each one have the three options.  They have to put no more than one client class in each group.  Once that is set then they can begin to book action. 
+
 
 
 

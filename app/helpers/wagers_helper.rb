@@ -3197,7 +3197,7 @@ module WagersHelper
 
 							if t.sport == "MLB" || t.sport == "NHL"
 
-								@wager_hash = Hash.new
+								@wager_hash_two = Hash.new
 
 								@wager_hash_two[:team] = t.name
 								@wager_hash_two[:spread] = t.spread
@@ -3230,7 +3230,7 @@ module WagersHelper
 
 							if t.sport == "MLB" || t.sport == "NHL"
 
-								@wager_hash = Hash.new
+								@wager_hash_two = Hash.new
 
 								@wager_hash_two[:team] = t.opp
 								@wager_hash_two[:spread] = t.opp_line
