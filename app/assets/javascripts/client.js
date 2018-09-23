@@ -7,6 +7,8 @@
 	var guess = document.getElementById("guess")
 	var submit = document.getElementById("submit")
 	var wordDisplay = document.getElementById("wordBank")
+	var word
+	var links
 
 	
 
@@ -24,6 +26,8 @@
 			array[location2] = tmp;
 		}
 	}
+
+	console.log(bettorType)
 	
 
 	if (bettorType == "small timer"){
@@ -46,15 +50,24 @@
 
 		for(i=0; i<wordBank.length; i++){
 
-			wordDisplay.innerHTML += " " + wordBank[i] + '<br>' 
+			links = document.createElement('div')
+			links.setAttribute("class", "words")
+			links.style.height = "30px"
+			links.style.width = "100px"
+			links.style.border = "1 px solid red"
+
+			links.innerHTML = " " + wordBank[i] + '<br>'
+			
+			wordDisplay.appendChild(links)
+
+			addLinks()
 			
 
 
 		}
 		
 
-		console.log(word)
-		console.log(wordBank)
+		
 
 
 	}else if (bettorType == "pay dumper"){
@@ -80,14 +93,28 @@
 
 		for(i=0; i<wordBank.length; i++){
 
-			wordDisplay.innerHTML += " " + wordBank[i] + '<br>'
+			links = document.createElement('div')
+			links.setAttribute("class", "words")
+			links.style.height = "30px"
+			links.style.width = "100px"
+			links.style.border = "1 px solid red"
+
+			links.innerHTML = " " + wordBank[i] + '<br>'
+			
+			wordDisplay.appendChild(links)
+
+			var wordChoices = document.getElementsByClassName("words")[i]
+
+			addLinks()
+
+
+
+			
 			
 
 
 		}
 
-		console.log(word)
-		console.log(wordBank)
 
 
 	}else{
@@ -119,33 +146,59 @@
 
 		for(i=0; i<wordBank.length; i++){
 
-			wordDisplay.innerHTML += " " + wordBank[i] + '<br>'
+			links = document.createElement('div')
+			links.setAttribute("class", "words")
+			links.style.height = "30px"
+			links.style.width = "100px"
+			links.style.border = "1 px solid red"
+
+			links.innerHTML = " " + wordBank[i] + '<br>'
+			
+			wordDisplay.appendChild(links)
+
+			var wordChoices = document.getElementsByClassName("words")[i]
+
+			addLinks()
 
 
 
 		}
 
-		console.log(word)
-		console.log(wordBank)
-
 
 
 	}
 
+	var secretWords = document.getElementsByClassName("words")
+	console.log(links)
 
-	if(submit){
+	function addLinks (){
 
-		submit.addEventListener("click", function(){
+		for(s=0; s< secretWords.length; s++){
 
-			if(word == guess.value){
+			secretWords[s].addEventListener("click", function(){
 
-				clientForm.submit()
+				if (secretWords[s] == word){
 
-			}else{
+					clientForm.submit()
 
-				window.location.reload()
-			}
+				}else{
+
+					window.location.reload()
 
 
-		})
+				}
+
+			})
+
+		}
+
 	}
+
+
+
+
+
+	console.log(word)
+
+
+	
