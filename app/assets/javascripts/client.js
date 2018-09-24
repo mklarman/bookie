@@ -9,6 +9,16 @@
 	var wordDisplay = document.getElementById("wordBank")
 	var word
 	var links
+	var wordOne = document.getElementById("word_one")
+	var wordTwo = document.getElementById("word_two")
+	var wordThree = document.getElementById("word_three")
+	var wordFour = document.getElementById("word_four")
+	var wordFive = document.getElementById("word_five")
+	var wordSix = document.getElementById("word_six")
+	var wordSeven = document.getElementById("word_seven")
+	var wordEight = document.getElementById("word_eight")
+	var wordNine = document.getElementById("word_nine")
+	var wordTen = document.getElementById("word_ten")
 
 	var linkHolder
 
@@ -38,7 +48,7 @@
 
 		linkHolder = []
 
-		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
+		word = wordArray[Math.floor(Math.random()*wordArray.length)];
 		var index = wordArray.indexOf(word);
 		
 		if (index > -1) {
@@ -54,41 +64,48 @@
 
 		shuffle(wordBank)
 
-		for(i=0; i<wordBank.length; i++){
+		if (wordOne){
 
-			links_i = document.createElement('div')
-			links_i.style.height = "30px"
-			links_i.style.width = "100px"
-			links_i.style.border = "1 px solid red"
-
-			links_i.innerHTML = " " + wordBank[i] + '<br>'
-
-			links_i.addEventListener("click", function(){
-
-				if (wordBank[i] == word){
-
-					clientForm.submit()
-				
-				}else{
-
-					window.location.reload()
-
-				}
-
-			})
-
-			wordDisplay.appendChild(links_i)
-
-			linkHolder.push(links_i)
-			
-			for (i=0; i< linkHolder.length; i++){
-
-				wordDisplay.innerHTML += linkHolder[i] + " "
-			}
-			
-
+			wordOne.innerHTML = wordBank[0]
+			wordTwo.innerHTML = wordBank[1]
+			wordThree.innerHTML = wordBank[2]
 
 		}
+		// for(i=0; i<wordBank.length; i++){
+
+		// 	links_i = document.createElement('div')
+		// 	links_i.style.height = "30px"
+		// 	links_i.style.width = "100px"
+		// 	links_i.style.border = "1 px solid red"
+
+		// 	links_i.innerHTML = " " + wordBank[i] + '<br>'
+
+		// 	links_i.addEventListener("click", function(){
+
+		// 		if (wordBank[i] == word){
+
+		// 			clientForm.submit()
+				
+		// 		}else{
+
+		// 			window.location.reload()
+
+		// 		}
+
+		// 	})
+
+		// 	wordDisplay.appendChild(links_i)
+
+		// 	linkHolder.push(links_i)
+			
+		// 	for (i=0; i< linkHolder.length; i++){
+
+		// 		wordDisplay.innerHTML += linkHolder[i] + " "
+		// 	}
+			
+
+
+		// }
 		
 
 		
@@ -96,7 +113,7 @@
 
 	}else if (bettorType == "pay dumper"){
 
-		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
+		word = wordArray[Math.floor(Math.random()*wordArray.length)];
 
 		var index = wordArray.indexOf(word);
 
@@ -117,48 +134,59 @@
 
 		shuffle(wordBank)
 
-		for(i=0; i<wordBank.length; i++){
 
-			links_i = document.createElement('div')
-			links_i.style.height = "30px"
-			links_i.style.width = "100px"
-			links_i.style.border = "1 px solid red"
-
-			links_i.innerHTML = " " + wordBank[i] + '<br>'
-
-			links_i.addEventListener("click", function(){
-
-				if (wordBank[i] == word){
-
-					clientForm.submit()
-				
-				}else{
-
-					window.location.reload()
-
-				}
-
-			})
-
-			wordDisplay.appendChild(links_i)
-
-			linkHolder.push(links_i)
+		if (wordOne){
 			
-			for (i=0; i< linkHolder.length; i++){
-
-				wordDisplay.innerHTML += linkHolder[i] + " "
-			}
-			
-
+			wordOne.innerHTML = wordBank[0]
+			wordTwo.innerHTML = wordBank[1]
+			wordThree.innerHTML = wordBank[2]
+			wordFour.innerHTML = wordBank[3]
+			wordFive.innerHTML = wordBank[4]
 
 		}
+
+		// for(i=0; i<wordBank.length; i++){
+
+		// 	links_i = document.createElement('div')
+		// 	links_i.style.height = "30px"
+		// 	links_i.style.width = "100px"
+		// 	links_i.style.border = "1 px solid red"
+
+		// 	links_i.innerHTML = " " + wordBank[i] + '<br>'
+
+		// 	links_i.addEventListener("click", function(){
+
+		// 		if (wordBank[i] == word){
+
+		// 			clientForm.submit()
+				
+		// 		}else{
+
+		// 			window.location.reload()
+
+		// 		}
+
+		// 	})
+
+		// 	wordDisplay.appendChild(links_i)
+
+		// 	linkHolder.push(links_i)
+			
+		// 	for (i=0; i< linkHolder.length; i++){
+
+		// 		wordDisplay.innerHTML += linkHolder[i] + " "
+		// 	}
+			
+
+
+		// }
 
 
 
 	}else{
 
 
-		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
+		word = wordArray[Math.floor(Math.random()*wordArray.length)];
 		var index = wordArray.indexOf(word);
 
 		linkHolder = []
@@ -184,84 +212,270 @@
 
 		shuffle(wordBank)
 
-		for(i=0; i<wordBank.length; i++){
+		if (wordOne){
 
-			links_i = document.createElement('div')
-			links_i.style.height = "30px"
-			links_i.style.width = "100px"
-			links_i.style.border = "1 px solid red"
-
-			links_i.innerHTML = " " + wordBank[i] + '<br>'
-
-			links_i.addEventListener("click", function(){
-
-				if (wordBank[i] == word){
-
-					clientForm.submit()
-				
-				}else{
-
-					window.location.reload()
-
-				}
-
-			})
-
-			wordDisplay.appendChild(links_i)
-
-			linkHolder.push(links_i)
-			
-			for (i=0; i< linkHolder.length; i++){
-
-				wordDisplay.innerHTML += linkHolder[i] + " "
-			}
-			
-
-
-		}
-
-
+			wordOne.innerHTML = wordBank[0]
+			wordTwo.innerHTML = wordBank[1]
+			wordThree.innerHTML = wordBank[2]
+			wordFour.innerHTML = wordBank[3]
+			wordFive.innerHTML = wordBank[4]
+			wordSix.innerHTML = wordBank[5]
+			wordSeven.innerHTML = wordBank[6]
+			wordEight.innerHTML = wordBank[7]
+			wordNine.innerHTML = wordBank[8]
+			wordTen.innerHTML = wordBank[9]
 
 	}
 
-	var testDiv = document.createElement("div")
-	testDiv.setAttribute("id", "test")
 
-	var reloadTest = document.getElementById("test")
-	reloadTest.style.height = "100px"
-	reloadTest.style.width = "100px"
-	reloadTest.style.border = "1px solid red"
-	reloadTest.innerHTML = "HELLO"
+		
 
-	body.appendChild(reloadTest)
+		// for(i=0; i<wordBank.length; i++){
 
-	console.log(linkHolder)
+		// 	links_i = document.createElement('div')
+		// 	links_i.style.height = "30px"
+		// 	links_i.style.width = "100px"
+		// 	links_i.style.border = "1 px solid red"
 
-	var secretWords = document.getElementsByClassName("words")
-	console.log(links)
+		// 	links_i.innerHTML = " " + wordBank[i] + '<br>'
 
-	function addLinks (){
+		// 	links_i.addEventListener("click", function(){
 
-		// for(s=0; s< secretWords.length; s++){
-
-		// 	secretWords[s].addEventListener("click", function(){
-
-		// 		if (secretWords[s] == word){
+		// 		if (wordBank[i] == word){
 
 		// 			clientForm.submit()
-
+				
 		// 		}else{
 
 		// 			window.location.reload()
-
 
 		// 		}
 
 		// 	})
 
+		// 	wordDisplay.appendChild(links_i)
+
+		// 	linkHolder.push(links_i)
+			
+		// 	for (i=0; i< linkHolder.length; i++){
+
+		// 		wordDisplay.innerHTML += linkHolder[i] + " "
+		// 	}
+			
+
+
 		// }
 
+
+
 	}
+
+	// var testDiv = document.createElement("div")
+	// testDiv.setAttribute("id", "test")
+
+	// var reloadTest = document.getElementById("test")
+	// reloadTest.style.height = "100px"
+	// reloadTest.style.width = "100px"
+	// reloadTest.style.border = "1px solid red"
+	// reloadTest.innerHTML = "HELLO"
+
+	// body.appendChild(reloadTest)
+
+	
+	
+
+if (wordOne){	
+	
+	wordOne.addEventListener("click", function(){
+
+		if (wordOne.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+
+if (wordTwo){
+	
+	wordTwo.addEventListener("click", function(){
+
+		if (wordTwo.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordThree){
+
+	wordThree.addEventListener("click", function(){
+
+		if (wordThree.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordFour){
+
+	wordFour.addEventListener("click", function(){
+
+		if (wordFour.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordFive){
+
+	wordFive.addEventListener("click", function(){
+
+		if (wordFive.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordSix){
+
+	wordSix.addEventListener("click", function(){
+
+		if (wordSix.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordSeven){
+
+	wordSeven.addEventListener("click", function(){
+
+		if (wordSeven.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordEight){
+
+	wordEight.addEventListener("click", function(){
+
+		if (wordEight.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordNine){
+
+	wordNine.addEventListener("click", function(){
+
+		if (wordNine.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+if (wordTen){
+
+	wordTen.addEventListener("click", function(){
+
+		if (wordTen.innerHTML == word){
+
+			clientForm.submit()
+		
+		}else{
+
+			window.location.reload()
+
+		}
+
+		
+	})
+
+}
+
+
 
 
 

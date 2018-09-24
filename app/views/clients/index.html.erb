@@ -54,39 +54,6 @@
 
 <% end %>
 
-<div class= "client_index_profit">BANK: <%= @current_br  %></div>
-
-<div id= "info_heading">SPORTS BOOK INFO</div>
-
-<div id= "client_list_heading"> CLIENT LIST</div>
-
-
-
-<% self.sort_clients %>
-
-<div id= "client_info">
-
-
-	<div><%= @small_timers %>: <%= @small %></div>
-	<div><%= @pay_dumpers %>: <%= @pay %></div>
-	<div><%= @whales %>: <%= @high_roll %></div>
-
-</div>
-
-
-<% @array_of_results.each do |r| %>
-
-	<div class= "client_list">
-
-		<div><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
-
-		<div>FIGURE: <%= r[:bank] %></div>
-	
-	</div>
-
-<% end %>
-</div>
-
 <div>
 
 	<% current_user.wagers.each do |w| %>
@@ -205,6 +172,8 @@
 	<% self.get_pending %>
 	<% self.get_ungraded %>
 
+	<div class= "client_index_profit">BANK: <%= @current_br  %></div>
+
 
 
 	<div class= "client_index_stats">
@@ -217,6 +186,18 @@
 
 	</div>
 
+
+	
+
+
+
+
+
+</div>
+
+
+
+<div id= "info_heading">WAGER ANALYSIS
 
 	<div id= "data_cont">
 		<div class="wager_data">
@@ -423,9 +404,38 @@
 
 
 
+</div>
 
+<div id= "client_list_heading"> CLIENT LIST</div>
+
+
+
+<% self.sort_clients %>
+
+<div id= "client_info">
+
+
+	<div><%= @small_timers %>: <%= @small %></div>
+	<div><%= @pay_dumpers %>: <%= @pay %></div>
+	<div><%= @whales %>: <%= @high_roll %></div>
 
 </div>
+
+
+<% @array_of_results.each do |r| %>
+
+	<div class= "client_list">
+
+		<div><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
+
+		<div>FIGURE: <%= r[:bank] %></div>
+	
+	</div>
+
+<% end %>
+</div>
+
+
 
 <br>
 

@@ -38,11 +38,12 @@
 
 #wordBank{
 
-	height: 350px;
+	height: 620px;
 	width: 190px;
 	margin-top: 0px;
 	text-align: center;
 	font-size: 25px;
+	border: 1px solid red;
 	overflow: none;
 	display: block;
 }
@@ -70,8 +71,9 @@
 	height: 100px;
 	width: 288px;
 	border: 1px solid red;
-	margin-top: 5px;
+	margin-top: 10px;
 	font-size: 20px;
+	
 
 }
 
@@ -112,7 +114,7 @@
 
 	font-size: 22px;
 	margin-left: 33px;
-	margin-top: -120px;
+	margin-top: -1200px;
 
 
 
@@ -125,18 +127,19 @@
 	border: 1px solid red;
 	font-size: 22px;
 	margin: auto;
-	margin-top: -900px;
+	margin-top: 0px;
 	margin-left: 580px;
+
 }
 
 #data_cont{
 
-	margin-left: 580px;
+	
 }
 
 #info_heading{
 
-	height: 60px;
+	height: 1000px;
 	width: 270px;
 	border: 1px solid red;
 	font-size: 26px;
@@ -174,4 +177,12 @@
 	width: 280px;
 	font-size: 22px;
 	margin-left: 600px;
+}
+
+.word_cont{
+
+	height: 60px;
+	width: 190px;
+	border: 1px solid red;
+	font-size: 27px;
 }
