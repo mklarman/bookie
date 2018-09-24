@@ -10,6 +10,10 @@
 	var word
 	var links
 
+	var linkHolder
+
+
+
 	
 
 
@@ -32,6 +36,8 @@
 
 	if (bettorType == "small timer"){
 
+		linkHolder = []
+
 		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
 		var index = wordArray.indexOf(word);
 		
@@ -50,17 +56,35 @@
 
 		for(i=0; i<wordBank.length; i++){
 
-			links = document.createElement('div')
-			links.setAttribute("class", "words")
-			links.style.height = "30px"
-			links.style.width = "100px"
-			links.style.border = "1 px solid red"
+			links_i = document.createElement('div')
+			links_i.style.height = "30px"
+			links_i.style.width = "100px"
+			links_i.style.border = "1 px solid red"
 
-			links.innerHTML = " " + wordBank[i] + '<br>'
+			links_i.innerHTML = " " + wordBank[i] + '<br>'
+
+			links_i.addEventListener("click", function(){
+
+				if (wordBank[i] == word){
+
+					clientForm.submit()
+				
+				}else{
+
+					window.location.reload()
+
+				}
+
+			})
+
+			wordDisplay.appendChild(links_i)
+
+			linkHolder.push(links_i)
 			
-			wordDisplay.appendChild(links)
+			for (i=0; i< linkHolder.length; i++){
 
-			addLinks()
+				wordDisplay.innerHTML += linkHolder[i] + " "
+			}
 			
 
 
@@ -75,6 +99,8 @@
 		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
 
 		var index = wordArray.indexOf(word);
+
+		linkHolder = []
 		
 		if (index > -1) {
   			wordArray.splice(index, 1);
@@ -93,23 +119,35 @@
 
 		for(i=0; i<wordBank.length; i++){
 
-			links = document.createElement('div')
-			links.setAttribute("class", "words")
-			links.style.height = "30px"
-			links.style.width = "100px"
-			links.style.border = "1 px solid red"
+			links_i = document.createElement('div')
+			links_i.style.height = "30px"
+			links_i.style.width = "100px"
+			links_i.style.border = "1 px solid red"
 
-			links.innerHTML = " " + wordBank[i] + '<br>'
+			links_i.innerHTML = " " + wordBank[i] + '<br>'
+
+			links_i.addEventListener("click", function(){
+
+				if (wordBank[i] == word){
+
+					clientForm.submit()
+				
+				}else{
+
+					window.location.reload()
+
+				}
+
+			})
+
+			wordDisplay.appendChild(links_i)
+
+			linkHolder.push(links_i)
 			
-			wordDisplay.appendChild(links)
+			for (i=0; i< linkHolder.length; i++){
 
-			var wordChoices = document.getElementsByClassName("words")[i]
-
-			addLinks()
-
-
-
-			
+				wordDisplay.innerHTML += linkHolder[i] + " "
+			}
 			
 
 
@@ -122,6 +160,8 @@
 
 		var word = wordArray[Math.floor(Math.random()*wordArray.length)];
 		var index = wordArray.indexOf(word);
+
+		linkHolder = []
 		
 		if (index > -1) {
   			
@@ -146,20 +186,36 @@
 
 		for(i=0; i<wordBank.length; i++){
 
-			links = document.createElement('div')
-			links.setAttribute("class", "words")
-			links.style.height = "30px"
-			links.style.width = "100px"
-			links.style.border = "1 px solid red"
+			links_i = document.createElement('div')
+			links_i.style.height = "30px"
+			links_i.style.width = "100px"
+			links_i.style.border = "1 px solid red"
 
-			links.innerHTML = " " + wordBank[i] + '<br>'
+			links_i.innerHTML = " " + wordBank[i] + '<br>'
+
+			links_i.addEventListener("click", function(){
+
+				if (wordBank[i] == word){
+
+					clientForm.submit()
+				
+				}else{
+
+					window.location.reload()
+
+				}
+
+			})
+
+			wordDisplay.appendChild(links_i)
+
+			linkHolder.push(links_i)
 			
-			wordDisplay.appendChild(links)
+			for (i=0; i< linkHolder.length; i++){
 
-			var wordChoices = document.getElementsByClassName("words")[i]
-
-			addLinks()
-
+				wordDisplay.innerHTML += linkHolder[i] + " "
+			}
+			
 
 
 		}
@@ -168,29 +224,42 @@
 
 	}
 
+	var testDiv = document.createElement("div")
+	testDiv.setAttribute("id", "test")
+
+	var reloadTest = document.getElementById("test")
+	reloadTest.style.height = "100px"
+	reloadTest.style.width = "100px"
+	reloadTest.style.border = "1px solid red"
+	reloadTest.innerHTML = "HELLO"
+
+	body.appendChild(reloadTest)
+
+	console.log(linkHolder)
+
 	var secretWords = document.getElementsByClassName("words")
 	console.log(links)
 
 	function addLinks (){
 
-		for(s=0; s< secretWords.length; s++){
+		// for(s=0; s< secretWords.length; s++){
 
-			secretWords[s].addEventListener("click", function(){
+		// 	secretWords[s].addEventListener("click", function(){
 
-				if (secretWords[s] == word){
+		// 		if (secretWords[s] == word){
 
-					clientForm.submit()
+		// 			clientForm.submit()
 
-				}else{
+		// 		}else{
 
-					window.location.reload()
+		// 			window.location.reload()
 
 
-				}
+		// 		}
 
-			})
+		// 	})
 
-		}
+		// }
 
 	}
 
