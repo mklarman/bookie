@@ -62,6 +62,10 @@ module WagersHelper
 							 @cfb_sides.push(t.name) 
 							 # @CFB_totals.push(t.total_line) 
 
+						elsif t.sport == "FAN"
+
+							@fan_sides.push(t.name)
+
 						 end 
 
 		 			end
@@ -115,6 +119,17 @@ module WagersHelper
 	  					@teaser_eligible.push(n)
 
 	  				end		
+
+	  			end
+
+	  			if @first_sport == "FAN"
+
+	  				@fan_sides.each do |f|
+
+	  					@straight_container.push(f)
+	  					@teaser_eligible.push(f)
+
+	  				end
 
 	  			end
 
@@ -185,12 +200,22 @@ module WagersHelper
 
 		  				@nfl_sides.each do |n|
 
-	  					@straight_container.push(n)
-	  					@teaser_eligible.push(n)
+	  						@straight_container.push(n)
+	  						@teaser_eligible.push(n)
 
 	  					end		
 	  				end
 
+	  				if @second_sport == "FAN"
+
+	  					@fan_sides.each do |f|
+
+	  						@straight_container.push(f)
+	  						@teaser_eligible.push(f)
+
+	  					end
+
+	  				end
 
 	  				if @second_sport == "MLB"
 
@@ -320,6 +345,17 @@ module WagersHelper
 
 	  			end
 
+	  			if @first_sport == "FAN"
+
+	  				@fan_sides.each do |f|
+
+	  					@straight_container.push(f)
+	  					@teaser_eligible.push(f)
+
+	  				end
+
+	  			end
+
 				if @first_sport == "MLB"
 
 	  				
@@ -387,10 +423,21 @@ module WagersHelper
 
 		  				@nfl_sides.each do |n|
 
-	  					@straight_container.push(n)
-	  					@teaser_eligible.push(n)
+	  						@straight_container.push(n)
+	  						@teaser_eligible.push(n)
 
 	  					end		
+	  				end
+
+	  				if @second_sport == "FAN"
+
+	  					@fan_sides.each do |f|
+
+	  						@straight_container.push(f)
+	  						@teaser_eligible.push(f)
+
+	  					end
+
 	  				end
 
 
@@ -398,8 +445,8 @@ module WagersHelper
 
 		  				@mlb_sides.each do |m|
 
-	  					@choices.push(m)
-	  					@straight_container.push(m)
+	  						@choices.push(m)
+	  						@straight_container.push(m)
 
 	  					end
 	  				end
@@ -408,8 +455,8 @@ module WagersHelper
 
 		  				@nhl_sides.each do |n|
 
-	  					@choices.push(n)
-	  					@straight_container.push(n)
+	  						@choices.push(n)
+	  						@straight_container.push(n)
 
 	  					end
 	  				end
@@ -418,8 +465,8 @@ module WagersHelper
 
 		  				@nba_sides.each do |n|
 
-	  					@straight_container.push(n)
-	  					@teaser_eligible.push(n)
+	  						@straight_container.push(n)
+	  						@teaser_eligible.push(n)
 
 	  					end		
 	  				end
@@ -428,8 +475,8 @@ module WagersHelper
 
 		  				@cbb_sides.each do |n|
 
-	  					@straight_container.push(n)
-	  					@teaser_eligible.push(n)
+	  						@straight_container.push(n)
+	  						@teaser_eligible.push(n)
 
 	  					end		
 	  				end
@@ -438,8 +485,8 @@ module WagersHelper
 
 		  				@cfb_sides.each do |n|
 
-	  					@straight_container.push(n)
-	  					@teaser_eligible.push(n)
+	  						@straight_container.push(n)
+	  						@teaser_eligible.push(n)
 
 	  					end		
 	  				end
@@ -530,6 +577,17 @@ module WagersHelper
 
 	  			end
 
+	  			if @first_sport == "FAN"
+
+	  				@fan_sides.each do |f|
+
+	  					@straight_container.push(f)
+	  					@teaser_eligible.push(f)
+
+	  				end
+
+	  			end
+
 				if @first_sport == "MLB"
 
 	  				
@@ -597,10 +655,21 @@ module WagersHelper
 
 		  				@nfl_sides.each do |n|
 
-	  					@straight_container.push(n)
-	  					@teaser_eligible.push(n)
+	  						@straight_container.push(n)
+	  						@teaser_eligible.push(n)
 
 	  					end		
+	  				end
+
+	  				if @second_sport == "FAN"
+
+	  					@fan_sides.each do |f|
+
+	  						@straight_container.push(f)
+	  						@teaser_eligible.push(f)
+
+	  					end
+
 	  				end
 
 
@@ -1005,7 +1074,7 @@ module WagersHelper
 
 					if t.name == p[:selection]
 
-						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB" || t.sport == "FAN"
 
 							@teams_to_choose.push(p[:selection])
 							@teams_for_teaser.push(p[:selection])
@@ -1020,7 +1089,7 @@ module WagersHelper
 
 					if t.opp == p[:selection]
 
-						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB" || t.sport == "FAN"
 
 							@teams_to_choose.push(p[:selection])
 							@teams_for_teaser.push(p[:selection])
@@ -1035,7 +1104,7 @@ module WagersHelper
 
 					if t.over_line == p[:selection]
 
-						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB" || t.sport == "FAN"
 
 							@teams_to_choose.push(p[:selection])
 							@teams_for_teaser.push(p[:selection])
@@ -1050,7 +1119,7 @@ module WagersHelper
 
 					if t.under_line == p[:selection]
 
-						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB"
+						if t.sport == "NFL" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "CFB" || t.sport == "FAN"
 
 							@teams_to_choose.push(p[:selection])
 							@teams_for_teaser.push(p[:selection])
@@ -1198,7 +1267,7 @@ module WagersHelper
 
 					end
 
-					if t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.name == @pick1
 
@@ -1415,7 +1484,7 @@ module WagersHelper
 
 					end
 
-					if t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.name == @pick1
 
@@ -1755,7 +1824,7 @@ module WagersHelper
 					end
 
 
-					if t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.name == @pick1
 
@@ -2045,7 +2114,7 @@ module WagersHelper
 
 					end
 
-					if t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.name == @pick1
 
@@ -2262,7 +2331,7 @@ module WagersHelper
 
 					end
 
-					if t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.name == @pick1
 
@@ -2781,6 +2850,8 @@ module WagersHelper
 
 			current_user.clients.each do |c|
 
+				@qualify = false
+
 				@client = c
 
 				@counter = 0
@@ -2824,7 +2895,7 @@ module WagersHelper
 
 				if t.name == @wager.team1
 
-					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.spread_result == "loss"
 
@@ -2920,7 +2991,7 @@ module WagersHelper
 
 				elsif t.opp == @wager.team1
 
-					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB"
+					if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
 						if t.spread_result == "loss"
 
