@@ -44,9 +44,29 @@ class WagersController < ApplicationController
 		@wager = Wager.find_by_id(params[:id])
 		@wager.user_id = current_user.id
 
+		@edit_id = [] 
+
+ 		current_user.clients.each do |c|
+
+		 	c.wagers.each do |w| 
+
+				if w.graded == false && w.date != @my_date 
+
+					@edit_id.push(w.id)
+
+
+				end
+
+
+			end 
+
+
+
+ 		end 	
+
 		if @wager.update(wager_params)
 
-			redirect_to users_sportsbook_path
+			redirect_to edit_wager_path(@edit_id[1])
 
 		else
 

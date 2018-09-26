@@ -1,3 +1,4 @@
+<div id=page_wrapper>
 <% current_user.clients.each do |c| %>
 
 		<br>
@@ -7,6 +8,8 @@
 		<% c.wagers.each do |w| %>
 
 			<% if w.graded == false && w.date != @my_date %>
+
+			<div id="ungraded_wager">
 
 				<div class="name_font"><%= c.first_name %>
 									<%= c.last_name %></div>
@@ -20,6 +23,7 @@
 				</div>
 
 				<br>
+			</div>
 
 			<% end %>
 
@@ -29,3 +33,5 @@
 
 
 	<% end %>
+
+</div>

@@ -32,7 +32,7 @@
 #grade_wager{
 
 	height: 50px;
-	width: 180px;
+	width: 200px;
 	border: 1px solid red;
 	font-size: 20px;
 }
@@ -69,4 +69,22 @@
 	margin: auto;
 	margin-top: 20px;
 	font-size: 35px;
+}
+
+#page_wrapper{
+
+	height: 900px;
+	width: 100%;
+	border: 1px solid red;
+	overflow: none;
+	display: inline-block;
+}
+
+#ungraded_wager{
+
+	height: 100px;
+	width: 200px;
+	border: 1px solid red;
+	display: inline-block;
+
 }
