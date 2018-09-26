@@ -62,11 +62,24 @@ class WagersController < ApplicationController
 
 
 
- 		end 	
+ 		end 
+
+ 		@edit_id.delete(@wager.id) 
+					
 
 		if @wager.update(wager_params)
 
-			redirect_to edit_wager_path(@edit_id[1])
+			if @edit_id.length > 0
+
+				redirect_to edit_wager_path(@edit_id[0])
+
+			end
+
+			if @edit_id.length == 0
+
+				redirect_to users_sportsbook_path
+
+			end
 
 		else
 

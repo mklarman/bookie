@@ -3426,8 +3426,6 @@ module WagersHelper
 
 						elsif @ml_counter == 1 || @ml_counter == 2
 
-							@get_val = @winners[1][:spread].to_i
-
 							if @winners[0].class == Hash
 
 

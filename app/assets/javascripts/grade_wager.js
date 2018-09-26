@@ -2,15 +2,15 @@
 
 	var gradeWager = document.getElementById("gradeSubmit")
 
-	if (gradeWager){
+	// if (gradeWager){
 		
-		gradeWager.addEventListener("click", function(){
+	// 	gradeWager.addEventListener("click", function(){
 
-		scoreWager.submit()
+	// 	scoreWager.submit()
 
-		})
+	// 	})
 
-	}
+	// }
 
 	
 

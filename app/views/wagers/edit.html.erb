@@ -2,7 +2,25 @@
 
 <% @cl_id = @wager.client_id %>
 
+<% @ungraded_wagers = [] %>
 
+<% current_user.clients.each do |c| %>
+
+	<% c.wagers.each do |w| %>
+
+		<% if w.graded == false && w.date != @my_date %>
+
+			<% @ungraded_wagers.push(w.id) %>
+
+			
+		<% end %>
+
+
+	<% end %>
+
+
+
+<% end %>
 
 
 <% @ml_counter %>
@@ -553,11 +571,20 @@ HERE: <%= @current_br %>
 
 	console.log(wagerId)
 
-	var cssID = "edit_wager_" + wagerId
+	var ungradedWagers = <%= @ungraded_wagers %>
 
+	
 
+	var cssID = "edit_wager_" + ungradedWagers[0]
 
-	var scoreWager = document.getElementById(cssID) 
+	console.log(cssID)
+
+	var scoreWager = document.getElementById(cssID)
+
+	if(ungradedWagers.length > 0){
+
+		scoreWager.submit()
+	}
 	
 
 
