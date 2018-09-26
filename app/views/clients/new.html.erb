@@ -1,6 +1,8 @@
 
 <div id="pageLabel">FISH FOR CLIENTS</div>
 
+<div id="client_count">Number Of Clients: <%= current_user.clients.count %></div>
+
 <div id="label">WORD BANK</div>
 <div id="wordBank">
 	
@@ -22,7 +24,7 @@
 
 
 
-Your Client Count: <%= current_user.clients.count %>
+
 
 
 
@@ -107,7 +109,7 @@ Your Client Count: <%= current_user.clients.count %>
 
 <% end %>
 
-<% @cities = ["Philly ", "Chicago ", "NYC ", "Boston ", "Houston ", "Los Angeles ", "Brooklyn ", "Queens ", "Phoenix ", "San Antonio ", "the Bronx ", "San Diego ", "Dallas ", "San Jose ", "Austin ", "Jacksonville ", "San Francisco ", "Indianapolis ", "Columbus, OH ", "Fort Worth ", "Charlotte ", "Detroit" "El Paso", "Seattle", "Denver", "Washington D.C. ", "Memphis ", "Nashville ", "Baltimore ", "Oklahoma City ", "Staten Island ", "Kansas City ", "Honolulu ", "Pittsburgh ", "Santa Ana, CA ", "Mesa ", "Cleveland ", "Virginia Beach ", "Atlanta ", "Miami ", "St. Paul, MN ", "Henderson ", "Tampa ", "Raleigh, NC ", "Minneapolis ", "St. Louis ", "Orlando ", "Jersey City ", "Omaha ", "	Portland ", "Milwaukee ", "Oakland ", "Las Vegas ", "Tulsa ", "Plano ", "Anaheim ", "Riverside, CA ", "Stockton ", "Lincoln, NE ", "Arlington ", "Corpus Christi ", "Cincinnati ", "Buffalo ", "Fort Wayne, IN ", "Bakersfield ", "Turnersville, NJ ", "Folsom, PA ", "Chester, PA ", "Atlantic City ", "Margate, NJ ", "Ventnor, NJ ", "Truth Or Consequences, NM ", "Albuquerque ", "Wichita ", "Anchorage ", "Louisville ", "Greensboro, NC ", "Jefferson, CO ", "Harrisberg, PA ", "Trenton, NJ ", "Lower Merion, PA ", "Fayette, KY ", "Newark ", "Toledo ", "Compton ", "Oakland ", "Green Bay ", "Madison, WI ", "Hammonton, NJ ", "Absecon, NJ ", "Fresno ", "Sacramento ", "New Orleans ", "Lexington ", "the Outer Banks ", "Cherry Hill, NJ ", "Deptford, NJ ", "Niagra ", "Syracuse ", "Wilmigton, DE " ] %>
+<% @cities = ["Philly ", "Chicago ", "NYC ", "Boston ", "Houston ", "Los Angeles ", "Brooklyn ", "Queens ", "Phoenix ", "San Antonio ", "the Bronx ", "San Diego ", "Dallas ", "San Jose ", "Austin ", "Jacksonville ", "San Francisco ", "Indianapolis ", "Columbus, OH ", "Fort Worth ", "Charlotte ", "Detroit ", "El Paso ", "Seattle ", "Denver", "Washington D.C. ", "Memphis ", "Nashville ", "Baltimore ", "Oklahoma City ", "Staten Island ", "Kansas City ", "Honolulu ", "Pittsburgh ", "Santa Ana, CA ", "Mesa ", "Cleveland ", "Virginia Beach ", "Atlanta ", "Miami ", "St. Paul, MN ", "Henderson ", "Tampa ", "Raleigh, NC ", "Minneapolis ", "St. Louis ", "Orlando ", "Jersey City ", "Omaha ", "	Portland ", "Milwaukee ", "Oakland ", "Las Vegas ", "Tulsa ", "Plano ", "Anaheim ", "Riverside, CA ", "Stockton ", "Lincoln, NE ", "Arlington ", "Corpus Christi ", "Cincinnati ", "Buffalo ", "Fort Wayne, IN ", "Bakersfield ", "Turnersville, NJ ", "Folsom, PA ", "Chester, PA ", "Atlantic City ", "Margate, NJ ", "Ventnor, NJ ", "Truth Or Consequences, NM ", "Albuquerque ", "Wichita ", "Anchorage ", "Louisville ", "Greensboro, NC ", "Jefferson, CO ", "Harrisberg, PA ", "Trenton, NJ ", "Lower Merion, PA ", "Fayette, KY ", "Newark ", "Toledo ", "Compton ", "Oakland ", "Green Bay ", "Madison, WI ", "Hammonton, NJ ", "Absecon, NJ ", "Fresno ", "Sacramento ", "New Orleans ", "Lexington ", "the Outer Banks ", "Cherry Hill, NJ ", "Deptford, NJ ", "Niagra ", "Syracuse ", "Wilmigton, DE ", "Rehoboth Beach ", "The Outer Banks ", "Corpus Christi ", "Cherry Hill, NJ ", "Plano, TX ", "Orange County, CA ", "Reno ", "Lansing, MI ", "Bizmark ", "Lexington, KY ", "Mobile, AL " ] %>
 
 <% @city = @cities.sample %>
 
@@ -157,6 +159,20 @@ Your Client Count: <%= current_user.clients.count %>
 	</p>
 
 
+
+
+</div>
+
+<div id="rules">
+	
+<p>
+
+	MATCH <%= @fname.upcase %>'S SECRET PASSWORD BY CLICKING ON AN OPTION IN THE WORD BANK.  MATCH THE PASSWORD AND WIN THE CLIENT.
+
+
+
+
+</p>
 
 
 </div>

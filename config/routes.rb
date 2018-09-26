@@ -8,6 +8,8 @@ resources :teams
 
 get "/users/sportsbook" => "welcome#show"
 
+get "/users/ungraded" => "welcome#index"
+
 
 
 

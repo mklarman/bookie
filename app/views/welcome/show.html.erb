@@ -368,37 +368,7 @@
 
 
 
-	<% current_user.clients.each do |c| %>
-
-		<br>
-
-		
-
-		<% c.wagers.each do |w| %>
-
-			<% if w.graded == false && w.date != @my_date %>
-
-				<div class="name_font"><%= c.first_name %>
-									<%= c.last_name %></div>
-
-				<div id="grade_wager">
-
-					<div><%= w.amount %>
-						<%= w.wager_type %></div>
-
-					<%= link_to "Grade Wager", edit_wager_path(w.id), class: 'link_tabs'  %>
-				</div>
-
-				<br>
-
-			<% end %>
-
-
-		<% end %>
-
-
-
-	<% end %>
+	
 
 	
 
