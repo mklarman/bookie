@@ -1,3 +1,9 @@
+<% @my_date %>
+
+<% self.get_time %>
+
+<%= @my_date %>
+
 <div id=page_wrapper>
 <% current_user.clients.each do |c| %>
 
@@ -35,3 +41,18 @@
 	<% end %>
 
 </div>
+
+<% current_user.wagers.each do |w| %>
+
+	<% if w.graded == false %>
+
+		<%= w.wager_type %>
+		<%= w.amount %>
+		<%= w.date %>
+		<div><%= w.id %></div>
+
+
+	<% end %>
+
+
+<% end %>
