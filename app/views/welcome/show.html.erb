@@ -16,6 +16,16 @@
 <% self.sum_pending %>
 <div id="pending_action">PENDING: <%= @pending_action %></div>
 
+<div id = "action_heading">
+
+	<div class = "action_label">SMALL TIMERS</div>
+	<div class = "action_label">PAY DUMPERS</div>
+	<div class = "action_label">WHALES</div>
+
+
+
+</div>
+
 
 	
 
@@ -47,927 +57,985 @@
 
 <br>
 
-	<% current_user.clients.each do |c| %>
+<div id= "master_cont">
 
-		<% @action_counter = false %>
+	<div id = "small_time">
 
-		<% c.wagers.each do |w| %>
 
-			<% if w.date == @my_date %>
+		<% current_user.clients.each do |c| %>
 
-				<% @action_counter = true %>
+			<% @action_counter = false %>
+
+			<% c.wagers.each do |w| %>
+
+				<% if w.date == @my_date %>
+
+					<% @action_counter = true %>
+
+				<% end %>
+
+			<% end %>
+
+			<% if @action_counter == true %>
+
+					<% if c.stakes == "small timer" %>
+						
+						<div class="name_font" id="small_guys"><%= c.first_name %>
+											<%= c.last_name %></div>
+
+						<% c.wagers.each do |w| %>
+
+							<% if @my_date == w.date %>
+
+								<% @pending_action = @pending_action + w.amount.to_i %>
+
+						<br>
+
+					
+								<div id="amount_type"><%= "$" + w.amount.to_s %>
+								<%= w.wager_type %></div>
+
+								<% if w.wager_type == "straight" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+										<br>
+
+								<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+										<br>
+
+								<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
+
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+										<div><%= w.team1 %>
+											<%= @spread1 %></div>
+
+										<div><%= w.team2 %>
+											<%= @spread2 %></div>
+
+										<div><%= w.team3 %>
+											<%= @spread3 %></div>
+											<br>
+
+								<% elsif w.wager_type == "four team reverse" %>
+
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+									<% if w.team4.length > 9  %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% elsif w.spread4.to_i > 0 %>
+
+										<% @spread4 = "+" + w.spread4.to_s %>
+
+									<% else %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+
+									<div><%= w.team3 %>
+										<%= @spread3 %></div>
+
+									<div><%= w.team4 %>
+										<%= @spread4 %></div>
+										<br>
+
+								<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+									<% if w.team4.length > 9  %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% elsif w.spread4.to_i > 0 %>
+
+										<% @spread4 = "+" + w.spread4.to_s %>
+
+									<% else %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% end %>
+
+
+									<% if w.team5.length > 9  %>
+
+										<% @spread5 = w.spread5 %>
+
+									<% elsif w.spread5.to_i > 0 %>
+
+										<% @spread5 = "+" + w.spread5.to_s %>
+
+									<% else %>
+
+										<% @spread5 = w.spread5 %>
+
+									<% end %>
+
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+
+									<div><%= w.team3 %>
+										<%= @spread3 %></div>
+
+									<div><%= w.team4 %>
+										<%= @spread4 %></div>
+
+									<div><%= w.team5 %>
+										<%= @spread5 %></div>
+
+										<br>
+									
+
+								<% end %>
+
+						
+							<% end %>
+
+						<% end %>
+
+					<% end %>
+
+			<% end %>
+
+		<% end %>
+	</div>
+
+	<div id="pay_dump">
+
+		<% current_user.clients.each do |c| %>
+
+			<% @action_counter = false %>
+
+			<% c.wagers.each do |w| %>
+
+				<% if w.date == @my_date %>
+
+					<% @action_counter = true %>
+
+				<% end %>
+
+			<% end %>
+
+			<% if @action_counter == true %>
+
+				
+
+					<% if c.stakes == "pay dumper" %>
+						
+						<div class="name_font" id="pay_guys"><%= c.first_name %>
+											<%= c.last_name %></div>
+
+						<% c.wagers.each do |w| %>
+
+							<% if @my_date == w.date %>
+
+								<% @pending_action = @pending_action + w.amount.to_i %>
+
+						<br>
+
+					
+								<div id="amount_type"><%= "$" + w.amount.to_s %>
+								<%= w.wager_type %></div>
+
+								<% if w.wager_type == "straight" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+										<br>
+
+								<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+										<br>
+
+								<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
+
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+										<div><%= w.team1 %>
+											<%= @spread1 %></div>
+
+										<div><%= w.team2 %>
+											<%= @spread2 %></div>
+
+										<div><%= w.team3 %>
+											<%= @spread3 %></div>
+											<br>
+
+								<% elsif w.wager_type == "four team reverse" %>
+
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+									<% if w.team4.length > 9  %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% elsif w.spread4.to_i > 0 %>
+
+										<% @spread4 = "+" + w.spread4.to_s %>
+
+									<% else %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+
+									<div><%= w.team3 %>
+										<%= @spread3 %></div>
+
+									<div><%= w.team4 %>
+										<%= @spread4 %></div>
+										<br>
+
+								<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+									<% if w.team4.length > 9  %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% elsif w.spread4.to_i > 0 %>
+
+										<% @spread4 = "+" + w.spread4.to_s %>
+
+									<% else %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% end %>
+
+
+									<% if w.team5.length > 9  %>
+
+										<% @spread5 = w.spread5 %>
+
+									<% elsif w.spread5.to_i > 0 %>
+
+										<% @spread5 = "+" + w.spread5.to_s %>
+
+									<% else %>
+
+										<% @spread5 = w.spread5 %>
+
+									<% end %>
+
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+
+									<div><%= w.team3 %>
+										<%= @spread3 %></div>
+
+									<div><%= w.team4 %>
+										<%= @spread4 %></div>
+
+									<div><%= w.team5 %>
+										<%= @spread5 %></div>
+
+										<br>
+									
+
+								<% end %>
+
+						
+							<% end %>
+
+						<% end %>
+
+					<% end %>
+
+			<% end %>
+
+		<% end %>
+	</div>
+
+
+	<div id= "whale">
+		
+		<% current_user.clients.each do |c| %>
+
+			<% @action_counter = false %>
+
+			<% c.wagers.each do |w| %>
+
+				<% if w.date == @my_date %>
+
+					<% @action_counter = true %>
+
+				<% end %>
+
+			<% end %>
+
+			<% if @action_counter == true %>
+
+					<% if c.stakes == "whale" %>
+						
+						<div class="name_font" id="whalers"><%= c.first_name %>
+											<%= c.last_name %></div>
+
+						<% c.wagers.each do |w| %>
+
+							<% if @my_date == w.date %>
+
+								<% @pending_action = @pending_action + w.amount.to_i %>
+
+						<br>
+
+					
+								<div id="amount_type"><%= "$" + w.amount.to_s %>
+								<%= w.wager_type %></div>
+
+								<% if w.wager_type == "straight" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+										<br>
+
+								<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+										<br>
+
+								<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
+
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+										<div><%= w.team1 %>
+											<%= @spread1 %></div>
+
+										<div><%= w.team2 %>
+											<%= @spread2 %></div>
+
+										<div><%= w.team3 %>
+											<%= @spread3 %></div>
+											<br>
+
+								<% elsif w.wager_type == "four team reverse" %>
+
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+									<% if w.team4.length > 9  %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% elsif w.spread4.to_i > 0 %>
+
+										<% @spread4 = "+" + w.spread4.to_s %>
+
+									<% else %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% end %>
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+
+									<div><%= w.team3 %>
+										<%= @spread3 %></div>
+
+									<div><%= w.team4 %>
+										<%= @spread4 %></div>
+										<br>
+
+								<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
+
+									<% if w.team1.length > 9  %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% elsif w.spread1.to_i > 0 %>
+
+										<% @spread1 = "+" + w.spread1.to_s %>
+
+									<% else %>
+
+										<% @spread1 = w.spread1 %>
+
+									<% end %>
+
+									<% if w.team2.length > 9  %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% elsif w.spread2.to_i > 0 %>
+
+										<% @spread2 = "+" + w.spread2.to_s %>
+
+									<% else %>
+
+										<% @spread2 = w.spread2 %>
+
+									<% end %>
+
+									<% if w.team3.length > 9  %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% elsif w.spread3.to_i > 0 %>
+
+										<% @spread3 = "+" + w.spread3.to_s %>
+
+									<% else %>
+
+										<% @spread3 = w.spread3 %>
+
+									<% end %>
+
+									<% if w.team4.length > 9  %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% elsif w.spread4.to_i > 0 %>
+
+										<% @spread4 = "+" + w.spread4.to_s %>
+
+									<% else %>
+
+										<% @spread4 = w.spread4 %>
+
+									<% end %>
+
+
+									<% if w.team5.length > 9  %>
+
+										<% @spread5 = w.spread5 %>
+
+									<% elsif w.spread5.to_i > 0 %>
+
+										<% @spread5 = "+" + w.spread5.to_s %>
+
+									<% else %>
+
+										<% @spread5 = w.spread5 %>
+
+									<% end %>
+
+
+									<div><%= w.team1 %>
+										<%= @spread1 %></div>
+
+									<div><%= w.team2 %>
+										<%= @spread2 %></div>
+
+									<div><%= w.team3 %>
+										<%= @spread3 %></div>
+
+									<div><%= w.team4 %>
+										<%= @spread4 %></div>
+
+									<div><%= w.team5 %>
+										<%= @spread5 %></div>
+
+										<br>
+									
+
+								<% end %>
+
+						
+							<% end %>
+
+						<% end %>
+
+					<% end %>
 
 			<% end %>
 
 		<% end %>
 
-		<% if @action_counter == true %>
+	</div>
 
-			<% if c.stakes == "small timer" %>
-				
-				<div class="name_font"><%= c.first_name %>
-									<%= c.last_name %></div>
-
-				<% c.wagers.each do |w| %>
-
-					<% if @my_date == w.date %>
-
-						<% @pending_action = @pending_action + w.amount.to_i %>
-
-				<br>
-
-			
-						<div id="amount_type"><%= "$" + w.amount.to_s %>
-						<%= w.wager_type %></div>
-
-						<% if w.wager_type == "straight" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-								<br>
-
-						<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-								<br>
-
-						<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
-
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-								<div><%= w.team1 %>
-									<%= @spread1 %></div>
-
-								<div><%= w.team2 %>
-									<%= @spread2 %></div>
-
-								<div><%= w.team3 %>
-									<%= @spread3 %></div>
-									<br>
-
-						<% elsif w.wager_type == "four team reverse" %>
-
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-							<% if w.team4.length > 9  %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% elsif w.spread4.to_i > 0 %>
-
-								<% @spread4 = "+" + w.spread4.to_s %>
-
-							<% else %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-
-							<div><%= w.team3 %>
-								<%= @spread3 %></div>
-
-							<div><%= w.team4 %>
-								<%= @spread4 %></div>
-								<br>
-
-						<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-							<% if w.team4.length > 9  %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% elsif w.spread4.to_i > 0 %>
-
-								<% @spread4 = "+" + w.spread4.to_s %>
-
-							<% else %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% end %>
-
-
-							<% if w.team5.length > 9  %>
-
-								<% @spread5 = w.spread5 %>
-
-							<% elsif w.spread5.to_i > 0 %>
-
-								<% @spread5 = "+" + w.spread5.to_s %>
-
-							<% else %>
-
-								<% @spread5 = w.spread5 %>
-
-							<% end %>
-
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-
-							<div><%= w.team3 %>
-								<%= @spread3 %></div>
-
-							<div><%= w.team4 %>
-								<%= @spread4 %></div>
-
-							<div><%= w.team5 %>
-								<%= @spread5 %></div>
-
-								<br>
-							
-
-						<% end %>
-
-				
-					<% end %>
-
-				<% end %>
-
-			<% end %>
-
-				<% if c.stakes == "pay dumper" %>
-				
-				<div class="name_font"><%= c.first_name %>
-									<%= c.last_name %></div>
-
-				<% c.wagers.each do |w| %>
-
-					<% if @my_date == w.date %>
-
-						<% @pending_action = @pending_action + w.amount.to_i %>
-
-				<br>
-
-			
-						<div id="amount_type"><%= "$" + w.amount.to_s %>
-						<%= w.wager_type %></div>
-
-						<% if w.wager_type == "straight" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-								<br>
-
-						<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-								<br>
-
-						<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
-
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-								<div><%= w.team1 %>
-									<%= @spread1 %></div>
-
-								<div><%= w.team2 %>
-									<%= @spread2 %></div>
-
-								<div><%= w.team3 %>
-									<%= @spread3 %></div>
-									<br>
-
-						<% elsif w.wager_type == "four team reverse" %>
-
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-							<% if w.team4.length > 9  %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% elsif w.spread4.to_i > 0 %>
-
-								<% @spread4 = "+" + w.spread4.to_s %>
-
-							<% else %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-
-							<div><%= w.team3 %>
-								<%= @spread3 %></div>
-
-							<div><%= w.team4 %>
-								<%= @spread4 %></div>
-								<br>
-
-						<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-							<% if w.team4.length > 9  %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% elsif w.spread4.to_i > 0 %>
-
-								<% @spread4 = "+" + w.spread4.to_s %>
-
-							<% else %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% end %>
-
-
-							<% if w.team5.length > 9  %>
-
-								<% @spread5 = w.spread5 %>
-
-							<% elsif w.spread5.to_i > 0 %>
-
-								<% @spread5 = "+" + w.spread5.to_s %>
-
-							<% else %>
-
-								<% @spread5 = w.spread5 %>
-
-							<% end %>
-
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-
-							<div><%= w.team3 %>
-								<%= @spread3 %></div>
-
-							<div><%= w.team4 %>
-								<%= @spread4 %></div>
-
-							<div><%= w.team5 %>
-								<%= @spread5 %></div>
-
-								<br>
-							
-
-						<% end %>
-
-				
-					<% end %>
-
-				<% end %>
-
-			<% end %>
-
-				<% if c.stakes == "whale" %>
-				
-				<div class="name_font"><%= c.first_name %>
-									<%= c.last_name %></div>
-
-				<% c.wagers.each do |w| %>
-
-					<% if @my_date == w.date %>
-
-						<% @pending_action = @pending_action + w.amount.to_i %>
-
-				<br>
-
-			
-						<div id="amount_type"><%= "$" + w.amount.to_s %>
-						<%= w.wager_type %></div>
-
-						<% if w.wager_type == "straight" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-								<br>
-
-						<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-								<br>
-
-						<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
-
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-								<div><%= w.team1 %>
-									<%= @spread1 %></div>
-
-								<div><%= w.team2 %>
-									<%= @spread2 %></div>
-
-								<div><%= w.team3 %>
-									<%= @spread3 %></div>
-									<br>
-
-						<% elsif w.wager_type == "four team reverse" %>
-
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-							<% if w.team4.length > 9  %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% elsif w.spread4.to_i > 0 %>
-
-								<% @spread4 = "+" + w.spread4.to_s %>
-
-							<% else %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% end %>
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-
-							<div><%= w.team3 %>
-								<%= @spread3 %></div>
-
-							<div><%= w.team4 %>
-								<%= @spread4 %></div>
-								<br>
-
-						<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
-
-							<% if w.team1.length > 9  %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% elsif w.spread1.to_i > 0 %>
-
-								<% @spread1 = "+" + w.spread1.to_s %>
-
-							<% else %>
-
-								<% @spread1 = w.spread1 %>
-
-							<% end %>
-
-							<% if w.team2.length > 9  %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% elsif w.spread2.to_i > 0 %>
-
-								<% @spread2 = "+" + w.spread2.to_s %>
-
-							<% else %>
-
-								<% @spread2 = w.spread2 %>
-
-							<% end %>
-
-							<% if w.team3.length > 9  %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% elsif w.spread3.to_i > 0 %>
-
-								<% @spread3 = "+" + w.spread3.to_s %>
-
-							<% else %>
-
-								<% @spread3 = w.spread3 %>
-
-							<% end %>
-
-							<% if w.team4.length > 9  %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% elsif w.spread4.to_i > 0 %>
-
-								<% @spread4 = "+" + w.spread4.to_s %>
-
-							<% else %>
-
-								<% @spread4 = w.spread4 %>
-
-							<% end %>
-
-
-							<% if w.team5.length > 9  %>
-
-								<% @spread5 = w.spread5 %>
-
-							<% elsif w.spread5.to_i > 0 %>
-
-								<% @spread5 = "+" + w.spread5.to_s %>
-
-							<% else %>
-
-								<% @spread5 = w.spread5 %>
-
-							<% end %>
-
-
-							<div><%= w.team1 %>
-								<%= @spread1 %></div>
-
-							<div><%= w.team2 %>
-								<%= @spread2 %></div>
-
-							<div><%= w.team3 %>
-								<%= @spread3 %></div>
-
-							<div><%= w.team4 %>
-								<%= @spread4 %></div>
-
-							<div><%= w.team5 %>
-								<%= @spread5 %></div>
-
-								<br>
-							
-
-						<% end %>
-
-				
-					<% end %>
-
-				<% end %>
-
-			<% end %>
-
-		<% end %>
-
-	<% end %>	
+</div>			
 	
 <% end %>

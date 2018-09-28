@@ -10,6 +10,8 @@ get "/users/sportsbook" => "welcome#show"
 
 get "/users/ungraded" => "welcome#index"
 
+get "users/test" => "welcome#test"
+
 
 
 
