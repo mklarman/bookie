@@ -176,7 +176,9 @@ In My Sports Book
 
  List clients by group name, all clients of a certain stakes grouped together.
 
- 
+ Possible league format:
+
+ Tournament style where users enter and have to start winning clients and then booking their action.  This lasts over the whole tournament which could last one day or 365 days.  Maybe the site iteself hosts the yearly tournament which is the 365 day calendar.  The winner is crowned the king bookmaker and gets to win the bookmakers cup.  But community members can start private tournaments too and set the duration, set how many entrants.  Maybe tournaments are run all the time and community members can enter into them.  They win points for first, second, thrid.  World series of bookmaking.
 
 
 
