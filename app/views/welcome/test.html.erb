@@ -80,6 +80,7 @@ var wagerType
 var wagerAmount
 var netResult
 var searchHolder = []
+var master = document.getElementById("master")
 
 subBtn.addEventListener("click", function(){
 
@@ -113,8 +114,61 @@ subBtn.addEventListener("click", function(){
 
 	console.log(searchHolder)
 
+	for(i=0; i<searchHolder.length; i++){
+
+
+		if (searchHolder[i].wagerType == "two team teaser" || searchHolder[i].wagerType == "three team teaser" || searchHolder[i].wagerType == "five team teaser"){
+
+			var teaserCont1 = document.createElement("div")
+			var teaserCont2 = document.createElement("div")
+			var teaserCont3 = document.createElement("div")
+
+			teaserCont3.style.height = "40px"
+			teaserCont3.style.width = "250px"
+			teaserCont3.style.border = "1px solid red"
+			teaserCont3.style.fontSize = "23px"
+
+			teaserCont2.style.height = "40px"
+			teaserCont2.style.width = "250px"
+			teaserCont2.style.border = "1px solid red"
+			teaserCont2.style.fontSize = "23px"
+
+			teaserCont1.style.height = "40px"
+			teaserCont1.style.width = "250px"
+			teaserCont1.style.border = "1px solid red"
+			teaserCont1.style.fontSize = "23px"
+
+			master.appendChild(teaserCont1)
+			master.appendChild(teaserCont2)
+			master.appendChild(teaserCont3)
+
+			if (searchHolder[i].netResult > 0){
+
+				searchHolder[i].netResult = "+" + searchHolder[i].netResult
+			}
+
+
+
+			
+
+			teaserCont1.innerHTML = "TYPE: " + searchHolder[i].wagerType
+			teaserCont2.innerHTML = "AMOUNT: " + searchHolder[i].wagerAmount
+			teaserCont3.innerHTML = "RESULT: " + searchHolder[i].netResult
+
+			
+
+		}
+
+		
+
+
+	}
+
+	console.log(teaserCont3.childNodes.length)
 
 })
+
+
 
 
 

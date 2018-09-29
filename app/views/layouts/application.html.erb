@@ -20,6 +20,7 @@
     <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
     <%= link_to "Client List", clients_path, class: 'link_tabs'  %>
     <%= link_to "Grade Wagers", users_ungraded_path, class: 'link_tabs'  %>
+    <%= link_to "Search", users_test_path , class: 'link_tabs', data: { turbolinks: false }  %>
   	
     <%= yield %>
   </body>
