@@ -216,11 +216,22 @@
 			
 			<div>PROFIT: <%= @straight_profit %></div>
 
+			<% @net_per = @straight_profit.to_i/@straight_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
+
 
 
 		</div>
 
-	<div class="wager_data">
+		<div class="wager_data">
 
 			<div>TWO TEAM TEASER DATA</div>
 
@@ -235,6 +246,17 @@
 			<% end %>
 			
 			<div>PROFIT: <%= @two_t_profit %></div>
+
+			<% @net_per = @two_t_profit.to_i/@two_t_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
 
 
 
@@ -256,6 +278,17 @@
 			
 			<div>PROFIT: <%= @three_t_profit %></div>
 
+			<% @net_per = @three_t_profit.to_i/@three_t_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
+
 
 
 		</div>
@@ -275,6 +308,17 @@
 			<% end %>
 			
 			<div>PROFIT: <%= @five_t_profit %></div>
+
+			<% @net_per = @five_t_profit.to_i/@five_t_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
 
 
 
@@ -296,6 +340,17 @@
 			
 			<div>PROFIT: <%= @two_p_profit %></div>
 
+			<% @net_per = @two_p_profit.to_i/@two_p_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
+
 
 
 		</div>
@@ -315,6 +370,17 @@
 			<% end %>
 			
 			<div>PROFIT: <%= @three_p_profit %></div>
+
+			<% @net_per = @three_p_profit.to_i/@three_p_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
 
 
 
@@ -336,6 +402,17 @@
 			
 			<div>PROFIT: <%= @five_p_profit %></div>
 
+			<% @net_per = @five_p_profit.to_i/@five_p_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
+
 
 
 		</div>
@@ -355,6 +432,17 @@
 			<% end %>
 			
 			<div>PROFIT: <%= @two_r_profit %></div>
+
+			<% @net_per = @two_r_profit.to_i/@two_r_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
 
 
 
@@ -376,6 +464,17 @@
 			
 			<div>PROFIT: <%= @three_r_profit %></div>
 
+			<% @net_per = @three_r_profit.to_i/@three_r_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
+
 
 
 		</div>
@@ -395,6 +494,17 @@
 			<% end %>
 			
 			<div>PROFIT: <%= @four_r_profit %></div>
+
+			<% @net_per = @four_r_profit.to_i/@four_r_bets.to_i %>
+
+			<% if @net_per > 0 %>
+
+				<% @net_per = "+" + @net_per.to_s %>
+
+
+			<% end %>
+
+			<div>NET PER WAGER: <%= @net_per %> </div>
 
 
 
