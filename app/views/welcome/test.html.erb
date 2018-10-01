@@ -189,6 +189,9 @@
 
 </div>
 
+<div class = "total_results" id="daily_prof">NET FOR DAY: </div>
+<div class = "total_results" id="net_percent">PERCENT CHANGE: </div>
+
 
 
 <div id="type"></div>
@@ -208,10 +211,53 @@ var wagerType
 var wagerAmount
 var netResult
 var searchHolder = []
+var teaserHolder = []
+var straightHolder = []
+var parlayHolder = []
+var reverseHolder = []
+var two_t_holder = []
+var three_t_holder = []
+var five_t_holder = []
+var two_p_holder = []
+var three_p_holder = []
+var five_p_holder = []
+var two_r_holder = []
+var three_r_holder = []
+var four_r_holder = []
+var str_res_hold = []
 var master = document.getElementById("master")
 
 
+
 subBtn.addEventListener("click", function(){
+
+	str_booked.innerHTML = "BOOKED: "
+	teas_booked.innerHTML = "BOOKED: "
+	par_booked.innerHTML = "BOOKED: "
+	rev_booked.innerHTML = "BOOKED: "
+	rev_profit.innerHTML = "PROFIT: "
+	par_profit.innerHTML = "PROFIT: "
+	teas_profit.innerHTML = "PROFIT: "
+	str_profit.innerHTML = "PROFIT: "
+	two_t_booked.innerHTML = "BOOKED: "
+	three_t_booked.innerHTML = "BOOKED: "
+	five_t_booked.innerHTML = "BOOKED: "
+	five_p_booked.innerHTML = "BOOKED: "
+	three_p_booked.innerHTML = "BOOKED: "
+	two_p_booked.innerHTML = "BOOKED: "
+	two_r_booked.innerHTML = "BOOKED: "
+	three_r_booked.innerHTML = "BOOKED: "
+	four_r_booked.innerHTML = "BOOKED: "
+	two_t_prof.innerHTML = "PROFIT: "
+	three_t_prof.innerHTML = "PROFIT: "
+	five_t_prof.innerHTML = "PROFIT: "
+	five_p_prof.innerHTML = "PROFIT: "
+	three_p_prof.innerHTML = "PROFIT: "
+	two_p_prof.innerHTML = "PROFIT: "
+	two_r_prof.innerHTML = "PROFIT: "
+	three_r_prof.innerHTML = "PROFIT: "
+	four_r_prof.innerHTML = "PROFIT: "
+	
 
 	var myDate = dayList.value + " " + monthList.value + " " + yearList.value
 
@@ -248,52 +294,182 @@ subBtn.addEventListener("click", function(){
 
 		if (searchHolder[i].wagerType == "two team teaser" || searchHolder[i].wagerType == "three team teaser" || searchHolder[i].wagerType == "five team teaser"){
 
-			var teaserCont1 = document.createElement("div")
-			var teaserCont2 = document.createElement("div")
-			var teaserCont3 = document.createElement("div")
+			teaserHolder.push(searchHolder[i])
+			
 
-			teaserCont3.style.height = "40px"
-			teaserCont3.style.width = "250px"
-			teaserCont3.style.border = "1px solid red"
-			teaserCont3.style.fontSize = "23px"
+		} else if (searchHolder[i].wagerType == "two team parlay" || searchHolder[i].wagerType == "three team parlay" || searchHolder[i].wagerType == "five team parlay"){
 
-			teaserCont2.style.height = "40px"
-			teaserCont2.style.width = "250px"
-			teaserCont2.style.border = "1px solid red"
-			teaserCont2.style.fontSize = "23px"
+			parlayHolder.push(searchHolder[i])
 
-			teaserCont1.style.height = "40px"
-			teaserCont1.style.width = "250px"
-			teaserCont1.style.border = "1px solid red"
-			teaserCont1.style.fontSize = "23px"
 
-			master.appendChild(teaserCont1)
-			master.appendChild(teaserCont2)
-			master.appendChild(teaserCont3)
+		} else if (searchHolder[i].wagerType == "two team reverse" || searchHolder[i].wagerType == "three team reverse" || searchHolder[i].wagerType == "four team reverse"){
 
-			if (searchHolder[i].netResult > 0){
+			reverseHolder.push(searchHolder[i])
 
-				searchHolder[i].netResult = "+" + searchHolder[i].netResult
+		}else{
+
+			if(searchHolder[i].wagerType == "straight"){
+
+				straightHolder.push(searchHolder[i])
 			}
-
-
-
-			
-
-			teaserCont1.innerHTML = "TYPE: " + searchHolder[i].wagerType
-			teaserCont2.innerHTML = "AMOUNT: " + searchHolder[i].wagerAmount
-			teaserCont3.innerHTML = "RESULT: " + searchHolder[i].netResult
-
-			
-
 		}
 
-		
+		function add(a, b) {
+			
+			return a + b;
+		}
 
+		function sortWagers(array){
+
+			if (array.length > 0){
+
+				for(i=0; i<array.length; i++){
+
+					if (array[i].wagerType == "two team teaser"){
+
+						two_t_holder.push(array[i].netResult)
+
+					}else if (array[i].wagerType == "three team teaser"){
+
+						three_t_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "five team teaser"){
+
+						five_t_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "two team parlay"){
+
+						two_p_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "three team parlay"){
+
+						three_p_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "five team parlay"){
+
+						five_p_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "two team reverse"){
+
+						two_r_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "three team reverse"){
+
+						three_r_holder.push(array[i].netResult)
+					
+					}else if (array[i].wagerType == "four team reverse"){
+
+						four_r_holder.push(array[i].netResult)
+					
+					}else{
+
+						console.log("wager not found")
+					}
+				}
+
+				console.log(two_t_booked.length)
+
+				two_t_booked.innerHTML = two_t_booked.innerHTML + two_t_holder.length
+
+				three_t_booked.innerHTML = three_t_booked.innerHTML + three_t_holder.length
+
+				five_t_booked.innerHTML = five_t_booked.innerHTML + five_t_holder.length
+				
+				five_p_booked.innerHTML = five_p_booked.innerHTML + five_p_holder.length
+				
+				three_p_booked.innerHTML = three_p_booked.innerHTML + three_p_holder.length
+				
+				two_p_booked.innerHTML = two_p_booked.innerHTML + two_p_holder.length
+				
+				two_r_booked.innerHTML = two_r_booked.innerHTML + two_r_holder.length
+				
+				three_r_booked.innerHTML = three_r_booked.innerHTML + three_r_holder.length
+				
+				four_r_booked.innerHTML = four_r_booked.innerHTML + four_r_holder.length
+
+				var two_t_sum = two_t_holder.reduce(add, 0);
+				var three_t_sum = three_t_holder.reduce(add, 0);
+				var five_t_sum = five_t_holder.reduce(add, 0);
+				var five_p_sum = five_p_holder.reduce(add, 0);
+				var three_p_sum = three_p_holder.reduce(add, 0);
+				var two_p_sum = two_p_holder.reduce(add, 0);
+				var two_r_sum = two_r_holder.reduce(add, 0);
+				var three_r_sum = three_r_holder.reduce(add, 0);
+				var four_r_sum = four_r_holder.reduce(add, 0);
+
+				var teaserTotal = two_t_sum + three_t_sum + five_t_sum
+				var parlayTotal = two_p_sum + three_p_sum + five_p_sum
+				var reverseTotal = two_r_sum + three_r_sum + four_r_sum
+
+				if (straightHolder.length > 0) {
+
+					for (i=0; i<straightHolder.length; i++){
+
+						str_res_hold.push(straightHolder[i].netResult)
+					
+					}
+
+					var straight_profit = str_res_hold.reduce(add, 0)
+
+					str_profit.innerHTML = str_profit.innerHTML + 
+					straight_profit
+
+				}
+
+				two_t_prof.innerHTML = two_t_prof.innerHTML + two_t_sum
+				
+				three_t_prof.innerHTML = three_t_prof.innerHTML + three_t_sum
+				
+				five_t_prof.innerHTML = five_t_prof.innerHTML + five_t_sum
+				
+				five_p_prof.innerHTML = five_p_prof.innerHTML + five_p_sum
+				
+				three_p_prof.innerHTML = three_t_prof.innerHTML + three_t_sum
+				
+				two_p_prof.innerHTML = two_t_prof.innerHTML + two_t_sum
+				
+				two_r_prof.innerHTML = two_r_prof.innerHTML + two_r_sum
+				
+				three_r_prof.innerHTML = three_r_prof.innerHTML + three_r_sum
+				
+				four_r_prof.innerHTML = four_r_prof.innerHTML + four_r_sum
+				
+
+			}
+		
+		}
+		
 
 	}
 
-	console.log(teaserCont3.childNodes.length)
+	sortWagers(straightHolder)
+	sortWagers(teaserHolder)
+	sortWagers(parlayHolder)
+	sortWagers(reverseHolder)
+
+	str_booked.innerHTML = str_booked.innerHTML + straightHolder.length
+	teas_booked.innerHTML = teas_booked.innerHTML + teaserHolder.length 
+	par_booked.innerHTML = par_booked.innerHTML + parlayHolder.length 
+	rev_booked.innerHTML = rev_booked.innerHTML + reverseHolder.length 
+	
+	two_t_booked.innerHTML = two_t_booked.innerHTML + two_t_holder.length
+	
+	three_t_booked.innerHTML = three_t_booked.innerHTML + three_t_holder.length
+	
+	five_t_booked.innerHTML = five_t_booked.innerHTML + five_t_holder.length
+	
+	two_p_booked.innerHTML = two_p_booked.innerHTML + two_p_holder.length
+	
+	three_p_booked.innerHTML = three_p_booked.innerHTML + three_p_holder.length
+	
+	five_p_booked.innerHTML = five_p_booked.innerHTML + five_p_holder.length
+	
+	two_r_booked.innerHTML = two_r_booked.innerHTML + two_r_holder.length
+	
+	three_r_booked.innerHTML = three_r_booked.innerHTML + three_r_holder.length
+	
+	four_r_booked.innerHTML = four_r_booked.innerHTML + four_r_holder.length
+
 
 })
 
