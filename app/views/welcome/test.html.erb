@@ -1,67 +1,195 @@
-<div id="master">
+<div id="searchK_keys">
 	
-<label>Choose a day:
-<input list="days" name="days" id="dayChoice" /></label>
-<datalist id="days">
-  <option value="01">
-  <option value="02">
-  <option value="03">
-  <option value="04">
-  <option value="05">
-  <option value="06">
-  <option value="07">
-  <option value="08">
-  <option value="09">
-  <option value="10">
-  <option value="11">
-  <option value="12">
-  <option value="13">
-  <option value="14">
-  <option value="15">
-  <option value="16">
-  <option value="17">
-  <option value="18">
-  <option value="19">
-  <option value="20">
-  <option value="21">
-  <option value="22">
-  <option value="23">
-  <option value="24">
-  <option value="25">
-  <option value="26">
-  <option value="27">
-  <option value="28">
-  <option value="29">
-  <option value="30">
-  <option value="31">
-</datalist>
+	<label>Choose a day:
+	<input list="days" name="days" id="dayChoice" /></label>
+	<datalist id="days">
+	  <option value="01">
+	  <option value="02">
+	  <option value="03">
+	  <option value="04">
+	  <option value="05">
+	  <option value="06">
+	  <option value="07">
+	  <option value="08">
+	  <option value="09">
+	  <option value="10">
+	  <option value="11">
+	  <option value="12">
+	  <option value="13">
+	  <option value="14">
+	  <option value="15">
+	  <option value="16">
+	  <option value="17">
+	  <option value="18">
+	  <option value="19">
+	  <option value="20">
+	  <option value="21">
+	  <option value="22">
+	  <option value="23">
+	  <option value="24">
+	  <option value="25">
+	  <option value="26">
+	  <option value="27">
+	  <option value="28">
+	  <option value="29">
+	  <option value="30">
+	  <option value="31">
+	</datalist>
 
 
-<label>Choose a Month:
-<input list="months" name="months" id= "monthChoice" /></label>
-<datalist id="months">
-  <option value="Jan">
-  <option value="Feb">
-  <option value="Mar">
-  <option value="Apr">
-  <option value="May">
-  <option value="Jun">
-  <option value="Jul">
-  <option value="Aug">
-  <option value="Sep">
-  <option value="Oct">
-  <option value="Nov">
-  <option value="Dec">
-</datalist>
+	<label>Choose a Month:
+	<input list="months" name="months" id= "monthChoice" /></label>
+	<datalist id="months">
+	  <option value="Jan">
+	  <option value="Feb">
+	  <option value="Mar">
+	  <option value="Apr">
+	  <option value="May">
+	  <option value="Jun">
+	  <option value="Jul">
+	  <option value="Aug">
+	  <option value="Sep">
+	  <option value="Oct">
+	  <option value="Nov">
+	  <option value="Dec">
+	</datalist>
 
-<label>Choose a Year:
-<input list="years" name="years" id="yearChoice" /></label>
-<datalist id="years">
-  <option value="2018">
-  <option value="2019">
-</datalist>
+	<label>Choose a Year:
+	<input list="years" name="years" id="yearChoice" /></label>
+	<datalist id="years">
+	  <option value="2018">
+	  <option value="2019">
+	</datalist>
 
-<input type="submit" name="subit" value="ENTER" id="subBtn">
+	<input type="submit" name="submit" value="ENTER" id="subBtn">
+
+</div>
+
+<div id="master">
+
+	<div class = "type_cont" id="str_cont">
+
+		<div class="ty_label">STRAIGHT BETS</div>
+		<div class = "booked" id="str_booked">BOOKED: </div>
+		<div class = "wag_prof" id="str_profit">PROFIT: </div>
+		
+
+	</div>
+	<div class = "type_cont" id="teas_cont">
+
+		<div class="ty_label">TEASER BETS</div>
+		<div class = "booked" id="teas_booked">BOOKED: </div>
+		<div class = "wag_prof" id="teas_profit">PROFIT: </div>
+		
+		<div class = "t_type">TWO TEAM TEASERS
+
+			<div class = "t_booked" id="two_t_booked">BOOKED: </div>
+			<div class = "t_profit" id="two_t_prof">PROFIT: </div>
+
+
+
+		</div>
+
+		<div class = "t_type">THREE TEAM TEASERS
+
+			<div class = "t_booked" id="three_t_booked">BOOKED: </div>
+			<div class = "t_profit" id="three_t_prof">PROFIT: </div>
+
+
+
+		</div>
+
+		<div class = "t_type">FIVE TEAM TEASERS
+
+			<div class = "t_booked" id="five_t_booked">BOOKED: </div>
+			<div class = "t_profit" id="five_t_prof">PROFIT: </div>
+
+
+
+		</div>
+		
+
+	</div>
+	<div class = "type_cont" id="par_cont">
+
+		<div class="ty_label">PARLAY BETS</div>
+
+		<div class = "booked" id="par_booked">BOOKED: </div>
+		<div class = "wag_prof" id="par_profit">PROFIT: </div>
+		
+		<div class = "t_type">TWO TEAM PARLAYS
+
+			<div class = "p_booked" id="two_p_booked">BOOKED: </div>
+			<div class = "p_profit" id="two_p_prof">PROFIT: </div>
+
+
+
+		</div>
+
+		<div class = "t_type">THREE TEAM PARLAYS
+
+			<div class = "t_booked" id="three_p_booked">BOOKED: </div>
+			<div class = "t_profit" id="three_p_prof">PROFIT: </div>
+
+
+
+		</div>
+
+		<div class = "t_type">FIVE TEAM PARLAYS
+
+			<div class = "t_booked" id="five_p_booked">BOOKED: </div>
+			<div class = "t_profit" id="five_p_prof">PROFIT: </div>
+
+
+
+		</div>
+		
+
+	</div>
+	<div class = "type_cont" id="rev_cont">
+
+		<div class="ty_label">REVERSE BETS</div>
+
+		<div class = "booked" id="rev_booked">BOOKED: </div>
+		<div class = "wag_prof" id="rev_profit">PROFIT: </div>
+		
+		<div class = "t_type">TWO TEAM REVERSES
+
+			<div class = "t_booked" id="two_r_booked">BOOKED: </div>
+			<div class = "t_profit" id="two_r_prof">PROFIT: </div>
+
+
+
+		</div>
+
+		<div class = "t_type">THREE TEAM REVERSES
+
+			<div class = "t_booked" id="three_r_booked">BOOKED: </div>
+			<div class = "t_profit" id="three_r_prof">PROFIT: </div>
+
+
+
+		</div>
+
+		<div class = "t_type">FOUR TEAM REVERSES
+
+			<div class = "t_booked" id="four_r_booked">BOOKED: </div>
+			<div class = "t_profit" id="four_r_prof">PROFIT: </div>
+
+
+
+		</div>
+		
+
+	</div>
+
+
+
+
+
+</div>
+
+
 
 <div id="type"></div>
 <div id="amount"></div>
@@ -81,6 +209,7 @@ var wagerAmount
 var netResult
 var searchHolder = []
 var master = document.getElementById("master")
+
 
 subBtn.addEventListener("click", function(){
 
@@ -180,4 +309,3 @@ subBtn.addEventListener("click", function(){
 
 
 
-</div>

@@ -157,9 +157,10 @@
 
 #master{
 
-	height: 1200px;
+	height: 425px;
 	width: 100%;
 	border: 1px solid red;
+	margin-top: 60px;
 }
 
 .inner{
@@ -187,4 +188,94 @@
 
 	color: green;
 
+}
+
+.type_cont{
+
+	height: 100%;
+	width: 24%;
+	border: 1px solid red;
+	display: inline-block;
+	vertical-align: top;
+}
+
+.ty_label{
+
+	height: 10%;
+	width: 100%;
+	border: 1px solid red;
+	font-size: 25px;
+	text-align: center;
+	margin-bottom: 0px;
+	vertical-align: bottom;
+
+}
+
+.booked{
+
+	height: 8%;
+	width: 80%;
+	border: 1px solid red;
+	font-size: 22px;
+
+
+}
+
+.wag_prof{
+
+	height: 8%;
+	width: 80%;
+	border: 1px solid red;
+	font-size: 22px;
+
+}
+
+.t_type{
+
+	height: 20%;
+	width: 100%;
+	border: 1px solid red;
+	font-size: 18px;
+
+
+}
+
+.t_booked{
+
+
+}
+
+.t_profit{
+
+
+}
+
+.p_type{
+
+
+}
+
+.p_booked{
+
+
+}
+
+.p_profit{
+
+
+}
+
+.r_type{
+
+
+}
+
+.r_booked{
+
+
+}
+
+.r_profit{
+
+	
 }
