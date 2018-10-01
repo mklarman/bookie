@@ -225,6 +225,18 @@ var two_r_holder = []
 var three_r_holder = []
 var four_r_holder = []
 var str_res_hold = []
+var twoTSum
+var threeTSum
+var fiveTSum
+var twoPSum
+var threePSum
+var fivePSum
+var twoRSum
+var threeRSum
+var fourRSum
+var teaserTotal
+var parlayTotal
+var reverseTotal
 var master = document.getElementById("master")
 
 
@@ -313,162 +325,212 @@ subBtn.addEventListener("click", function(){
 				straightHolder.push(searchHolder[i])
 			}
 		}
-
-		function add(a, b) {
-			
-			return a + b;
-		}
-
-		function sortWagers(array){
-
-			if (array.length > 0){
-
-				for(i=0; i<array.length; i++){
-
-					if (array[i].wagerType == "two team teaser"){
-
-						two_t_holder.push(array[i].netResult)
-
-					}else if (array[i].wagerType == "three team teaser"){
-
-						three_t_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "five team teaser"){
-
-						five_t_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "two team parlay"){
-
-						two_p_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "three team parlay"){
-
-						three_p_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "five team parlay"){
-
-						five_p_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "two team reverse"){
-
-						two_r_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "three team reverse"){
-
-						three_r_holder.push(array[i].netResult)
-					
-					}else if (array[i].wagerType == "four team reverse"){
-
-						four_r_holder.push(array[i].netResult)
-					
-					}else{
-
-						console.log("wager not found")
-					}
-				}
-
-				console.log(two_t_booked.length)
-
-				two_t_booked.innerHTML = two_t_booked.innerHTML + two_t_holder.length
-
-				three_t_booked.innerHTML = three_t_booked.innerHTML + three_t_holder.length
-
-				five_t_booked.innerHTML = five_t_booked.innerHTML + five_t_holder.length
-				
-				five_p_booked.innerHTML = five_p_booked.innerHTML + five_p_holder.length
-				
-				three_p_booked.innerHTML = three_p_booked.innerHTML + three_p_holder.length
-				
-				two_p_booked.innerHTML = two_p_booked.innerHTML + two_p_holder.length
-				
-				two_r_booked.innerHTML = two_r_booked.innerHTML + two_r_holder.length
-				
-				three_r_booked.innerHTML = three_r_booked.innerHTML + three_r_holder.length
-				
-				four_r_booked.innerHTML = four_r_booked.innerHTML + four_r_holder.length
-
-				var two_t_sum = two_t_holder.reduce(add, 0);
-				var three_t_sum = three_t_holder.reduce(add, 0);
-				var five_t_sum = five_t_holder.reduce(add, 0);
-				var five_p_sum = five_p_holder.reduce(add, 0);
-				var three_p_sum = three_p_holder.reduce(add, 0);
-				var two_p_sum = two_p_holder.reduce(add, 0);
-				var two_r_sum = two_r_holder.reduce(add, 0);
-				var three_r_sum = three_r_holder.reduce(add, 0);
-				var four_r_sum = four_r_holder.reduce(add, 0);
-
-				var teaserTotal = two_t_sum + three_t_sum + five_t_sum
-				var parlayTotal = two_p_sum + three_p_sum + five_p_sum
-				var reverseTotal = two_r_sum + three_r_sum + four_r_sum
-
-				if (straightHolder.length > 0) {
-
-					for (i=0; i<straightHolder.length; i++){
-
-						str_res_hold.push(straightHolder[i].netResult)
-					
-					}
-
-					var straight_profit = str_res_hold.reduce(add, 0)
-
-					str_profit.innerHTML = str_profit.innerHTML + 
-					straight_profit
-
-				}
-
-				two_t_prof.innerHTML = two_t_prof.innerHTML + two_t_sum
-				
-				three_t_prof.innerHTML = three_t_prof.innerHTML + three_t_sum
-				
-				five_t_prof.innerHTML = five_t_prof.innerHTML + five_t_sum
-				
-				five_p_prof.innerHTML = five_p_prof.innerHTML + five_p_sum
-				
-				three_p_prof.innerHTML = three_t_prof.innerHTML + three_t_sum
-				
-				two_p_prof.innerHTML = two_t_prof.innerHTML + two_t_sum
-				
-				two_r_prof.innerHTML = two_r_prof.innerHTML + two_r_sum
-				
-				three_r_prof.innerHTML = three_r_prof.innerHTML + three_r_sum
-				
-				four_r_prof.innerHTML = four_r_prof.innerHTML + four_r_sum
-				
-
-			}
-		
-		}
-		
-
 	}
 
-	sortWagers(straightHolder)
-	sortWagers(teaserHolder)
-	sortWagers(parlayHolder)
-	sortWagers(reverseHolder)
+	function add(a, b) {
+			
+		return a + b;
+	}
+
+	function sortWagers(array){
+
+		if (array.length > 0){
+
+			for(i=0; i<array.length; i++){
+
+				if (array[i].wagerType == "two team teaser"){
+
+					var net = parseInt(array[i].netResult)
+
+					two_t_holder.push(net)
+
+				}else if (array[i].wagerType == "three team teaser"){
+
+					var net = parseInt(array[i].netResult)
+
+					three_t_holder.push(net)
+					
+				}else if (array[i].wagerType == "five team teaser"){
+
+					var net = parseInt(array[i].netResult)
+
+					five_t_holder.push(net)
+					
+				}else if (array[i].wagerType == "two team parlay"){
+
+					var net = parseInt(array[i].netResult)
+
+					two_p_holder.push(net)
+					
+				}else if (array[i].wagerType == "three team parlay"){
+
+					var net = parseInt(array[i].netResult)
+
+					three_p_holder.push(net)
+					
+				}else if (array[i].wagerType == "five team parlay"){
+
+					var net = parseInt(array[i].netResult)
+
+					five_p_holder.push(net)
+					
+				}else if (array[i].wagerType == "two team reverse"){
+
+					var net = parseInt(array[i].netResult)
+
+					two_r_holder.push(net)
+					
+				}else if (array[i].wagerType == "three team reverse"){
+
+					var net = parseInt(array[i].netResult)
+
+					three_r_holder.push(net)
+					
+				}else if (array[i].wagerType == "four team reverse"){
+
+					var net = parseInt(array[i].netResult)
+
+					four_r_holder.push(net)
+					
+				}else{
+
+				
+				}
+			}
+		}
+
+
+		two_t_booked.innerHTML = two_t_booked.innerHTML + two_t_holder.length
+
+		three_t_booked.innerHTML = three_t_booked.innerHTML + three_t_holder.length
+
+		five_t_booked.innerHTML = five_t_booked.innerHTML + five_t_holder.length
+				
+		five_p_booked.innerHTML = five_p_booked.innerHTML + five_p_holder.length
+				
+		three_p_booked.innerHTML = three_p_booked.innerHTML + three_p_holder.length
+				
+		two_p_booked.innerHTML = two_p_booked.innerHTML + two_p_holder.length
+				
+		two_r_booked.innerHTML = two_r_booked.innerHTML + two_r_holder.length
+				
+		three_r_booked.innerHTML = three_r_booked.innerHTML + three_r_holder.length
+				
+		four_r_booked.innerHTML = four_r_booked.innerHTML + four_r_holder.length
+
+		twoTSum = two_t_holder.reduce(add, 0) * -1
+		threeTSum = three_t_holder.reduce(add, 0) * -1
+		fiveTSum = five_t_holder.reduce(add, 0) * -1
+		fivePSum = five_p_holder.reduce(add, 0) * -1
+		threePSum = three_p_holder.reduce(add, 0) * -1
+		twoPSum = two_p_holder.reduce(add, 0) * -1
+		twoRSum = two_r_holder.reduce(add, 0) * -1
+		threeRSum = three_r_holder.reduce(add, 0) * -1
+		fourRSum = four_r_holder.reduce(add, 0) * -1
+
+
+		teaserTotal = twoTSum + threeTSum + fiveTSum
+		parlayTotal = twoPSum + threePSum + fivePSum
+		reverseTotal = twoRSum + threeRSum + fourRSum
+
+		if (straightHolder.length > 0) {
+
+			for (i=0; i<straightHolder.length; i++){
+
+				var net = parseInt(straightHolder[i].netResult)
+
+				str_res_hold.push(net)
+					
+			}
+
+			var straight_profit = str_res_hold.reduce(add, 0) * -1
+
+			if (straight_profit > 0){
+
+				straight_profit = "+" + straight_profit.toString()
+			}
+
+			str_profit.innerHTML = str_profit.innerHTML + straight_profit
+
+		}
+
+		if (twoTSum > 0){
+
+			twoTSum = "+" + twoTSum.toString()
+		}
+
+		if (threeTSum > 0){
+
+			threeTSum = "+" + threeTSum.toString()
+		}
+
+		if (fiveTSum > 0){
+
+			fiveTSum = "+" + fiveTSum.toString()
+		}
+
+		if (twoPSum > 0){
+
+			twoPSum = "+" + twoPSum.toString()
+		}
+
+		if (threePSum > 0){
+
+			threePSum = "+" + threePSum.toString()
+		}
+
+		if (fivePSum > 0){
+
+			fivePSum = "+" + fivePSum.toString()
+		}
+
+		if (twoRSum > 0){
+
+			twoRSum = "+" + twoRSum.toString()
+		}
+
+		if (threeRSum > 0){
+
+			threeRSum = "+" + threeRSum.toString()
+		}
+
+		if (fourRSum > 0){
+
+			fourRSum = "+" + fourRSum.toString()
+		}
+		
+
+		two_t_prof.innerHTML = two_t_prof.innerHTML + twoTSum 
+				
+		three_t_prof.innerHTML = three_t_prof.innerHTML + threeTSum 
+				
+		five_t_prof.innerHTML = five_t_prof.innerHTML + fiveTSum 
+				
+		five_p_prof.innerHTML = five_p_prof.innerHTML + fivePSum 
+				
+		three_p_prof.innerHTML = three_p_prof.innerHTML + threePSum
+				
+		two_p_prof.innerHTML = two_p_prof.innerHTML + twoPSum
+				
+		two_r_prof.innerHTML = two_r_prof.innerHTML + twoRSum
+				
+		three_r_prof.innerHTML = three_r_prof.innerHTML + threeRSum
+				
+		four_r_prof.innerHTML = four_r_prof.innerHTML + fourRSum 
+				
+		
+	}
+	
+
+	sortWagers(searchHolder)
+
+	console.log([twoTSum, threeTSum, twoRSum, fivePSum, twoPSum])
 
 	str_booked.innerHTML = str_booked.innerHTML + straightHolder.length
 	teas_booked.innerHTML = teas_booked.innerHTML + teaserHolder.length 
 	par_booked.innerHTML = par_booked.innerHTML + parlayHolder.length 
 	rev_booked.innerHTML = rev_booked.innerHTML + reverseHolder.length 
 	
-	two_t_booked.innerHTML = two_t_booked.innerHTML + two_t_holder.length
-	
-	three_t_booked.innerHTML = three_t_booked.innerHTML + three_t_holder.length
-	
-	five_t_booked.innerHTML = five_t_booked.innerHTML + five_t_holder.length
-	
-	two_p_booked.innerHTML = two_p_booked.innerHTML + two_p_holder.length
-	
-	three_p_booked.innerHTML = three_p_booked.innerHTML + three_p_holder.length
-	
-	five_p_booked.innerHTML = five_p_booked.innerHTML + five_p_holder.length
-	
-	two_r_booked.innerHTML = two_r_booked.innerHTML + two_r_holder.length
-	
-	three_r_booked.innerHTML = three_r_booked.innerHTML + three_r_holder.length
-	
-	four_r_booked.innerHTML = four_r_booked.innerHTML + four_r_holder.length
 
 
 })
