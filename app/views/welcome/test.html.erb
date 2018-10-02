@@ -462,7 +462,16 @@ subBtn.addEventListener("click", function(){
 		var percent = sumTotal/currentBR * 100
 		 
 		percent = percent.toFixed(2)
-		percent = percent.toString() + "%"
+
+		if (percent > 0) {
+
+			percent = "+" + percent.toString() + "%"
+
+		}else {
+
+			percent = percent.toString() + "%"
+		}
+		
 
 		 net_percent.innerHTML = net_percent.innerHTML + percent
 
