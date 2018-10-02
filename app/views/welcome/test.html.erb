@@ -1,3 +1,7 @@
+<% @current_br %>
+<% @user_results = [] %>
+<% self.get_user_br %>
+
 <div id="searchK_keys">
 	
 	<label>Choose a day:
@@ -210,38 +214,42 @@ var wagerResult = document.getElementById("result")
 var wagerType
 var wagerAmount
 var netResult
-var searchHolder = []
-var teaserHolder = []
-var straightHolder = []
-var parlayHolder = []
-var reverseHolder = []
-var two_t_holder = []
-var three_t_holder = []
-var five_t_holder = []
-var two_p_holder = []
-var three_p_holder = []
-var five_p_holder = []
-var two_r_holder = []
-var three_r_holder = []
-var four_r_holder = []
-var str_res_hold = []
-var twoTSum
-var threeTSum
-var fiveTSum
-var twoPSum
-var threePSum
-var fivePSum
-var twoRSum
-var threeRSum
-var fourRSum
-var teaserTotal
-var parlayTotal
-var reverseTotal
+
 var master = document.getElementById("master")
 
 
 
 subBtn.addEventListener("click", function(){
+
+	var searchHolder = []
+	var teaserHolder = []
+	var straightHolder = []
+	var parlayHolder = []
+	var reverseHolder = []
+	var two_t_holder = []
+	var three_t_holder = []
+	var five_t_holder = []
+	var two_p_holder = []
+	var three_p_holder = []
+	var five_p_holder = []
+	var two_r_holder = []
+	var three_r_holder = []
+	var four_r_holder = []
+	var str_res_hold = []
+	var twoTSum
+	var threeTSum
+	var fiveTSum
+	var twoPSum
+	var threePSum
+	var fivePSum
+	var twoRSum
+	var threeRSum
+	var fourRSum
+	var teaserTotal
+	var parlayTotal
+	var reverseTotal
+	var straightProfit
+	var currentBR = <%= @current_br %>
 
 	str_booked.innerHTML = "BOOKED: "
 	teas_booked.innerHTML = "BOOKED: "
@@ -269,6 +277,8 @@ subBtn.addEventListener("click", function(){
 	two_r_prof.innerHTML = "PROFIT: "
 	three_r_prof.innerHTML = "PROFIT: "
 	four_r_prof.innerHTML = "PROFIT: "
+	net_percent.innerHTML = "PERCENT CHANGE: "
+	daily_prof.innerHTML = "NET FOR DAY: "
 	
 
 	var myDate = dayList.value + " " + monthList.value + " " + yearList.value
@@ -428,11 +438,6 @@ subBtn.addEventListener("click", function(){
 		threeRSum = three_r_holder.reduce(add, 0) * -1
 		fourRSum = four_r_holder.reduce(add, 0) * -1
 
-
-		teaserTotal = twoTSum + threeTSum + fiveTSum
-		parlayTotal = twoPSum + threePSum + fivePSum
-		reverseTotal = twoRSum + threeRSum + fourRSum
-
 		if (straightHolder.length > 0) {
 
 			for (i=0; i<straightHolder.length; i++){
@@ -443,16 +448,61 @@ subBtn.addEventListener("click", function(){
 					
 			}
 
-			var straight_profit = str_res_hold.reduce(add, 0) * -1
-
-			if (straight_profit > 0){
-
-				straight_profit = "+" + straight_profit.toString()
-			}
-
-			str_profit.innerHTML = str_profit.innerHTML + straight_profit
+			straightProfit = str_res_hold.reduce(add, 0) * -1
 
 		}
+
+
+		teaserTotal = twoTSum + threeTSum + fiveTSum
+		parlayTotal = twoPSum + threePSum + fivePSum
+		reverseTotal = twoRSum + threeRSum + fourRSum
+
+		var sumTotal = teaserTotal + parlayTotal + reverseTotal + straightProfit
+
+		var percent = sumTotal/currentBR * 100
+		 
+		percent = percent.toFixed(2)
+		percent = percent.toString() + "%"
+
+		 net_percent.innerHTML = net_percent.innerHTML + percent
+
+
+		if (sumTotal > 0){
+
+			sumTotal = "+" + sumTotal.toString()
+		}
+
+		daily_prof.innerHTML += sumTotal
+
+		if (straightProfit > 0){
+
+				straightProfit = "+" + straightProfit.toString()
+		}
+
+		str_profit.innerHTML = str_profit.innerHTML + straightProfit
+
+		if (teaserTotal > 0){
+
+			teaserTotal = "+" + teaserTotal.toString()
+
+		}
+
+		if (parlayTotal > 0){
+
+			parlayTotal = "+" + parlayTotal.toString()
+
+		}
+
+		if (reverseTotal > 0){
+
+			reverseTotal = "+" + reverseTotal.toString()
+
+
+		}
+
+		teas_profit.innerHTML = teas_profit.innerHTML + teaserTotal
+		par_profit.innerHTML = par_profit.innerHTML+ parlayTotal
+		rev_profit.innerHTML = rev_profit.innerHTML + reverseTotal 
 
 		if (twoTSum > 0){
 

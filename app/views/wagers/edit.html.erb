@@ -23,6 +23,7 @@
 <% end %>
 
 
+<% @client_name %>
 <% @ml_counter %>
 <% @get_val = 0 %>
 <% @client_ser = [] %>
@@ -118,7 +119,6 @@
 
 <% @serial_num = @holder_s + @time_check %>
 
-<%= @serial_num.to_i %>
 
 <% self.get_client_br %>
 <% self.get_user_br %>
@@ -126,9 +126,40 @@
 
 
 
-HERE: <%= @get_val %>
-HERE: <%= @current_client_br %>
-HERE: <%= @current_br %>
+<% if @current_client_br.to_i > 0 %>
+
+	<% @current_client_br = "+" + @current_client_br.to_s %>
+
+
+<% end %>
+
+<% if @current_br.to_i > 0 %>
+
+	<% @current_br = "+" + @current_br.to_s %>
+
+
+<% end %>
+
+<div id="bank_cont">
+	
+	<div id="client_bank">CLIENT FIGURE: <%= @current_client_br %></div>
+	<div id="user_bank"><%= current_user.sports_book_name.upcase %> PROFIT: <%= @current_br %>
+
+	<% current_user.clients.each do |c| %>
+
+		<% if c.id == @wager.client_id %>
+
+			<% @client_name = c.first_name + " " + c.last_name %>
+
+		<% end %>
+
+
+
+	<% end %>
+
+	<div id="clientName">CLIENT NAME: <%= @client_name.upcase %></div>
+
+</div>
 
 
 
@@ -139,6 +170,9 @@ HERE: <%= @current_br %>
 	var wagerId = <%= @wager_id %>
 
 </script>
+
+<% @current_client_br = @current_client_br.to_i %>
+<% @current_br = @current_br.to_i %>
 
 
 
