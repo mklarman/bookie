@@ -18,7 +18,7 @@
     <%= link_to "New Team", new_team_path, class: 'link_tabs'  %>
     <%= link_to "Action", new_wager_path, class: 'link_tabs'  %>
     <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
-    <%= link_to "Client List", clients_path, class: 'link_tabs'  %>
+    <%= link_to current_user.sports_book_name.upcase + " " + "DATA", clients_path, class: 'link_tabs'  %>
     <%= link_to "Grade Wagers", users_ungraded_path, class: 'link_tabs'  %>
     <%= link_to "Search", users_test_path , class: 'link_tabs', data: { turbolinks: false }  %>
   	

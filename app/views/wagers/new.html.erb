@@ -3,6 +3,13 @@
 <% self.get_time %>
 <% self.time_check %>
 
+<script>
+	
+var team1
+
+
+
+</script>
 
 
 
@@ -22,7 +29,7 @@
 <% @num_choices %>
 
 <% @wager_type %>
-<% @pick1 %>
+<% @pick1 = 0 %>
 <% @pick2 %>
 <% @pick3 %>
 <% @pick4 %>
@@ -76,7 +83,7 @@
 <% @num_choices %>
 
 <% @wager_type %>
-<% @pick1 %>
+<% @pick1 = 0 %>
 <% @pick2 %>
 <% @pick3 %>
 <% @pick4 %>
@@ -143,6 +150,13 @@
 			<% self.selections %>
 			<% self.sort %>
 			<% self.fill_wagers %>
+
+			<script>
+
+
+				team1 = <%= @pick1 %>
+
+			</script>
 
 			<% if @wager_type == "straight" %>
 
@@ -546,7 +560,17 @@
 
 		var newWager = document.getElementById("new_wager")
 
-		newWager.submit()
+		if (team1 == 0){
+
+			window.location.reload()
+
+		}else{
+
+			newWager.submit()
+
+		}
+
+		
 
 
 	</script>
