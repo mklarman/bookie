@@ -572,7 +572,20 @@
 
 				<div class = "cl_name"><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
 
-				<div class="cl_figure">FIGURE: <%= r[:bank] %></div>
+				<% if r[:bank].to_i > 0 %>
+
+					<div class="cl_figure" style="color:green">FIGURE: <%= r[:bank] %></div>
+
+				<% elsif r[:bank].to_i == 0  %>
+
+					<div class="cl_figure" style="color:black">FIGURE: <%= r[:bank] %></div>
+
+				<% else %>
+
+					<div class="cl_figure" style="color:red">FIGURE: <%= r[:bank] %></div>
+
+
+				<% end %>
 
 			</div>
 
@@ -588,7 +601,20 @@
 
 				<div class = "cl_name"><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
 
-				<div class="cl_figure">FIGURE: <%= r[:bank] %></div>
+				<% if r[:bank].to_i > 0 %>
+
+					<div class="cl_figure" style="color:green">FIGURE: <%= r[:bank] %></div>
+
+				<% elsif r[:bank].to_i == 0  %>
+
+					<div class="cl_figure" style="color:black">FIGURE: <%= r[:bank] %></div>
+
+				<% else %>
+
+					<div class="cl_figure" style="color:red">FIGURE: <%= r[:bank] %></div>
+
+
+				<% end %>
 
 			</div>
 
@@ -605,7 +631,20 @@
 
 				<div class = "cl_name"><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
 
-				<div class="cl_figure">FIGURE: <%= r[:bank] %></div>
+				<% if r[:bank].to_i > 0 %>
+
+					<div class="cl_figure" style="color:green">FIGURE: <%= r[:bank] %></div>
+
+				<% elsif r[:bank].to_i == 0  %>
+
+					<div class="cl_figure" style="color:black">FIGURE: <%= r[:bank] %></div>
+
+				<% else %>
+
+					<div class="cl_figure" style="color:red">FIGURE: <%= r[:bank] %></div>
+
+
+				<% end %>
 
 			</div>
 
