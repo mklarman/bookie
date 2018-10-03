@@ -12,6 +12,7 @@ module ClientsHelper
 
 			@client_hash[:name] = @combo_name
 			@client_hash[:c_id] = c.id
+			@client_hash[:stakes] = c.stakes
 
 			c.wagers.each do |w|
 

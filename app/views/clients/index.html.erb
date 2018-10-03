@@ -1,3 +1,5 @@
+
+
 <% @heading =  "THE " + current_user.sports_book_name.upcase + " SPORTS BOOK" %>
 
 <div id= "client_index_heading" ><%= @heading %></div>
@@ -38,6 +40,9 @@
 <% @high_roll = 0 %>
 <% @pay = 0 %>
 <% @small = 0 %>
+<% @s_t_holder = [] %>
+<% @p_d_holder = [] %>
+<% @wh_holder = [] %>
 
 <% self.get_time %>
 
@@ -516,33 +521,99 @@
 
 </div>
 
-<div id= "client_list_heading"> CLIENT LIST</div>
-
-
-
 <% self.sort_clients %>
 
-<div id= "client_info">
+<div id= "client_list_heading"> 
 
+	<div id="cl_label">CLIENT LIST</div>
 
-	<div><%= @small_timers %>: <%= @small %></div>
-	<div><%= @pay_dumpers %>: <%= @pay %></div>
-	<div><%= @whales %>: <%= @high_roll %></div>
+	<div id= "client_info">
+
+		<div class = "cl_stakes" id="sm_stakes"><%= @small_timers %>: <%= @small %></div>
+		<div class = "cl_stakes"><%= @pay_dumpers %>: <%= @pay %></div>
+		<div class = "cl_stakes" id="wh_stakes"><%= @whales %>: <%= @high_roll %></div>
+
+</div>
+
 
 </div>
 
 
 <% @array_of_results.each do |r| %>
 
-	<div class= "client_list">
+	<% if r[:stakes] == "small timer" %>
 
-		<div><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
+		<% @s_t_holder.push(r) %>
 
-		<div>FIGURE: <%= r[:bank] %></div>
-	
-	</div>
+	<% end %>
+
+	<% if r[:stakes] == "pay dumper" %>
+
+		<% @p_d_holder.push(r) %>
+
+	<% end %>
+
+	<% if r[:stakes] == "whale" %>
+
+		<% @wh_holder.push(r) %>
+
+	<% end %>
 
 <% end %>
+
+
+<div id="cl_list_hold">
+
+	<div class = "cl_loop">
+
+		<% @s_t_holder.each do |r| %>		
+
+			<div class="client_name_div">
+
+				<div class = "cl_name"><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
+
+				<div class="cl_figure">FIGURE: <%= r[:bank] %></div>
+
+			</div>
+
+		<% end %>
+
+	</div>
+
+	<div class = "cl_loop">
+
+		<% @p_d_holder.each do |r| %>
+
+			<div class="client_name_div">
+
+				<div class = "cl_name"><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
+
+				<div class="cl_figure">FIGURE: <%= r[:bank] %></div>
+
+			</div>
+
+
+		<% end %>
+
+	</div>
+
+	<div class = "cl_loop">
+
+		<% @wh_holder.each do |r| %>
+
+			<div class="client_name_div">
+
+				<div class = "cl_name"><%= link_to r[:name], client_path(r[:c_id]), class: 'link_tabs'  %></div>
+
+				<div class="cl_figure">FIGURE: <%= r[:bank] %></div>
+
+			</div>
+
+
+		<% end %>
+
+	</div>
+		
 </div>
 
 

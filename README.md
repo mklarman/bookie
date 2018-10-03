@@ -180,6 +180,12 @@ In My Sports Book
 
  Tournament style where users enter and have to start winning clients and then booking their action.  This lasts over the whole tournament which could last one day or 365 days.  Maybe the site iteself hosts the yearly tournament which is the 365 day calendar.  The winner is crowned the king bookmaker and gets to win the bookmakers cup.  But community members can start private tournaments too and set the duration, set how many entrants.  Maybe tournaments are run all the time and community members can enter into them.  They win points for first, second, thrid.  World series of bookmaking.
 
+ revisit the sports book data page and revamp the style.  Sort clients by stakes and clean it up as well as maybe add some stats.
+
+ You have to go in and test for real so fix the dislay on grade.  Grade has to turn display off, and then I can enter new matchups and turn the display on.  When you loop through teams you have to look for team name as well as the date of the wager has to match the date of the matchup.
+
+ Write in the snippet of code that will let you work around the bug on wagers new.
+
 
 
 
