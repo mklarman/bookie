@@ -461,7 +461,7 @@
 
 	<% if @wager.team1.length < 12 %>
 
-		<% if @wager.spread1 > 0 %>
+		<% if @wager.spread1.to_i > 0 %>
 
 			<% @wager_spread1 = "+" + @wager.spread1.to_s %>
 
@@ -479,7 +479,7 @@
 
 	<% if @wager.team2.length < 12 %>
 
-		<% if @wager.spread2 > 0 %>
+		<% if @wager.spread2.to_i > 0 %>
 
 			<% @wager_spread2 = "+" + @wager.spread2.to_s %>
 
@@ -499,7 +499,7 @@
 
 	<% if @wager.team3.length < 12 %>
 
-		<% if @wager.spread3 > 0 %>
+		<% if @wager.spread3.to_i > 0 %>
 
 			<% @wager_spread3 = "+" + @wager.spread3.to_s %>
 
@@ -517,7 +517,7 @@
 
 	<% if @wager.team4.length < 12 %>
 
-		<% if @wager.spread4 > 0 %>
+		<% if @wager.spread4.to_i > 0 %>
 
 			<% @wager_spread4 = "+" + @wager.spread4.to_s %>
 
@@ -535,7 +535,7 @@
 
 	<% if @wager.team5.length < 12 %>
 
-		<% if @wager.spread5 > 0 %>
+		<% if @wager.spread5.to_i > 0 %>
 
 			<% @wager_spread5 = "+" + @wager.spread5.to_s %>
 

@@ -187,6 +187,26 @@ In My Sports Book
  Write in the snippet of code that will let you work around the bug on wagers new.
 
 
+ LEAGUE PLAY:
+
+ A league will have a form that gets filled out.  The form will take a user_id - which will be "1" or admin user id or can be the users id if they are creating a league.
+
+ League will also take a start date and end date and a password.
+
+ To start a league a user will need to fill out the league form and then invite who they want.  Those users come to the site, enter the League play tab, enter the password for the league and then brought to that leagues home page, there they are prompted to got to the league client page to get their clients. Can automate this.  league clients will take a league id and a user id along with all the rest.  league wagers will also take a league id and a user id.
+
+ going to need a standings page and a page where everyone gets to see everyone elses action..? and the score of the tournament.  How can I issue tournament points like for a first second and third?
+
+ would have to score their tournament history.  How?  grab all their wagers that have a league id, get league id and look up all users that have said id in wagers.  Gather those users up and score all the wagers from the tournament and place the finishers, pay ten percent of the tournament field rounded up.  so if there are 65 people then pay 6 places.  Start paying two places at five people, anything less is pay 1.  Start to pay three people at 10, start to pay 4 people 20, start to pay 5 at 35, start to pay 6 at 60, and then 10% from then on out.
+
+ pay 1 structure: 2 points
+ pay 2 structure: 4 points, 2 points
+ pay 3 structure: 9, 6, 3
+ pay 4 structure: 16, 12, 8, 4
+ pay 5 structure 25, 20, 15, 10, 5
+ pay 6 structure: 36, 30, 24, 18, 12, 6    
+
+
 
 
 
