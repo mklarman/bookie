@@ -290,7 +290,7 @@ subBtn.addEventListener("click", function(){
 			var hashHolder = new Object
 			wagerType = "<%=w.wager_type %>"
 			wagerAmount = "<%=w.amount %>"
-			netResult = "<%=w.net_result %>"
+			netResult = "<%=w.net_result.to_i %>"
 
 			hashHolder.wagerType = wagerType
 			hashHolder.wagerAmount = wagerAmount
@@ -327,6 +327,8 @@ subBtn.addEventListener("click", function(){
 		} else if (searchHolder[i].wagerType == "two team reverse" || searchHolder[i].wagerType == "three team reverse" || searchHolder[i].wagerType == "four team reverse"){
 
 			reverseHolder.push(searchHolder[i])
+
+			console.log(["here", reverseHolder])
 
 		}else{
 
@@ -398,7 +400,16 @@ subBtn.addEventListener("click", function(){
 					
 				}else if (array[i].wagerType == "four team reverse"){
 
-					var net = parseInt(array[i].netResult)
+					var x = array[i].netResult
+
+					console.log(array[i].wagerAmount)
+					console.log(array[i].netResult)
+
+					console.log(x)
+
+					var net = parseInt(x)
+
+					console.log(net)
 
 					four_r_holder.push(net)
 					
@@ -437,6 +448,10 @@ subBtn.addEventListener("click", function(){
 		twoRSum = two_r_holder.reduce(add, 0) * -1
 		threeRSum = three_r_holder.reduce(add, 0) * -1
 		fourRSum = four_r_holder.reduce(add, 0) * -1
+
+		console.log(four_r_holder[2])
+
+		console.log(four_r_holder)
 
 		if (straightHolder.length > 0) {
 
@@ -602,7 +617,31 @@ subBtn.addEventListener("click", function(){
 
 
 
+
+
 </script>
+
+<% current_user.wagers.each do |w| %>
+
+
+	<% if w.date == "04 Oct 2018" %>
+
+		<% if w.wager_type == "four team reverse" %>
+
+			<div><%= w.amount %>
+			<%= w.net_result %>
+			<%= w.client_id %>
+			<%= w.id %>
+				
+			</div>
+
+
+		<% end %>
+
+	<% end %>
+
+
+<% end %>
 
 
 

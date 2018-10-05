@@ -204,7 +204,13 @@ In My Sports Book
  pay 3 structure: 9, 6, 3
  pay 4 structure: 16, 12, 8, 4
  pay 5 structure 25, 20, 15, 10, 5
- pay 6 structure: 36, 30, 24, 18, 12, 6    
+ pay 6 structure: 36, 30, 24, 18, 12, 6
+
+ I can create a function that calculates their tournament points.
+
+ for leagues, the users need the league password, once they have that they are brough to that leagues information and actions so any form submitted will have said leagues id.
+
+ create functions to score league games.    
 
 
 

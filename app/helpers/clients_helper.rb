@@ -20,7 +20,7 @@ module ClientsHelper
 
 					if w.net_result != "push"
 
-						@client_results.push(w.net_result)
+						@client_results.push(w.net_result.to_i)
 
 					end
 

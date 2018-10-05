@@ -39,7 +39,7 @@ module ApplicationHelper
 
 							else
 
-								@client_results.push(w.net_result)
+								@client_results.push(w.net_result.to_i)
 
 							end
 
@@ -65,7 +65,7 @@ module ApplicationHelper
 
 					else
 
-						@user_results.push(w.net_result)
+						@user_results.push(w.net_result.to_i)
 
 					end
 

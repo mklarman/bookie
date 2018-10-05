@@ -8355,7 +8355,7 @@ module WagersHelper
 
 							else
 
-								@client_results.push(w.net_result)
+								@client_results.push(w.net_result.to_i)
 
 							end
 
@@ -8379,9 +8379,10 @@ module WagersHelper
 
 					if w.net_result == "push"
 
-					else
 
-						@user_results.push(w.net_result)
+					else
+						
+						@user_results.push(w.net_result.to_i)
 
 					end
 
