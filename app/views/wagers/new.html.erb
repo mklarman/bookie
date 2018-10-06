@@ -1,3 +1,97 @@
+<% @nfl_sides = [] %>
+<% @nfl_totals = [] %>
+
+<% @mlb_sides = [] %>
+<% @mlb_totals = [] %>
+
+<% @nba_totals = [] %>
+<% @nba_sides = [] %>
+
+<% @nhl_sides = [] %>
+<% @nhl_totals = [] %>
+
+<% @cbb_sides = [] %>
+<% @cbb_totals = [] %>
+
+<% @cfb_totals = [] %>
+<% @cfb_sides = [] %>
+
+<% @fan_sides = [] %>
+
+<% @spread_pk = "pk" %>
+<% @selections = [] %>
+<% @oppo_picks = [] %>
+<% @matchups = [] %>
+<% @client_picks = [] %>
+<% @teams_to_choose = [] %>
+<% @choices = [] %>
+<% @teaser_eligible = []  %>
+<% @combo %>
+<% @straight_container = [] %>
+<% @team_hash %>
+<% @teaser_teams %>
+<% @num_choices %>
+<% @teams_for_teaser = [] %>
+
+
+
+<% @wager_type %>
+<% @pick1 = 0 %>
+<% @pick2 %>
+<% @pick3 %>
+<% @pick4 %>
+<% @pick5 %>
+<% @spread1 %>
+<% @spread2 %>
+<% @spread3 %>
+<% @spread4 %>
+<% @spread5 %>
+
+
+<% current_user.clients.each do |c| %>
+
+	<% if c.id == 108 %>
+
+		<% @client = c %>
+
+		<% self.display %>
+		<% self.get_teams_and_oppo %>
+		<% self.pick_type %>
+		<% self.pick_teams %>
+		<% self.selections %>
+		<% self.sort %>
+		<% self.fill_wagers %>
+
+		<%= @wager_type %>
+
+		
+		<div>SC<%= @straight_container %></div>
+		<div>Teas<%= @teaser_eligible %></div>
+		
+		<div>Match<%= @matchups %></div>
+		<div>CP<%= @client_picks %></div>
+
+		<div>TEAMS<%= @teams_to_choose %></div>
+		<div>TEAS<%= @teams_for_teaser %></div>
+
+		<div><%= @pick1 %></div>
+		<div><%= @pick2 %></div>
+		<div><%= @pick3 %></div>
+		<div><%= @pick4 %></div>
+		<div><%= @pick5 %></div>
+
+
+		
+		
+
+
+	<% end %>
+
+
+<% end %>
+
+
+
 <% @my_date %>
 <% @time_check %>
 <% self.get_time %>
@@ -58,6 +152,7 @@ var team1
 
 <% @cfb_totals = [] %>
 <% @cfb_sides = [] %>
+
 <% @fan_sides = [] %>
 
 <% @todays_wagers = [] %>
@@ -141,6 +236,52 @@ var team1
 		<div class="wager_info">
 			<div><%= c.first_name %>
 			<%= c.last_name %></div>
+
+			<% @nfl_sides = [] %>
+			<% @nfl_totals = [] %>
+
+			<% @mlb_sides = [] %>
+			<% @mlb_totals = [] %>
+
+			<% @nba_totals = [] %>
+			<% @nba_sides = [] %>
+
+			<% @nhl_sides = [] %>
+			<% @nhl_totals = [] %>
+
+			<% @cbb_sides = [] %>
+			<% @cbb_totals = [] %>
+
+			<% @cfb_totals = [] %>
+			<% @cfb_sides = [] %>
+
+			<% @fan_sides = [] %>
+
+			<% @spread_pk = "pk" %>
+			<% @selections = [] %>
+			<% @oppo_picks = [] %>
+			<% @matchups = [] %>
+			<% @client_picks = [] %>
+			<% @teams_to_choose = [] %>
+			<% @choices = [] %>
+			<% @teaser_eligible = []  %>
+			<% @combo %>
+			<% @straight_container = [] %>
+			<% @team_hash %>
+			<% @teaser_teams %>
+			<% @num_choices %>
+			<% @teams_for_teaser = [] %>
+			<% @wager_type %>
+			<% @pick1 = 0 %>
+			<% @pick2 %>
+			<% @pick3 %>
+			<% @pick4 %>
+			<% @pick5 %>
+			<% @spread1 %>
+			<% @spread2 %>
+			<% @spread3 %>
+			<% @spread4 %>
+			<% @spread5 %>
 
 			<% self.pick_amount %>
 			<% self.get_teams_and_oppo %>
@@ -578,6 +719,8 @@ var team1
  <% end %>
 
 <script src="/assets/display_wager.js"></script>
+
+
 
 
 

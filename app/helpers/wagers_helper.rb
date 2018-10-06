@@ -99,6 +99,12 @@ module WagersHelper
 
 	  	def pick_type
 
+	  		@choices = []
+
+	  		@teaser_eligible = []
+
+	  		@straight_container = []
+
 	  		@first_sport = @client.sports[0] + @client.sports[1] + @client.sports[2]
 			@second_sport 
 
@@ -1018,6 +1024,8 @@ module WagersHelper
 
 		def selections
 
+			@client_picks = []
+
 			@matchups.each do |m|
 
 				@team_hash = Hash.new
@@ -1056,7 +1064,7 @@ module WagersHelper
 
 		 			if s == p[:opponent] 
 
-						p[:selection] = p[:opponent] 
+						 p[:selection] = p[:opponent]
 
 		 			end 
 
