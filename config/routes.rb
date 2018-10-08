@@ -5,6 +5,9 @@ resources :clients
 resources :wagers
 resources :matchups
 resources :teams
+resources :leagues
+resources :league_clients
+resources :league_wagers
 
 get "/users/sportsbook" => "welcome#show"
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180813143849) do
+ActiveRecord::Schema.define(version: 20181008143402) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,50 @@ ActiveRecord::Schema.define(version: 20180813143849) do
     t.string "sports"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "league_clients", force: :cascade do |t|
+    t.string "league_id"
+    t.string "user_id"
+    t.string "league_name"
+    t.string "stakes"
+    t.string "bet_types"
+    t.string "wager_limit"
+    t.string "sports"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "league_wagers", force: :cascade do |t|
+    t.string "user_id"
+    t.string "league_id"
+    t.string "league_client_id"
+    t.string "wager_type"
+    t.integer "amount"
+    t.string "team1"
+    t.string "team2", default: "team2"
+    t.string "team3", default: "team3"
+    t.string "team4", default: "team4"
+    t.string "team5", default: "team5"
+    t.integer "spread1"
+    t.integer "spread2", default: 0
+    t.integer "spread3", default: 0
+    t.integer "spread4", default: 0
+    t.integer "spread5", default: 0
+    t.string "date", default: "00-00-00"
+    t.integer "net_result", default: 0
+    t.string "outcome", default: "none"
+    t.boolean "graded", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "leagues", force: :cascade do |t|
+    t.string "pass"
+    t.integer "clients"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "league_name"
   end
 
   create_table "teams", force: :cascade do |t|

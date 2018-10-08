@@ -1,0 +1,2 @@
+module LeagueClientsHelper
+end

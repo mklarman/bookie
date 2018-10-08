@@ -328,7 +328,7 @@
 
 	<% if @wager.team3.length < 12 %>
 
-		<% if @wager.spread3 > 0 %>
+		<% if @wager.spread3.to_i > 0 %>
 
 			<% @wager_spread3 = "+" + @wager.spread3.to_s %>
 
