@@ -34,7 +34,7 @@ class LeaguesController < ApplicationController
 
 	def league_params
 
-	params.require(:league).permit(:pass, :clients, :league_name)
+	params.require(:league).permit(:pass, :clients, :league_name, :status)
 
 	end
 end

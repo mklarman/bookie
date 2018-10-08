@@ -1,14 +1,99 @@
 
-<div class = "hid">
+<div class = "hide">
 	
 	<%= form_for @league do |l| %>
 		
 		<div>League Name: <%= l.text_field :league_name %></div>
 		<div>Password: <%= l.text_field :pass %></div>
 		<div># Of Clients: <%= l.text_field :clients %></div>
+		<div>Status: <%= l.text_field :status %></div>
 		<%= l.submit %>
 		
 	<% end %>
 
 </div>
+
+<div id="create_label">CREATE LEAGUE</div>
+
+<div id="league_create_cont">
+
+	<div class="league_fields">
+		
+		League Name: <input type="text" name="" id="league_name">
+
+
+	</div>
+	
+	<div class = "league_fields">
+		
+		Password: <input type="text" name="password" id="pass">
+
+	</div>
+	<div class = "league_fields">
+		
+		<label># Of Clients:
+		<input list="client_num" name="client_num" id="client_number" /></label>
+	
+		<datalist id="client_num">
+	  		<option value= "3">
+	  		<option value="6">
+	  		<option value="9">
+	  
+		</datalist>
+		
+
+	</div>
+	<div class = "league_fields">
+
+		<label>Status:
+		<input list="status" name="status" id="stat_choice" /></label>
+	
+		<datalist id="status">
+	  		
+	  		<option value="public">
+	  		<option value="private">
+	  
+		</datalist>
+		
+
+
+
+	</div>
+
+	<input type="submit" name="" value="Create League" id="sub_btn">
+
+
+
+
+</div>
+
+<script>
+	
+	var subBtn = document.getElementById("sub_btn")
+	var pass = document.getElementById("pass")
+	var clientNum = document.getElementById("client_number")
+	var stat = document.getElementById("stat_choice")
+	var leagueName = document.getElementById("league_name")
+	var leagueNm = document.getElementById("league_league_name")
+	var leaguePass = document.getElementById("league_pass")
+	var leagueClients = document.getElementById("league_clients")
+	var leagueStatus = document.getElementById("league_status")
+	
+	subBtn.addEventListener("click", function(){
+
+		leagueNm.value = leagueName.value
+		leaguePass.value = pass.value
+		leagueClients.value = clientNum.value
+		leagueStatus.value = stat.value
+
+		new_league.submit()
+
+
+
+
+	})
+
+</script>
+
+
 
