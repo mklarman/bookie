@@ -1,6 +1,6 @@
 class LeagueWager < ApplicationRecord
 
-	belongs to :league
-	belongs to :user
-	belongs to :league_client
+	belongs_to :league
+	belongs_to :user
+	belongs_to :league_client
 end

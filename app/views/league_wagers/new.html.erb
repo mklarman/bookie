@@ -1,0 +1,25 @@
+<%= form_for LeagueWager.new do |w| %>
+	
+	<%= w.text_field :user_id, :value => current_user.id %>
+	<%= w.text_field :league_client_id, :value => "2" %>
+	<%= w.text_field :league_id, :value => "8" %>
+	<div>Type:<div><%= w.text_field :wager_type, :value => @wager_type %></div>
+	Amount:<div><%= w.text_field :amount, :value => @amount %></div>
+	Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
+	Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
+	Team3:<div><%= w.text_field :team3, :value => @pick3 %></div>
+	Team4:<div><%= w.text_field :team4, :value => @pick4 %></div>
+	Team5:<div><%= w.text_field :team5, :value => @pick5 %></div>
+	Spread1:<div><%= w.text_field :spread1, :value => @spread1 %></div>
+	Spread2:<div><%= w.text_field :spread2, :value => @spread2 %></div>
+	Spread3:<div><%= w.text_field :spread3, :value => @spread3 %></div>
+	Spread4:<div><%= w.text_field :spread4, :value => @spread4 %></div>
+	Spread5:<div><%= w.text_field :spread5, :value => @spread5 %></div>
+	Date:<div><%= w.text_field :date, :value => @my_date %></div>
+	<div><%= w.hidden_field :net_result %></div>
+	
+	<div><%= w.hidden_field :outcome %></div>
+	<div><%= w.hidden_field :graded %></div>
+	<div><%= w.submit %></div>
+
+<% end %>

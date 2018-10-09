@@ -30,6 +30,13 @@ class LeaguesController < ApplicationController
 
 	end
 
+	def show
+
+		@league = League.find_by_id(params[:id])
+
+
+	end
+
 	private
 
 	def league_params

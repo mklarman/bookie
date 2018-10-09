@@ -10,9 +10,8 @@ class LeagueClientsController < ApplicationController
 
 	def create
 
-		user = current_user
 		league_client = LeagueClient.new(league_client_params)
-		user.id = client.user_id
+		league_client.user_id = current_user.id
 
 		if league_client.save
 			
@@ -31,7 +30,7 @@ class LeagueClientsController < ApplicationController
 
 	def league_client_params
 
-		params.require(:league_client).permit(:league_name, :stakes, :bet_types, :sports, :wager_limit)
+		params.require(:league_client).permit(:user_id, :league_id, :league_name, :stakes, :bet_types, :sports, :wager_limit)
 
 	end
 end

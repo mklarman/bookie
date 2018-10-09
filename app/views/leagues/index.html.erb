@@ -2,6 +2,7 @@
 
 <% @leagues.each do |l| %>
 
-	<div><%=l.league_name %></div>
+	<div><%= link_to l.league_name, league_path(l.id), class: 'link_tabs'  %></div>
 
 <% end %>
+
