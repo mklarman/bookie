@@ -3,6 +3,7 @@ class LeagueClientsController < ApplicationController
 	def new
 
 		@league_client = LeagueClient.new
+		@leagues = League.all
 
 
 	end

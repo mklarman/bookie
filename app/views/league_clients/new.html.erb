@@ -1,3 +1,87 @@
+
+<!-- 
+
+
+need to generate the proper amount of clients for each player, work off of the league.clients variable.  Get that number and then loop that many times through the new client form.  Have to ask how many clients with this leagues id does the user have and when it reaches equal to the league.clients number then it is done.  So a master if / else statement.  Have to get the league id for the new league client, ask for the league password again.  Then loop through the leagues looking for that password once you get a match then get the league id.
+
+
+
+ -->
+
+ <% @league_id %>
+
+ <div id= "new_leag_cl_cont">
+
+	<div><input type="text" name="" placeholder="League Password" id="league_pass"></div>
+	
+	<div><input type="submit" name="" value="ENTER" id="sub_pass"></div>
+
+</div>
+
+<script>
+
+	var subPass = document.getElementById("sub_pass")
+	var leagPass = document.getElementById("league_pass")
+
+	subPass.addEventListener("click", function(){
+
+		<% @leagues.each do |l| %>
+
+			console.log(leagPass.value)
+
+			if (leagPass.value == "<%= l.pass %>"){
+
+				console.log("<%= l.id %>")
+
+
+				"<%= @league_id = l.id %>"
+
+
+
+			}
+
+
+
+
+
+		<% end %>
+
+		
+
+
+
+		"<%= @league_id %>"
+
+	})
+
+
+	
+
+</script>
+
+<% if @league_id == 9 %>
+
+	THIS IS 9
+
+<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <%= form_for @league_client do |l| %>
 
 
