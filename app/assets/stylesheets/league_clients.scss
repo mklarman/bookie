@@ -1,3 +1,56 @@
 // Place all the styles related to the league_clients controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#edit_cont{
+
+	height: 400px;
+	width: 500px;
+	margin-left: 275px;
+	margin-top: 100px;
+	border: 1px solid red;
+	text-align: right;
+	font-size: 25px;
+}
+
+.edit_cl{
+
+	height: 20%;
+	width: 100%;
+	border: 1px solid red;
+	text-align: bottom;
+}
+
+#cl_type{
+
+	height: 20px;
+	font-size: 15px;
+}
+
+#cl_quant{
+
+	height: 20px;
+	font-size: 15px;
+}
+
+#cl_stakes{
+
+	height: 20px;
+	font-size: 15px;
+}
+
+#cl_sports{
+
+	height: 20px;
+	font-size: 15px;
+}
+
+#edit_sub{
+
+	height: 25px;
+	width: 100px;
+	background: black;
+	color: white;
+	font-size: 15px;
+	margin-right: 180px;
+}

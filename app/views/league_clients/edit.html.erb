@@ -1,3 +1,127 @@
+<% @leagues.each do |l| %>
+
+	<% if l.id.to_i == @client.league_id.to_i %>
+
+		<div><%=l.league_name %></div>
+		<div><%= @client.league_name %></div>
+
+
+	<% end %>
+
+
+
+<% end %>
+
+
+<div id="edit_cont">
+
+	<div class = "edit_cl">
+	
+	<label>WAGER TYPES:
+		<input list="type" name="type" id="cl_type" /></label>
+	
+		<datalist id="type">
+	  		<option value= "Exotics">
+	  		<option value="Straight">
+	  		<option value="All">
+	  
+		</datalist>
+
+	</div>
+
+	<div class = "edit_cl">
+
+		<label># OF WAGERS PLACED:
+		<input list="quant" name="quant" id="cl_quant" /></label>
+	
+		<datalist id="quant">
+	  		<option value= "1">
+	  		<option value="3">
+	  		<option value="5">
+	  
+		</datalist>
+
+	</div>
+
+	<div class = "edit_cl">
+
+		<label>SPORTS:
+		<input list="sports" name="sports" id="cl_sports" /></label>
+	
+		<datalist id="sports">
+	  		
+	  		<option value= "NFL">
+	  		<option value="MLB">
+	  		<option value="NHL">
+	  		<option value="CFB">
+	  		<option value="CBB">
+	  		<option value="NBA">
+	  		<option value="FAN">
+	  		<option value="ALL">
+	  
+		</datalist>
+
+	</div>
+
+	<div class = "edit_cl">
+
+		<label>STAKES:
+		<input list="stakes" name="stakes" id="cl_stakes" /></label>
+	
+		<datalist id="stakes">
+	  		<option value= "small timer">
+	  		<option value="pay dumper">
+	  		<option value="whale">
+	  
+		</datalist>
+
+	</div>
+
+	<input type="submit" name="" value="Set Client", id="edit_sub">
+
+</div>
+<script>
+	
+	var cl_type = document.getElementById("cl_type")
+	var cl_quant = document.getElementById("cl_quant")
+	var cl_sports = document.getElementById("cl_sports")
+	var cl_stakes = document.getElementById("cl_stakes")
+	var edit_sub = document.getElementById("edit_sub")
+
+	edit_sub.addEventListener("click", function(){
+
+
+		league_client_bet_types.value = cl_type.value
+		league_client_wager_limit.value = cl_quant.value
+		league_client_sports.value = cl_sports.value
+		league_client_stakes.value = cl_stakes.value
+
+		var cl_id = <%= @client.id %>
+
+		cl_id = cl_id.toString()
+
+		var label = "edit_league_client_" + cl_id
+
+		var editForm = document.getElementById(label)
+
+		editForm.submit()
+
+
+
+	})
+
+
+
+
+</script>
+
+
+
+
+
+
+
+
 <div>
 
 	<%= form_for @client do |c| %>
@@ -6,6 +130,7 @@
 		# OF WAGERS: <div><%= c.text_field :wager_limit %></div>
 		SPORTS: <div><%= c.text_field :sports %></div>
 		STAKES: <div><%= c.text_field :stakes %></div>
+		<%= c.submit %>
 
 
 

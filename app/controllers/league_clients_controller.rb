@@ -30,6 +30,7 @@ class LeagueClientsController < ApplicationController
 	def edit
 
 		@client = LeagueClient.find_by_id(params[:id])
+		@leagues = League.all
 
 
 	end
