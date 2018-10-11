@@ -1,6 +1,11 @@
 
 <div><%= @league.league_name %></div>
 
+<% @league_id = @league.id %>
+
+<% @client = LeagueClient.new %>
+
+
 <% if @league.league_clients.count > 0 %>
 
 	<div>SET YOUR LINEUP:</div>
@@ -22,4 +27,15 @@
 	
 
 <% end %>
+
+<% self.display_client_form %>
+
+
+
+<div class = "hide">
+
+	<%= render "client" %>
+
+</div>
+
 

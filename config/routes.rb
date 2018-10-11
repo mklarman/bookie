@@ -20,6 +20,8 @@ get "users/test" => "welcome#test"
 
 
 
+
+
 devise_for :users, :controllers => { :registrations => 'users/registrations' }
 devise_scope :user do
   authenticated :user do

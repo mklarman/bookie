@@ -33,7 +33,15 @@ class LeaguesController < ApplicationController
 	def show
 
 		@league = League.find_by_id(params[:id])
+		@client = LeagueClient.new
+		@league_id = @league.id
 
+
+	end
+
+	def display_client_form
+
+		@client = LeagueClient.new
 
 	end
 
@@ -42,6 +50,12 @@ class LeaguesController < ApplicationController
 	def league_params
 
 	params.require(:league).permit(:pass, :clients, :league_name, :status)
+
+	end
+
+	def league_client_params
+
+		params.require(:league_client).permit(:user_id, :league_id, :league_name, :stakes, :bet_types, :sports, :wager_limit)
 
 	end
 end

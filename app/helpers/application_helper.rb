@@ -1,5 +1,11 @@
 module ApplicationHelper
 
+	def display_client_form
+
+		@client = LeagueClient.new
+
+	end
+
 	def time_check
 
 			@get_hour = Time.now  
