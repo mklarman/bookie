@@ -2,8 +2,12 @@
 
 	<% if l.id.to_i == @client.league_id.to_i %>
 
-		<div><%=l.league_name %></div>
-		<div><%= @client.league_name %></div>
+		<div id = "info_cont">
+
+			<div class = "cl_info">LEAGUE NAME: <%=l.league_name %></div>
+			<div class = "cl_info">CLIENT: <%= @client.league_name %></div>
+
+		</div>
 
 
 	<% end %>
@@ -122,7 +126,8 @@
 
 
 
-<div>
+<div class = "hide">
+
 
 	<%= form_for @client do |c| %>
 
