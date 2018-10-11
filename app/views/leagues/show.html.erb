@@ -1,41 +1,72 @@
+<% @id_holder = [] %>
+
+
+<% @league.league_clients.each do |c| %>
+
+	<% if c.user_id.to_i == current_user.id.to_i %>
+
+		<% @id_holder.push(c.user_id) %>
+
+	<% end %>
+
+<% end %>
+
+<%= @id_holder.length %>
+
+<% if @id_holder.length < @league.clients.to_i %>
+
+	<div><%= "LOADING CLIENTS..." %></div>
+
+	<div class = "hide">
+
+		<%= render "client" %>
+
+	</div>
+
+	<script>
+		
+		new_league_client.submit()
+
+
+	</script>
+
+
+<% end %>
+
 
 <div><%= @league.league_name %></div>
 
-<% @league_id = @league.id %>
 
-<% @client = LeagueClient.new %>
+COUNT: <%= @league.league_clients.count %>
 
 
-<% if @league.league_clients.count > 0 %>
 
-	<div>SET YOUR LINEUP:</div>
+
+
+<div>SET YOUR LINEUP:</div>
 	
-	<% @league.league_clients.each do |c| %>
+<% @league.league_clients.each do |c| %>
 
-		<div><% link_to c.league_name, edit_client_path(c.id), class: 'link_tabs' %>
+	<% if c.user_id.to_i == current_user.id.to_i %>
+
+		<div><%= link_to c.league_name, edit_league_client_path(c.id) %></div>
 
 
 	<% end %>
 
-	<div><% link_to "BOOK TOURNAMENT ACTION", new_league_wager_path, class: 'link_tabs' %></div>
-
-<% else %>
-
-	<%= link_to "ACQUIRE TOURNAMENT CLIENTS", new_league_client_path, class: 'link_tabs'  %>
-
-	
 	
 
 <% end %>
 
-<% self.display_client_form %>
+	
+	
 
 
 
-<div class = "hide">
 
-	<%= render "client" %>
 
-</div>
+
+
+
 
 

@@ -27,6 +27,30 @@ class LeagueClientsController < ApplicationController
 
 	end
 
+	def edit
+
+		@client = LeagueClient.find_by_id(params[:id])
+
+
+	end
+
+	def update
+
+		@client = LeagueClient.find_by_id(params[:id])
+		@league_id = @client.league_id
+
+		if @client.update(league_client_params)
+
+			redirect_to league_path(@league_id) 
+		else
+
+			render users_sportsbook_path
+
+		end
+
+
+	end
+
 	private
 
 	def league_client_params

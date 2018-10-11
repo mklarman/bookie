@@ -1,10 +1,17 @@
 
+<% @num = @id_holder.length %>
+
+<% @num = @id_holder.length + 1 %>
+
+<% @num = @num.to_s %>
+
+<% @name = "Client" + @num %>
 
 <%= form_for @client do |l| %>
 
 	<%= l.text_field :league_id, value: @league.id %>
 	<%= l.text_field :user_id, value: current_user.id %>
-	<div>NAME: <%= l.text_field :league_name %></div>
+	<div>NAME: <%= l.text_field :league_name, value: @name %></div>
 	<div>Stakes: <%= l.text_field :stakes %></div>
 	<div>Wager Type:<%= l.text_field :bet_types %></div>
 	<div>Bet Quantity: <%= l.text_field :wager_limit %></div>
