@@ -1,5 +1,7 @@
 <% @client_holder = [] %>
 
+<% @qualified_clients = [] %>
+
 
 <% @clients.each do |c| %>
 
@@ -12,6 +14,33 @@
 
 <% end %>
 
-<%= @client_holder.sample.stakes %>
+<% @client_holder.each do |c| %>
 
-<%= render "new" %>
+	<% @wager_num = 0 %>
+
+	<% @wagers.each do |w| %>
+
+		<% if c.id.to_i == w.league_client_id.to_i %>
+
+			<% @wager_num = @wager_num + 1 %> 
+
+		<% end %>
+
+	<% end %>
+
+	<% if @wager_num < c.wager_limit.to_i %>
+
+		<% @qualified_clients.push(c) %>
+
+
+	<% end %>
+
+
+
+<% end %>
+
+<%= @qualified_clients.count %>
+
+
+
+<% render "new" %>

@@ -10,6 +10,11 @@
 
   <body>
 
+
+    <% @my_client %>
+    <% self.get_access %>
+   
+
   	<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
   	<%= link_to "Sign Up", new_user_registration_path, class: 'link_tabs'  %>
   	<%= link_to "Sign in", user_session_path, class: 'link_tabs'  %>
@@ -24,8 +29,9 @@
     <%= link_to "INDEX LEAGUE", leagues_path, class: 'link_tabs'  %>
     <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
     <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
+    <%= link_to "LC SHOW", league_client_path(@my_client.id), class: 'link_tabs'  %>
+
     <%= link_to "Search", users_test_path , class: 'link_tabs', data: { turbolinks: false }  %>
-     <%= link_to "ACQUIRE TOURNAMENT CLIENTS", new_league_client_path, class: 'link_tabs'  %>
   	
     <%= yield %>
   </body>

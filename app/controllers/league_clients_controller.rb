@@ -32,6 +32,7 @@ class LeagueClientsController < ApplicationController
 		@client = LeagueClient.find_by_id(params[:id])
 		@wager = LeagueWager.new
 		@clients = LeagueClient.all
+		@wagers = LeagueWager.all
 
 	end
 

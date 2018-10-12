@@ -1,5 +1,19 @@
 module ApplicationHelper
 
+	def get_access
+
+		LeagueClient.all.each do |c|
+
+			if c.id.to_i == 267
+
+				@my_client = c
+
+			end
+
+		end
+
+	end
+
 	def display_client_form
 
 		@client = LeagueClient.new
