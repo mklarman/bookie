@@ -1,11 +1,8 @@
-
-
-
-<%= form_for LeagueWager.new do |w| %>
+<%= form_for @wager do |w| %>
 	
 	<%= w.text_field :user_id, :value => current_user.id %>
-	<%= w.text_field :league_client_id, :value => "2" %>
-	<%= w.text_field :league_id, :value => "8" %>
+	<%= w.text_field :league_client_id, :value => "5" %>
+	<%= w.text_field :league_id, :value => "5"  %>
 	<div>Type:<div><%= w.text_field :wager_type, :value => @wager_type %></div>
 	Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 	Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>

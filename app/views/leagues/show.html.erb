@@ -49,7 +49,15 @@ COUNT: <%= @league.league_clients.count %>
 
 	<% if c.user_id.to_i == current_user.id.to_i %>
 
-		<div><%= link_to c.league_name, edit_league_client_path(c.id) %></div>
+		<div><%= c.league_name %></div>
+		<div><%= c.stakes %></div>
+		<div><%= c.bet_types %></div>
+		<div><%= c.wager_limit %></div>
+		<div><%= c.sports %></div>
+
+
+		<div><%= link_to "CHANGE SETTINGS", edit_league_client_path(c.id) %></div>
+		<div><%= link_to "BOOK ACTION", league_client_path(c.id) %></div>
 
 
 	<% end %>
@@ -57,6 +65,8 @@ COUNT: <%= @league.league_clients.count %>
 	
 
 <% end %>
+
+
 
 	
 	

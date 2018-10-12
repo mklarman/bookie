@@ -5,6 +5,7 @@ class LeagueWagersController < ApplicationController
 		@league_wager = LeagueWager.new
 		@teams = Team.all
 		@team = Team.where(display: "on")
+		@league_clients = LeagueClient.all
 
 
 

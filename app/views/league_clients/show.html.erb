@@ -1,0 +1,17 @@
+<% @client_holder = [] %>
+
+
+<% @clients.each do |c| %>
+
+	<% if c.league_id == @client.league_id %>
+
+		<% @client_holder.push(c) %>
+
+	<% end %>
+
+
+<% end %>
+
+<%= @client_holder.sample.stakes %>
+
+<%= render "new" %>

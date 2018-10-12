@@ -27,6 +27,14 @@ class LeagueClientsController < ApplicationController
 
 	end
 
+	def show
+
+		@client = LeagueClient.find_by_id(params[:id])
+		@wager = LeagueWager.new
+		@clients = LeagueClient.all
+
+	end
+
 	def edit
 
 		@client = LeagueClient.find_by_id(params[:id])
@@ -51,6 +59,7 @@ class LeagueClientsController < ApplicationController
 
 
 	end
+
 
 	private
 
