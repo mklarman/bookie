@@ -15,8 +15,7 @@ class LeagueWagersController < ApplicationController
 
 		league_wager = LeagueWager.new(league_wager_params)
 		league_wager.user_id = current_user.id
-		league_wager.league_client_id = "1"
-		league_wager.league_id = "8"
+		
 
 		if league_wager.save!
 			

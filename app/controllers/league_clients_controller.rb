@@ -68,4 +68,10 @@ class LeagueClientsController < ApplicationController
 		params.require(:league_client).permit(:user_id, :league_id, :league_name, :stakes, :bet_types, :sports, :wager_limit)
 
 	end
+
+	def league_wager_params
+
+	params.require(:league_wager).permit(:user_id, :league_client_id, :league_id, :wager_type, :amount, :team1, :team2, :team3, :team4, :team5, :spread1, :spread2, :spread3, :spread4, :spread5, :date, :net_result, :outcome, :graded)
+
+end
 end
