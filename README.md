@@ -210,7 +210,28 @@ In My Sports Book
 
  for leagues, the users need the league password, once they have that they are brough to that leagues information and actions so any form submitted will have said leagues id.
 
- create functions to score league games.    
+ create functions to score league games.
+
+
+ The first time to the league home page, the page first loads your clients for the league.
+
+ TO GENERATE LEAGUE WAGERS:
+
+ must use a show page of a league client, that way get the league client id and league id.
+
+ on the league home page page, first check if the current date is after the end date.  If it is after the end date then show the final standings of the league, if it is the last day or before then show them their client roster and link to the wager page(league_client_show), and standings.
+
+ if on the wager page:
+
+ find the league_id, league_client_id of all their clients.  store the ids in an array.  Check the clients to see if they qualify, the ids of the qualified clients stored in an array.
+
+ grab quaified[0] from the array and using their setting generate wagers.  Generate amount, type, and teams then auto submit and redirect back.  If qualified.length == 0 then display ALL ACTION IN.
+
+ back on the league home page have an option to see the action of participants.
+
+ for grading, have a link to the edit/league wager of the first wager and on that page redirect to the url of the next wager to be graded(just like in wagers controller).
+
+ have to loop through teams and look where display == on. and sort matchups into sport containers.  use the functions I have might be easiest.   
 
 
 
