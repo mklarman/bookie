@@ -7,6 +7,7 @@
 		<div>Password: <%= l.text_field :pass %></div>
 		<div># Of Clients: <%= l.text_field :clients %></div>
 		<div>Status: <%= l.text_field :status %></div>
+		<div>END DATE: <%= l.text_field :end_date %></div>
 		<%= l.submit %>
 		
 	<% end %>
@@ -54,7 +55,95 @@
 	  		<option value="private">
 	  
 		</datalist>
-		
+
+
+
+	</div>
+
+	<div class = "league_fields">
+
+		<label>END DAY:
+		<input list="day" name="day" id="end_day" /></label>
+	
+		<datalist id="day">
+	  		
+	  		<option value="01">
+	  		<option value="02">
+	  		<option value="03">
+	  		<option value="04">
+	  		<option value="05">
+	  		<option value="06">
+	  		<option value="07">
+	  		<option value="08">
+	  		<option value="09">
+	  		<option value="10">
+	  		<option value="11">
+	  		<option value="12">
+	  		<option value="13">
+	  		<option value="14">
+	  		<option value="15">
+	  		<option value="16">
+	  		<option value="17">
+	  		<option value="18">
+	  		<option value="19">
+	  		<option value="20">
+	  		<option value="21">
+	  		<option value="22">
+	  		<option value="23">
+	  		<option value="24">
+	  		<option value="25">
+	  		<option value="26">
+	  		<option value="27">
+	  		<option value="28">
+	  		<option value="29">
+	  		<option value="30">
+	  		<option value="31">
+	  
+		</datalist>
+
+
+
+	</div>
+
+	<div class = "league_fields">
+
+		<label>END MONTH:
+		<input list="month" name="month" id="end_month" /></label>
+	
+		<datalist id="month">
+	  		
+	  		<option value="Jan">
+	  		<option value="Feb">
+	  		<option value="Mar">
+	  		<option value="Apr">
+	  		<option value="May">
+	  		<option value="Jun">
+	  		<option value="Jul">
+	  		<option value="Aug">
+	  		<option value="Sep">
+	  		<option value="Oct">
+	  		<option value="Nov">
+	  		<option value="Dec">
+	  
+		</datalist>
+
+
+
+	</div>
+
+	<div class = "league_fields">
+
+		<label>END YEAR:
+		<input list="year" name="year" id="end_year" /></label>
+	
+		<datalist id="year">
+	  		
+	  		<option value="2018">
+	  		<option value="2019">
+	  		<option value="2020">
+	  		<option value="2021">
+	  
+		</datalist>
 
 
 
@@ -78,13 +167,21 @@
 	var leaguePass = document.getElementById("league_pass")
 	var leagueClients = document.getElementById("league_clients")
 	var leagueStatus = document.getElementById("league_status")
+	var endDay = document.getElementById("end_day")
+	var endMonth = document.getElementById("end_month")
+	var endYear = document.getElementById("end_year")
+	var endDate = document.getElementById("league_end_date")
+	var date
 	
 	subBtn.addEventListener("click", function(){
+
+		date = endDay.value + " " + endMonth.value + " " + endYear.value
 
 		leagueNm.value = leagueName.value
 		leaguePass.value = pass.value
 		leagueClients.value = clientNum.value
 		leagueStatus.value = stat.value
+		endDate.value = date
 
 		new_league.submit()
 

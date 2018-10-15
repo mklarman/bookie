@@ -39,17 +39,13 @@ class LeaguesController < ApplicationController
 
 	end
 
-	def display_client_form
-
-		@client = LeagueClient.new
-
-	end
+	
 
 	private
 
 	def league_params
 
-	params.require(:league).permit(:pass, :clients, :league_name, :status)
+	params.require(:league).permit(:pass, :clients, :league_name, :status, :end_date)
 
 	end
 

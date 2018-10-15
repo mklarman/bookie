@@ -13,25 +13,62 @@
 
     <% @my_client %>
     <% self.get_access %>
+
+    <%= link_to "Sign Up", new_user_registration_path, class: 'link_tabs'  %>
+    <%= link_to "Sign in", user_session_path, class: 'link_tabs'  %>
+
+
+    <% if current_user %>
    
 
-  	<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
-  	<%= link_to "Sign Up", new_user_registration_path, class: 'link_tabs'  %>
-  	<%= link_to "Sign in", user_session_path, class: 'link_tabs'  %>
-  	<%= link_to "My SportsBook", users_sportsbook_path, class: 'link_tabs'  %>
-    <%= link_to "Fish For Clients", new_client_path, class: 'link_tabs'  %>
-    <%= link_to "New Team", new_team_path, class: 'link_tabs'  %>
-    <%= link_to "Action", new_wager_path, class: 'link_tabs'  %>
-    <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
-    <%= link_to current_user.sports_book_name.upcase + " " + "DATA", clients_path, class: 'link_tabs'  %>
-    <%= link_to "Grade Wagers", users_ungraded_path, class: 'link_tabs'  %>
-    <%= link_to "NEW LEAGUE", new_league_path, class: 'link_tabs'  %>
-    <%= link_to "INDEX LEAGUE", leagues_path, class: 'link_tabs'  %>
-    <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
-    <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
-    <%= link_to "LC SHOW", league_client_path(@my_client.id), class: 'link_tabs'  %>
+    	<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
+
+      <%= link_to "My SportsBook", users_sportsbook_path, class: 'link_tabs'  %>
+      <%= link_to "Fish For Clients", new_client_path, class: 'link_tabs'  %>
+      <%= link_to "Action", new_wager_path, class: 'link_tabs'  %>
+
+      <%= link_to current_user.sports_book_name.upcase + " " + "DATA", clients_path, class: 'link_tabs'  %>
+
+      <%= link_to "Grade Wagers", users_ungraded_path, class: 'link_tabs'  %>
+      <%= link_to "NEW LEAGUE", new_league_path, class: 'link_tabs'  %>
+
+      <%= link_to "INDEX LEAGUE", leagues_path, class: 'link_tabs'  %>
+      <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
+      <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
 
     <%= link_to "Search", users_test_path , class: 'link_tabs', data: { turbolinks: false }  %>
+
+    <% end %>
+
+    <% if current_user %>
+
+      <% if current_user.admin == true %>
+
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
+
+        <%= link_to "My SportsBook", users_sportsbook_path, class: 'link_tabs'  %>
+        <%= link_to "Fish For Clients", new_client_path, class: 'link_tabs'  %>
+        <%= link_to "Action", new_wager_path, class: 'link_tabs'  %>
+
+        <%= link_to current_user.sports_book_name.upcase + " " + "DATA", clients_path, class: 'link_tabs'  %>
+
+        <%= link_to "Grade Wagers", users_ungraded_path, class: 'link_tabs'  %>
+        <%= link_to "NEW LEAGUE", new_league_path, class: 'link_tabs'  %>
+
+        <%= link_to "INDEX LEAGUE", leagues_path, class: 'link_tabs'  %>
+        <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
+        <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
+
+      <%= link_to "Search", users_test_path , class: 'link_tabs', data: { turbolinks: false }  %>
+
+      <%= link_to "New Team", new_team_path, class: 'link_tabs'  %>
+      <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
+
+
+
+      <% end %>
+
+    <% end %>
   	
     <%= yield %>
   </body>

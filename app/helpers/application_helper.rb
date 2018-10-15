@@ -39,8 +39,6 @@ module ApplicationHelper
 
 			 @my_date = @day << " " <<@month << " " <<@year 
 
-			 return @my_date
-
   	end
 
   	def get_client_br

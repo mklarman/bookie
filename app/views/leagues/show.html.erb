@@ -1,68 +1,107 @@
-<% @id_holder = [] %>
+<% @my_date %>
+<% @end_date_ser %>
+
+<% self.get_time %>
+
+<% @month_chk %>
+
+<% @month_chk = @league.end_date[3] + @league.end_date[4] + @league.end_date[5] %>
+<% @day_chk = @league.end_date[0] + @league.end_date[1] %>
+
+<% @year_chk = @league.end_date[7] + @league.end_date[8] + @league.end_date[9] + @league.end_date[10] %>]
 
 
-<% @league.league_clients.each do |c| %>
+<% self.check_end_date %>
 
-	<% if c.user_id.to_i == current_user.id.to_i %>
+END: <%=@end_date_ser %>
 
-		<% @id_holder.push(c.user_id) %>
+<% self.convert_my_date %>
+CHECK: <%= @my_date %>
+
+<% if @end_date_ser >= @my_date %>
+
+
+
+
+	<% @id_holder = [] %>
+
+
+	<% @league.league_clients.each do |c| %>
+
+		<% if c.user_id.to_i == current_user.id.to_i %>
+
+			<% @id_holder.push(c.user_id) %>
+
+		<% end %>
 
 	<% end %>
 
-<% end %>
+	<%= @id_holder.length %>
 
-<%= @id_holder.length %>
+	<% if @id_holder.length < @league.clients.to_i %>
 
-<% if @id_holder.length < @league.clients.to_i %>
+		<div><%= "LOADING CLIENTS..." %></div>
 
-	<div><%= "LOADING CLIENTS..." %></div>
+		<div class = "hide">
 
-	<div class = "hide">
+			<%= render "client" %>
 
-		<%= render "client" %>
+		</div>
+
+		<script>
+			
+			new_league_client.submit()
+
+
+		</script>
+
+
+	<% end %>
+
+
+	<div><%= @league.league_name %></div>
+
+
+	COUNT: <%= @league.league_clients.count %>
+
+
+
+
+
+	<div>SET YOUR LINEUP:</div>
+
+	<div id="roster_cont">
+		
+		<% @league.league_clients.each do |c| %>
+
+			<% if c.user_id.to_i == current_user.id.to_i %>
+
+				<div class="rost_cont">
+
+					<div class="roster_info", id="lg_nm"> <%= c.league_name %></div>
+					<div class="roster_info">Stakes: <%= c.stakes %></div>
+					<div class="roster_info">Bet Type: <%= c.bet_types %></div>
+					<div class="roster_info">Bet Quant: <%= c.wager_limit %></div>
+					<div class="roster_info">Sports: <%= c.sports %></div>
+
+
+					<div class="roster_links"><%= link_to "CHANGE SETTINGS", edit_league_client_path(c.id) %></div>
+
+				</div>
+
+
+			<% end %>	
+
+		<% end %>
 
 	</div>
 
-	<script>
-		
-		new_league_client.submit()
+<% else %>
 
-
-	</script>
-
-
-<% end %>
-
-
-<div><%= @league.league_name %></div>
-
-
-COUNT: <%= @league.league_clients.count %>
+	<div>FINAL STANDINGS</div>
 
 
 
-
-
-<div>SET YOUR LINEUP:</div>
-	
-<% @league.league_clients.each do |c| %>
-
-	<% if c.user_id.to_i == current_user.id.to_i %>
-
-		<div><%= c.league_name %></div>
-		<div><%= c.stakes %></div>
-		<div><%= c.bet_types %></div>
-		<div><%= c.wager_limit %></div>
-		<div><%= c.sports %></div>
-
-
-		<div><%= link_to "CHANGE SETTINGS", edit_league_client_path(c.id) %></div>
-		<div><%= link_to "BOOK ACTION", league_client_path(c.id) %></div>
-
-
-	<% end %>
-
-	
 
 <% end %>
 

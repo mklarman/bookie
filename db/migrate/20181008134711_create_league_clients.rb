@@ -7,8 +7,8 @@ class CreateLeagueClients < ActiveRecord::Migration[5.1]
     	t.string :league_name
     	t.string :stakes
     	t.string :bet_types
-      	t.string :wager_limit
-      	t.string :sports
+      t.string :wager_limit
+      t.string :sports
 
       t.timestamps
     end

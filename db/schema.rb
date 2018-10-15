@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181008161152) do
+ActiveRecord::Schema.define(version: 20181008134737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -64,12 +64,13 @@ ActiveRecord::Schema.define(version: 20181008161152) do
   end
 
   create_table "leagues", force: :cascade do |t|
-    t.string "pass"
+    t.string "league_name"
     t.integer "clients"
+    t.string "end_date"
+    t.string "status"
+    t.string "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "league_name"
-    t.string "status"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -132,9 +133,6 @@ ActiveRecord::Schema.define(version: 20181008161152) do
     t.integer "spread5", default: 0
     t.string "date", default: "00-00-00"
     t.integer "net_result", default: 0
-    t.integer "client_bankroll", default: 0
-    t.integer "user_bankroll", default: 0
-    t.string "serial_num", default: "none"
     t.string "outcome", default: "none"
     t.boolean "graded", default: false
     t.datetime "created_at", null: false

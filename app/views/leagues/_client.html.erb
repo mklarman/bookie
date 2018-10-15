@@ -12,10 +12,10 @@
 	<%= l.text_field :league_id, value: @league.id %>
 	<%= l.text_field :user_id, value: current_user.id %>
 	<div>NAME: <%= l.text_field :league_name, value: @name %></div>
-	<div>Stakes: <%= l.text_field :stakes %></div>
-	<div>Wager Type:<%= l.text_field :bet_types %></div>
-	<div>Bet Quantity: <%= l.text_field :wager_limit %></div>
-	<div>Sports: <%= l.text_field :sports %></div>
+	<div>Stakes: <%= l.text_field :stakes, value: "small timer" %></div>
+	<div>Wager Type:<%= l.text_field :bet_types, value: "straight" %></div>
+	<div>Bet Quantity: <%= l.text_field :wager_limit, value: "1" %></div>
+	<div>Sports: <%= l.text_field :sports, value: "All" %></div>
 	<%= l.submit %>
 
 
