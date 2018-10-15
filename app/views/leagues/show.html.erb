@@ -1,5 +1,13 @@
 <% @my_date %>
 <% @end_date_ser %>
+<% @nfl_games %>
+<% @fan_games %>
+<% @nba_games %>
+<% @cfb_games %>
+<% @cbb_games %>
+<% @mlb_games %>
+<% @nhl_games %>
+<% @bet_type %>
 
 <% self.get_time %>
 
@@ -21,8 +29,6 @@ CHECK: <%= @my_date %>
 <% if @end_date_ser >= @my_date %>
 
 
-
-
 	<% @id_holder = [] %>
 
 
@@ -36,7 +42,6 @@ CHECK: <%= @my_date %>
 
 	<% end %>
 
-	<%= @id_holder.length %>
 
 	<% if @id_holder.length < @league.clients.to_i %>
 
@@ -59,10 +64,7 @@ CHECK: <%= @my_date %>
 	<% end %>
 
 
-	<div><%= @league.league_name %></div>
-
-
-	COUNT: <%= @league.league_clients.count %>
+	
 
 
 

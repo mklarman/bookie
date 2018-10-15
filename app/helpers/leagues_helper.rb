@@ -117,4 +117,247 @@ module LeaguesHelper
 
 
 	end
+
+	def create_league_wager(obj)
+
+		if obj.stakes == "small timer"
+
+			@amount_arr = [50, 75, 100]
+			@amount = @amount_arr.sample
+
+		elsif obj.stakes == "pay dumper"
+
+			@amount_arr = [200, 250, 300]
+			@amount = @amount_arr.sample
+
+		elsif obj.stakes == "whale"
+
+			@amount_arr = [500, 1000, 2000]
+			@amount = @amount_arr.sample
+
+		end
+
+
+		if obj.bet_type == "All"
+
+			if teaser_options > 4
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "straight", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 4 && @all_other_options > 4
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "straight", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 4 && @all_other_options == 4
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 3 && @all_other_options > 4 
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "five team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 3 && @all_other_options == 4
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample 
+
+			elsif teaser_options == 3 && @all_other_options == 3
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 2 && @all_other_options > 4
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team parlay", "five team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 2 && @all_other_options == 4
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 2 && @all_other_options == 3
+
+				@bet_opt = ["straight", "two team teaser", "straight", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 2 && @all_other_options == 2
+
+				@bet_opt = ["straight", "two team teaser", "two team parlay", "two team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 0
+
+				if @all_other_options == 2
+
+					@bet_opt = ["straight", "two team parlay", "two team reverse"]
+					@bet_type = @bet_opt.sample
+
+				elsif @all_other_options == 3
+
+					@bet_opt = ["straight", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse"]
+					@bet_type = @bet_opt.sample
+				
+				elsif @all_other_options == 4
+
+					@bet_opt = ["straight", "straight", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+					@bet_type = @bet_opt.sample
+				
+				elsif @all_other_options > 4
+
+					@bet_opt = ["straight", "straight", "three team parlay", "two team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
+					@bet_type = @bet_opt.sample
+
+				end
+
+
+			end
+			
+
+			end
+
+		elsif obj.bet_type == "Exotics"
+
+			if teaser_options > 4
+
+				@bet_opt = [ "two team teaser", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 4 && @all_other_options > 4
+
+				@bet_opt = ["two team teaser", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 4 && @all_other_options == 4
+
+				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 3 && @all_other_options > 4
+
+			@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "five team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample 
+			
+			elsif teaser_options == 3 && @all_other_options == 4 
+
+				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample 
+
+			elsif teaser_options == 3 && @all_other_options == 3
+
+				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 2 && @all_other_options > 4
+
+				@bet_opt = ["two team teaser", "three team parlay", "five team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 2 && @all_other_options == 4
+
+				@bet_opt = ["two team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 2 && @all_other_options == 3
+
+				@bet_opt = ["two team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse"]
+				@bet_type = @bet_opt.sample
+			
+			elsif teaser_options == 2 && @all_other_options == 2
+
+				@bet_opt = ["two team teaser", "two team parlay", "two team reverse"]
+				@bet_type = @bet_opt.sample
+
+			elsif teaser_options == 0
+
+				if @all_other_options == 2
+
+					@bet_opt = ["two team parlay", "two team reverse"]
+					@bet_type = @bet_opt.sample
+
+				elsif @all_other_options == 3
+
+					@bet_opt = ["three team parlay", "two team parlay", "two team reverse", "three team reverse"]
+					@bet_type = @bet_opt.sample
+				
+				elsif @all_other_options == 4
+
+					@bet_opt = ["three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+					@bet_type = @bet_opt.sample
+				
+				elsif @all_other_options > 4
+
+					@bet_opt = ["three team parlay", "two team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
+					@bet_type = @bet_opt.sample
+
+				end
+			
+
+			end
+
+		elsif obj.bet_type == "Straight"
+
+			@bet_type = "straight"
+
+		end
+
+
+	end
+
+	def sort_teams_for_leagues
+
+		@teams.each do |t|
+
+			if t.display == "on"
+
+				if t.sport == "NFL"
+
+					@nfl_games.push(t)
+
+				elsif t.sport == "FAN"
+
+					@fan_games.push(t)
+
+				elsif t.sport == "NBA"
+
+					@nba_games.push(t)
+				
+				elsif t.sport == "CBB"
+
+					@cbb_games.push(t)
+
+				elsif t.sport == "CFB"
+
+					@cfb_games.push(t)
+
+				elsif t.sport == "MLB"
+
+					@mlb_games.push(t)
+
+				elsif t.sport == "NHL"
+
+					@nhl_games.push(t)
+
+				end
+
+
+
+			end
+
+
+		end
+
+	end
+
+	def count_options
+
+		@teaser_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (fan_games.length * 2)
+
+		@all_other_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (fan_games.length * 2) + (@mlb_games.length * 2) + (nhl_games.length * 2)
+
+	end
 end
