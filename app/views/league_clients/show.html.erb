@@ -1,3 +1,22 @@
+<% @nfl_games = [] %>
+<% @fan_games = [] %>
+<% @nba_games = [] %>
+<% @cfb_games = [] %>
+<% @cbb_games = [] %>
+<% @mlb_games = [] %>
+<% @nhl_games = [] %>
+<% @teaser_options %>
+<% @all_other_options %>
+<% @bet_type %>
+<% @amount %>
+
+<% self.sort_teams_for_leagues %>
+<% self.count_options %>
+
+
+<%= @teaser_options %>
+<%= @all_other_options %>
+
 <% @client_holder = [] %>
 
 <% @qualified_clients = [] %>
@@ -39,7 +58,14 @@
 
 <% end %>
 
-<%= @qualified_clients.count %>
+<%= @qualified_clients[0].id %>
+
+<% self.create_league_wager(@qualified_clients[0]) %>
+
+<%= @amount %>
+<%= @bet_type %>
+
+
 
 
 

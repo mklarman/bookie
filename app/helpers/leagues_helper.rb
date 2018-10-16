@@ -120,6 +120,8 @@ module LeaguesHelper
 
 	def create_league_wager(obj)
 
+		@bet_type = " "
+
 		if obj.stakes == "small timer"
 
 			@amount_arr = [50, 75, 100]
@@ -138,59 +140,59 @@ module LeaguesHelper
 		end
 
 
-		if obj.bet_type == "All"
+		if obj.bet_types == "All"
 
-			if teaser_options > 4
+			if @teaser_options.to_i > 4
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "straight", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 4 && @all_other_options > 4
+			elsif @teaser_options.to_i == 4 && @all_other_options.to_i > 4
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "straight", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 4 && @all_other_options == 4
+			elsif @teaser_options.to_i == 4 && @all_other_options.to_i == 4
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 3 && @all_other_options > 4 
+			elsif @teaser_options.to_i == 3 && @all_other_options.to_i > 4 
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "five team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 3 && @all_other_options == 4
+			elsif @teaser_options.to_i == 3 && @all_other_options.to_i == 4
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample 
 
-			elsif teaser_options == 3 && @all_other_options == 3
+			elsif @teaser_options.to_i == 3 && @all_other_options == 3
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team teaser", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 2 && @all_other_options > 4
+			elsif @teaser_options == 2 && @all_other_options > 4
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team parlay", "five team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 2 && @all_other_options == 4
+			elsif @teaser_options == 2 && @all_other_options == 4
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 2 && @all_other_options == 3
+			elsif @teaser_options == 2 && @all_other_options == 3
 
 				@bet_opt = ["straight", "two team teaser", "straight", "three team parlay", "two team parlay", "straight", "two team reverse", "three team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 2 && @all_other_options == 2
+			elsif @teaser_options == 2 && @all_other_options == 2
 
 				@bet_opt = ["straight", "two team teaser", "two team parlay", "two team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 0
+			elsif @teaser_options == 0
 
 				if @all_other_options == 2
 
@@ -216,63 +218,60 @@ module LeaguesHelper
 
 
 			end
-			
 
-			end
+		elsif obj.bet_types == "Exotics"
 
-		elsif obj.bet_type == "Exotics"
-
-			if teaser_options > 4
+			if @teaser_options.to_i > 4
 
 				@bet_opt = [ "two team teaser", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 4 && @all_other_options > 4
+			elsif @teaser_options == 4 && @all_other_options > 4
 
 				@bet_opt = ["two team teaser", "three team teaser", "five team teaser", "three team parlay", "two team parlay", "five team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 4 && @all_other_options == 4
+			elsif @teaser_options == 4 && @all_other_options == 4
 
 				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 3 && @all_other_options > 4
+			elsif @teaser_options == 3 && @all_other_options > 4
 
-			@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "five team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
+				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "five team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample 
 			
-			elsif teaser_options == 3 && @all_other_options == 4 
+			elsif @teaser_options == 3 && @all_other_options == 4 
 
 				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample 
 
-			elsif teaser_options == 3 && @all_other_options == 3
+			elsif @teaser_options == 3 && @all_other_options == 3
 
 				@bet_opt = ["two team teaser", "three team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 2 && @all_other_options > 4
+			elsif @teaser_options == 2 && @all_other_options > 4
 
 				@bet_opt = ["two team teaser", "three team parlay", "five team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 2 && @all_other_options == 4
+			elsif @teaser_options == 2 && @all_other_options == 4
 
 				@bet_opt = ["two team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse", "four team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 2 && @all_other_options == 3
+			elsif @teaser_options == 2 && @all_other_options == 3
 
 				@bet_opt = ["two team teaser", "three team parlay", "two team parlay", "two team reverse", "three team reverse"]
 				@bet_type = @bet_opt.sample
 			
-			elsif teaser_options == 2 && @all_other_options == 2
+			elsif @teaser_options == 2 && @all_other_options == 2
 
 				@bet_opt = ["two team teaser", "two team parlay", "two team reverse"]
 				@bet_type = @bet_opt.sample
 
-			elsif teaser_options == 0
+			elsif @teaser_options == 0
 
 				if @all_other_options == 2
 
@@ -299,7 +298,7 @@ module LeaguesHelper
 
 			end
 
-		elsif obj.bet_type == "Straight"
+		elsif obj.bet_types == "Straight"
 
 			@bet_type = "straight"
 
@@ -355,9 +354,9 @@ module LeaguesHelper
 
 	def count_options
 
-		@teaser_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (fan_games.length * 2)
+		@teaser_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (@fan_games.length * 2)
 
-		@all_other_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (fan_games.length * 2) + (@mlb_games.length * 2) + (nhl_games.length * 2)
+		@all_other_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (@fan_games.length * 2) + (@mlb_games.length * 2) + (@nhl_games.length * 2)
 
 	end
 end

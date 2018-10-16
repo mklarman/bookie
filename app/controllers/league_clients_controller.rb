@@ -33,6 +33,7 @@ class LeagueClientsController < ApplicationController
 		@wager = LeagueWager.new
 		@clients = LeagueClient.all
 		@wagers = LeagueWager.all
+		@teams = Team.all
 
 	end
 
