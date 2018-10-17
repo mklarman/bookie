@@ -359,4 +359,708 @@ module LeaguesHelper
 		@all_other_options = (@nfl_games.length * 2) + (@cfb_games.length * 2) + (@nba_games.length * 2) + (@cbb_games.length * 2) + (@fan_games.length * 2) + (@mlb_games.length * 2) + (@nhl_games.length * 2)
 
 	end
+
+	def get_picks(obj)
+
+		obj.league_wagers.each do |w|	
+
+			if w.graded == false
+
+				@teams.each do |t|
+
+					if t.name == w.team1
+
+						@selections.push(t.name)
+						@oppo_picks.push(t.opp)
+
+					elsif t.opp == w.team1
+
+						@selections.push(t.opp)
+						@oppo_picks.push(t.name)
+
+
+					elsif t.under_line == w.team1
+
+						@selections.push(t.under_line)
+						@oppo_picks.push(t.over_line)
+
+
+					elsif t.over_line == w.team1
+
+						@selections.push(t.over_line)
+						@oppo_picks.push(t.under_line)
+
+
+					end
+
+					if t.name == w.team2
+
+						if @selections.include? t.name
+
+
+
+						else
+
+							@selections.push(t.name)
+							@oppo_picks.push(t.opp)
+
+						end
+
+					elsif t.opp == w.team2
+
+						if @selections.include? t.opp
+
+
+						else
+
+							@selections.push(t.opp)
+							@oppo_picks.push(t.name)
+
+						end
+
+
+					elsif t.under_line == w.team2
+
+						if @selections.include? t.under_line
+
+
+						else
+
+							@selections.push(t.under_line)
+							@oppo_picks.push(t.over_line)
+
+						end
+
+
+					elsif t.over_line == w.team2
+
+						if @selections.include? t.over_line
+
+
+						else
+
+							@selections.push(t.over_line)
+							@oppo_picks.push(t.under_line)
+
+						end
+
+					end
+
+					if t.name == w.team3
+
+						if @selections.include? t.name
+
+
+
+						else
+
+							@selections.push(t.name)
+							@oppo_picks.push(t.opp)
+
+						end
+
+					elsif t.opp == w.team3
+
+						if @selections.include? t.opp
+
+
+						else
+
+							@selections.push(t.opp)
+							@oppo_picks.push(t.name)
+
+						end
+
+
+					elsif t.under_line == w.team3
+
+						if @selections.include? t.under_line
+
+
+						else
+
+							@selections.push(t.under_line)
+							@oppo_picks.push(t.over_line)
+
+						end
+
+
+					elsif t.over_line == w.team3
+
+						if @selections.include? t.over_line
+
+
+						else
+
+							@selections.push(t.over_line)
+							@oppo_picks.push(t.under_line)
+
+						end
+
+
+					end 
+
+					if t.name == w.team4
+
+						if @selections.include? t.name
+
+
+
+						else
+
+							@selections.push(t.name)
+							@oppo_picks.push(t.opp)
+
+						end
+
+					elsif t.opp == w.team4
+
+						if @selections.include? t.opp
+
+
+						else
+
+							@selections.push(t.opp)
+							@oppo_picks.push(t.name)
+
+						end
+
+
+					elsif t.under_line == w.team4
+
+						if @selections.include? t.under_line
+
+
+						else
+
+							@selections.push(t.under_line)
+							@oppo_picks.push(t.over_line)
+
+						end
+
+
+					elsif t.over_line == w.team4
+
+						if @selections.include? t.over_line
+
+
+						else
+
+							@selections.push(t.over_line)
+							@oppo_picks.push(t.under_line)
+
+						end
+
+
+					end 
+
+					if t.name == w.team5
+
+						if @selections.include? t.name
+
+
+
+						else
+
+							@selections.push(t.name)
+							@oppo_picks.push(t.opp)
+
+						end
+
+					elsif t.opp == w.team5
+
+						if @selections.include? t.opp
+
+
+						else
+
+							@selections.push(t.opp)
+							@oppo_picks.push(t.name)
+
+						end
+
+
+					elsif t.under_line == w.team5
+
+						if @selections.include? t.under_line
+
+
+						else
+
+							@selections.push(t.under_line)
+							@oppo_picks.push(t.over_line)
+
+						end
+
+
+					elsif t.over_line == w.team5
+
+						if @selections.include? t.over_line
+
+
+						else
+
+							@selections.push(t.over_line)
+							@oppo_picks.push(t.under_line)
+
+						end
+
+
+					end 
+
+
+
+				end
+
+
+			end
+
+		end
+	end
+
+	def pick_games(obj)
+
+		if obj.sports == "NFL"
+
+			@nfl_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "FAN"
+
+			@fan_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "CFB"
+
+			@cfb_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "CBB"
+
+			@cbb_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "NBA"
+
+			@nba_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "MLB"
+
+			@mlb_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "NHL"
+
+			@nhl_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+		
+		elsif obj.sports == "All"
+
+			@nhl_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+			@mlb_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+			@cfb_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+			@cbb_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+			@nfl_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+			@fan_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+			@nba_games.each do |g|
+
+				@ran_num = [1, 2]
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.name)
+
+				else
+
+					@client_picks.push(g.opp)
+
+				end
+
+				@num = @ran_num.sample
+
+				if @num == 1
+
+					@client_picks.push(g.over_line)
+
+				else
+
+					@client_picks.push(g.under_line)
+
+				end
+
+			end
+
+		end
+
+
+
+
+
+	end
 end

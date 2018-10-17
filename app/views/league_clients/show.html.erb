@@ -6,9 +6,14 @@
 <% @mlb_games = [] %>
 <% @nhl_games = [] %>
 <% @teaser_options %>
+<% @my_date %>
 <% @all_other_options %>
 <% @bet_type %>
 <% @amount %>
+<% @selections = [] %>
+<% @oppo_picks = [] %>
+
+
 
 <% self.sort_teams_for_leagues %>
 <% self.count_options %>
@@ -32,6 +37,8 @@
 
 
 <% end %>
+
+<% self.get_time %>
 
 <% @client_holder.each do |c| %>
 
