@@ -98,6 +98,10 @@ CHECK: <%= @my_date %>
 
 	</div>
 
+	<% @my_id = @league.league_clients[0].id %>
+
+	<%= link_to "BOOK ACTION", league_client_path(@my_id) %>
+
 	<div id="standings">
 
 
@@ -111,6 +115,8 @@ CHECK: <%= @my_date %>
 
 
 	</div>
+
+
 
 <% else %>
 

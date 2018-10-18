@@ -1170,7 +1170,7 @@ module LeaguesHelper
 
 		@selections.each do |s|
 
-			@team_hashes.each do |t|
+			@pick_hashes.each do |t|
 
 				if s == t[:opp]
 
@@ -1187,7 +1187,7 @@ module LeaguesHelper
 
 	def create_avail_picks
 
-		@team_hashes.each do |h|
+		@pick_hashes.each do |h|
 
 			@avail_picks.push(h[:pick])
 
@@ -3070,4 +3070,5 @@ module LeaguesHelper
 			end
 		end
 	end
+end
 end
