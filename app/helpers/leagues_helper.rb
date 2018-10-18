@@ -1453,7 +1453,7 @@ module LeaguesHelper
 
 		end
 
-		if @wager_type == "three team teaser"
+		if @bet_type == "three team teaser"
 
 			@pick1 = @teaser_choices.sample
 			@teaser_choices.delete(@pick1) 
@@ -1755,7 +1755,7 @@ module LeaguesHelper
 
 		end
 
-		if @wager_type == "five team teaser"
+		if @bet_type == "five team teaser"
 
 			@pick1 = @teaser_choices.sample
 			@teaser_choices.delete(@pick1) 
@@ -1769,8 +1769,8 @@ module LeaguesHelper
 			@pick4 = @teaser_choices.sample
 			@teaser_choices.delete(@pick4) 
 			
-			@pick5 = @teams_for_teaser.sample
-			@teams_for_teaser.delete(@pick5)  
+			@pick5 = @teaser_choices.sample
+			@teaser_choices.delete(@pick5)  
 
 
 
@@ -2250,7 +2250,7 @@ module LeaguesHelper
 
 	end
 
-	if @wager_type == "two team parlay" || @wager_type == "two team reverse"
+	if @bet_type == "two team parlay" || @bet_type == "two team reverse"
 
 		@pick1 = @avail_picks.sample
 		@avail_picks.delete(@pick1)
@@ -2456,7 +2456,7 @@ module LeaguesHelper
 
 	end 
 
-	if @wager_type == "three team parlay" || @wager_type == "three team reverse"
+	if @bet_type == "three team parlay" || @bet_type == "three team reverse"
 
 		@pick1 = @avail_picks.sample
 		@avail_picks.delete(@pick1)
@@ -2614,7 +2614,7 @@ module LeaguesHelper
 
 	end 
 
-	if @wager_type == "four team reverse"
+	if @bet_type == "four team reverse"
 
 		@pick1 = @avail_picks.sample
 		@avail_picks.delete(@pick1)
@@ -2818,7 +2818,7 @@ module LeaguesHelper
 
 	end
 
-	if @wager_type == "five team parlay"
+	if @bet_type == "five team parlay"
 
 		@pick1 = @avail_picks.sample
 		@avail_picks.delete(@pick1)

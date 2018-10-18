@@ -43,6 +43,8 @@
 
 <% end %>
 
+<%= @qualified_clients.count %>
+
 <% if @qualified_clients.length == 0 %>
 
 
@@ -70,7 +72,7 @@
 	<% @pick_hashes = [] %>
 	<% @client_picks = [] %>
 	<% @avail_picks = [] %>
-	<% @pick1 %>
+	<% @pick1  %>
 	<% @pick2 %>
 	<% @pick3 %>
 	<% @pick4 %>
@@ -95,6 +97,8 @@
 	<% self.create_avail_picks %>
 	<% self.fill_league_wagers %>
 
+
+
 	<% if @bet_type == "straight" %>
 
 				<div><%= "$" + @amount.to_s %>
@@ -112,13 +116,13 @@
 					<% end %>
 					</div>
 
-				<div class = "hide">
+				<div class = "hid">
 
 					<%= form_for @wager do |w| %>
 
 					<%= w.hidden_field :user_id, :value => current_user.id %>
-					<%= w.hidden_field :league_id, :value => @my_client.league_id %>
-					<%= w.hidden_field :league_client_id, :value => @my_client.id %>
+					<%= w.text_field :league_id, :value => @my_client.league_id %>
+					<%= w.text_field :league_client_id, :value => @my_client.id %>
 					Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
 					Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 					Team:<div><%= w.text_field :team1, :value => @pick1 %></div>
@@ -176,13 +180,13 @@
 					</div>
 
 
-			<div class = "hide">
+			<div class = "hid">
 
 				<%= form_for @wager do |w| %>
 
 				<%= w.hidden_field :user_id, :value => current_user.id %>
-				<%= w.hidden_field :league_id, :value => @my_client.league_id %>
-				<%= w.hidden_field :league_client_id, :value => @my_client.id %>
+				<%= w.text_field :league_id, :value => @my_client.league_id %>
+				<%= w.text_field :league_client_id, :value => @my_client.id %>
 				Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
 				Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 				Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
@@ -252,13 +256,13 @@
 					<% end %>
 					</div>
 
-			<div class = "hide">
+			<div class = "hid">
 
 					<%= form_for @wager do |w| %>
 
 					<%= w.hidden_field :user_id, :value => current_user.id %>
-					<%= w.hidden_field :league_id, :value => @my_client.league_id %>
-					<%= w.hidden_field :league_client_id, :value => @my_client.id %>
+					<%= w.text_field :league_id, :value => @my_client.league_id %>
+					<%= w.text_field :league_client_id, :value => @my_client.id %>
 					Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
 					Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 					Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
@@ -337,12 +341,12 @@
 					<% end %>
 					</div>
 
-					<div class = "hide">
+					<div class = "hid">
 						<%= form_for @wager do |w| %>
 
 						<%= w.hidden_field :user_id, :value => current_user.id %>
-						<%= w.hidden_field :league_id, :value => @my_client.league_id %>
-						<%= w.hidden_field :league_client_id, :value => @my_client.id %>
+						<%= w.text_field :league_id, :value => @my_client.league_id %>
+						<%= w.text_field :league_client_id, :value => @my_client.id %>
 						Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
 						Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 						Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
@@ -433,13 +437,13 @@
 					<% end %>
 					</div>
 
-					<div class = "hide">
+					<div class = "hid">
 
 						<%= form_for @wager do |w| %>
 
 						<%= w.hidden_field :user_id, :value => current_user.id %>
-						<%= w.hidden_field :league_id, :value => @my_client.league_id %>
-						<%= w.hidden_field :client_id, :value => @my_client.id %>
+						<%= w.text_field :league_id, :value => @my_client.league_id %>
+						<%= w.text_field :client_id, :value => @my_client.id %>
 						Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
 						Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 						Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
