@@ -35,6 +35,7 @@ class LeaguesController < ApplicationController
 		@league = League.find_by_id(params[:id])
 		@client = LeagueClient.new
 		@league_id = @league.id
+		@users = User.all
 
 
 	end

@@ -31,6 +31,13 @@ class LeagueWagersController < ApplicationController
 
 	end
 
+	def show
+
+		@users = User.all
+		@wager = LeagueWager.find_by_id(params[:id])
+
+	end
+
 	def edit
 
 		@league_wager = LeagueWager.find_by_id(params[:id])
