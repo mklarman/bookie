@@ -98,9 +98,16 @@ CHECK: <%= @my_date %>
 
 	</div>
 
-	<% @my_id = @league.league_clients[0].id %>
+	<% @my_id %>
 
-	<%= link_to "BOOK ACTION", league_client_path(@my_id) %>
+	<% if @league.league_clients[0] %>
+
+		<% @my_id = @league.league_clients[0].id %>
+		<%= link_to "BOOK ACTION", league_client_path(@my_id) %>
+
+	<% end %>
+
+	
 
 	<% if @league.league_wagers[0] %>
 		

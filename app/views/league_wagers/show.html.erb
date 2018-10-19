@@ -5,6 +5,11 @@
 <% @spread3 %>
 <% @spread4 %>
 <% @spread5 %>
+<% @my_bool  %>
+<% @team2 %>
+<% @team3 %>
+<% @team4 %>
+<% @team5 %>
 
 <% @users.each do |u| %>
 
@@ -12,20 +17,42 @@
 
 		<% if w.league_id.to_i == @league_id.to_i %>
 
-			<% if @player_ids.include? u.id %>
-
-
-			<% else %>
+			<% if @player_ids.length == 0 %>
 
 				<% @player_ids.push(u.id) %>
 
-			<% end %>
+			<% else %>
 
+				<% @player_ids.each do |p|  %>
+
+					<% if p.to_i == u.id.to_i %>
+
+						<% @my_bool = true %>
+
+
+					<% else %>
+
+						<% @my_bool = false %>
+
+					<% end %>
+
+				<% end %>
+
+			<% end %>
 		<% end %>
 
 	<% end %>
 
+	<% if @my_bool == false %>
+
+		<% @player_ids.push(u.id) %>
+
+	<% end %>
+
 <% end %>
+
+
+
 
 <% @player_ids.each do |p| %>
 
@@ -39,8 +66,7 @@
 
 			<% u.league_wagers.each do |w| %>
 
-				<%= w.league_client_id %>
-				<%= w.id %>
+				
 
 				<% if w.league_id.to_i == @league_id.to_i %>
 
@@ -164,13 +190,90 @@
 
 					<% end %>
 
+					<% if w.wager_type == "straight" %>
+
+						<% @team2 = " " %>
+						<% @spread2 = " " %>
+
+						<% @team3 = " " %>
+						<% @spread3 = " " %>
+
+						<% @team4 = " " %>
+						<% @spread4 = " " %>
+
+						<% @team5 = " " %>
+						<% @spread5 = " " %>
+						
+
+					<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
+
+						<% @team3 = " " %>
+						<% @spread3 = " " %>
+
+						<% @team4 = " " %>
+						<% @spread4 = " " %>
+
+						<% @team5 = " " %>
+						<% @spread5 = " " %>
+					
+					<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
+
+						<% @team4 = " " %>
+						<% @spread4 = " " %>
+
+						<% @team5 = " " %>
+						<% @spread5 = " " %>
+
+					<% elsif w.wager_type == "four team reverse" %>
+
+						<% @team5 = " " %>
+						<% @spread5 = " " %>
+
+					<% end %>
+
+
+
 					<div><%= "$" + w.amount.to_s + " " + w.wager_type %></div>
 
-					<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-					<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
-					<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
-					<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
-					<div><%= w.team5.to_s + " " + @spread5.to_s %></div>
+
+					<% if w.wager_type == "straight" %>
+
+						<%= w.id.to_s + " " + w.league_client_id.to_s %>
+
+						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						
+
+					<% elsif w.wager_type == "two team teaser" || w.wager_type == "two team parlay" || w.wager_type == "two team reverse" %>
+
+						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						
+
+					<% elsif w.wager_type == "three team teaser" || w.wager_type == "three team parlay" || w.wager_type == "three team reverse" %>
+
+						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
+						
+
+					<% elsif w.wager_type == "four team reverse" %>
+
+						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
+						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
+						
+
+					<% elsif w.wager_type == "five team teaser" || w.wager_type == "five team parlay" %>
+
+						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
+						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
+						<div><%= w.team5.to_s + " " + @spread5.to_s %></div>
+
+					<% end %>
+					
 
 					<br>
 

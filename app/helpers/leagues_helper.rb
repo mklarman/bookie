@@ -1209,7 +1209,7 @@ module LeaguesHelper
 
 	def fill_league_wagers
 
-		if @bet_type == "Straight"
+		if @bet_type == "straight"
 
 			@pick1 = @avail_picks.sample
 

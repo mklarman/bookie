@@ -1,22 +1,20 @@
 <% @client_holder = [] %>
 <% @my_date %>
 <% self.get_time %>
+<% @league_id = @client.league_id %>
 
 <% @qualified_clients = [] %>
 
+<% current_user.league_clients.each do |c| %>
 
-<% @clients.each do |c| %>
-
-	<% if c.league_id == @client.league_id %>
+	<% if c.league_id.to_i == @league_id.to_i %>
 
 		<% @client_holder.push(c) %>
 
 	<% end %>
 
-
 <% end %>
 
-<% self.get_time %>
 
 <% @client_holder.each do |c| %>
 
@@ -43,7 +41,7 @@
 
 <% end %>
 
-<%= @qualified_clients.count %>
+<%= @qualified_clients %>
 
 <% if @qualified_clients.length == 0 %>
 
@@ -96,6 +94,8 @@
 	<% self.correct_oppos %>
 	<% self.create_avail_picks %>
 	<% self.fill_league_wagers %>
+
+	<%= @my_date %>
 
 
 
