@@ -1,3 +1,27 @@
 // Place all the styles related to the league_wagers controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+
+#league_action{
+
+	height: 100%;
+	width: 100%;
+	border: 1px solid red;
+}
+
+#player_action{
+
+	height: 100%;
+	width: 100%;
+	display: inline-block;
+	border: 1px solid red;
+}
+
+#league_bets{
+
+	height: 50px;
+	width: 150px;
+	display: inline-block;
+	border: 1px solid red;
+}
