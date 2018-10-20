@@ -231,7 +231,50 @@ In My Sports Book
 
  for grading, have a link to the edit/league wager of the first wager and on that page redirect to the url of the next wager to be graded(just like in wagers controller).
 
- have to loop through teams and look where display == on. and sort matchups into sport containers.  use the functions I have might be easiest.   
+ have to loop through teams and look where display == on. and sort matchups into sport containers.  use the functions I have might be easiest.
+
+ qualify clients
+
+ Get clients picks
+
+ Let client pick games
+
+ fix oppo picks
+
+ get amount
+
+ get bet type
+
+ fill bet
+
+ submit
+
+ Things to do:
+
+ debug league wager grading
+
+ write all functions that grab you the standings of a league
+
+ create the league action page: where all open action for all players is displayed.
+
+ A place to talk trash maybe.
+
+ Set up the password for the private leagues, have to be sent to the private leagues show page after putting in the password.
+
+ Need design for all league pages, and need to make custom JS forms for gui.
+
+ Need to see if I can make js forms for the sign in and sign up
+
+ Need to design a home page
+
+ Need to make the how to play page, would like the mini links to bring people to the section of the document they want.
+
+ 
+
+
+
+
+    
 
 
 
