@@ -126,21 +126,6 @@
 
 
 
-
-<% if @current_client_br.to_i > 0 %>
-
-	<% @current_client_br = "+" + @current_client_br.to_s %>
-
-
-<% end %>
-
-<% if @current_br.to_i > 0 %>
-
-	<% @current_br = "+" + @current_br.to_s %>
-
-
-<% end %>
-
 <div id="bank_cont">
 	
 	<div id="client_bank">CLIENT FIGURE: <%= @current_client_br %></div>
@@ -172,8 +157,7 @@
 
 </script>
 
-<% @current_client_br = @current_client_br.to_i %>
-<% @current_br = @current_br.to_i %>
+
 
 
 
