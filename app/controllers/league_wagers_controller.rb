@@ -40,23 +40,21 @@ class LeagueWagersController < ApplicationController
 
 	def edit
 
-		@league_wager = LeagueWager.find_by_id(params[:id])
-		@league_client = LeagueClient.find_by_id(params[:id])
-		@team = Team.find_by_id(params[:id])
+		@wager = LeagueWager.find_by_id(params[:id])
 		@teams = Team.all
 
 	end
 
 	def update
 
-		@league_wager = LeagueWager.find_by_id(params[:id])
-		@league_wager.user_id = current_user.id
+		@wager = LeagueWager.find_by_id(params[:id])
+		@wager.user_id = current_user.id
 
 		@edit_id = [] 
 
  		current_user.league_wagers.each do |w|
 
- 			if w.id == @league_wager.league_id	
+ 			if w.id == @wager.league_id	
 
 				if w.graded == false && w.date != @my_date 
 
@@ -71,7 +69,7 @@ class LeagueWagersController < ApplicationController
 
  		end 
 
- 		@edit_id.delete(@league_wager.id) 
+ 		@edit_id.delete(@wager.id) 
 					
 
 		if @league_wager.update(league_wager_params)
@@ -84,7 +82,7 @@ class LeagueWagersController < ApplicationController
 
 			if @edit_id.length == 0
 
-				redirect_to league_path(@league_wager.league_id)
+				redirect_to league_path(@wager.league_id)
 
 			end
 

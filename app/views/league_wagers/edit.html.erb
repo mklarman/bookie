@@ -1,0 +1,96 @@
+<% @client_name %>
+<% @ml_counter %>
+<% @get_val = 0 %>
+<% @client_ser = [] %>
+<% @client_results = [] %>
+<% @user_results = [] %>
+<% @current_br  %>
+
+
+<% @winners %>
+<% @losers %>
+<% @parlay_one %>
+<% @parlay_two %>
+<% @parlay_three %>
+<% @parlay_four %>
+<% @parlay_five %>
+<% @rev_team1 %>
+<% @rev_team2 %>
+<% @rev_team3 %>
+<% @user_b = [] %>
+<% @user_b2 = [] %>
+<% @client_br = [] %>
+<% @current_br %>
+<% @current_client_br %>
+<% @net_p_l %>
+<% @wager_hash_one %>
+<% @wager_hash_two %>
+<% @rev_win %>
+<% @rev_lose %>
+<% @rev_push %>
+
+<% @date = Time.now %> 
+<% @day = @date.strftime("%d") %>
+<% @month = @date.strftime("%b") %>
+<% @year = @date.strftime("%Y") %>
+
+<% @get_hour = Time.now %>  
+<% @hour = @get_hour.strftime("%H") %>
+<% @min = @get_hour.strftime("%M") %>
+<% @sec = @get_hour.strftime("%3N") %>
+
+<% @time_check = @hour << @min << @sec %>
+
+<% if @month == "Sep" %>
+
+	<% @month = "09" %>
+
+<% elsif @month == "Jan" %>
+
+	<% @month = "01" %>
+
+<% elsif @month == "Feb" %>
+
+	<% @month = "02" %>
+
+<% elsif @month == "Mar" %>
+
+	<% @month = "03" %>
+
+<% elsif @month == "Apr" %>
+
+	<% @month = "04" %>
+
+<% elsif @month == "May" %>
+
+	<% @month = "05" %>
+
+<% elsif @month == "Jun" %>
+
+	<% @month = "06" %>
+
+<% elsif @month == "Jul" %>
+
+	<% @month = "07" %>
+
+<% elsif @month == "Aug" %>
+
+	<% @month = "08" %>
+
+<% elsif @month == "Oct" %>
+
+	<% @month = "10" %>
+
+<% elsif @month == "Nov" %>
+
+	<% @month = "11" %>
+
+<% elsif @month == "Dec" %>
+
+	<% @month = "12" %>
+
+<% end %>
+
+<% @holder_s = @year + @month + @day %>
+
+<% @serial_num = @holder_s + @time_check %>
