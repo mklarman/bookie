@@ -11,6 +11,75 @@
 <% @team4 %>
 <% @team5 %>
 
+<% current_user.league_clients.each do |c| %>
+
+	<% if c.league_id.to_i == @league_id.to_i %>
+
+		<% if c.stakes == "small timer" %>
+
+			<div><%= c.league_name %></div>
+
+			<% c.league_wagers.each do |w| %>
+
+				<div><%= "$" + w.amount.to_s + " " + w.wager_type %></div>
+
+				<% if w.wager_type == "straight" %>
+
+				<div><%= w.team1 %>
+
+				<% end %>
+				
+				<% if w.wager_type == "two team parlay" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "three team parlay" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "five team parlay" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "two team teaser" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "three team teaser" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "five team teaser" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "two team reverse" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "three team reverse" %>
+
+				<% end %>
+				
+				<% if w.wager_type == "four team reverse" %>
+
+				<% end %>
+				
+
+
+
+			<% end %>
+
+		<% end %>
+
+
+
+
+	<% end %>
+
+
+
+<% end %>
 
 <% @users.each do |u| %>
 
