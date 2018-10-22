@@ -86,7 +86,7 @@ Users:
 
  the calculations:
 
- for grade wagers need to grabe the wager values needed in erb and set them to the js variables, then pass those js variables through the proper functions and then set those values in the form.
+ for grade wagers need to grab the wager values needed in erb and set them to the js variables, then pass those js variables through the proper functions and then set those values in the form.
 
  for the reverses can use js functions and pass the spreads into the function and just search for ML lines and write those exceptions. Scratch that.  I think we handle in ruby.  If doing by teams: I need spread.
 
@@ -269,7 +269,7 @@ In My Sports Book
 
  Need to make the how to play page, would like the mini links to bring people to the section of the document they want.
 
- 
+
 
 
 

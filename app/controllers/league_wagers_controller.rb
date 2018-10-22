@@ -54,7 +54,7 @@ class LeagueWagersController < ApplicationController
 
  		current_user.league_wagers.each do |w|
 
- 			if w.id == @wager.league_id	
+ 			if w.league_id == @wager.league_id	
 
 				if w.graded == false && w.date != @my_date 
 
@@ -72,7 +72,7 @@ class LeagueWagersController < ApplicationController
  		@edit_id.delete(@wager.id) 
 					
 
-		if @league_wager.update(league_wager_params)
+		if @wager.update(league_wager_params)
 
 			if @edit_id.length > 0
 

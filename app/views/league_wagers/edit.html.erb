@@ -1,3 +1,25 @@
+<% @wager_id = @wager.id %>
+<% @league_id = @wager.league_id %>
+
+<% @my_date %>
+<% self.get_time %>
+
+<% @cl_id = @wager.league_client_id %>
+
+<% @ungraded_wagers = [] %>
+
+
+<% current_user.league_wagers.each do |w| %>
+
+	<% if w.graded == false && w.date != @my_date && w.league_id.to_i == @league_id.to_i  %>
+
+		<% @ungraded_wagers.push(w.id) %>
+			
+	<% end %>
+
+<% end %>
+
+
 <% @client_name %>
 <% @ml_counter %>
 <% @get_val = 0 %>
@@ -29,68 +51,143 @@
 <% @rev_lose %>
 <% @rev_push %>
 
-<% @date = Time.now %> 
-<% @day = @date.strftime("%d") %>
-<% @month = @date.strftime("%b") %>
-<% @year = @date.strftime("%Y") %>
 
-<% @get_hour = Time.now %>  
-<% @hour = @get_hour.strftime("%H") %>
-<% @min = @get_hour.strftime("%M") %>
-<% @sec = @get_hour.strftime("%3N") %>
 
-<% @time_check = @hour << @min << @sec %>
+<% if @wager.wager_type == "straight" %>
 
-<% if @month == "Sep" %>
+	<% self.score_straights %>
 
-	<% @month = "09" %>
+	<div><%= @wager.wager_type %></div>
 
-<% elsif @month == "Jan" %>
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<% @month = "01" %>
+<% elsif @wager.wager_type == "two team taeser" %>
 
-<% elsif @month == "Feb" %>
+	<% self.two_team_teasers %>
 
-	<% @month = "02" %>
+	<div><%= @wager.wager_type %></div>
 
-<% elsif @month == "Mar" %>
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<% @month = "03" %>
+<% elsif @wager.wager_type == "three team teaser" %>
 
-<% elsif @month == "Apr" %>
+	<% self.three_team_teasers %>
 
-	<% @month = "04" %>
+	<div><%= @wager.wager_type %></div>
 
-<% elsif @month == "May" %>
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<% @month = "05" %>
+<% elsif @wager.wager_type == "five team teaser" %>
 
-<% elsif @month == "Jun" %>
+	<% self.five_team_teasers %>
 
-	<% @month = "06" %>
+	<div><%= @wager.wager_type %></div>
 
-<% elsif @month == "Jul" %>
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<% @month = "07" %>
+<% elsif @wager.wager_type == "two team parlay" %>
 
-<% elsif @month == "Aug" %>
+	<% self.two_team_parlays %>
 
-	<% @month = "08" %>
+	<div><%= @wager.wager_type %></div>
 
-<% elsif @month == "Oct" %>
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<% @month = "10" %>
+<% elsif @wager.wager_type == "three team parlay" %>
 
-<% elsif @month == "Nov" %>
+	<% self.three_team_parlays %>
 
-	<% @month = "11" %>
+	<div><%= @wager.wager_type %></div>
 
-<% elsif @month == "Dec" %>
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<% @month = "12" %>
+<% elsif @wager.wager_type == "five team parlay" %>
+
+	<% self.five_team_parlays %>
+
+	<div><%= @wager.wager_type %></div>
+
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+<% elsif @wager.wager_type == "two team reverse" %>
+
+	<% self.two_team_reverses %>
+
+	<div><%= @wager.wager_type %></div>
+
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+<% elsif @wager.wager_type == "three team reverse" %>
+
+	<% self.three_team_reverses %>
+
+	<div><%= @wager.wager_type %></div>
+
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+<% elsif @wager.wager_type == "four team reverse" %>
+
+	<% self.four_team_reverses %>
+
+	<div><%= @wager.wager_type %></div>
+
+	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
 <% end %>
 
-<% @holder_s = @year + @month + @day %>
+<div class = "hide">
 
-<% @serial_num = @holder_s + @time_check %>
+	<%= form_for @wager do |w| %>
+
+		<%= w.text_field :user_id %>
+		<%= w.text_field :league_client_id %>
+		<%= w.text_field :league_id %>
+		<div>Type:<div><%= w.text_field :wager_type %></div>
+		Amount:<div><%= w.text_field :amount %></div>
+		Team1:<div><%= w.text_field :team1 %></div>
+		Team2:<div><%= w.text_field :team2 %></div>
+		Team3:<div><%= w.text_field :team3 %></div>
+		Team4:<div><%= w.text_field :team4 %></div>
+		Team5:<div><%= w.text_field :team5 %></div>
+		Spread1:<div><%= w.text_field :spread1 %></div>
+		Spread2:<div><%= w.text_field :spread2 %></div>
+		Spread3:<div><%= w.text_field :spread3 %></div>
+		Spread4:<div><%= w.text_field :spread4 %></div>
+		Spread5:<div><%= w.text_field :spread5 %></div>
+		Date:<div><%= w.text_field :date %></div>
+		<div><%= w.hidden_field :net_result, :value => @net_p_l %></div>
+		
+		<div><%= w.hidden_field :outcome, :value => @wager.outcome %></div>
+		<div><%= w.hidden_field :graded, :value => true %></div>
+		<div><%= w.submit %></div>
+
+
+	<% end %>
+
+</div>
+
+<script>
+
+
+	var ungradedWagers = <%= @ungraded_wagers %>
+
+	
+
+	var cssID = "edit_league_wager_" + ungradedWagers[0]
+
+	console.log(cssID)
+
+	var scoreWager = document.getElementById(cssID)
+
+	if(ungradedWagers.length > 0){
+
+		scoreWager.submit()
+	}
+	
+
+
+
+
+</script>
+
+<script src="/assets/grade_wager.js"></script>

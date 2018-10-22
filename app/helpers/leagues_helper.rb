@@ -3072,7 +3072,7 @@ module LeaguesHelper
 	end
 end
 
-	def score_straight
+	def score_straights
 		
 		@teams.each do |t|
 
@@ -3320,7 +3320,7 @@ end
 		end
 	end
 
-	def two_team_parlay
+	def two_team_parlays
 
 		@winners = []
 		@losers = []
@@ -3648,7 +3648,7 @@ end
 
 	end
 
-	def three_team_parlay
+	def three_team_parlays
 
 		@winners = []
 		@losers = []
@@ -4182,7 +4182,7 @@ end
 
 	end
 
-	def five_team_parlay
+	def five_team_parlays
 
 		@winners = []
 		@losers = []
@@ -5157,7 +5157,7 @@ end
 
 	end
 
-	def two_team_teaser
+	def two_team_teasers
 
 		@winners = []
 		@losers = []
@@ -5294,7 +5294,7 @@ end
 
 	end
 
-	def three_team_teaser
+	def three_team_teasers
 
 		@winners = []
 		@losers = []
@@ -5483,7 +5483,7 @@ end
 
 	end
 
-	def five_team_teaser
+	def five_team_teasers
 
 		@winners = []
 		@losers = []
@@ -5772,7 +5772,7 @@ end
 
 	end
 
-	def two_team_reverse
+	def two_team_reverses
 
 		@rev_win = []
 		@rev_lose = []
@@ -6238,7 +6238,7 @@ end
 
 	end
 
-	def three_team_reverse
+	def three_team_reverses
 
 		@rev_win = []
 		@rev_lose = []
@@ -7070,7 +7070,7 @@ end
 
 	end
 
-	def four_team_reverse
+	def four_team_reverses
 
 		@rev_win = []
 		@rev_lose = []
