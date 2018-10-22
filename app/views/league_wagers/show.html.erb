@@ -17,6 +17,8 @@
 
 		<% if c.stakes == "small timer" %>
 
+			<div>SMALL TIMERS</div>
+
 			<div><%= c.league_name %></div>
 
 			<% c.league_wagers.each do |w| %>
@@ -25,61 +27,283 @@
 
 				<% if w.wager_type == "straight" %>
 
-				<div><%= w.team1 %>
+				<div><%= w.team1 %></div>
 
 				<% end %>
 				
 				<% if w.wager_type == "two team parlay" %>
 
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+
 				<% end %>
 				
 				<% if w.wager_type == "three team parlay" %>
+
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					<div><%= w.team3 %></div>
 
 				<% end %>
 				
 				<% if w.wager_type == "five team parlay" %>
 
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					<div><%= w.team3 %></div>
+					<div><%= w.team4 %></div>
+					<div><%= w.team5 %></div>
+
 				<% end %>
 				
 				<% if w.wager_type == "two team teaser" %>
 
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					
 				<% end %>
 				
 				<% if w.wager_type == "three team teaser" %>
+
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					<div><%= w.team3 %></div>
 
 				<% end %>
 				
 				<% if w.wager_type == "five team teaser" %>
 
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					<div><%= w.team3 %></div>
+					<div><%= w.team4 %></div>
+					<div><%= w.team5 %></div>
+
 				<% end %>
 				
 				<% if w.wager_type == "two team reverse" %>
+
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					
 
 				<% end %>
 				
 				<% if w.wager_type == "three team reverse" %>
 
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					<div><%= w.team3 %></div>
+
 				<% end %>
 				
 				<% if w.wager_type == "four team reverse" %>
 
+					<div><%= w.team1 %></div>
+					<div><%= w.team2 %></div>
+					<div><%= w.team3 %></div>
+					<div><%= w.team4 %></div>
+
+				<% end %>			
+
+			<% end %> 
+
+		<% elsif c.stakes == "pay dumper" %>
+
+			<div>PAY DUMPERS</div>
+
+			<div><%= c.league_name %></div>
+
+				<% c.league_wagers.each do |w| %>
+
+					<div><%= "$" + w.amount.to_s + " " + w.wager_type %></div>
+
+					<% if w.wager_type == "straight" %>
+
+					<div><%= w.team1 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "two team parlay" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "three team parlay" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "five team parlay" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+						<div><%= w.team4 %></div>
+						<div><%= w.team5 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "two team teaser" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						
+					<% end %>
+					
+					<% if w.wager_type == "three team teaser" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "five team teaser" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+						<div><%= w.team4 %></div>
+						<div><%= w.team5 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "two team reverse" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						
+
+					<% end %>
+					
+					<% if w.wager_type == "three team reverse" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "four team reverse" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+						<div><%= w.team4 %></div>
+
+					<% end %>
+					
+
+
+
 				<% end %>
-				
 
 
+		<% else %>
+		
+		
 
-			<% end %>
+			<div>WHALES</div>
+
+			<div><%= c.league_name %></div>
+
+				<% c.league_wagers.each do |w| %>
+
+					<div><%= "$" + w.amount.to_s + " " + w.wager_type %></div>
+
+					<% if w.wager_type == "straight" %>
+
+					<div><%= w.team1 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "two team parlay" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "three team parlay" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "five team parlay" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+						<div><%= w.team4 %></div>
+						<div><%= w.team5 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "two team teaser" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						
+					<% end %>
+					
+					<% if w.wager_type == "three team teaser" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "five team teaser" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+						<div><%= w.team4 %></div>
+						<div><%= w.team5 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "two team reverse" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						
+
+					<% end %>
+					
+					<% if w.wager_type == "three team reverse" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+
+					<% end %>
+					
+					<% if w.wager_type == "four team reverse" %>
+
+						<div><%= w.team1 %></div>
+						<div><%= w.team2 %></div>
+						<div><%= w.team3 %></div>
+						<div><%= w.team4 %></div>
+
+					<% end %>
+					
+
+				<% end %>
 
 		<% end %>
-
-
-
-
-	<% end %>
-
-
-
-<% end %>
+		<% end %>
+		<% end %>
 
 <% @users.each do |u| %>
 
