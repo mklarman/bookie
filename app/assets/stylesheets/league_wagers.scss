@@ -7,7 +7,7 @@
 
 	height: 100%;
 	width: 100%;
-	border: 1px solid red;
+	
 }
 
 #player_action{
@@ -15,7 +15,7 @@
 	height: 100%;
 	width: 100%;
 	display: inline-block;
-	border: 1px solid red;
+	
 }
 
 #league_bets{
@@ -23,5 +23,79 @@
 	height: 70px;
 	width: 150px;
 	display: inline-block;
-	border: 1px solid red;
+	
+}
+
+#league_action_heading{
+
+	height: 40px;
+	width: 80px;
+	font-size: 25px;
+	
+	margin: auto;
+	margin-top: 25px;
+}
+
+#master_cont{
+
+	height: 100%;
+	width: 85%;
+	
+	margin: auto;
+	text-align: center;
+	margin-top: 5px;
+}
+
+.action_cont{
+
+	height: 100%;
+	width: 0px;
+	display: inline-block;
+	vertical-align: top;
+	
+	
+
+}
+
+.name_label{
+
+	font-size: 23px;
+}
+
+
+#whales_cont{
+
+	text-align: left;
+}
+
+#small_timers_cont{
+
+	text-align: left;
+}
+
+#pay_dump_cont{
+
+	text-align: left;
+}
+
+.name_label{
+
+	text-align: center;
+}
+
+.cl_league_name{
+
+	font-size: 21px;
+	text-align: center;
+}
+
+.bet_des{
+
+	font-size: 20px;
+	margin-left: 50px;
+}
+
+.act_wrapper{
+
+	margin-left: 50px;
 }
