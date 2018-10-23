@@ -15,14 +15,16 @@
 
 <% end %>
 
+HERE:  
+
 
 <% @client_holder.each do |c| %>
 
 	<% @wager_num = 0 %>
 
-	<% @wagers.each do |w| %>
+	<% c.league_wagers.each do |w| %>
 
-		<% if c.id.to_i == w.league_client_id.to_i %>
+		<% if w.graded == false %>
 
 			<% @wager_num = @wager_num + 1 %> 
 
@@ -34,14 +36,11 @@
 
 		<% @qualified_clients.push(c) %>
 
-
 	<% end %>
-
-
 
 <% end %>
 
-<%= @qualified_clients %>
+
 
 <% if @qualified_clients.length == 0 %>
 
