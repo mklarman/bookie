@@ -8,6 +8,18 @@
 <% @mlb_games %>
 <% @nhl_games %>
 <% @bet_type %>
+<% @standings = [] %>
+<% @scores = [] %>
+<% @sorter = [] %>
+<% @sorted_standings = [] %>
+
+<% @obj_test %>
+
+<% @test_num = [2, 5, 56, 90, 0, 8, 7] %>
+
+<% self.get_standings(@test_num) %>
+
+<%= @sorter %>
 
 <% self.get_time %>
 
@@ -156,39 +168,58 @@ CHECK: <%= @my_date %>
 
 	<% if @entrance == true %>
 
-		<div><%= u.sports_book_name %></div>
+		<% @standings.push(u) %>
 
 
 	<% end %>
 
 <% end %>
 
-<% current_user.league_wagers.each do |w| %>
+<% @standings.each do |s| %>
 
-	<% if w.graded == true && w.league_id.to_i == @league.id.to_i %>
+	<% @sum = [] %>
 
-		<div><%= w.wager_type %></div>
-		
-		<div><%= w.amount %></div>
+	<% @bankroll = 0 %>
 
-		<div><%= w.net_result %></div>
+	<% s.league_wagers.each do |w| %>
 
-		<div><%= w.outcome %></div>
-		
-		<div><%= w.team1 %></div>
-		
-		<div><%= w.team2 %></div>
-		
-		<div><%= w.team3 %></div>
+		<% if w.league_id.to_i == @league_id.to_i %>
+
+			<% if w.graded == true %>
+
+				<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+					<% @sum.push(w.net_result.to_i) %>
+
+				<% end %>
 
 
+			<% end %>
 
+
+		<% end %>
 
 	<% end %>
 
+	<% @stand_info = Hash.new %>
 
+	<% @stand_info[:name] = s.sports_book_name %>
+
+	<% @bankroll = @sum.inject(0){|sum,x| sum + x } %>
+
+	<% @stand_info[:bank] = @bankroll %>
+
+	<% @scores.push(@stand_info) %>
 
 <% end %>
+
+<% self.get_standings(@scores) %>
+
+HERE: <%= @sorted_standings %>
+
+
+
+
 
 
 

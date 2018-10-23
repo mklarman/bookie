@@ -8427,4 +8427,26 @@ end
 		end
 
 	end
+
+	def get_standings(array)
+
+		@bank_holder = []
+
+		array.each do |a|
+
+			if a.class == Hash 
+
+				@bank_holder.push(a[:bank].to_i)
+
+			else
+
+				@bank_holder.push(a)
+
+			end		
+
+		end
+
+		@sorted_standings = @bank_holder.sort {|x,y| -(x <=> y)}
+		
+	end
 end
