@@ -227,6 +227,39 @@ HERE: <%= @sorted_standings %>
 
 
 		STANDINGS
+
+		<% @scores.each do |s| %>
+
+			<% @sorted_standings.each do |st| %>
+
+				<% if s.class == Hash %>
+
+					<% if s[:bank].to_i == st.to_i %>
+
+						<% if s[:bank].to_i != 0 %>
+
+							<div><%= s[:name] + " " + s[:bank].to_s %></div>
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+			<% end %>
+
+			<% if s.class == Hash %>
+
+				<% if s[:bank].to_i == 0 %>
+
+					<div><%= s[:name] + " " + s[:bank].to_s %></div>
+
+				<% end %>
+
+			<% end %>
+
+		<% end %>
 		
 
 

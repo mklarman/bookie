@@ -61,7 +61,7 @@
 
 	<div><%= "NET RESULT: " + @net_p_l.to_s %>
 
-<% elsif @wager.wager_type == "two team taeser" %>
+<% elsif @wager.wager_type == "two team teaser" %>
 
 	<% self.two_team_teasers %>
 
@@ -120,6 +120,9 @@
 <% elsif @wager.wager_type == "three team reverse" %>
 
 	<% self.three_team_reverses %>
+
+		HERE: <%= @rev_win %>
+		<%= @rev_lose %>
 
 	<div><%= @wager.wager_type %></div>
 

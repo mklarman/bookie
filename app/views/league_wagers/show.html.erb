@@ -92,7 +92,7 @@
 
 		<% s.league_wagers.each do |w| %>
 
-			<% if w.date == @my_date %>
+			<% if w.date != @my_date %>
 
 				<% if w.team1.length >= 11 %>
 
@@ -268,7 +268,7 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s  %></div>
 
 					</div>
 
@@ -279,8 +279,8 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s + " " + w.net_result.to_s  %></div>
 
 					</div>
 
@@ -291,9 +291,9 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
-						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s   %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s + " " + w.net_result.to_s   %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s + " " + w.net_result.to_s   %></div>
 					</div>
 
 					<br>
@@ -303,10 +303,10 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
-						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
-						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s   %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s + " " + w.net_result.to_s   %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s + " " + w.net_result.to_s   %></div>
+						<div><%= w.team4.to_s + " " + @spread4.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -317,11 +317,11 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
-						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
-						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
-						<div><%= w.team5.to_s + " " + @spread5.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s + " " + w.net_result.to_s  %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s + " " + w.net_result.to_s  %></div>
+						<div><%= w.team4.to_s + " " + @spread4.to_s + " " + w.net_result.to_s  %></div>
+						<div><%= w.team5.to_s + " " + @spread5.to_s + " " + w.net_result.to_s  %></div>
 
 					</div>
 
@@ -352,7 +352,7 @@
 
 			<% s.league_wagers.each do |w| %>
 
-				<% if w.date == @my_date %>
+				<% if w.date != @my_date %>
 
 					<% if w.team1.length >= 11 %>
 
@@ -524,7 +524,7 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -536,7 +536,7 @@
 					<div class="act_wrapper">
 
 						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -549,7 +549,7 @@
 
 						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
 						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
-						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s + " " + w.net_result.to_s   %></div>
 					</div>
 
 					<br>
@@ -562,7 +562,7 @@
 						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
 						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
 						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
-						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
+						<div><%= w.team4.to_s + " " + @spread4.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -577,7 +577,7 @@
 						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
 						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
 						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
-						<div><%= w.team5.to_s + " " + @spread5.to_s %></div>
+						<div><%= w.team5.to_s + " " + @spread5.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -606,7 +606,7 @@
 
 			<% s.league_wagers.each do |w| %>
 
-				<% if w.date == @my_date %>
+				<% if w.date != @my_date %>
 
 					<% if w.team1.length >= 11 %>
 
@@ -778,7 +778,7 @@
 
 					<div class="act_wrapper">
 
-						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
+						<div><%= w.team1.to_s + " " + @spread1.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -790,7 +790,7 @@
 					<div class="act_wrapper">
 
 						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
-						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
+						<div><%= w.team2.to_s + " " + @spread2.to_s + " " + w.net_result.to_s + " " + w.id.to_s   %></div>
 
 					</div>
 
@@ -803,7 +803,7 @@
 
 						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
 						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
-						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
+						<div><%= w.team3.to_s + " " + @spread3.to_s + " " + w.net_result.to_s + " " + w.id.to_s  %></div>
 					</div>
 
 					<br>
@@ -816,7 +816,7 @@
 						<div><%= w.team1.to_s + " " + @spread1.to_s %></div>
 						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
 						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
-						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
+						<div><%= w.team4.to_s + " " + @spread4.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 
@@ -831,7 +831,7 @@
 						<div><%= w.team2.to_s + " " + @spread2.to_s %></div>
 						<div><%= w.team3.to_s + " " + @spread3.to_s %></div>
 						<div><%= w.team4.to_s + " " + @spread4.to_s %></div>
-						<div><%= w.team5.to_s + " " + @spread5.to_s %></div>
+						<div><%= w.team5.to_s + " " + @spread5.to_s + " " + w.net_result.to_s   %></div>
 
 					</div>
 

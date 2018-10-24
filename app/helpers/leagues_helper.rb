@@ -5161,7 +5161,7 @@ end
 
 		@winners = []
 		@losers = []
-		@current_client_br = @current_client_br.to_i
+		
 
 		if @wager.wager_type == "two team teaser"
 
