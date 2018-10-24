@@ -270,6 +270,28 @@ In My Sports Book
  Need to make the how to play page, would like the mini links to bring people to the section of the document they want.
 
 
+ League play is pretty much set up.
+
+ To do list:
+
+ make private leagues work
+
+ set the grading to use the date of the team and the date of the wager
+
+ design league pages:
+
+ Leagues show
+
+ league_clients show
+
+ league_wagers show
+
+ league_wagers edit
+
+ The Home Page
+ 
+
+
 
 
 
