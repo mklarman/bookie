@@ -8,6 +8,7 @@ resources :teams
 resources :leagues
 resources :league_clients
 resources :league_wagers
+resources :secrets
 
 get "/users/sportsbook" => "welcome#show"
 

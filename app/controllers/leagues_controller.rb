@@ -26,6 +26,16 @@ class LeaguesController < ApplicationController
 
 	def index
 
+		@secrets = Secret.all 
+
+		if @secrets.length > 0
+
+			@secrets.last.destroy
+
+		end
+
+		@secret = Secret.new
+
 		@leagues = League.all
 
 	end
@@ -36,6 +46,7 @@ class LeaguesController < ApplicationController
 		@client = LeagueClient.new
 		@league_id = @league.id
 		@users = User.all
+
 
 
 	end
@@ -53,6 +64,12 @@ class LeaguesController < ApplicationController
 	def league_client_params
 
 		params.require(:league_client).permit(:user_id, :league_id, :league_name, :stakes, :bet_types, :sports, :wager_limit)
+
+	end
+
+	def pass_params
+
+		params.require(:private_league).permit(:pass)
 
 	end
 end

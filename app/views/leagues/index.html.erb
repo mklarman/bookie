@@ -1,3 +1,9 @@
+<%= form_for @secret do |s| %>
+
+	<%= s.text_field :pass %>
+
+<% end %>
+
 
 
 <% @leagues.each do |l| %>
@@ -8,6 +14,29 @@
 
 <div>PRIVATE LEAGUE PASSWORD</div>
 
-<div><input type="text" name="" placeholder="League Password"></div>
-<div><input type="submit" name="" value="ENTER"></div>
+<div><input type="text" name="" placeholder="League Password" id="league_pass"></div>
+<div><input type="submit" name="" value="ENTER" id="pass_submit"></div>
+
+<script>
+
+	var passCheck = "<%= @pass_holder %>"
+	var leaguePass = document.getElementById("league_pass")
+	var leagueSub = document.getElementById("pass_submit")
+
+	leagueSub.addEventListener("click", function(){
+
+		console.log(leaguePass.value)
+
+
+		console.log(passCheck)
+
+
+
+
+})
+
+
+
+
+</script>
 
