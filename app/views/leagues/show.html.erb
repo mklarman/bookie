@@ -12,6 +12,7 @@
 <% @scores = [] %>
 <% @sorter = [] %>
 <% @sorted_standings = [] %>
+<% @off_stand = [] %>
 
 <% @obj_test %>
 
@@ -19,7 +20,7 @@
 
 <% self.get_standings(@test_num) %>
 
-<%= @sorter %>
+
 
 <% self.get_time %>
 
@@ -213,9 +214,46 @@ CHECK: <%= @my_date %>
 
 <% end %>
 
+HERE:<%= @scores %>
+
 <% self.get_standings(@scores) %>
 
-HERE: <%= @sorted_standings %>
+HERE: <%= @off_stand %>
+<%= @sorted_standings %>
+
+
+
+<div>
+
+
+	STANDINGS
+
+		<% @off_stand.each do |st| %>
+
+			<% if st.class == Hash %>
+
+				<% if st[:bank].to_i > 0 %>
+
+					<% st[:bank] = "+" + st[:bank].to_s %>
+
+				<% end %>
+
+				<div><%= st[:name].to_s + " " + st[:bank].to_s %></div>
+
+			<% end %>
+
+
+
+		<% end %>
+		
+
+
+
+
+
+</div>
+
+
 
 
 
@@ -226,42 +264,7 @@ HERE: <%= @sorted_standings %>
 	<div id="standings">
 
 
-		STANDINGS
-
-		<% @scores.each do |s| %>
-
-			<% @sorted_standings.each do |st| %>
-
-				<% if s.class == Hash %>
-
-					<% if s[:bank].to_i == st.to_i %>
-
-						<% if s[:bank].to_i != 0 %>
-
-							<div><%= s[:name] + " " + s[:bank].to_s %></div>
-
-						<% end %>
-
-
-					<% end %>
-
-				<% end %>
-
-			<% end %>
-
-			<% if s.class == Hash %>
-
-				<% if s[:bank].to_i == 0 %>
-
-					<div><%= s[:name] + " " + s[:bank].to_s %></div>
-
-				<% end %>
-
-			<% end %>
-
-		<% end %>
 		
-
 
 
 

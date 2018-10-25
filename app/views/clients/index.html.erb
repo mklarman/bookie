@@ -1,4 +1,20 @@
-<% if current_user.wagers.length > 0 %>
+<% @wager_test = false %>
+
+<% current_user.wagers.each do |w| %>
+
+	<% if w.graded == true %>
+
+		<% @wager_test = true %>
+
+	<% end %>
+
+
+<% end %>
+
+
+<% if @wager_test == true %>
+
+
 
 	<% @heading =  "THE " + current_user.sports_book_name.upcase + " SPORTS BOOK" %>
 
