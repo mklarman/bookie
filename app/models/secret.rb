@@ -1,2 +1,3 @@
 class Secret < ApplicationRecord
+	
 end

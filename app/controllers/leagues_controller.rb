@@ -26,17 +26,12 @@ class LeaguesController < ApplicationController
 
 	def index
 
-		@secrets = Secret.all 
-
-		if @secrets.length > 0
-
-			@secrets.last.destroy
-
-		end
 
 		@secret = Secret.new
 
 		@leagues = League.all
+
+
 
 	end
 
@@ -67,9 +62,9 @@ class LeaguesController < ApplicationController
 
 	end
 
-	def pass_params
+	def secret_params
 
-		params.require(:private_league).permit(:pass)
+		params.require(:secret).permit(:pass)
 
 	end
 end

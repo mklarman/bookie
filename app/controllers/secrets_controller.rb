@@ -1,4 +1,4 @@
-class SecretController < ApplicationController
+class SecretsController < ApplicationController
 
 	def new
 
@@ -12,33 +12,35 @@ class SecretController < ApplicationController
 		@leagues = League.all 
 		@lg_id
 		my_bool = false
-		pass = Secret.new(pass_params)
+		secret = Secret.new(secret_params)
+		@pass = secret.pass
 
-		if pass.save!
+		@leagues.each do |l|
 
-			@leagues.each do |l|
+			if l.pass == @pass
 
-				if l.pass == pass(params[:pass])
-
-					@lg_id = l.id
-					my_bool = true
-
-				end
+				@lg_id = l.id
+				my_bool = true
 
 
 			end
 
+		end
+
+		if secret.save!
+
 			if my_bool == true
 
-				redirect_to leagues_path(@lg_id)
+				puts @lg_id
+
+				redirect_to league_path(@lg_id)
 
 			else
 
 				redirect_to leagues_path
 
 			end
-
-
+		
 		else
 
 			redirect_to leagues_path
@@ -50,7 +52,7 @@ class SecretController < ApplicationController
 
 	private
 
-	def pass_params
+	def secret_params
 
 		params.require(:secret).permit(:pass)
 

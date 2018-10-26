@@ -8461,20 +8461,17 @@ end
 
 		@sorted_standings = @bank_holder.sort {|x,y| -(x <=> y)}
 
-		@sorted_length = @sorted_standings.length
-
 		@sorted_standings.each do |s|
 
 			array.each do |a|
 
 				if a.class == Hash
 
-					if s == a[:bank]
+					if s == a[:bank] 
 
 						@off_stand.push(a) unless @off_stand.include? (a)
 
-					end 
-
+					end
 
 				end
 
@@ -8484,38 +8481,6 @@ end
 
 		end
 
-		
-
-		# array.each do |a|
-
-		# # 	@my_bool = false
-
-		# # 	@sorted_standings.each do |s|
-
-		# # 		if a.class == Hash
-
-		# # 			if @my_bool == false
-
-		# # 				if a[:bank].to_i == s.to_i
-
-		# # 					@off_stand.push(a)
-
-		# # 					@my_bool = true
-
-		# # 				end
-
-		# # 			end
-				
-
-		# # 		end
-
-		# # 	end
-
-
-		# end
-		
-
-		
 		
 	end
 

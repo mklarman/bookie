@@ -291,6 +291,26 @@ In My Sports Book
  The Home Page
  
 
+ PRIVATE LEAGUES
+
+ set up the input that will have the password entered into it, and it will direct you to the correct league home page where the user will be loaded with the league clients.  Have to hook up for the private leagues.  That should not be too hard.
+
+ GRADING
+
+ have to filter grading by wager date and team date and then by t.name, t.opp, etc.  Make sure the date on the wager matches the daye on the matchup.  Then I can have a team involved in multiple matchups.
+
+ KEY PAGES FOR DESIGN:
+
+ User show page.  Going to need to design a page that shows the links to the league home pages that the user is in, also maybe thir scores in the leagues.  Give them their total bets backed and a total across all leagues.  Show a bunch of stats for them.  On this page you can show them their open action across all leagues.  Here also would be how many points they have earned.
+
+ League Home Pages.  This will have the client roster, league standings, maybe a breakdown on how each player is doing for each bet category.  Have to see what I can fit.
+
+ League Wagers Show.  This displays the open league action.  Mostly done, see about any details.
+
+ League_Client_edit.  See if the js form looks good enough.  Have to make up more js forms.
+
+ need to make league clients dependent on leagues maybe, definately have to add a validation for the league password.  It must be unique.
+
 
 
 
