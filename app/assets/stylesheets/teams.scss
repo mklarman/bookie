@@ -1,3 +1,22 @@
 // Place all the styles related to the teams controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#team_index_container{
+
+	height: 100%;
+	width: 99%;
+
+}
+
+.team_index{
+
+	display: inline-block;
+	vertical-align: top;
+
+	height: 100%;
+	width: 12%;
+	border: 1px solid red;
+	margin-right: 10px; 
+
+}
