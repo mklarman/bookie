@@ -156,6 +156,8 @@
 
 </div>
 
+
+
 <script>
 	
 	var subBtn = document.getElementById("sub_btn")
@@ -175,15 +177,62 @@
 	
 	subBtn.addEventListener("click", function(){
 
-		date = endDay.value + " " + endMonth.value + " " + endYear.value
+		var pass_holder = []
 
-		leagueNm.value = leagueName.value
-		leaguePass.value = pass.value
-		leagueClients.value = clientNum.value
-		leagueStatus.value = stat.value
-		endDate.value = date
+		var passW = " "
 
-		new_league.submit()
+		var test = false
+
+		<% League.all.each do |l| %>
+
+			<% if l.status == "private" %>
+
+
+
+				passW = "<%= l.pass %>"
+
+				pass_holder.push(passW)
+
+
+			<% end %>
+
+
+
+
+		<% end %>
+
+		console.log(pass_holder)
+		console.log(pass.value)
+
+		for(i=0; i<pass_holder.length; i++){
+
+			if (pass_holder[i] == pass.value){
+
+				test = true
+			}
+		}
+
+		console.log(test)
+
+		if (test == true){
+
+			alert("PASSWORD FOR LEAGUE IS TAKEN")
+		}else{
+
+
+			date = endDay.value + " " + endMonth.value + " " + endYear.value
+
+			leagueNm.value = leagueName.value
+			leaguePass.value = pass.value
+			leagueClients.value = clientNum.value
+			leagueStatus.value = stat.value
+			endDate.value = date
+
+			new_league.submit()
+
+		}
+
+		
 
 
 
