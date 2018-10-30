@@ -3072,11 +3072,13 @@ module LeaguesHelper
 	end
 end
 
-	def score_straights
-		
-		@teams.each do |t|
+def score_straights
+	
+	@teams.each do |t|
 
-			if t.name == @wager.team1
+		if @wager.date == t.date
+
+			if t.name == @wager.team1 
 
 				if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
@@ -3318,7 +3320,9 @@ end
 			end
 
 		end
+
 	end
+end
 
 	def two_team_parlays
 
@@ -3330,186 +3334,190 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if t.spread_result == "win"
+					if t.name == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread
+								@wager_hash = Hash.new
 
-							@winners.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread
 
-						else
+								@winners.push(@wager_hash)
 
-							@winners.push(t.name)
+							else
 
-						end
+								@winners.push(t.name)
 
-					elsif t.spread_result == "loss"
+							end
 
-						@losers.push(t.name)
+						elsif t.spread_result == "loss"
 
-					elsif t.spread_result == "push"
+							@losers.push(t.name)
 
-						@pushes.push(t.name)
+						elsif t.spread_result == "push"
 
-					end
-
-				elsif t.opp == @wager.team1
-
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash = Hash.new
-
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line
-
-							@winners.push(@wager_hash)
-
-						else
-
-							@winners.push(t.opp)
+							@pushes.push(t.name)
 
 						end
 
-					elsif t.spread_result == "push"
+					elsif t.opp == @wager.team1
 
-						@pushes.push(t.opp)
+						if t.spread_result == "win"
 
-					end
+							@losers.push(t.opp)
 
-				elsif t.over_line == @wager.team1
+						elsif t.spread_result == "loss"
 
-					if t.total_result == "over"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-						@winners.push(t.over_line)
+								@wager_hash = Hash.new
 
-					elsif t.total_result == "under"
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line
 
-						@losers.push(t.over_line)
+								@winners.push(@wager_hash)
 
-					elsif t.total_result == "push"
+							else
 
-						@pushes.push(t.over_line)
+								@winners.push(t.opp)
 
-					end
+							end
 
-				elsif t.under_line == @wager.team1
+						elsif t.spread_result == "push"
 
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end 
-
-				if t.name == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread
-
-							@winners.push(@wager_hash_two)
-
-						else
-
-							@winners.push(t.name)
+							@pushes.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.over_line == @wager.team1
 
-						@losers.push(t.name)
+						if t.total_result == "over"
 
-					elsif t.spread_result == "push"
+							@winners.push(t.over_line)
 
-						@pushes.push(t.name)
+						elsif t.total_result == "under"
 
-					end
+							@losers.push(t.over_line)
 
-				elsif t.opp == @wager.team2
+						elsif t.total_result == "push"
 
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line
-
-							@winners.push(@wager_hash_two)
-
-						else
-
-							@winners.push(t.opp)
+							@pushes.push(t.over_line)
 
 						end
 
+					elsif t.under_line == @wager.team1
 
-					elsif t.spread_result == "push"
+						if t.total_result == "over"
 
-						@pushes.push(t.opp)
+							@losers.push(t.under_line)
 
-					end
+						elsif t.total_result == "under"
 
-				elsif t.over_line == @wager.team2
+							@winners.push(t.under_line)
 
-					if t.total_result == "over"
+						elsif t.total_result == "push"
 
-						@winners.push(t.over_line)
+							@pushes.push(t.under_line)
 
-					elsif t.total_result == "under"
+						end
 
-						@losers.push(t.over_line)
+					end 
 
-					elsif t.total_result == "push"
+					if t.name == @wager.team2
 
-						@pushes.push(t.over_line)
+						if t.spread_result == "win"
 
-					end
+							if t.sport == "MLB" || t.sport == "NHL"
 
-				elsif t.under_line == @wager.team2
+								@wager_hash_two = Hash.new
 
-					if t.total_result == "over"
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread
 
-						@losers.push(t.under_line)
+								@winners.push(@wager_hash_two)
 
-					elsif t.total_result == "under"
+							else
 
-						@winners.push(t.under_line)
+								@winners.push(t.name)
 
-					elsif t.total_result == "push"
+							end
 
-						@pushes.push(t.under_line)
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line
+
+								@winners.push(@wager_hash_two)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
 
 					end
 
@@ -3663,279 +3671,283 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if t.spread_result == "win"
+					if t.name == @wager.team1 
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@winners.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						else
+								@winners.push(@wager_hash)
 
-							@winners.push(t.name)
+							else
 
-						end
+								@winners.push(t.name)
 
-					elsif t.spread_result == "loss"
+							end
 
-						@losers.push(t.name)
-
-					elsif t.spread_result == "push"
-
-						@pushes.push(t.name)
-
-					end
-
-				elsif t.opp == @wager.team1
-
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash = Hash.new
-
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
-
-							@winners.push(@wager_hash)
-
-						else
-
-							@winners.push(t.name)
-
-						end
-
-					elsif t.spread_result == "push"
-
-						@pushes.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@winners.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end 
-
-				if t.name == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@winners.push(@wager_hash_two)
-
-						else
-
-							@winners.push(t.name)
-
-						end
-
-					elsif t.spread_result == "loss"
+						elsif t.spread_result == "loss"
 
 							@losers.push(t.name)
 
-					elsif t.spread_result == "push"
+						elsif t.spread_result == "push"
 
 							@pushes.push(t.name)
 
 						end
 
-				elsif t.opp == @wager.team2
+					elsif t.opp == @wager.team1
 
-					if t.spread_result == "win"
+						if t.spread_result == "win"
 
-						@losers.push(t.opp)
+							@losers.push(t.opp)
 
-					elsif t.spread_result == "loss"
+						elsif t.spread_result == "loss"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two = Hash.new
+								@wager_hash = Hash.new
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-							@winners.push(@wager_hash_two)
+								@winners.push(@wager_hash)
 
-						else
+							else
 
-							@winners.push(t.opp)
+								@winners.push(t.name)
 
-						end
+							end
 
+						elsif t.spread_result == "push"
 
-					elsif t.spread_result == "push"
-
-						@pushes.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team2
-
-					if t.total_result == "over"
-
-						@winners.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team2
-
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end
-
-				if t.name == @wager.team3
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_three = Hash.new
-
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
-
-							@winners.push(@wager_hash_three)
-
-						else
-
-							@winners.push(t.name)
+							@pushes.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.over_line == @wager.team1
 
-						@losers.push(t.name)
+						if t.total_result == "over"
 
-					elsif t.spread_result == "push"
+							@winners.push(t.over_line)
 
-						@pushes.push(t.name)
+						elsif t.total_result == "under"
 
-					end
+							@losers.push(t.over_line)
 
-				elsif t.opp == @wager.team3
+						elsif t.total_result == "push"
 
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_three = Hash.new
-
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
-
-							@winners.push(@wager_hash_three)
-
-						else
-
-							@winners.push(t.opp)
+							@pushes.push(t.over_line)
 
 						end
 
+					elsif t.under_line == @wager.team1
 
-					elsif t.spread_result == "push"
+						if t.total_result == "over"
 
-						@pushes.push(t.opp)
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end 
+
+					if t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_two)
+
+							else
+
+								@winners.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+								@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+								@pushes.push(t.name)
+
+							end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_two)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
 
 					end
 
-				elsif t.over_line == @wager.team3
+					if t.name == @wager.team3
 
-					if t.total_result == "over"
+						if t.spread_result == "win"
 
-						@winners.push(t.over_line)
+							if t.sport == "MLB" || t.sport == "NHL"
 
-					elsif t.total_result == "under"
+								@wager_hash_three = Hash.new
 
-						@losers.push(t.over_line)
+								@wager_hash_three[:team] = t.name
+								@wager_hash_three[:spread] = t.spread.to_i
 
-					elsif t.total_result == "push"
+								@winners.push(@wager_hash_three)
 
-						@pushes.push(t.over_line)
+							else
 
-					end
+								@winners.push(t.name)
 
-				elsif t.under_line == @wager.team3
+							end
 
-					if t.total_result == "over"
+						elsif t.spread_result == "loss"
 
-						@losers.push(t.under_line)
+							@losers.push(t.name)
 
-					elsif t.total_result == "under"
+						elsif t.spread_result == "push"
 
-						@winners.push(t.under_line)
+							@pushes.push(t.name)
 
-					elsif t.total_result == "push"
+						end
 
-						@pushes.push(t.under_line)
+					elsif t.opp == @wager.team3
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_three = Hash.new
+
+								@wager_hash_three[:team] = t.opp
+								@wager_hash_three[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_three)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
 
 					end
 
@@ -4193,465 +4205,469 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if t.spread_result == "win"
+					if t.name == @wager.team1 
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@winners.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						else
+								@winners.push(@wager_hash)
 
-							@winners.push(t.name)
+							else
 
-						end
+								@winners.push(t.name)
 
-					elsif t.spread_result == "loss"
+							end
 
-						@losers.push(t.name)
-
-					elsif t.spread_result == "push"
-
-						@pushes.push(t.name)
-
-					end
-
-				elsif t.opp == @wager.team1
-
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash = Hash.new
-
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
-
-							@winners.push(@wager_hash)
-
-						else
-
-							@winners.push(t.name)
-
-						end
-
-					elsif t.spread_result == "push"
-
-						@pushes.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@winners.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end 
-
-				if t.name == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@winners.push(@wager_hash_two)
-
-						else
-
-							@winners.push(t.name)
-
-						end
-
-					elsif t.spread_result == "loss"
+						elsif t.spread_result == "loss"
 
 							@losers.push(t.name)
 
-					elsif t.spread_result == "push"
+						elsif t.spread_result == "push"
 
 							@pushes.push(t.name)
 
 						end
 
-				elsif t.opp == @wager.team2
+					elsif t.opp == @wager.team1
 
-					if t.spread_result == "win"
+						if t.spread_result == "win"
 
-						@losers.push(t.opp)
+							@losers.push(t.opp)
 
-					elsif t.spread_result == "loss"
+						elsif t.spread_result == "loss"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two = Hash.new
+								@wager_hash = Hash.new
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-							@winners.push(@wager_hash_two)
+								@winners.push(@wager_hash)
 
-						else
+							else
 
-							@winners.push(t.opp)
+								@winners.push(t.name)
 
-						end
+							end
 
+						elsif t.spread_result == "push"
 
-					elsif t.spread_result == "push"
-
-						@pushes.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team2
-
-					if t.total_result == "over"
-
-						@winners.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team2
-
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end
-
-				if t.name == @wager.team3
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_three = Hash.new
-
-							@wager_hash_three[:team] = t.name
-							@wager_hash_three[:spread] = t.spread.to_i
-
-							@winners.push(@wager_hash_three)
-
-						else
-
-							@winners.push(t.name)
+							@pushes.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.over_line == @wager.team1
 
-						@losers.push(t.name)
+						if t.total_result == "over"
 
-					elsif t.spread_result == "push"
+							@winners.push(t.over_line)
 
-						@pushes.push(t.name)
+						elsif t.total_result == "under"
 
-					end
+							@losers.push(t.over_line)
 
-				elsif t.opp == @wager.team3
+						elsif t.total_result == "push"
 
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_three = Hash.new
-
-							@wager_hash_three[:team] = t.opp
-							@wager_hash_three[:spread] = t.opp_line.to_i
-
-							@winners.push(@wager_hash_three)
-
-						else
-
-							@winners.push(t.opp)
+							@pushes.push(t.over_line)
 
 						end
 
+					elsif t.under_line == @wager.team1
 
-					elsif t.spread_result == "push"
+						if t.total_result == "over"
 
-						@pushes.push(t.opp)
+							@losers.push(t.under_line)
 
-					end
+						elsif t.total_result == "under"
 
-				elsif t.over_line == @wager.team3
+							@winners.push(t.under_line)
 
-					if t.total_result == "over"
+						elsif t.total_result == "push"
 
-						@winners.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team3
-
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end
-
-				if t.name == @wager.team4
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_four = Hash.new
-
-							@wager_hash_four[:team] = t.name
-							@wager_hash_four[:spread] = t.spread.to_i
-
-							@winners.push(@wager_hash_four)
-
-						else
-
-							@winners.push(t.name)
+							@pushes.push(t.under_line)
 
 						end
 
-					elsif t.spread_result == "loss"
+					end 
 
-						@losers.push(t.name)
+					if t.name == @wager.team2
 
-					elsif t.spread_result == "push"
+						if t.spread_result == "win"
 
-						@pushes.push(t.name)
+							if t.sport == "MLB" || t.sport == "NHL"
 
-					end
+								@wager_hash_two = Hash.new
 
-				elsif t.opp == @wager.team4
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-					if t.spread_result == "win"
+								@winners.push(@wager_hash_two)
 
-						@losers.push(t.opp)
+							else
 
-					elsif t.spread_result == "loss"
+								@winners.push(t.name)
 
-						if t.sport == "MLB" || t.sport == "NHL"
+							end
 
-							@wager_hash_four = Hash.new
+						elsif t.spread_result == "loss"
 
-							@wager_hash_four[:team] = t.opp
-							@wager_hash_four[:spread] = t.opp_line.to_i
+								@losers.push(t.name)
 
-							@winners.push(@wager_hash_four)
+						elsif t.spread_result == "push"
 
-						else
+								@pushes.push(t.name)
 
-							@winners.push(t.opp)
+							end
 
-						end
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_two)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
 
 
-					elsif t.spread_result == "push"
+						elsif t.spread_result == "push"
 
-						@pushes.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team4
-
-					if t.total_result == "over"
-
-						@winners.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team4
-
-					if t.total_result == "over"
-
-						@losers.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@winners.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.under_line)
-
-					end
-
-				end
-
-				if t.name == @wager.team5
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_five = Hash.new
-
-							@wager_hash_five[:team] = t.name
-							@wager_hash_five[:spread] = t.spread.to_i
-
-							@winners.push(@wager_hash_five)
-
-						else
-
-							@winners.push(t.name)
+							@pushes.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.over_line == @wager.team2
 
-						@losers.push(t.name)
+						if t.total_result == "over"
 
-					elsif t.spread_result == "push"
+							@winners.push(t.over_line)
 
-						@pushes.push(t.name)
+						elsif t.total_result == "under"
 
-					end
+							@losers.push(t.over_line)
 
-				elsif t.opp == @wager.team5
+						elsif t.total_result == "push"
 
-					if t.spread_result == "win"
-
-						@losers.push(t.opp)
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_five = Hash.new
-
-							@wager_hash_five[:team] = t.opp
-							@wager_hash_five[:spread] = t.opp_line.to_i
-
-							@winners.push(@wager_hash_three)
-
-						else
-
-							@winners.push(t.opp)
+							@pushes.push(t.over_line)
 
 						end
 
+					elsif t.under_line == @wager.team2
 
-					elsif t.spread_result == "push"
+						if t.total_result == "over"
 
-						@pushes.push(t.opp)
+							@losers.push(t.under_line)
 
-					end
+						elsif t.total_result == "under"
 
-				elsif t.over_line == @wager.team5
+							@winners.push(t.under_line)
 
-					if t.total_result == "over"
+						elsif t.total_result == "push"
 
-						@winners.push(t.over_line)
+							@pushes.push(t.under_line)
 
-					elsif t.total_result == "under"
-
-						@losers.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@pushes.push(t.over_line)
+						end
 
 					end
 
-				elsif t.under_line == @wager.team5
+					if t.name == @wager.team3
 
-					if t.total_result == "over"
+						if t.spread_result == "win"
 
-						@losers.push(t.under_line)
+							if t.sport == "MLB" || t.sport == "NHL"
 
-					elsif t.total_result == "under"
+								@wager_hash_three = Hash.new
 
-						@winners.push(t.under_line)
+								@wager_hash_three[:team] = t.name
+								@wager_hash_three[:spread] = t.spread.to_i
 
-					elsif t.total_result == "push"
+								@winners.push(@wager_hash_three)
 
-						@pushes.push(t.under_line)
+							else
+
+								@winners.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team3
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_three = Hash.new
+
+								@wager_hash_three[:team] = t.opp
+								@wager_hash_three[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_three)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team3
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end
+
+					if t.name == @wager.team4
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_four = Hash.new
+
+								@wager_hash_four[:team] = t.name
+								@wager_hash_four[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_four)
+
+							else
+
+								@winners.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team4
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_four = Hash.new
+
+								@wager_hash_four[:team] = t.opp
+								@wager_hash_four[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_four)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team4
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team4
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
+
+					end
+
+					if t.name == @wager.team5
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_five = Hash.new
+
+								@wager_hash_five[:team] = t.name
+								@wager_hash_five[:spread] = t.spread.to_i
+
+								@winners.push(@wager_hash_five)
+
+							else
+
+								@winners.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							@losers.push(t.name)
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team5
+
+						if t.spread_result == "win"
+
+							@losers.push(t.opp)
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_five = Hash.new
+
+								@wager_hash_five[:team] = t.opp
+								@wager_hash_five[:spread] = t.opp_line.to_i
+
+								@winners.push(@wager_hash_three)
+
+							else
+
+								@winners.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@pushes.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team5
+
+						if t.total_result == "over"
+
+							@winners.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@losers.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team5
+
+						if t.total_result == "over"
+
+							@losers.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@winners.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@pushes.push(t.under_line)
+
+						end
 
 					end
 
@@ -5167,101 +5183,105 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
+					if t.name == @wager.team1
 
-						@winners.push(@wager.team1)
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.opp == @wager.team1
+						end
 
-					if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
+					elsif t.opp == @wager.team1
 
-						@winners.push(@wager.team1)
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.over_line == @wager.team1
+						end
 
-					if t.total_points.to_i > @wager.spread1
+					elsif t.over_line == @wager.team1
 
-						@winners.push(@wager.team1)
+						if t.total_points.to_i > @wager.spread1
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.under_line == @wager.team1
+						end
 
-					if t.total_points.to_i < @wager.spread1
+					elsif t.under_line == @wager.team1
 
-						@winners.push(@wager.team1)
+						if t.total_points.to_i < @wager.spread1
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				end
-
-				if t.name == @wager.team2
-
-					if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
-
-						@winners.push(@wager.team2)
-
-					else
-
-						@losers.push(@wager.team2)
+						end
 
 					end
 
-				elsif t.opp == @wager.team2
+					if t.name == @wager.team2
 
-					if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				elsif t.over_line == @wager.team2
+					elsif t.opp == @wager.team2
 
-					if t.total_points.to_i > @wager.spread2
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team1)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				elsif t.under_line == @wager.team2
+					elsif t.over_line == @wager.team2
 
-					if t.total_points.to_i < @wager.spread2
+						if t.total_points.to_i > @wager.spread2
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team1)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_points.to_i < @wager.spread2
+
+							@winners.push(@wager.team2)
+
+						else
+
+							@losers.push(@wager.team2)
+
+						end
 
 					end
 
@@ -5304,151 +5324,155 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
+					if t.name == @wager.team1
 
-						@winners.push(@wager.team1)
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.opp == @wager.team1
+						end
 
-					if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
+					elsif t.opp == @wager.team1
 
-						@winners.push(@wager.team1)
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.over_line == @wager.team1
+						end
 
-					if t.total_points.to_i > @wager.spread1
+					elsif t.over_line == @wager.team1
 
-						@winners.push(@wager.team1)
+						if t.total_points.to_i > @wager.spread1
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.under_line == @wager.team1
+						end
 
-					if t.total_points.to_i < @wager.spread1.to_i
+					elsif t.under_line == @wager.team1
 
-						@winners.push(@wager.team1)
+						if t.total_points.to_i < @wager.spread1.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				end
-
-				if t.name == @wager.team2
-
-					if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
-
-						@winners.push(@wager.team2)
-
-					else
-
-						@losers.push(@wager.team2)
+						end
 
 					end
 
-				elsif t.opp == @wager.team2
+					if t.name == @wager.team2
 
-					if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				elsif t.over_line == @wager.team2
+					elsif t.opp == @wager.team2
 
-					if t.total_points.to_i > @wager.spread2
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				elsif t.under_line == @wager.team2
+					elsif t.over_line == @wager.team2
 
-					if t.total_points.to_i < @wager.spread2
+						if t.total_points.to_i > @wager.spread2
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				end
+					elsif t.under_line == @wager.team2
 
-				if t.name == @wager.team3
+						if t.total_points.to_i < @wager.spread2
 
-					if (t.score.to_i + @wager.spread3.to_i) > t.opp_score.to_i
+							@winners.push(@wager.team2)
 
-						@winners.push(@wager.team3)
+						else
 
-					else
+							@losers.push(@wager.team2)
 
-						@losers.push(@wager.team3)
-
-					end
-
-				elsif t.opp == @wager.team3
-
-					if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
-
-						@winners.push(@wager.team3)
-
-					else
-
-						@losers.push(@wager.team3)
+						end
 
 					end
 
-				elsif t.over_line == @wager.team3
+					if t.name == @wager.team3
 
-					if t.total_points.to_i > @wager.spread3
+						if (t.score.to_i + @wager.spread3.to_i) > t.opp_score.to_i
 
-						@winners.push(@wager.team3)
+							@winners.push(@wager.team3)
 
-					else
+						else
 
-						@losers.push(@wager.team3)
+							@losers.push(@wager.team3)
 
-					end
+						end
 
-				elsif t.under_line == @wager.team3
+					elsif t.opp == @wager.team3
 
-					if t.total_points.to_i < @wager.spread3
+						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
 
-						@winners.push(@wager.team3)
+							@winners.push(@wager.team3)
 
-					else
+						else
 
-						@losers.push(@wager.team3)
+							@losers.push(@wager.team3)
+
+						end
+
+					elsif t.over_line == @wager.team3
+
+						if t.total_points.to_i > @wager.spread3
+
+							@winners.push(@wager.team3)
+
+						else
+
+							@losers.push(@wager.team3)
+
+						end
+
+					elsif t.under_line == @wager.team3
+
+						if t.total_points.to_i < @wager.spread3
+
+							@winners.push(@wager.team3)
+
+						else
+
+							@losers.push(@wager.team3)
+
+						end
 
 					end
 
@@ -5493,251 +5517,255 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
+					if t.name == @wager.team1
 
-						@winners.push(@wager.team1)
+						if (t.score.to_i + @wager.spread1.to_i) > t.opp_score.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.opp == @wager.team1
+						end
 
-					if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
+					elsif t.opp == @wager.team1
 
-						@winners.push(@wager.team1)
+						if (t.opp_score.to_i + @wager.spread1.to_i) > t.score.to_i
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.over_line == @wager.team1
+						end
 
-					if t.total_points.to_i > @wager.spread1
+					elsif t.over_line == @wager.team1
 
-						@winners.push(@wager.team1)
+						if t.total_points.to_i > @wager.spread1
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				elsif t.under_line == @wager.team1
+						end
 
-					if t.total_points.to_i < @wager.spread1
+					elsif t.under_line == @wager.team1
 
-						@winners.push(@wager.team1)
+						if t.total_points.to_i < @wager.spread1
 
-					else
+							@winners.push(@wager.team1)
 
-						@losers.push(@wager.team1)
+						else
 
-					end
+							@losers.push(@wager.team1)
 
-				end
-
-				if t.name == @wager.team2
-
-					if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
-
-						@winners.push(@wager.team2)
-
-					else
-
-						@losers.push(@wager.team2)
+						end
 
 					end
 
-				elsif t.opp == @wager.team2
+					if t.name == @wager.team2
 
-					if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
+						if (t.score.to_i + @wager.spread2.to_i) > t.opp_score.to_i
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				elsif t.over_line == @wager.team2
+					elsif t.opp == @wager.team2
 
-					if t.total_points.to_i > @wager.spread2
+						if (t.opp_score.to_i + @wager.spread2.to_i) > t.score.to_i
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				elsif t.under_line == @wager.team2
+					elsif t.over_line == @wager.team2
 
-					if t.total_points.to_i < @wager.spread2
+						if t.total_points.to_i > @wager.spread2
 
-						@winners.push(@wager.team2)
+							@winners.push(@wager.team2)
 
-					else
+						else
 
-						@losers.push(@wager.team2)
+							@losers.push(@wager.team2)
 
-					end
+						end
 
-				end
+					elsif t.under_line == @wager.team2
 
-				if t.name == @wager.team3
+						if t.total_points.to_i < @wager.spread2
 
-					if (t.score.to_i + @wager.spread3.to_i) > t.opp_score.to_i
+							@winners.push(@wager.team2)
 
-						@winners.push(@wager.team3)
+						else
 
-					else
+							@losers.push(@wager.team2)
 
-						@losers.push(@wager.team3)
-
-					end
-
-				elsif t.opp == @wager.team3
-
-					if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
-
-						@winners.push(@wager.team3)
-
-					else
-
-						@losers.push(@wager.team3)
+						end
 
 					end
 
-				elsif t.over_line == @wager.team3
+					if t.name == @wager.team3
 
-					if t.total_points.to_i > @wager.spread3
+						if (t.score.to_i + @wager.spread3.to_i) > t.opp_score.to_i
 
-						@winners.push(@wager.team3)
+							@winners.push(@wager.team3)
 
-					else
+						else
 
-						@losers.push(@wager.team3)
+							@losers.push(@wager.team3)
 
-					end
+						end
 
-				elsif t.under_line == @wager.team3
+					elsif t.opp == @wager.team3
 
-					if t.total_points.to_i < @wager.spread3
+						if (t.opp_score.to_i + @wager.spread3.to_i) > t.score.to_i
 
-						@winners.push(@wager.team3)
+							@winners.push(@wager.team3)
 
-					else
+						else
 
-						@losers.push(@wager.team3)
+							@losers.push(@wager.team3)
 
-					end
+						end
 
-				end
+					elsif t.over_line == @wager.team3
 
-				if t.name == @wager.team4
+						if t.total_points.to_i > @wager.spread3
 
-					if (t.score.to_i + @wager.spread4.to_i) > t.opp_score.to_i
+							@winners.push(@wager.team3)
 
-						@winners.push(@wager.team4)
+						else
 
-					else
+							@losers.push(@wager.team3)
 
-						@losers.push(@wager.team4)
+						end
 
-					end
+					elsif t.under_line == @wager.team3
 
-				elsif t.opp == @wager.team4
+						if t.total_points.to_i < @wager.spread3
 
-					if (t.opp_score.to_i + @wager.spread4.to_i) > t.score.to_i
+							@winners.push(@wager.team3)
 
-						@winners.push(@wager.team4)
+						else
 
-					else
+							@losers.push(@wager.team3)
 
-						@losers.push(@wager.team4)
-
-					end
-
-				elsif t.over_line == @wager.team4
-
-					if t.total_points.to_i > @wager.spread4
-
-						@winners.push(@wager.team4)
-
-					else
-
-						@losers.push(@wager.team4)
+						end
 
 					end
 
-				elsif t.under_line == @wager.team4
+					if t.name == @wager.team4
 
-					if t.total_points.to_i < @wager.spread4
+						if (t.score.to_i + @wager.spread4.to_i) > t.opp_score.to_i
 
-						@winners.push(@wager.team4)
+							@winners.push(@wager.team4)
 
-					else
+						else
 
-						@losers.push(@wager.team4)
+							@losers.push(@wager.team4)
+
+						end
+
+					elsif t.opp == @wager.team4
+
+						if (t.opp_score.to_i + @wager.spread4.to_i) > t.score.to_i
+
+							@winners.push(@wager.team4)
+
+						else
+
+							@losers.push(@wager.team4)
+
+						end
+
+					elsif t.over_line == @wager.team4
+
+						if t.total_points.to_i > @wager.spread4
+
+							@winners.push(@wager.team4)
+
+						else
+
+							@losers.push(@wager.team4)
+
+						end
+
+					elsif t.under_line == @wager.team4
+
+						if t.total_points.to_i < @wager.spread4
+
+							@winners.push(@wager.team4)
+
+						else
+
+							@losers.push(@wager.team4)
+
+						end
 
 					end
 
-				end
+					if t.name == @wager.team5
 
-				if t.name == @wager.team5
+						if (t.score.to_i + @wager.spread5.to_i) > t.opp_score.to_i
 
-					if (t.score.to_i + @wager.spread5.to_i) > t.opp_score.to_i
+							@winners.push(@wager.team5)
 
-						@winners.push(@wager.team5)
+						else
 
-					else
+							@losers.push(@wager.team5)
 
-						@losers.push(@wager.team5)
+						end
 
-					end
+					elsif t.opp == @wager.team5
 
-				elsif t.opp == @wager.team5
+						if (t.opp_score.to_i + @wager.spread5.to_i) > t.score.to_i
 
-					if (t.opp_score.to_i + @wager.spread5.to_i) > t.score.to_i
+							@winners.push(@wager.team5)
 
-						@winners.push(@wager.team5)
+						else
 
-					else
+							@losers.push(@wager.team5)
 
-						@losers.push(@wager.team5)
+						end
 
-					end
+					elsif t.over_line == @wager.team5
 
-				elsif t.over_line == @wager.team5
+						if t.total_points.to_i > @wager.spread5
 
-					if t.total_points.to_i > @wager.spread5
+							@winners.push(@wager.team5)
 
-						@winners.push(@wager.team5)
+						else
 
-					else
+							@losers.push(@wager.team5)
 
-						@losers.push(@wager.team5)
+						end
 
-					end
+					elsif t.under_line == @wager.team5
 
-				elsif t.under_line == @wager.team5
+						if t.total_points.to_i < @wager.spread5
 
-					if t.total_points.to_i < @wager.spread5
+							@winners.push(@wager.team5)
 
-						@winners.push(@wager.team5)
+						else
 
-					else
+							@losers.push(@wager.team5)
 
-						@losers.push(@wager.team5)
+						end
 
 					end
 
@@ -5783,239 +5811,243 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if t.spread_result == "win"
+					if t.name == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						else
+								@rev_win.push(@wager_hash)
 
-							@rev_win.push(t.name)
+							else
 
-						end
+								@rev_win.push(t.name)
 
-					elsif t.spread_result == "loss"
+							end
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						elsif t.spread_result == "loss"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						else
+								@rev_lose.push(@wager_hash)
 
-							@rev_lose.push(t.name)
+							else
 
-						end
+								@rev_lose.push(t.name)
 
-					elsif t.spread_result == "push"
+							end
 
-						@rev_push.push(t.name)
+						elsif t.spread_result == "push"
 
-					end
-
-				elsif t.opp == @wager.team1
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash = Hash.new
-
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
-
-							@rev_lose.push(@wager_hash)
-
-						else
-
-							@rev_lose.push(t.opp)
+							@rev_push.push(t.name)
 
 						end
 
+					elsif t.opp == @wager.team1
 
-					elsif t.spread_result == "loss"
+						if t.spread_result == "win"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash = Hash.new
+								@wager_hash = Hash.new
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-							@rev_win.push(@wager_hash)
+								@rev_lose.push(@wager_hash)
 
-						else
+							else
 
-							@rev_win.push(t.opp)
+								@rev_lose.push(t.opp)
 
-						end
+							end
 
-					elsif t.spread_result == "push"
 
-						@rev_push.push(t.opp)
+						elsif t.spread_result == "loss"
 
-					end
+							if t.sport == "MLB" || t.sport == "NHL"
 
-				elsif t.over_line == @wager.team1
+								@wager_hash = Hash.new
 
-					if t.total_result == "over"
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-						@rev_win.push(t.over_line)
+								@rev_win.push(@wager_hash)
 
-					elsif t.total_result == "under"
+							else
 
-						@rev_lose.push(t.over_line)
+								@rev_win.push(t.opp)
 
-					elsif t.total_result == "push"
+							end
 
-						@rev_push.push(t.over_line)
+						elsif t.spread_result == "push"
 
-					end
-
-				elsif t.under_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
-
-					end
-
-				end 
-
-				if t.name == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.name)
+							@rev_push.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.over_line == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.total_result == "over"
 
-							@wager_hash_two = Hash.new
+							@rev_win.push(t.over_line)
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+						elsif t.total_result == "under"
 
-							@rev_lose.push(@wager_hash_two)
+							@rev_lose.push(t.over_line)
 
-						else
+						elsif t.total_result == "push"
 
-							@rev_lose.push(t.name)
-
-						end
-
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.name)
-
-					end
-
-				elsif t.opp == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_lose.push(@wager_hash_two)
-
-						else
-
-							@rev_lose.push(t.opp)
+							@rev_push.push(t.over_line)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.under_line == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.total_result == "over"
 
-							@wager_hash_two = Hash.new
+							@rev_lose.push(t.under_line)
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+						elsif t.total_result == "under"
 
-							@rev_win.push(@wager_hash_two)
+							@rev_win.push(t.under_line)
 
-						else
+						elsif t.total_result == "push"
 
-							@rev_win.push(t.opp)
+							@rev_push.push(t.under_line)
 
 						end
 
+					end 
 
-					elsif t.spread_result == "push"
+					if t.name == @wager.team2 
 
-						@rev_push.push(t.opp)
+						if t.spread_result == "win"
 
-					end
+							if t.sport == "MLB" || t.sport == "NHL"
 
-				elsif t.over_line == @wager.team2
+								@wager_hash_two = Hash.new
 
-					if t.total_result == "over"
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-						@rev_win.push(t.over_line)
+								@rev_win.push(@wager_hash_two)
 
-					elsif t.total_result == "under"
+							else
 
-						@rev_lose.push(t.over_line)
+								@rev_win.push(t.name)
 
-					elsif t.total_result == "push"
+							end
 
-						@rev_push.push(t.over_line)
+						elsif t.spread_result == "loss"
 
-					end
+							if t.sport == "MLB" || t.sport == "NHL"
 
-				elsif t.under_line == @wager.team2
+								@wager_hash_two = Hash.new
 
-					if t.total_result == "over"
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-						@rev_lose.push(t.under_line)
+								@rev_lose.push(@wager_hash_two)
 
-					elsif t.total_result == "under"
+							else
 
-						@rev_win.push(t.under_line)
+								@rev_lose.push(t.name)
 
-					elsif t.total_result == "push"
+							end
 
-						@rev_push.push(t.under_line)
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2 
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2 
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2 
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
 
 					end
 
@@ -6249,358 +6281,362 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if t.spread_result == "win"
+					if t.name == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						else
+								@rev_win.push(@wager_hash)
 
-							@rev_win.push(t.name)
+							else
+
+								@rev_win.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash = Hash.new
+
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.opp == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-						else
+								@rev_lose.push(@wager_hash)
 
-							@rev_lose.push(t.name)
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash = Hash.new
+
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "push"
+					elsif t.over_line == @wager.team1
 
-						@rev_push.push(t.name)
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end 
+
+					if t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
 
 					end
 
-				elsif t.opp == @wager.team1
+					if t.name == @wager.team3
 
-					if t.spread_result == "win"
+						if t.spread_result == "win"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash = Hash.new
+								@wager_hash_two = Hash.new
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-							@rev_lose.push(@wager_hash)
+								@rev_win.push(@wager_hash_two)
 
-						else
+							else
 
-							@rev_lose.push(t.opp)
+								@rev_win.push(t.name)
 
-						end
+							end
 
+						elsif t.spread_result == "loss"
 
-					elsif t.spread_result == "loss"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+								@wager_hash_two = Hash.new
 
-							@wager_hash = Hash.new
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@rev_lose.push(@wager_hash_two)
 
-							@rev_win.push(@wager_hash)
+							else
 
-						else
+								@rev_lose.push(t.name)
 
-							@rev_win.push(t.opp)
+							end
 
-						end
+						elsif t.spread_result == "push"
 
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@rev_win.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@rev_lose.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
-
-					end
-
-				end 
-
-				if t.name == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.name)
+							@rev_push.push(t.name)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.opp == @wager.team3
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
-						else
+								@rev_lose.push(@wager_hash_two)
 
-							@rev_lose.push(t.name)
+							else
 
-						end
+								@rev_lose.push(t.opp)
 
-					elsif t.spread_result == "push"
+							end
 
-						@rev_push.push(t.name)
+						elsif t.spread_result == "loss"
 
-					end
+							if t.sport == "MLB" || t.sport == "NHL"
 
-				elsif t.opp == @wager.team2
+								@wager_hash_two = Hash.new
 
-					if t.spread_result == "win"
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
-						if t.sport == "MLB" || t.sport == "NHL"
+								@rev_win.push(@wager_hash_two)
 
-							@wager_hash_two = Hash.new
+							else
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@rev_win.push(t.opp)
 
-							@rev_lose.push(@wager_hash_two)
+							end
 
-						else
 
-							@rev_lose.push(t.opp)
+						elsif t.spread_result == "push"
 
-						end
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.opp)
+							@rev_push.push(t.opp)
 
 						end
 
+					elsif t.over_line == @wager.team3
 
-					elsif t.spread_result == "push"
+						if t.total_result == "over"
 
-						@rev_push.push(t.opp)
+							@rev_win.push(t.over_line)
 
-					end
+						elsif t.total_result == "under"
 
-				elsif t.over_line == @wager.team2
+							@rev_lose.push(t.over_line)
 
-					if t.total_result == "over"
+						elsif t.total_result == "push"
 
-						@rev_win.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@rev_lose.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team2
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
-
-					end
-
-				end
-
-				if t.name == @wager.team3
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.name)
+							@rev_push.push(t.over_line)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.under_line == @wager.team3
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.total_result == "over"
 
-							@wager_hash_two = Hash.new
+							@rev_lose.push(t.under_line)
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+						elsif t.total_result == "under"
 
-							@rev_lose.push(@wager_hash_two)
+							@rev_win.push(t.under_line)
 
-						else
+						elsif t.total_result == "push"
 
-							@rev_lose.push(t.name)
-
-						end
-
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.name)
-
-					end
-
-				elsif t.opp == @wager.team3
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_lose.push(@wager_hash_two)
-
-						else
-
-							@rev_lose.push(t.opp)
+							@rev_push.push(t.under_line)
 
 						end
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.opp)
-
-						end
-
-
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team3
-
-					if t.total_result == "over"
-
-						@rev_win.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@rev_lose.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team3
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
 
 					end
 
@@ -7081,477 +7117,481 @@ end
 
 			@teams.each do |t|
 
-				if t.name == @wager.team1
+				if @wager.date == t.date
 
-					if t.spread_result == "win"
+					if t.name == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_win.push(@wager_hash)
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
 
-						else
+								@rev_win.push(@wager_hash)
 
-							@rev_win.push(t.name)
+							else
+
+								@rev_win.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash = Hash.new
+
+								@wager_hash[:team] = t.name
+								@wager_hash[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.opp == @wager.team1
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash[:team] = t.name
-							@wager_hash[:spread] = t.spread.to_i
+								@wager_hash = Hash.new
 
-							@rev_lose.push(@wager_hash)
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
 
-						else
+								@rev_lose.push(@wager_hash)
 
-							@rev_lose.push(t.name)
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash = Hash.new
+
+								@wager_hash[:team] = t.opp
+								@wager_hash[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "push"
+					elsif t.over_line == @wager.team1
 
-						@rev_push.push(t.name)
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team1
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
+
+					end 
+
+					if t.name == @wager.team2
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
+
+						end
+
+					elsif t.opp == @wager.team2
+
+						if t.spread_result == "win"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.opp)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
+
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.opp)
+
+							end
+
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.opp)
+
+						end
+
+					elsif t.over_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_win.push(t.over_line)
+
+						elsif t.total_result == "under"
+
+							@rev_lose.push(t.over_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.over_line)
+
+						end
+
+					elsif t.under_line == @wager.team2
+
+						if t.total_result == "over"
+
+							@rev_lose.push(t.under_line)
+
+						elsif t.total_result == "under"
+
+							@rev_win.push(t.under_line)
+
+						elsif t.total_result == "push"
+
+							@rev_push.push(t.under_line)
+
+						end
 
 					end
 
-				elsif t.opp == @wager.team1
+					if t.name == @wager.team3
 
-					if t.spread_result == "win"
+						if t.spread_result == "win"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash = Hash.new
+								@wager_hash_two = Hash.new
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-							@rev_lose.push(@wager_hash)
+								@rev_win.push(@wager_hash_two)
 
-						else
+							else
 
-							@rev_lose.push(t.opp)
+								@rev_win.push(t.name)
 
-						end
+							end
 
+						elsif t.spread_result == "loss"
 
-					elsif t.spread_result == "loss"
+							if t.sport == "MLB" || t.sport == "NHL"
 
-						if t.sport == "MLB" || t.sport == "NHL"
+								@wager_hash_two = Hash.new
 
-							@wager_hash = Hash.new
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-							@wager_hash[:team] = t.opp
-							@wager_hash[:spread] = t.opp_line.to_i
+								@rev_lose.push(@wager_hash_two)
 
-							@rev_win.push(@wager_hash)
+							else
 
-						else
+								@rev_lose.push(t.name)
 
-							@rev_win.push(t.opp)
+							end
 
-						end
+						elsif t.spread_result == "push"
 
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@rev_win.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@rev_lose.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team1
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
-
-					end
-
-				end 
-
-				if t.name == @wager.team2
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.name)
+							@rev_push.push(t.name)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.opp == @wager.team3
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.spread_result == "win"
 
-							@wager_hash_two = Hash.new
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+								@wager_hash_two = Hash.new
 
-							@rev_lose.push(@wager_hash_two)
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
-						else
+								@rev_lose.push(@wager_hash_two)
 
-							@rev_lose.push(t.name)
+							else
 
-						end
+								@rev_lose.push(t.opp)
 
-					elsif t.spread_result == "push"
+							end
 
-						@rev_push.push(t.name)
+						elsif t.spread_result == "loss"
 
-					end
+							if t.sport == "MLB" || t.sport == "NHL"
 
-				elsif t.opp == @wager.team2
+								@wager_hash_two = Hash.new
 
-					if t.spread_result == "win"
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
-						if t.sport == "MLB" || t.sport == "NHL"
+								@rev_win.push(@wager_hash_two)
 
-							@wager_hash_two = Hash.new
+							else
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+								@rev_win.push(t.opp)
 
-							@rev_lose.push(@wager_hash_two)
+							end
 
-						else
 
-							@rev_lose.push(t.opp)
+						elsif t.spread_result == "push"
 
-						end
-
-					elsif t.spread_result == "loss"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.opp)
+							@rev_push.push(t.opp)
 
 						end
 
+					elsif t.over_line == @wager.team3
 
-					elsif t.spread_result == "push"
+						if t.total_result == "over"
 
-						@rev_push.push(t.opp)
+							@rev_win.push(t.over_line)
 
-					end
+						elsif t.total_result == "under"
 
-				elsif t.over_line == @wager.team2
+							@rev_lose.push(t.over_line)
 
-					if t.total_result == "over"
+						elsif t.total_result == "push"
 
-						@rev_win.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@rev_lose.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team2
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
-
-					end
-
-				end
-
-				if t.name == @wager.team3
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.name)
+							@rev_push.push(t.over_line)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.under_line == @wager.team3
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.total_result == "over"
 
-							@wager_hash_two = Hash.new
+							@rev_lose.push(t.under_line)
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+						elsif t.total_result == "under"
 
-							@rev_lose.push(@wager_hash_two)
+							@rev_win.push(t.under_line)
 
-						else
+						elsif t.total_result == "push"
 
-							@rev_lose.push(t.name)
-
-						end
-
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.name)
-
-					end
-
-				elsif t.opp == @wager.team3
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_lose.push(@wager_hash_two)
-
-						else
-
-							@rev_lose.push(t.opp)
+							@rev_push.push(t.under_line)
 
 						end
 
-					elsif t.spread_result == "loss"
+					end
 
-						if t.sport == "MLB" || t.sport == "NHL"
+					if t.name == @wager.team4
 
-							@wager_hash_two = Hash.new
+						if t.spread_result == "win"
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+							if t.sport == "MLB" || t.sport == "NHL"
 
-							@rev_win.push(@wager_hash_two)
+								@wager_hash_two = Hash.new
 
-						else
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
 
-							@rev_win.push(t.opp)
+								@rev_win.push(@wager_hash_two)
+
+							else
+
+								@rev_win.push(t.name)
+
+							end
+
+						elsif t.spread_result == "loss"
+
+							if t.sport == "MLB" || t.sport == "NHL"
+
+								@wager_hash_two = Hash.new
+
+								@wager_hash_two[:team] = t.name
+								@wager_hash_two[:spread] = t.spread.to_i
+
+								@rev_lose.push(@wager_hash_two)
+
+							else
+
+								@rev_lose.push(t.name)
+
+							end
+
+						elsif t.spread_result == "push"
+
+							@rev_push.push(t.name)
 
 						end
 
+					elsif t.opp == @wager.team4
 
-					elsif t.spread_result == "push"
+						if t.spread_result == "win"
 
-						@rev_push.push(t.opp)
+							if t.sport == "MLB" || t.sport == "NHL"
 
-					end
+								@wager_hash_two = Hash.new
 
-				elsif t.over_line == @wager.team3
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
-					if t.total_result == "over"
+								@rev_lose.push(@wager_hash_two)
 
-						@rev_win.push(t.over_line)
+							else
 
-					elsif t.total_result == "under"
+								@rev_lose.push(t.opp)
 
-						@rev_lose.push(t.over_line)
+							end
 
-					elsif t.total_result == "push"
+						elsif t.spread_result == "loss"
 
-						@rev_push.push(t.over_line)
+							if t.sport == "MLB" || t.sport == "NHL"
 
-					end
+								@wager_hash_two = Hash.new
 
-				elsif t.under_line == @wager.team3
+								@wager_hash_two[:team] = t.opp
+								@wager_hash_two[:spread] = t.opp_line.to_i
 
-					if t.total_result == "over"
+								@rev_win.push(@wager_hash_two)
 
-						@rev_lose.push(t.under_line)
+							else
 
-					elsif t.total_result == "under"
+								@rev_win.push(t.opp)
 
-						@rev_win.push(t.under_line)
+							end
 
-					elsif t.total_result == "push"
 
-						@rev_push.push(t.under_line)
+						elsif t.spread_result == "push"
 
-					end
-
-				end
-
-				if t.name == @wager.team4
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
-
-							@rev_win.push(@wager_hash_two)
-
-						else
-
-							@rev_win.push(t.name)
+							@rev_push.push(t.opp)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.over_line == @wager.team4
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.total_result == "over"
 
-							@wager_hash_two = Hash.new
+							@rev_win.push(t.over_line)
 
-							@wager_hash_two[:team] = t.name
-							@wager_hash_two[:spread] = t.spread.to_i
+						elsif t.total_result == "under"
 
-							@rev_lose.push(@wager_hash_two)
+							@rev_lose.push(t.over_line)
 
-						else
+						elsif t.total_result == "push"
 
-							@rev_lose.push(t.name)
-
-						end
-
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.name)
-
-					end
-
-				elsif t.opp == @wager.team4
-
-					if t.spread_result == "win"
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							@wager_hash_two = Hash.new
-
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
-
-							@rev_lose.push(@wager_hash_two)
-
-						else
-
-							@rev_lose.push(t.opp)
+							@rev_push.push(t.over_line)
 
 						end
 
-					elsif t.spread_result == "loss"
+					elsif t.under_line == @wager.team4
 
-						if t.sport == "MLB" || t.sport == "NHL"
+						if t.total_result == "over"
 
-							@wager_hash_two = Hash.new
+							@rev_lose.push(t.under_line)
 
-							@wager_hash_two[:team] = t.opp
-							@wager_hash_two[:spread] = t.opp_line.to_i
+						elsif t.total_result == "under"
 
-							@rev_win.push(@wager_hash_two)
+							@rev_win.push(t.under_line)
 
-						else
+						elsif t.total_result == "push"
 
-							@rev_win.push(t.opp)
+							@rev_push.push(t.under_line)
 
 						end
-
-
-					elsif t.spread_result == "push"
-
-						@rev_push.push(t.opp)
-
-					end
-
-				elsif t.over_line == @wager.team4
-
-					if t.total_result == "over"
-
-						@rev_win.push(t.over_line)
-
-					elsif t.total_result == "under"
-
-						@rev_lose.push(t.over_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.over_line)
-
-					end
-
-				elsif t.under_line == @wager.team4
-
-					if t.total_result == "over"
-
-						@rev_lose.push(t.under_line)
-
-					elsif t.total_result == "under"
-
-						@rev_win.push(t.under_line)
-
-					elsif t.total_result == "push"
-
-						@rev_push.push(t.under_line)
 
 					end
 

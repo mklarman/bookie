@@ -2660,34 +2660,34 @@ module WagersHelper
 
 					if t.name == @pick1
 
-							@spread1 = t.spread.to_i 
+						@spread1 = t.spread.to_i 
 
-							if @spread1 > 0
+						if @spread1 > 0
 
-								@spread1 = "+" + @spread1.to_s
-
-							end
+							@spread1 = "+" + @spread1.to_s
 
 						end
 
-						if t.opp == @pick1
+					end
 
-							@spread1 = (t.spread.to_i * -1)
+					if t.opp == @pick1
 
-							if @spread1 > 0
+						@spread1 = (t.spread.to_i * -1)
 
-								@spread1 = "+" + @spread1.to_s
+						if @spread1 > 0
 
-							end
-
-						end
-
-						if t.over_line == @pick1
-
-							@spread1 = t.total.to_i 
-
+							@spread1 = "+" + @spread1.to_s
 
 						end
+
+					end
+
+					if t.over_line == @pick1
+
+						@spread1 = t.total.to_i 
+
+
+					end
 
 						if t.under_line == @pick1
 
@@ -2897,7 +2897,6 @@ module WagersHelper
 
 		def score_straight
 
-			@current_client_br = @current_client_br.to_i
 
 			@teams.each do |t|
 
@@ -2910,8 +2909,6 @@ module WagersHelper
 							@net_p_l = (@wager.amount.to_i * 1.1) * -1
 
 							@wager.net_result = @net_p_l
-							@current_client_br = @current_client_br + @net_p_l
-							@current_br = @current_br + (@net_p_l * -1)
 							@wager.outcome = "loss"
 
 						elsif t.spread_result == "win"
