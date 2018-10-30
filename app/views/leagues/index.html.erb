@@ -1,59 +1,30 @@
+
+
+
+<% @leagues.each do |l| %>
+
+	<% if l.status == "public" %>
+
+		<div><%= link_to l.league_name, league_path(l.id), class: 'link_tabs'  %></div>
+
+	<% end %>
+
+<% end %>
+
+<div>PRIVATE LEAGUE PASSWORD</div>
+
 <%= form_for @secret do |s| %>
 
-	<%= s.text_field :pass, :value => "big" %>
+	<%= s.text_field :pass %>
 	<%= s.submit %>
 
 <% end %>
 
 
 
-<% @leagues.each do |l| %>
-
-	<div><%= link_to l.league_name, league_path(l.id), class: 'link_tabs'  %></div>
-
-<% end %>
-
-<div>PRIVATE LEAGUE PASSWORD</div>
-
-<div><input type="text" name="" placeholder="League Password" id="league_pass"></div>
-<div><input type="submit" name="" value="ENTER" id="pass_submit"></div>
-
-<script>
-
-	var passCheck = "<%= @pass_holder %>"
-	var leaguePass = document.getElementById("league_pass")
-	var leagueSub = document.getElementById("pass_submit")
-
-	leagueSub.addEventListener("click", function(){
-
-		console.log(leaguePass.value)
-
-
-		console.log(passCheck)
 
 
 
-
-})
-
-
-
-
-</script>
-
-<% @leagues.each do |l| %>
-
-	<% Secret.all.each do |s| %>
-
-		<% if l.pass == s.pass %>
-
-			<%= l.league_name %>
-
-		<% end %>
-
-	<% end %>
-
-<% end %>
 
 
 
