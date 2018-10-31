@@ -1,24 +1,51 @@
+<div class="hide">
+	
+	<%= form_for @secret do |s| %>
 
-
-
-<% @leagues.each do |l| %>
-
-	<% if l.status == "public" %>
-
-		<div><%= link_to l.league_name, league_path(l.id), class: 'link_tabs'  %></div>
+		<%= s.text_field :pass %>
+		<%= s.submit %>
 
 	<% end %>
 
-<% end %>
+</div>
 
-<div>PRIVATE LEAGUE PASSWORD</div>
+<div id="pub_wrapper">
+	
+	<div id= "pub_label">PUBLIC LEAGUES</div>
 
-<%= form_for @secret do |s| %>
+	<div id= "public">
+		<% @leagues.each do |l| %>
 
-	<%= s.text_field :pass %>
-	<%= s.submit %>
+			<% if l.status == "public" %>
 
-<% end %>
+				<div class="pub_league_names"><%= link_to l.league_name, league_path(l.id), class: 'link_tabs'  %></div>
+
+			<% end %>
+
+		<% end %>
+
+	</div>
+
+</div>
+
+<div id="priv_wrapper">
+	
+	<div id="priv_pass_label">PRIVATE LEAGUE PASSWORD</div>
+
+
+	<div id="priv_pass"><input type="text" name="private_pass" id="private_p"></div>
+	<div id="priv_sub"><input type="submit" value="ENTER" id="pass_sub"></div>
+
+
+
+
+
+
+</div>
+
+
+
+
 
 
 

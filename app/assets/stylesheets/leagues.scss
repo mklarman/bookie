@@ -76,4 +76,44 @@
 
 }
 
+#public{
 
+	height: 100%;
+	width: 100%;
+	
+}
+
+.pub_league_names{
+
+	height: 30%;
+	width: 30%;
+	display: inline-block;
+	vertical-align: top;
+
+	text-align: center;
+	overflow: none;
+	margin-top: 10px;
+	font-size: 20px;
+}
+
+#pub_wrapper{
+
+	height: 100%;
+	width: 40%;
+	border: 1px solid red;
+}
+
+#pub_label{
+
+	margin-left: 25%;
+	font-size: 25px;
+}
+
+#priv_wrapper{
+
+	height: 25%;
+	width: 35%;
+	border: 1px solid red;
+	margin-top: 15px;
+
+}
