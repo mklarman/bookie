@@ -86,10 +86,9 @@
 .pub_league_names{
 
 	height: 30%;
-	width: 30%;
+	width: 45%;
 	display: inline-block;
 	vertical-align: top;
-
 	text-align: center;
 	overflow: none;
 	margin-top: 10px;
@@ -99,13 +98,15 @@
 #pub_wrapper{
 
 	height: 100%;
-	width: 40%;
-	border: 1px solid red;
+	width: 50%;
+	border: 1px solid black;
+	margin-top: 10px;
+	margin-left: 20%
 }
 
 #pub_label{
 
-	margin-left: 25%;
+	margin-left: 33%;
 	font-size: 25px;
 }
 
@@ -113,7 +114,36 @@
 
 	height: 25%;
 	width: 35%;
-	border: 1px solid red;
-	margin-top: 15px;
+	margin-top: 10px;
+	margin-left: 20%
+	
 
 }
+
+#priv_pass_label{
+
+	height: 20px;
+	width: 100%;
+	margin-bottom: 8px;
+
+	font-size: 20px;
+}
+
+#info_wrapper{
+
+	height: 20%;
+	width: 50%;
+	font-size: 20px;
+	
+	margin-left: 20%;
+
+	margin-top: 10px;
+}
+
+#index_label{
+
+	margin-left: 33%;
+	font-size: 25px;
+}
+
+
