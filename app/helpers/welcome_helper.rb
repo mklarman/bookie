@@ -13,4 +13,14 @@ module WelcomeHelper
 		end
 
 	end
+
+	def get_leagues
+
+		current_user.league_wagers.each do |w|
+
+			@id_holder.push(w.league_id) unless @id_holder.include? (w.league_id)
+
+		end
+
+	end
 end
