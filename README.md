@@ -312,6 +312,18 @@ In My Sports Book
  need to make league clients dependent on leagues maybe, definately have to add a validation for the league password.  It must be unique.
 
 
+<div class = hide>
+ 
+ 	11/2/18 - FANTASY/SUICIDE GAME
+
+ 	A pool can be started much like a league in the bookie game.  A pool can be public or private.  Go to the pools home page where you will get a list of the particpants who are still alive in the pool, also on this page are the pool of players for you to choose from, the player must choose the player from the group that will score the highest points for the night.  If they do then they advance to the next day or week of the tournament.  Pools will have to be desiganted to a sport or to all sports.  Player pools will be generated for the pools when needed.  Players will click on the name and that name will be saved into the ruby form.  Players will make selections.  Selections will take a user_id and a pool_id.  Selections will then get graded/edited and be desiganted a winner or a loser.  once a player gets a losing selection in a pool then they are out and no longer see the player pool and are given a notification in its place that tells them they are out and their name is taken off of the participants list.  Also have to list the selections for the players as they come in.
+
+ 	I see a users controller of course, pool controller, selections controller, player controller.  Have to figure out how to form the player pools.  Going to have to count the players who are "on" and separate them into tiers: Top Tier Players, Mid Tier Players, Scrubs.  Pools will be made up of players of varying teirs.  No more than two of each teir in a group.  That would be a group of 6.  Group could be less than six as well, anywhere from 2 - 6 players in a group.
+
+</div>
+
+
+
 
 
 
