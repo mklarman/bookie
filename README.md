@@ -320,6 +320,15 @@ In My Sports Book
 
  	I see a users controller of course, pool controller, selections controller, player controller.  Have to figure out how to form the player pools.  Going to have to count the players who are "on" and separate them into tiers: Top Tier Players, Mid Tier Players, Scrubs.  Pools will be made up of players of varying teirs.  No more than two of each teir in a group.  That would be a group of 6.  Group could be less than six as well, anywhere from 2 - 6 players in a group depending on who is playing.  Pools will have to disappear when the earliet game from the player pool starts.
 
+ 	Try to have diverse pools if you can, a few of each tier.  This really won't be difficult to do, can have functionality done in two weeks tops.  ten sessions of two-three hours.  Thirty hours of work.  Then can have a NCAA suicide pool when players will be limited as to the seeds they can take: 8 seed or higher in round of 64, 6 seed or higher in round of 32, 4 seed or higher in sweet sixteen, 2 seed or higher in elite eight, then in final four and on can take any seed you want.  That won't be that bad either.  Will need a March Madness Team Controller.  That won't be that bad at all.
+
+ 	So, this site will be a fantasy sports site that offers three games, the bookie leagues, the Fantaside, and the march madness game.
+
+ 	What is the sites name?  Fantasy Games, Sports, Competition...FanComp.com.
+
+ 	So, this site will offer alternate fantasy games for people that like to play fantasy sports, and the games will be able to be run in a league style format.  Leagues will eventually have a cost to it.  Max players will have values, like max ten may cost 5.99, but max 500 may cost 49.99.
+
+
 </div>
 
 
