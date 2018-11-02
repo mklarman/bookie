@@ -13,6 +13,9 @@
 <% @sorter = [] %>
 <% @sorted_standings = [] %>
 <% @off_stand = [] %>
+<% @client_holder = [] %>
+<% @client_result_holder = [] %>
+<% @clients_info = [] %>
 
 <% @obj_test %>
 
@@ -214,16 +217,14 @@ CHECK: <%= @my_date %>
 
 <% end %>
 
-HERE:<%= @scores %>
 
 <% self.get_standings(@scores) %>
 
-HERE: <%= @off_stand %>
-<%= @sorted_standings %>
 
 
 
-<div>
+
+<div id="standings_container">
 
 
 	STANDINGS
@@ -238,7 +239,7 @@ HERE: <%= @off_stand %>
 
 				<% end %>
 
-				<div><%= st[:name].to_s + " " + st[:bank].to_s %></div>
+				<div class="player_standings"><%= st[:name].to_s + " " + st[:bank].to_s %></div>
 
 			<% end %>
 
@@ -254,24 +255,55 @@ HERE: <%= @off_stand %>
 </div>
 
 
+<div>
+
+	<% current_user.league_clients.each do |l| %>
 
 
 
+		<% if l.league_id.to_i == @league.id.to_i %>
+
+			<% @client_holder.push(l) %>
 
 
+		<% end %>
 
 
-	<div id="standings">
+	<% end %>
 
 
-		
+	<% @client_holder.each do |c| %>
 
 
+		<% self.sum_league_wagers(c) %>
 
 
+	<% end %>
 
+	<div id="league_client_stats">
+
+		<% @clients_info.each do |c| %>
+
+			<% if c.class == Hash %>
+
+				<div class="league_client_score"><%= c[:name] + " " + c[:score].to_s %></div>
+
+			<% end %>
+
+
+		<% end %>
 
 	</div>
+
+
+</div>
+
+
+
+
+
+
+	
 
 
 

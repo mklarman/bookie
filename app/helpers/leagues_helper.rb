@@ -8524,6 +8524,33 @@ end
 		
 	end
 
+	def sum_league_wagers(obj)
+
+		sum = 0
+
+		obj.league_wagers.each do |w|
+
+			if w.graded == true
+
+				if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+					sum = sum + w.net_result.to_i
+
+				end
+
+
+			end
+
+		end
+
+		@client_hash = Hash.new
+		@client_hash[:name] = obj.league_name
+		@client_hash[:score] = sum
+
+		@clients_info.push(@client_hash)
+
+	end
+
 	
 
 	
