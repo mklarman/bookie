@@ -362,7 +362,14 @@ I want to use js forms for this and enter into ruby form in code.
 
 League Home pages:
 
-this will display all league information: active players, standings, appropriate stats and information about the pool plus this page will hold the tools to make selections in the pool.  
+this will display all league information: active players, standings, appropriate stats and information about the pool plus this page will hold the tools to make selections in the pool.
+
+NAVBAR: sign in, sign out, sign up, PROFILE, INDEX TO BOOKIE LEAGUES, INDEX TO FANTSIDE, then when it is time need to add the march madness pool into the link, also need to have a link to the page that describes the games and explains a little about the site.
+
+
+THINGS TO DO FOR BOOKIE LEAGUES:
+
+Have to drop the db again and recreate a bunch of teams and a bunch of players.  Then need to see if it is catching the proper matchup from the db, wager and matchup have to match.  After that, need to finish design on league show page.  Once that is done, Bookie Leagues is complete.  
 
 
 
