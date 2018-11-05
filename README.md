@@ -331,7 +331,14 @@ In My Sports Book
 
 </div>
 
-Bookie Leagues: can sign up, can create a new league or join an existing league, can acquire league clients, can book league wagers, can grade league wagers.  Can keep standigs for the league, can shut the league off after the end date, in process of keeping track of what each client wins or loses during the pool. It is all there, just now have to style the key pages:
+Bookie Leagues: can sign up, can create a new league or join an existing league, can acquire league clients, can book league wagers, can grade league wagers.  Can keep standigs for the league, can shut the league off after the end date, in process of keeping track of what each client wins or loses during the pool. 
+
+Fantiside Pools
+
+Player groups will be generated on the page load.  Players will need to be sorted by sport.  Then each array of players will need to be counted and sorted into tiers.  Three or four tiers, not sure how many right now.  The choices should be easy to start, maybe two choices one a top tier and the other a mid tier.  Then it is a top guy with two mids, then two top guys and a mid, then four mids, as the pool goes on the player groups have to get harder and harder.   
+
+
+It is all there, just now have to style the key pages:
 
 HOME PAGE:  
 
@@ -341,12 +348,28 @@ The home page has to speak to what the site is, a new way to play fantasy sports
 
 So on the home page some bullet points that advertise the new games:  Their names, a brief descriptions, they can be played in public or private leagues.  Walk them through how they can create a private league and give the league password to those who you want to play against.  Or play in public leagues and earn rating points for finsihing "in the money".  Maybe the public leagues have faux prize pools - rating points up for grabs.  Can they buy into the tournaments with their rating points?  The public leagues need something up for grabs.  That is something that still has to be done.
 
+Users Show Page/Profile:
+
+This has to show all their active games and get to the league home pages from here.  Upon logging in, this is the page they should get to and from here they can get to whichever league they want.  The pool they are in, their standings, their tier points, their breakdown of how many pools they have played in both public and private.  Maybe career winnings for public leagues, and their record in private leagues.  This is an informative page but also it is the highway to the rest of the site for the user, from this page they can get to any league they are in.
+
+Index Pages for the games:
+
+where public leagues are listed and their is a password option for private leagues.  This is where they will enter a league for the first time.
+
+Create New Leagues for all games:
+
+I want to use js forms for this and enter into ruby form in code.
+
+League Home pages:
+
+this will display all league information: active players, standings, appropriate stats and information about the pool plus this page will hold the tools to make selections in the pool.  
 
 
 
-Fantiside Pools
 
-Player groups will be generated on the page load.  Players will need to be sorted by sport.  Then each array of players will need to be counted and sorted into tiers.  Three or four tiers, not sure how many right now.  The choices should be easy to start, maybe two choices one a top tier and the other a mid tier.  Then it is a top guy with two mids, then two top guys and a mid, then four mids, as the pool goes on the player groups have to get harder and harder 
+
+
+
 
 
 
