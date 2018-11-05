@@ -331,6 +331,24 @@ In My Sports Book
 
 </div>
 
+Bookie Leagues: can sign up, can create a new league or join an existing league, can acquire league clients, can book league wagers, can grade league wagers.  Can keep standigs for the league, can shut the league off after the end date, in process of keeping track of what each client wins or loses during the pool. It is all there, just now have to style the key pages:
+
+HOME PAGE:  
+
+Something descriptive about what the site is, I want this to be the login page that has a small login box at the top right of the page, under it can be the forgot password and a thumbnail for the new registration.
+
+The home page has to speak to what the site is, a new way to play fantasy sports, two new games to play in the fantasy industry:  Bookie Leagues and Fantiside pools.  Maybe a third product built around march madness.  Run in suicide manner, but players are restricted to the seeds they can take in each of the six rounds, the further they go, the more higher seeds that get unlocks.  Round 1: must pick an 8 seed or higher, Round 2: must pick 6 seed or higher, Round 3: must pick 4 seed or higher Round 4: must pick 2 seed or higher, then in Round 5: can pick any seed and for Round 6 as well.
+
+So on the home page some bullet points that advertise the new games:  Their names, a brief descriptions, they can be played in public or private leagues.  Walk them through how they can create a private league and give the league password to those who you want to play against.  Or play in public leagues and earn rating points for finsihing "in the money".  Maybe the public leagues have faux prize pools - rating points up for grabs.  Can they buy into the tournaments with their rating points?  The public leagues need something up for grabs.  That is something that still has to be done.
+
+
+
+
+Fantiside Pools
+
+Player groups will be generated on the page load.  Players will need to be sorted by sport.  Then each array of players will need to be counted and sorted into tiers.  Three or four tiers, not sure how many right now.  The choices should be easy to start, maybe two choices one a top tier and the other a mid tier.  Then it is a top guy with two mids, then two top guys and a mid, then four mids, as the pool goes on the player groups have to get harder and harder 
+
+
 
 
 
