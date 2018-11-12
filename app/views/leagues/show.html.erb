@@ -76,6 +76,76 @@ CHECK: <%= @my_date %>
 
 	<% end %>
 
+	<div id="league_heading"><%= @league.league_name.upcase %></div>
+	<div id="rost_head">MY ROSTER</div>
+
+	<div id="league_show_cont">
+
+		
+
+		<div id="standings_container">STANDINGS
+
+			<% @off_stand.each do |st| %>
+
+				<% if st.class == Hash %>
+
+					<% if st[:bank].to_i > 0 %>
+
+						<% st[:bank] = "+" + st[:bank].to_s %>
+
+					<% end %>
+
+					<div class="player_standings"><%= st[:name].to_s + " " + st[:bank].to_s %></div>
+
+				<% end %>
+
+
+
+			<% end %>
+
+		</div>
+
+		<div id="roster_cont">
+
+			<% @league.league_clients.each do |c| %>
+
+				<% if c.user_id.to_i == current_user.id.to_i %>
+
+					<div class="rost_cont">
+
+						<div class="roster_info", id="lg_nm"> <%= c.league_name %></div>
+						<div class="roster_info">Stakes: <%= c.stakes %></div>
+						<div class="roster_info">Bet Type: <%= c.bet_types %></div>
+						<div class="roster_info">Bet Quant: <%= c.wager_limit %></div>
+						<div class="roster_info">Sports: <%= c.sports %></div>
+
+
+						<div class="roster_links"><%= link_to "CHANGE SETTINGS", edit_league_client_path(c.id) %></div>
+
+					</div>
+
+
+				<% end %>	
+
+			<% end %>
+
+
+		</div>
+
+		<div id="league_client_stats">
+
+
+
+
+		</div>
+
+		
+
+
+
+
+	</div>
+
 
 <% end %>
 

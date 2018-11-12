@@ -38,7 +38,7 @@
 
 #roster_cont{
 
-	height: 300px;
+	height: 100%;
 	width: 32.74%;
 	border: 1px solid red;
 	vertical-align: top;
@@ -50,6 +50,7 @@
 
 	height: 20px;
 	width: 130px;
+	text-align: left;
 	
 }
 
@@ -179,13 +180,22 @@
 	width: 100%;
 	border: 1px solid red;
 	margin: auto;
-	margin-top: 25px;
+	text-align: center;
 	
 }
+
+
 
 #league_heading{
 
 	margin-left: 40%;
 	margin-top: 25px;
+}
+
+#rost_head{
+
+	margin-top: 25px;
+
+	margin-left: 640px;
 }
 
