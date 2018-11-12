@@ -76,7 +76,7 @@ CHECK: <%= @my_date %>
 
 	<% end %>
 
-	<div id="league_heading"><%= @league.league_name.upcase %></div>
+	<div id="league_heading">LEAGUE <%= @league.league_name.upcase %></div>
 	<div id="rost_head">MY ROSTER</div>
 
 	<div id="league_show_cont">
@@ -84,6 +84,71 @@ CHECK: <%= @my_date %>
 		
 
 		<div id="standings_container">STANDINGS
+
+			<% @users.each do |u| %>
+
+				<% @entrance = false %>
+
+				<% u.league_wagers.each do |w| %>
+
+					<% if w.league_id.to_i == @league.id.to_i %>
+
+						<% @entrance = true %>
+
+
+					<% end %>
+
+				<% end %>
+
+				<% if @entrance == true %>
+
+					<% @standings.push(u) %>
+
+
+				<% end %>
+
+			<% end %>
+
+			<% @standings.each do |s| %>
+
+				<% @sum = [] %>
+
+				<% @bankroll = 0 %>
+
+				<% s.league_wagers.each do |w| %>
+
+					<% if w.league_id.to_i == @league_id.to_i %>
+
+						<% if w.graded == true %>
+
+							<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+								<% @sum.push(w.net_result.to_i) %>
+
+							<% end %>
+
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+				<% @stand_info = Hash.new %>
+
+				<% @stand_info[:name] = s.sports_book_name %>
+
+				<% @bankroll = @sum.inject(0){|sum,x| sum + x } %>
+
+				<% @stand_info[:bank] = @bankroll %>
+
+				<% @scores.push(@stand_info) %>
+
+			<% end %>
+
+
+			<% self.get_standings(@scores) %>
 
 			<% @off_stand.each do |st| %>
 
@@ -134,17 +199,91 @@ CHECK: <%= @my_date %>
 
 		<div id="league_client_stats">
 
+			<% current_user.league_clients.each do |l| %>
 
 
+
+				<% if l.league_id.to_i == @league.id.to_i %>
+
+					<% @client_holder.push(l) %>
+
+
+				<% end %>
+
+
+			<% end %>
+
+			<% @client_holder.each do |c| %>
+
+
+				<% self.sum_league_wagers(c) %>
+
+
+			<% end %>
+
+
+
+			<% @clients_info.each do |c| %>
+
+				<% if c.class == Hash %>
+
+					<div class="league_client_score"><%= c[:name] + " " + c[:score].to_s %></div>
+
+				<% end %>
+
+
+			<% end %>
 
 		</div>
+
+
+
+	</div>
+
+	<% if @league.league_clients[0] %>
+
+		<% @my_id = @league.league_clients[0].id %>
+		<div id="book_action"><%= link_to "BOOK ACTION", league_client_path(@my_id) %>
+
+	<% end %>
+
+	<% @my_date %>
+	<% self.get_time %>
+
+
+	<% if @league.league_wagers[0] %>
+		
+		<% @wager_id = @league.league_wagers[0] %>
+
+		<div id="view_action"><%= link_to "VIEW LEAGUE ACTION", league_wager_path(@wager_id) %></div>
+
+		<% @edit_w = [] %>
+
+		<% current_user.league_wagers.each do |w| %>
+
+			<% if w.graded == false && w.date != @my_date && w.league_id.to_i == @league.id.to_i  %>
+
+				<% @edit_w.push(w.id) %>
+
+			<% end %>
+
+
+		<% end %>
+
+		<% if @edit_w.length > 0 %>
+
+			<div id="grade_action"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
+
+		<% end %>
+
+	<% end %>
 
 		
 
 
 
 
-	</div>
+</div>
 
 
 <% end %>
