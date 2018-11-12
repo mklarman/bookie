@@ -303,3 +303,238 @@
 
 
 
+
+
+<div>SET YOUR LINEUP:</div>
+
+	<div id="roster_cont">
+		
+		<% @league.league_clients.each do |c| %>
+
+			<% if c.user_id.to_i == current_user.id.to_i %>
+
+				<div class="rost_cont">
+
+					<div class="roster_info", id="lg_nm"> <%= c.league_name %></div>
+					<div class="roster_info">Stakes: <%= c.stakes %></div>
+					<div class="roster_info">Bet Type: <%= c.bet_types %></div>
+					<div class="roster_info">Bet Quant: <%= c.wager_limit %></div>
+					<div class="roster_info">Sports: <%= c.sports %></div>
+
+
+					<div class="roster_links"><%= link_to "CHANGE SETTINGS", edit_league_client_path(c.id) %></div>
+
+				</div>
+
+
+			<% end %>	
+
+		<% end %>
+
+	</div>
+
+	<% @my_id %>
+
+	<% if @league.league_clients[0] %>
+
+		<% @my_id = @league.league_clients[0].id %>
+		<%= link_to "BOOK ACTION", league_client_path(@my_id) %>
+
+	<% end %>
+
+	<% @my_date %>
+	<% self.get_time %>
+
+	
+
+	<% if @league.league_wagers[0] %>
+		
+		<% @wager_id = @league.league_wagers[0] %>
+
+		<%= link_to "VIEW LEAGUE ACTION", league_wager_path(@wager_id) %>
+
+		<% @edit_w = [] %>
+
+		<% current_user.league_wagers.each do |w| %>
+
+			<% if w.graded == false && w.date != @my_date && w.league_id.to_i == @league.id.to_i  %>
+
+				<% @edit_w.push(w.id) %>
+
+			<% end %>
+
+
+		<% end %>
+
+		<% if @edit_w.length > 0 %>
+
+			<%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
+
+		<% end %>
+
+	<% end %>
+
+<% @users.each do |u| %>
+
+<% @entrance = false %>
+
+	<% u.league_wagers.each do |w| %>
+
+		<% if w.league_id.to_i == @league.id.to_i %>
+
+			<% @entrance = true %>
+
+
+		<% end %>
+
+	<% end %>
+
+	<% if @entrance == true %>
+
+		<% @standings.push(u) %>
+
+
+	<% end %>
+
+<% end %>
+
+<% @standings.each do |s| %>
+
+	<% @sum = [] %>
+
+	<% @bankroll = 0 %>
+
+	<% s.league_wagers.each do |w| %>
+
+		<% if w.league_id.to_i == @league_id.to_i %>
+
+			<% if w.graded == true %>
+
+				<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+					<% @sum.push(w.net_result.to_i) %>
+
+				<% end %>
+
+
+			<% end %>
+
+
+		<% end %>
+
+	<% end %>
+
+	<% @stand_info = Hash.new %>
+
+	<% @stand_info[:name] = s.sports_book_name %>
+
+	<% @bankroll = @sum.inject(0){|sum,x| sum + x } %>
+
+	<% @stand_info[:bank] = @bankroll %>
+
+	<% @scores.push(@stand_info) %>
+
+<% end %>
+
+
+<% self.get_standings(@scores) %>
+
+
+
+
+
+<div id="standings_container">
+
+
+	STANDINGS
+
+		<% @off_stand.each do |st| %>
+
+			<% if st.class == Hash %>
+
+				<% if st[:bank].to_i > 0 %>
+
+					<% st[:bank] = "+" + st[:bank].to_s %>
+
+				<% end %>
+
+				<div class="player_standings"><%= st[:name].to_s + " " + st[:bank].to_s %></div>
+
+			<% end %>
+
+
+
+		<% end %>
+		
+
+
+
+
+
+</div>
+
+
+<div>
+
+	<% current_user.league_clients.each do |l| %>
+
+
+
+		<% if l.league_id.to_i == @league.id.to_i %>
+
+			<% @client_holder.push(l) %>
+
+
+		<% end %>
+
+
+	<% end %>
+
+
+	<% @client_holder.each do |c| %>
+
+
+		<% self.sum_league_wagers(c) %>
+
+
+	<% end %>
+
+	<div id="league_client_stats">
+
+		<% @clients_info.each do |c| %>
+
+			<% if c.class == Hash %>
+
+				<div class="league_client_score"><%= c[:name] + " " + c[:score].to_s %></div>
+
+			<% end %>
+
+
+		<% end %>
+
+	</div>
+
+
+</div>
+
+
+
+
+
+
+	
+
+
+
+<% else %>
+
+	<div>FINAL STANDINGS</div>
+
+
+
+
+<% end %>
+
+
+
+
