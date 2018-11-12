@@ -240,43 +240,47 @@ CHECK: <%= @my_date %>
 
 	</div>
 
-	<% if @league.league_clients[0] %>
+	<div id="link_holder">
 
-		<% @my_id = @league.league_clients[0].id %>
-		<div id="book_action"><%= link_to "BOOK ACTION", league_client_path(@my_id) %>
+		<% if @league.league_clients[0] %>
 
-	<% end %>
+			<% @my_id = @league.league_clients[0].id %>
+			<div class="links"><%= link_to "BOOK ACTION", league_client_path(@my_id) %>
 
-	<% @my_date %>
-	<% self.get_time %>
+		<% end %>
+
+		<% @my_date %>
+		<% self.get_time %>
 
 
-	<% if @league.league_wagers[0] %>
-		
-		<% @wager_id = @league.league_wagers[0] %>
+		<% if @league.league_wagers[0] %>
+			
+			<% @wager_id = @league.league_wagers[0] %>
 
-		<div id="view_action"><%= link_to "VIEW LEAGUE ACTION", league_wager_path(@wager_id) %></div>
+			<div class="links"><%= link_to "VIEW LEAGUE ACTION", league_wager_path(@wager_id) %></div>
 
-		<% @edit_w = [] %>
+			<% @edit_w = [] %>
 
-		<% current_user.league_wagers.each do |w| %>
+			<% current_user.league_wagers.each do |w| %>
 
-			<% if w.graded == false && w.date != @my_date && w.league_id.to_i == @league.id.to_i  %>
+				<% if w.graded == false && w.date != @my_date && w.league_id.to_i == @league.id.to_i  %>
 
-				<% @edit_w.push(w.id) %>
+					<% @edit_w.push(w.id) %>
+
+				<% end %>
+
 
 			<% end %>
 
+			<% if @edit_w.length > 0 %>
+
+				<div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
+
+			<% end %>
 
 		<% end %>
 
-		<% if @edit_w.length > 0 %>
-
-			<div id="grade_action"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
-
-		<% end %>
-
-	<% end %>
+	</div>
 
 		
 
