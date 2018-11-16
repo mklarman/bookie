@@ -369,8 +369,47 @@ NAVBAR: sign in, sign out, sign up, PROFILE, INDEX TO BOOKIE LEAGUES, INDEX TO F
 
 THINGS TO DO FOR BOOKIE LEAGUES:
 
-Have to drop the db again and recreate a bunch of teams and a bunch of players.  Then need to see if it is catching the proper matchup from the db, wager and matchup have to match.  After that, need to finish design on league show page.  Once that is done, Bookie Leagues is complete.  
+Have to drop the db again and recreate a bunch of teams and a bunch of players.  Then need to see if it is catching the proper matchup from the db, wager and matchup have to match.  After that, need to finish design on league show page.  Once that is done, Bookie Leagues is complete.
 
+
+
+
+Have to fix the creating wagers and grading wagers so it takes into account the date, this may take an hiur or two.  Need to rethink how to generate teams for wagers, may not need the display on/off option.
+
+Have to create the users profile page.  Gonna wait for second game to be finished.
+
+
+Finish up bookie leagues, get some design on all pages and then make the second game.
+
+Fanicide Pools:
+
+Need pool controller, model, and pool show page
+Need player_group controller, model
+Need player controller, model, show page
+
+Every pool has its own player group.  Player groups are formed based on what day the pool is in, the deeper into the pool it goes the harder the selections.
+
+Pool Controller
+
+sport option
+have to see what else...
+
+player_group controller
+
+pool_id
+date
+player1
+player2
+player3
+player4
+player5
+
+player controller
+
+first_name
+last_name
+date
+sport
 
 
 
