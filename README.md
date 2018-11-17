@@ -391,7 +391,10 @@ Every pool has its own player group.  Player groups are formed based on what day
 
 Pool Controller
 
+user_id
 sport option
+password
+pick how often
 have to see what else...
 
 player_group controller
@@ -404,12 +407,40 @@ player3
 player4
 player5
 
-player controller
+player controller - created by me
 
 first_name
 last_name
-date
+full_name
 sport
+
+Contest controller/Model - created by me
+
+player_id
+date
+name
+sport
+def_ranking
+pitcher
+location
+points
+
+Selection Controller/Model
+
+pool_id
+user_id
+selection - name
+result
+
+go to the fanicide index, create a new pool.  The pool password brings you to the pool home page where the pool admin must create the player group for the day.  Once the player group is made, it is visible to all players in the pool.  The display will be in js so the names themselves can be clicked on. Once the name is clicked on, the form is filled out and saved.
+
+going to be lots of if statements on that page for when you can see the player pool and when you cant and when you can make picks and when you can't.  Messages for when there is no pool: could be waiting for commish, could be knocked out, pool could be over.
+
+Need a section to show who has each player, both how many and the individuals.
+
+
+
+
 
 
 
