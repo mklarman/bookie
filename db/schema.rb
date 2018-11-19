@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181025162145) do
+ActiveRecord::Schema.define(version: 20181119153728) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -23,6 +23,18 @@ ActiveRecord::Schema.define(version: 20181025162145) do
     t.string "bet_types"
     t.string "wager_limit"
     t.string "sports"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "pool_id"
+    t.string "date"
+    t.string "player1"
+    t.string "player2"
+    t.string "player3"
+    t.string "player4"
+    t.string "player5"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -73,6 +85,23 @@ ActiveRecord::Schema.define(version: 20181025162145) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "players", force: :cascade do |t|
+    t.string "name"
+    t.string "sport"
+    t.string "rating"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "pools", force: :cascade do |t|
+    t.string "commish_id"
+    t.string "sport"
+    t.string "date"
+    t.string "pass"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "private_leagues", force: :cascade do |t|
     t.string "pass"
     t.datetime "created_at", null: false
@@ -81,6 +110,11 @@ ActiveRecord::Schema.define(version: 20181025162145) do
 
   create_table "secrets", force: :cascade do |t|
     t.string "pass"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "selections", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -105,6 +139,19 @@ ActiveRecord::Schema.define(version: 20181025162145) do
     t.boolean "money_line", default: false
     t.string "updated", default: "f"
     t.string "display", default: "off"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tickets", force: :cascade do |t|
+    t.string "date"
+    t.string "player_id"
+    t.string "name"
+    t.string "rating"
+    t.string "sport"
+    t.string "def_rating"
+    t.string "pitcher"
+    t.string "score"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -9,12 +9,18 @@ resources :leagues
 resources :league_clients
 resources :league_wagers
 resources :secrets
+resources :players
+resources :pools
+resources :groups
+resources :selections
+resources :tickets
 
 get "/users/sportsbook" => "welcome#show"
 
 get "/users/ungraded" => "welcome#index"
 
 get "users/test" => "welcome#test"
+
 get "users/profile" => "welcome#users_show"
 
 
