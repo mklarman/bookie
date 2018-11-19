@@ -1,6 +1,7 @@
 <% @players.each do |p| %>
 
-	<%= p.name %>
+	<div><%= link_to p.name, edit_player_path(p.id) %></div>
+
 
 
 

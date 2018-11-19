@@ -464,7 +464,51 @@ PLAYER
 has_many tickets
 
 TICKET
-belongs_to player 
+belongs_to player
+
+POOL MIGRATION
+
+commish_id
+Date
+Sport
+pass
+
+GROUP MIGRATION
+
+pool_id
+date
+player1
+player2
+player3
+player4
+player5
+
+SELECTION MIGRATION
+
+user_id
+pool_id
+selection
+points
+result
+
+PLAYER MIGRATION
+
+name
+sport
+rating
+
+TICKET MIGRATION
+
+date
+player_id
+name: name
+rating: rating
+sport: sport
+def rating
+pitcher
+score
+
+
 
 
 

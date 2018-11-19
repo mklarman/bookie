@@ -1,0 +1,13 @@
+<%= form_for @ticket do |t| %>
+
+	<div>DATE: <%= t.text_field :date %></div>
+	<div><%= t.hidden_field :player_id, :value => @player.id %></div>
+	<div>NAME: <%= t.text_field :name, :value => @player.name %></div>
+	<div>RATING: <%= t.text_field :rating, :value => @player.rating %></div>
+	<div>SPORT: <%= t.text_field :sport, :value => @player.sport %></div>
+	<div>DEF: <%= t.text_field :def_rating %></div>
+	<div>PITCHER: <%= t.text_field :pitcher %></div>
+	<div>SCORE: <%= t.text_field :score %></div>
+	<div><%= t.submit %></div>
+
+<% end %>

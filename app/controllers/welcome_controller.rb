@@ -8,11 +8,19 @@ class WelcomeController < ApplicationController
 
 	def index
 
+
+
 		
 
 	end
 
 	def test
+
+	end
+
+	def users_show
+
+		
 
 	end
 
