@@ -26,6 +26,7 @@ class PlayersController < ApplicationController
 	def index
 
 		@players = Player.all
+		@tickets = Ticket.all
 
 	end
 

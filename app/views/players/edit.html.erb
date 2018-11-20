@@ -1,6 +1,10 @@
+<% @my_date %>
+
+<% self.get_time %>
+
 <%= form_for @ticket do |t| %>
 
-	<div>DATE: <%= t.text_field :date %></div>
+	<div>DATE: <%= t.text_field :date, :value => @my_date %></div>
 	<div><%= t.hidden_field :player_id, :value => @player.id %></div>
 	<div>NAME: <%= t.text_field :name, :value => @player.name %></div>
 	<div>RATING: <%= t.text_field :rating, :value => @player.rating %></div>

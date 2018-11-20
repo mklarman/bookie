@@ -30,6 +30,8 @@ get "users/profile" => "welcome#users_show"
 
 
 
+
+
 devise_for :users, :controllers => { :registrations => 'users/registrations' }
 devise_scope :user do
   authenticated :user do

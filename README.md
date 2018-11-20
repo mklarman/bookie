@@ -509,6 +509,14 @@ pitcher
 score
 
 
+For Pools show:
+
+first, have to check to see if 0 remain, 1 remains, or more than one remains.  If 0 remain, must start over with the contestants that started the day, if 1 remain then that person is the winner, if more than one remain then those get to pick again.  if users selections for this pool are all winners then the player group is clickable, if they are not all winners then they get to see who everyone has taken so far.
+
+Have to wireframe the pool show page.  Pool participants.
+
+to protect against people jumping in after it is created, count how many player groups have been created except for the current day.  Contestants should have that many selections, get the start date of the pool and ask if the user has a selection with that date.  If they do then they were in the pool, if they do not then they are trying to jump in.
+
 
 
 

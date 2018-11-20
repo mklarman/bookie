@@ -1,0 +1,16 @@
+<% @my_date %>
+
+<% self.get_time %>
+
+
+<%= form_for @pool do |p| %>
+
+	<div> <%= p.hidden_field :commish_id, :value => current_user.id %></div>
+	<div> <%= p.hidden_field :date, :value => @my_date %></div>
+	<div> SPORT: <%= p.text_field :sport %></div>
+	<div> PASSWORD: <%= p.text_field :pass %></div>
+	<%= p.submit %>
+
+
+
+<% end %>
