@@ -515,7 +515,25 @@ first, have to check to see if 0 remain, 1 remains, or more than one remains.  I
 
 Have to wireframe the pool show page.  Pool participants.
 
-to protect against people jumping in after it is created, count how many player groups have been created except for the current day.  Contestants should have that many selections, get the start date of the pool and ask if the user has a selection with that date.  If they do then they were in the pool, if they do not then they are trying to jump in.
+to protect against people jumping in after it is created, count how many player groups have been created except for the current day.  Contestants should have that many selections, get the start date of the pool and ask if the user has a selection with that date.  If they do then they were in the pool, if they do not then they are trying to jump in.  If they do not have a selection on the start date then they can't see anything.
+
+If you skip a selection then you are out as well, to continue on in the competition you have to have the right number of selections and they all have to be winners.  Need an exception for if everyone loses, if on the check the count is zero then we see who had selections the day before(how?), can do it by asking if the pool has selections, if it does pick out the users that have the same number of selections as the pool has player groups(minus todays group if there is one).  If they do, then their booleen gets turned true.
+
+Need to work the current_user's ability to make selections by a booleen.  If they meet certain criteria, then the booleen is turned true.  Or do I just make it easy and make 0 left(with the condition of existing selections == graded) equals a tie between all who got knocked out at the same time.
+
+How to check who is left in the pool?  Does the current_user have as many selections as previous player groups and are they all winners.  Or simply just give me users who have the proper amount of selections and all are winners.  Push them to an array and count them.
+
+Need to count who is left in the pool, write in exception for new pools.  See if it is 0, 1, or more than 1.
+
+If 0 and it is a new pool, then qualify all users to make selections, if it is 0 with graded selections in its history then grab all those who made a selection the previous day - go by player groups.  Number of Selections and total player groups - current days player group should be equal.  Qualify the proper users to pick again.
+
+If it is 1 player left then display final standings: how many picks people made and display who the winner is and maybe give them a personal message.
+
+If it is more than one, then have to qualify who is left and give them the ability to make selections.  After the selection is made then they can see how many have taken each player in the group.  Maybe give them a box where they can see who they have taken so far.
+
+If more than 1 remains and they do not qualify to make selections then they see the grid of who people have taken.  Can give them a selections in count, maybe let them know how many left.
+
+
 
 
 
