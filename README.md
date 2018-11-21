@@ -533,6 +533,32 @@ If it is more than one, then have to qualify who is left and give them the abili
 
 If more than 1 remains and they do not qualify to make selections then they see the grid of who people have taken.  Can give them a selections in count, maybe let them know how many left.
 
+1 - check to see if there are selections to be graded, if there are then let the commish have the link to grade selections, if they are not the commish let them see the data from the previous day.
+
+2 - if there are no selections to be graded, see if how many people are left in the pool.
+
+3 - if 0 left, see if it is a new pool first.  If it is a new pool then all users are qualified to make a selection, if it is not a new pool then retrieve the last users to make a selection and qualify them again to choose.
+
+4 - if it is 1 left then display the standings and the winning message for the winner and the other message for everyone else. Maybe add a link for a new pool.
+
+5 - if more than one left, then qualify the appropriate users to go ahead and make another selection.
+
+Creating player groups - sort all tickets with todays date and display == on.  Sort them by sport and player rating.  Then get a count on how many player groups there have been.  Have code to generate a player group according to how many player groups there have been.
+
+if player groups == 0: get a star and a scrub
+if == 1: get a good and a scrub
+if == 2: get a star and a good
+if == 3: get a star and two goods
+if == 4: get a two good and two scrubs
+if == 5: get three scrubs
+if == 6: get two stars and two good
+if == 7: get two stars
+if == 8: get three good
+
+need to have "easy" "doable" "hard" "coinflip"
+
+Can everyone grade their own?  when someone comes to the page I look at their selections for this pool and see if the last one is not graded and the signal is clear to grade then grade it, if not then let them see the ungraded display.  This is a possibility.
+
 
 
 
