@@ -555,9 +555,19 @@ if == 6: get two stars and two good
 if == 7: get two stars
 if == 8: get three good
 
-need to have "easy" "doable" "hard" "coinflip"
+need to have "easy" "doable" "hard" "50/50"
 
 Can everyone grade their own?  when someone comes to the page I look at their selections for this pool and see if the last one is not graded and the signal is clear to grade then grade it, if not then let them see the ungraded display.  This is a possibility.
+
+Pools Show
+
+master if statement - if there are pools to grade:
+
+Show them the participants and how many picks they've made, if someone has an ungraded selection, display the selection.  With a note saying we are waiting for the commissioner.
+
+if there are no selections to grade...
+
+then we find players remaining and have a three teir if statement for how many players left. 0, 1, or > 1
 
 
 
