@@ -11,17 +11,21 @@
 
 	<% @contestants.each do |c| %>
 
+		<% @picks = [] %>
+
 		<% c.selections.each do |s| %>
 
-			<% if s.id.to_i == @pool.id.to_i %>
+			<% if s.pool_id.to_i == @pool.id.to_i %>
 
+				<% @picks.push(s) %>
 
 			<% end %>
 
 
 		<% end %> 
 
-		<%= c.sports_book_name %> 
+		<%= c.sports_book_name %>
+		<%= @picks.length %> 
 
 	<% end %>
 
