@@ -92,4 +92,22 @@ module PoolsHelper
 
 
 	end
+
+	def grade_check
+
+		if @pool.selections.length > 0
+
+			@pool.selections.each do |s|
+
+				if s.result == "none" && s.date != @my_date
+
+					@needs_grading = true
+
+				end
+
+
+			end
+		end
+
+	end
 end

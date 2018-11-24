@@ -3,14 +3,18 @@
 <% @players_left = [] %>
 <% @contestants = [] %>
 <% @selection_holder = [] %>
+<% @needs_grading = false %>
+<% self.grade_check %>
+
+<% if @needs_grading == true %>
+
+	
+
+
+<% else %>
 
 
 
-
-<% @tickets.each do |t| %>
-
-	<div><%= t.name %></div>
-	<div><%= t.sport %></div>
 
 
 <% end %>
