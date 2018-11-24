@@ -8,7 +8,23 @@
 
 <% if @needs_grading == true %>
 
-	
+
+	<% @contestants.each do |c| %>
+
+		<% c.selections.each do |s| %>
+
+			<% if s.id.to_i == @pool.id.to_i %>
+
+
+			<% end %>
+
+
+		<% end %> 
+
+		<%= c.sports_book_name %> 
+
+	<% end %>
+
 
 
 <% else %>

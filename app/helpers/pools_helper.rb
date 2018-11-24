@@ -110,4 +110,33 @@ module PoolsHelper
 		end
 
 	end
+
+	def gather_pool_users
+
+		@users.each do |u|
+
+			@player = false
+
+			u.selections.each do |s|
+
+				if s.id.to_i == @pool.id.to_i
+
+					@player == true
+
+				end
+
+			end
+
+			if @player == true
+
+				@entrants.push(u)
+
+
+			end
+
+
+
+		end
+
+	end
 end

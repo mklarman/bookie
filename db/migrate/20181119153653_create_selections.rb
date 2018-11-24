@@ -7,7 +7,7 @@ class CreateSelections < ActiveRecord::Migration[5.1]
 		t.string :pool_id
 		t.string :selection
 		t.string :points
-		t.string :result
+		t.string :result, default: "none"
 
       t.timestamps
     end
