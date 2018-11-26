@@ -569,6 +569,8 @@ if there are no selections to grade...
 
 then we find players remaining and have a three teir if statement for how many players left. 0, 1, or > 1
 
+have to incorporate the passwords.  Keep user_id on the password form.  Then at the pool or league page, check to see how many people have entered the passord.  Those are the people in the pool.
+
 
 
 
