@@ -7,6 +7,7 @@
 <% self.grade_check %>
 <% self.get_all_contestants %>
 <% @this_pools_groups = [] %>
+<% @recalled = [] %>
 
 <% @groups.each do |g| %>
 
@@ -65,6 +66,38 @@
 	<% self.get_remaining_contestants %>
 
 	<% if @players_left.length.to_i == 0 %>
+
+		<% if @pool.date == @my_date %>
+
+			This will be the code for picking a player from a group.
+
+		<% else %>
+
+			<% @contestants.each do |c| %>
+
+				<% @sel_check = [] %>
+				<% @retrieve = false %>
+
+				<% c.selections.each do |s| %>
+
+					<% if s.pool_id.to_i == @pool.id.to_i %>
+
+						<% @sel_check.push(s) %>
+
+					<% end %>
+
+
+				<% end %>
+
+				<% if @sel_check.length.to_i == @this_pools_groups.length.to_i %>
+
+					
+
+				<% end %>
+
+			<% end %>
+
+		<% end %>
 
 	<% elsif @players_left.length == 1 %>
 
