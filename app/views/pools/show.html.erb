@@ -5,6 +5,18 @@
 <% @selection_holder = [] %>
 <% @needs_grading = false %>
 <% self.grade_check %>
+<% self.get_all_contestants %>
+<% @this_pools_groups = [] %>
+
+<% @groups.each do |g| %>
+
+	<% if g.pool_id.to_i == @pool.id.to_i && g.date != @my_date %>
+
+		<% @this_pools_groups.push(g) %>
+
+	<% end %>
+
+<% end %>
 
 <% if @needs_grading == true %>
 
@@ -22,10 +34,26 @@
 			<% end %>
 
 
+		<% end %>
+
+		<% if @picks.length.to_i == @this_pools_groups.length.to_i %> 
+
+			<%= c.sports_book_name %>
+			<%= @picks.length %>
+
+		<% else %>
+
+			<%= c.sports_book_name %>
+			<%= @picks.length %>
+
 		<% end %> 
 
-		<%= c.sports_book_name %>
-		<%= @picks.length %> 
+	<% end %>
+
+	<% if @pool.commish_id.to_i == current_user.id.to_i %>
+
+		link to editig the pool selections
+
 
 	<% end %>
 
@@ -34,7 +62,15 @@
 <% else %>
 
 
+	<% self.get_remaining_contestants %>
 
+	<% if @players_left.length.to_i == 0 %>
+
+	<% elsif @players_left.length == 1 %>
+
+	<% else %>
+
+	<% end %>
 
 
 <% end %>
