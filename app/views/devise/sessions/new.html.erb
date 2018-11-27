@@ -45,33 +45,84 @@
 
 
   </div>
-  <div id="center" class="trio"></div>
-  <div id="right_side" class="trio"></div>
+
+
+  <div id="center" class="trio">
+
+    <div id="ct-head" class="home_heading">
+
+      <p>TIRED OF THE SAME OLD FANTASY GAMES?</p>
+      <p>CREATE AN ACCOUNT IN TEN SECONDS</p>
+      <p>REGISTRATION IS FREE</p>
+      <p>UNLIMITED ACCESS TO 2 NEW GAMES</p>
+
+    </div>
+
+    <div class ="home_body">
+      
+      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "off" %>
+          </div>
+
+          <% if devise_mapping.rememberable? -%>
+            <div class="field">
+              <%= f.check_box :remember_me %>
+              <%= f.label :remember_me %>
+            </div>
+          <% end -%>
+
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
+      <% end %>
+
+      <%= render "devise/shared/links" %>
+
+
+    </div>
+      
+      
+
+  </div>
+ 
+  <div id="right_side" class="trio">
+    
+    <div id="rt-head" class="home_heading">
+      
+      <p>WANT TO PLAY A NEW FANTASY GAME...</p> 
+
+      <p>BASED AROUND SUISIDE POOLS?</p>
+
+      <p>PLAY FANISIDE POOLS FOR FREE!</p>
+
+
+    </div>
+
+    <div class ="home_body">
+
+      <p>1. PLAY IN POOLS WITH ONE OTHER OR HUNDREDS OF PEOPLE</p>
+      <p>2. ALL POOLS RANDOMLY SELECT 2-5 FANTASY PLAYERS FOR A GROUP</p>
+      <p>3. ALL ENTRANTS SELECT THE PLAYER WHO WILL SCORE THE MOST POINTS IN THE GROUP </p>
+      <p>4. PICK THE WINNER AND ADVANCE</p>
+      <p>5. IF TWO PLAYERS TIE IN POINTS, A SELECTION OF EITHER IS CONSIDERED A WINNER </p>
+      <p>6. POOLS CAN BE RUN IN NFL, NBA, MLB, OR ALL CURRENT SPORTS COMBINED!</p>
+      <p>7. WHEN ONE ENTRANT IS LEFT, THEY ARE THE WINNER </p>
+      <p>8. ENTRANTS CAN TAKE A PLAYER MORE THAN ONCE DURING THE POOL </p>
+      <p>9. ALL POOLS ARE PASSWORD PROTECTED</p>
+      <p>10. PLAY IN OR CREATE MULTIPLE POOLS AT A TIME</p>
+
+    </div>
+
+  </div>
 
 
 </div>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
 
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "off" %>
-  </div>
-
-  <% if devise_mapping.rememberable? -%>
-    <div class="field">
-      <%= f.check_box :remember_me %>
-      <%= f.label :remember_me %>
-    </div>
-  <% end -%>
-
-  <div class="actions">
-    <%= f.submit "Log in" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
