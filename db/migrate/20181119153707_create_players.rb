@@ -4,7 +4,7 @@ class CreatePlayers < ActiveRecord::Migration[5.1]
 
     	t.string :name
     	t.string :sport
-    	t.string :rating
+    	t.string :team
 
       t.timestamps
     end

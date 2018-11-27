@@ -65,7 +65,7 @@ module PoolsHelper
 
 				@selections.each do |s|
 
-					if s.grade == "winner"
+					if s.result == "winner"
 
 						@winners.push(s)
 
@@ -111,32 +111,4 @@ module PoolsHelper
 
 	end
 
-	def gather_pool_users
-
-		@users.each do |u|
-
-			@player = false
-
-			u.selections.each do |s|
-
-				if s.id.to_i == @pool.id.to_i
-
-					@player == true
-
-				end
-
-			end
-
-			if @player == true
-
-				@entrants.push(u)
-
-
-			end
-
-
-
-		end
-
-	end
 end

@@ -1,0 +1,2 @@
+module PrivsHelper
+end

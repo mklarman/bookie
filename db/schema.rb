@@ -10,22 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20181119153728) do
+ActiveRecord::Schema.define(version: 20181127144405) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "clients", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "first_name"
-    t.string "last_name"
-    t.string "stakes"
-    t.string "bet_types"
-    t.string "wager_limit"
-    t.string "sports"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "groups", force: :cascade do |t|
     t.string "pool_id"
@@ -58,15 +46,15 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.string "wager_type"
     t.integer "amount"
     t.string "team1"
-    t.string "team2", default: "team2"
-    t.string "team3", default: "team3"
-    t.string "team4", default: "team4"
-    t.string "team5", default: "team5"
+    t.string "team2"
+    t.string "team3"
+    t.string "team4"
+    t.string "team5"
     t.integer "spread1"
-    t.integer "spread2", default: 0
-    t.integer "spread3", default: 0
-    t.integer "spread4", default: 0
-    t.integer "spread5", default: 0
+    t.integer "spread2"
+    t.integer "spread3"
+    t.integer "spread4"
+    t.integer "spread5"
     t.string "date", default: "00-00-00"
     t.integer "net_result", default: 0
     t.string "outcome", default: "none"
@@ -88,12 +76,13 @@ ActiveRecord::Schema.define(version: 20181119153728) do
   create_table "players", force: :cascade do |t|
     t.string "name"
     t.string "sport"
-    t.string "rating"
+    t.string "team"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "pools", force: :cascade do |t|
+    t.string "pool_name"
     t.string "commish_id"
     t.string "sport"
     t.string "date"
@@ -102,19 +91,27 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "private_leagues", force: :cascade do |t|
+  create_table "privs", force: :cascade do |t|
+    t.string "user_id"
     t.string "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "secrets", force: :cascade do |t|
+    t.string "user_id"
     t.string "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
   create_table "selections", force: :cascade do |t|
+    t.string "date"
+    t.string "user_id"
+    t.string "pool_id"
+    t.string "selection"
+    t.string "result", default: "none"
+    t.string "display", default: "off"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -147,7 +144,6 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.string "date"
     t.string "player_id"
     t.string "name"
-    t.string "rating"
     t.string "sport"
     t.string "def_rating"
     t.string "pitcher"
@@ -167,35 +163,12 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.datetime "last_sign_in_at"
     t.inet "current_sign_in_ip"
     t.inet "last_sign_in_ip"
-    t.string "sports_book_name"
+    t.string "username"
     t.boolean "admin", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-  end
-
-  create_table "wagers", force: :cascade do |t|
-    t.integer "user_id"
-    t.integer "client_id"
-    t.string "wager_type"
-    t.integer "amount"
-    t.string "team1"
-    t.string "team2", default: "team2"
-    t.string "team3", default: "team3"
-    t.string "team4", default: "team4"
-    t.string "team5", default: "team5"
-    t.integer "spread1"
-    t.integer "spread2", default: 0
-    t.integer "spread3", default: 0
-    t.integer "spread4", default: 0
-    t.integer "spread5", default: 0
-    t.string "date", default: "00-00-00"
-    t.integer "net_result", default: 0
-    t.string "outcome", default: "none"
-    t.boolean "graded", default: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
 end

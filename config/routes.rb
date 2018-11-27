@@ -1,9 +1,5 @@
 Rails.application.routes.draw do
 
-
-resources :clients
-resources :wagers
-resources :matchups
 resources :teams
 resources :leagues
 resources :league_clients

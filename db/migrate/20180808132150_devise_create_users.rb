@@ -20,7 +20,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.1]
       t.datetime :last_sign_in_at
       t.inet     :current_sign_in_ip
       t.inet     :last_sign_in_ip
-      t.string :sports_book_name
+      t.string :username
       t.boolean :admin, default: false
 
       ## Confirmable
