@@ -11,11 +11,6 @@ resources :groups
 resources :selections
 resources :tickets
 
-get "/users/sportsbook" => "welcome#show"
-
-get "/users/ungraded" => "welcome#index"
-
-get "users/test" => "welcome#test"
 
 get "users/profile" => "welcome#users_show"
 
@@ -31,7 +26,7 @@ get "users/profile" => "welcome#users_show"
 devise_for :users, :controllers => { :registrations => 'users/registrations' }
 devise_scope :user do
   authenticated :user do
-    root :to => "clients#index", as: :authenticated_root
+    root :to => "welcome#users_show", as: :authenticated_root
   end
   unauthenticated :user do
     root :to => 'devise/registrations#new', as: :unauthenticated_root

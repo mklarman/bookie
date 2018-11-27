@@ -28,6 +28,21 @@ class TicketsController < ApplicationController
 
 	end
 
+	def update
+
+		@ticket = Ticket.find_by_id(params[:id])
+
+		if @ticket.update(ticket_params)
+
+			redirect_to players_path
+		else
+
+			redirect_back(fallback_location: new_team_path)
+
+		end
+
+	end
+
 	private
 
 	def ticket_params
