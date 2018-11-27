@@ -571,6 +571,18 @@ then we find players remaining and have a three teir if statement for how many p
 
 have to incorporate the passwords.  Keep user_id on the password form.  Then at the pool or league page, check to see how many people have entered the passord.  Those are the people in the pool.
 
+FanBouts.com
+
+Home page: login/signup.  Sells who we are: Alternative fantasy sports games.  Introduce the two games.  Bookie Wars and Faniside Pools.  From this page the user either has to be able to get to pages where they can either create a new league/pool, they also need to be able to get to the index pages of the league/pool.
+
+The index pages.  On the index pages maybe can be an explanation about how to play, an option to create a new league or to enter a password to an existing league.  List leagues maybe.
+
+League/Pool home pages: this will work by finding the password and then checking to see who has entered the password into the database.  Those are the people in the league/pool.  On this page will want to list stats from the pool, standings, and hold the functions that allow people to be active in the pool(make a pick or create sports action). 
+
+About Us Page:  Describe our mission and our motive, describe the games and how they are played.
+
+Create a trash wire?  A place people can talk trash either to a group or to an individual.  Something to think about.
+
 
 
 
