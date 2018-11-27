@@ -21,8 +21,64 @@
 
  #pic{
 
- 	height: 200px;
+ 	height: 100px;
  	width: 99%;
  	border: 1px solid red;
- 	background-image: url(".../assets/images/spBook.jpg")
+ 	text-align: center;
+ 	font-size: 25px;
  }
+
+ #home_container{
+
+ 	height: 100%;
+ 	width: 100%;
+ 	text-align: center;
+
+
+ }
+
+ .trio{
+
+ 	display: inline-block;
+ 	vertical-align: top;
+ 	height: 1000px;
+ 	width: 30%;
+ 	border: 1px solid red;
+
+ }
+
+ #left-side{
+
+
+
+ }
+
+ #center{
+
+
+ }
+
+ #right-side{
+
+
+ }
+
+ .home_heading{
+
+ 	height: 15%;
+ 	width: 100%;
+ 	border: 1px solid red;
+ 	margin-top: 5px;
+ 	font-size: 20px;
+ }
+
+ .home_body{
+
+ 	height: 800px;
+ 	width: 100%;
+ 	text-align: left;
+ }
+
+ 
+
+ 

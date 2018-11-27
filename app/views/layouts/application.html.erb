@@ -14,11 +14,27 @@
     <% @my_client %>
     <% self.get_access %>
 
-    <%= link_to "Sign Up", new_user_registration_path, class: 'link_tabs'  %>
-    <%= link_to "Sign in", user_session_path, class: 'link_tabs'  %>
+    <% if !current_user %>
+
+      <%= link_to "Sign Up", new_user_registration_path, class: 'link_tabs'  %>
+      <%= link_to "Sign in", user_session_path, class: 'link_tabs'  %>
+
+    <% elsif current_user && current_user.admin == true %>
+
+      <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
+
+        
+        <%= link_to "NEW LEAGUE", new_league_path, class: 'link_tabs'  %>
+
+        <%= link_to "INDEX LEAGUE", leagues_path, class: 'link_tabs'  %>
+        <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
+        <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
+
+        <%= link_to "New Team", new_team_path, class: 'link_tabs'  %>
+        <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
 
 
-    <% if current_user %>
+    <% else %>
    
 
     	<%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
@@ -32,27 +48,6 @@
 
     <% end %>
 
-    <% if current_user %>
-
-      <% if current_user.admin == true %>
-
-        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class: 'link_tabs'  %>
-
-        
-        <%= link_to "NEW LEAGUE", new_league_path, class: 'link_tabs'  %>
-
-        <%= link_to "INDEX LEAGUE", leagues_path, class: 'link_tabs'  %>
-        <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
-        <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
-
-        <%= link_to "New Team", new_team_path, class: 'link_tabs'  %>
-        <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
-
-
-
-      <% end %>
-
-    <% end %>
   	
     <%= yield %>
   </body>
