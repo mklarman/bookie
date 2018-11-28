@@ -23,14 +23,14 @@
 
     <div class ="home_body">
       
-      <p>1. PLAY IN LEAGUES AGAINST YOUR FRIENDS</p>
+      <p>1. PLAY IN LEAGUES AGAINST HUNDREDS OF PEOPLE</p>
       <p>2. MANAGE A FULL FLEDGED SPORTS BOOK</p>
-      <p>3. ALL SPORTS BOOKS HAVE THE SAME NUMBER OF CLIENTS</p>
-      <p>4. EACH SPORTS BOOK SETS THEIR OWN CLIENT ROSTER DAILY</p>
-      <p>5. BOOK THE ACTION OF YOUR CLIENT ROSTER </p>
-      <p>6. STANGINGS KEPT BASED ON THE PROFIT OF THE SPORTSBOOK</p>
-      <p>7. CONTROL WAGER TYPE, AMOUNT, AND FREQUENCY OF ALL CLIENTS </p>
-      <p>8. LEAGUES CAN LAST FOR ONE DAY OR UP TO ONE YEAR </p>
+      <p>3. ALL SPORTS BOOKS IN A LEAGUE RECEIVE THE SAME NUMBER OF CLIENTS</p>
+      <p>4. EACH SPORTS BOOK SETS THE ATTRIBUTES OF THEIR CLIENTS DAILY</p>
+      <p>5. BOOK THE ACTION ONCE YOUR ROSTER IS SET THE WAY YOU WANT. </p>
+      <p>6. CONTROL WAGER TYPE, AMOUNT, FREQUENCY, AND SPORT OF ALL CLIENTS </p>
+      <p>7. STANGINGS ARE KEPT BASED PROFIT </p>  
+      <p>8. LEAGUES CAN LAST FOR ONE DAY OR UP TO ONE YEAR.  LEAGUES CAN BE RUN IN ONE SPORT OR ACROSS ALL SPORTS </p>
       <p>9. ALL LEAGUES ARE PASSWORD PROTECTED</p>
       <p>10. PLAY IN OR CREATE MULTIPLE LEAGUES AT A TIME</p>
 
@@ -59,33 +59,88 @@
     </div>
 
     <div class ="home_body">
+
+      <div id="log_head">ALREADY HAVE AN ACCOUNT?</div>
+
+      <div id="js_form_home">
+
+        <div id="input_boxes">
+          
+          EMAIL: <input type="text" name="" id="email_login">
+          PASSWORD: <input type="text" name="" id="pass_login">
+          <input type="submit" name="" value="LOGIN" id="sub_login">
+          <div><%= render "devise/shared/links" %></div>
+
+
+        </div>
+
+
+      </div>
+
+      <div id="log_message">
+        
+       <div id="words"><p>IF NOT, CREATE AN ACCOUNT IN TEN SECONDS...</p></div>
+
+       <div id="signup_link"><p><%= link_to "SIGN UP", new_user_registration_path, class: 'link_tabs'  %></p></div>
+
+
+
+
+
+      </div>
+
+      <script>
+        
+        var email = document.getElementById("email_login")
+        var pass = document.getElementById("pass_login")
+        var login_sub = document.getElementById("sub_login")
+        
+
+        login_sub.addEventListener("click", function(){
+
+
+        user_email.value = email.value
+        user_password.value = pass.value
+
+       
+        new_user.submit()
+
+
+
+  })
+
+
+      </script>
+
+      <div class = "hide">
       
-      <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
-
-          <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "off" %>
-          </div>
-
-          <% if devise_mapping.rememberable? -%>
+        <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
             <div class="field">
-              <%= f.check_box :remember_me %>
-              <%= f.label :remember_me %>
+              <%= f.label :email %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
             </div>
-          <% end -%>
 
-          <div class="actions">
-            <%= f.submit "Log in" %>
-          </div>
-      <% end %>
+            <div class="field">
+              <%= f.label :password %><br />
+              <%= f.password_field :password, autocomplete: "off" %>
+            </div>
 
-      <%= render "devise/shared/links" %>
+            <% if devise_mapping.rememberable? -%>
+              <div class="field">
+                <%= f.check_box :remember_me %>
+                <%= f.label :remember_me %>
+              </div>
+            <% end -%>
+
+            <div class="actions">
+              <%= f.submit "Log in" %>
+            </div>
+        <% end %>
+
+        
 
 
+      </div>
     </div>
       
       
@@ -107,14 +162,14 @@
 
     <div class ="home_body">
 
-      <p>1. PLAY IN POOLS WITH ONE OTHER OR HUNDREDS OF PEOPLE</p>
-      <p>2. ALL POOLS RANDOMLY SELECT 2-5 FANTASY PLAYERS FOR A GROUP</p>
-      <p>3. ALL ENTRANTS SELECT THE PLAYER WHO WILL SCORE THE MOST POINTS IN THE GROUP </p>
-      <p>4. PICK THE WINNER AND ADVANCE</p>
-      <p>5. IF TWO PLAYERS TIE IN POINTS, A SELECTION OF EITHER IS CONSIDERED A WINNER </p>
-      <p>6. POOLS CAN BE RUN IN NFL, NBA, MLB, OR ALL CURRENT SPORTS COMBINED!</p>
-      <p>7. WHEN ONE ENTRANT IS LEFT, THEY ARE THE WINNER </p>
-      <p>8. ENTRANTS CAN TAKE A PLAYER MORE THAN ONCE DURING THE POOL </p>
+      <p>1. PLAY IN POOLS WITH HUNDREDS OF PEOPLE</p>
+      <p>2. FROM A GROUP OF PLAYERS, ENTRANTS MUST SELECT THE ONE WHO WILL SCORE THE MOST POINTS THAT DAY.</p>
+      <p>3. ENTRANTS CAN SELECT A PLAYER MORE THAN ONCE DURING THE POOL </p>
+      <p>4. PICK THE WINNER AND ADVANCE OR BE ELIMINATED</p>
+      <p>5. IF TWO PLAYERS TIE IN POINTS, A SELECTION OF EITHER WINS </p>
+      <p>6. WHEN ONE ENTRANT REMAINS, THEY WIN THE POOL </p> 
+      <p>7. IF ALL REMAINING ENTRANTS ARE ELIMINATED AT THE SAME TIME, THEY ALL TIE FOR THE WIN</p>
+      <p>8. POOLS CAN BE RUN IN NFL, NBA, OR MLB</p>    
       <p>9. ALL POOLS ARE PASSWORD PROTECTED</p>
       <p>10. PLAY IN OR CREATE MULTIPLE POOLS AT A TIME</p>
 

@@ -84,6 +84,77 @@
  	font-size: 17px;
  }
 
+ #js_form_home{
+
+ 	height: 100px;
+ 	width: 80%;
+ 	text-align: right;
+ 	margin-top: 10px;
+ 	font-size: 20px;
+ 	margin-top: 20px;
+
+
+ }
+
+ #input_boxes{
+
+
+
+ }
+
+ #email_login{
+
+ 	font-size: 15px;
+
+
+ }
+
+ #pass_login{
+
+ 	font-size: 15px;
+
+
+ }
+
+ #sub_login{
+
+
+ }
+
+ #log_head{
+
+ 	height: 20px;
+ 	width: 100%;
+ 	
+
+ 	text-align: center;
+ }
+
+ #words{
+
+ 	height: 30px;
+ 	width: 100%;
+ 	border: 1px solid red;
+
+ 	margin-top: 10px;
+
+ }
+
+ #signup_link{
+
+ 	height: 100px;
+ 	width: 100%;
+ 	border: 1px solid red;
+ 	margin-top: 20px;
+ 	font-size: 25px;
+ 	text-align: center;
+
+
+ }
+
+ 
+
+
  
 
  
