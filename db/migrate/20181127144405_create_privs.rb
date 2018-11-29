@@ -4,6 +4,7 @@ class CreatePrivs < ActiveRecord::Migration[5.1]
 
     	t.string :user_id
     	t.string :pass
+    	t.string :date
 
       t.timestamps
     end

@@ -31,6 +31,8 @@ class PoolsController < ApplicationController
 
 		@pools = Pool.all
 
+		@pool = Pool.new
+
 
 
 	end
@@ -52,13 +54,13 @@ class PoolsController < ApplicationController
 
 	def pool_params
 
-	params.require(:pool).permit(:commish_id, :sport, :date, :pass)
+	params.require(:pool).permit(:commish_id, :sport, :date, :pass, :pool_name)
 
 	end
 
-	def secret_params
+	def priv_params
 
-		params.require(:secret).permit(:pass)
+		params.require(:priv).permit(:pass, :date, :user_id)
 
 	end
 end

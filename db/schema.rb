@@ -94,6 +94,7 @@ ActiveRecord::Schema.define(version: 20181127144405) do
   create_table "privs", force: :cascade do |t|
     t.string "user_id"
     t.string "pass"
+    t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -101,6 +102,7 @@ ActiveRecord::Schema.define(version: 20181127144405) do
   create_table "secrets", force: :cascade do |t|
     t.string "user_id"
     t.string "pass"
+    t.string "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

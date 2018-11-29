@@ -52,7 +52,7 @@ class PrivsController < ApplicationController
 
 	def priv_params
 
-		params.require(:priv).permit(:pass, :user_id)
+		params.require(:priv).permit(:pass, :user_id, :date)
 
 	end
 end

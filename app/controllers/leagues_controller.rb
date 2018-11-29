@@ -64,7 +64,7 @@ class LeaguesController < ApplicationController
 
 	def secret_params
 
-		params.require(:secret).permit(:pass)
+		params.require(:secret).permit(:pass, :date, :user_id)
 
 	end
 end
