@@ -13,6 +13,7 @@ resources :tickets
 
 
 get "users/profile" => "welcome#users_show"
+get "game/rules" => "welcome#rules"
 
 
 
