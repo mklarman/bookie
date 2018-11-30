@@ -27,11 +27,11 @@ class PoolsController < ApplicationController
 	def index
 
 
-		@secret = Secret.new
-
 		@pools = Pool.all
 
 		@pool = Pool.new
+
+		@secret = Secret.new
 
 
 
@@ -43,6 +43,7 @@ class PoolsController < ApplicationController
 		@pool_id = @pool.id
 		@users = User.all
 		@tickets = Ticket.all
+		@groups = Group.all
 
 
 
@@ -58,9 +59,9 @@ class PoolsController < ApplicationController
 
 	end
 
-	def priv_params
+	def secret_params
 
-		params.require(:priv).permit(:pass, :date, :user_id)
+		params.require(:secret).permit(:pass, :date, :user_id, :kind)
 
 	end
 end

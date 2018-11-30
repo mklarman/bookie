@@ -3,6 +3,7 @@ class CreateSecrets < ActiveRecord::Migration[5.1]
     create_table :secrets do |t|
 
     	t.string :user_id
+    	t.string :kind
     	t.string :pass
     	t.string :date
 

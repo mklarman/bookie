@@ -11,13 +11,17 @@
 
 		<div id="rules_text">
 			
-			<p>This half fantasy half suicide pool game tasks the entrants to pick the highest scoring fantasy player from a group of players.</p>
+			<p>Faniside Pools are half traditional fantasy and half suicide.</p>
 
-			<p>Player Groups can contain anywhere from 2 - 5 players.  If two players tie for the most points, then a selection of either will win.</p>
+			<p>Contestatents must select the fantasy player who will score the most points among a group of 2 - 5 players.</p>
 
-			<p>Player Groups are formed randomly for each pool.  You can pick the same player as many times as you want, as long as they are in your group.</p>
+			<p>Pool Groups of fantasy players can be formed daily, weekly, or in any time interval.  The pool commissioner(creator) has the controls to generate a group for their pool on any day.
 
-			<p>All Entrants in a pool select from the same group of players.</p>
+			<p>If two players tie for the most points in a group, then a selection of either will win.</p>
+
+			<p>Player Groups are formed randomly and you can pick the same player as many times as you want, as long as they are in your group.</p>
+
+			<p>Groups have a random collection of stars, good players, and scrubs.</p>
 
 			<p>Pools continue until there is one person remaining, or all remaining contestants are knocked out at the same time.  If that happens then those Entrants tie for the win.</p>
 
@@ -42,7 +46,7 @@
 
 	</div>
 
-	<div id="new_pool">
+	<div class="hide">
 		
 		<%= form_for @pool do |p| %>
 
@@ -56,53 +60,52 @@
 
 		<% end %>
 
+	</div>
+
+		
+	<div id="pool_create_cont">
+
 		<div id="create_pool_label">CREATE POOL</div>
 
-<div id="pool_create_cont">
+		<div class="pool_fields">
+			
+			Pool Name: <input type="text" name="" id="pool_name">
 
-	<div class="pool_fields">
+
+		</div>
 		
-		Pool Name: <input type="text" name="" id="pool_name">
+		<div class = "pool_fields">
+			
+			Password: <input type="text" name="password" id="pass">
 
+		</div>
 
-	</div>
-	
-	<div class = "pool_fields">
+		<div class = "pool_fields">
+			
+			<label>SPORT:
+			<input list="client_num" name="client_num" id="pool_sports" /></label>
 		
-		Password: <input type="text" name="password" id="pass">
+			<datalist id="client_num">
+		  		<option value= NFL>
+		  		<option value="NBA">
+		  		<option value="MLB">
+		  		<option value="ALL">
+		  
+			</datalist>
+			
 
-	</div>
-	
-	
+		</div>
+		
 
-	
-	
-
-	<input type="submit" name="" value="Create Pool" id="sub_btn">
-
-
-
-
-</div>
+		<input type="submit" name="" value="Create Pool" id="sub_btn">
 
 
+		<script>
 
-<script>
-	
 	var subBtn = document.getElementById("sub_btn")
 	var pass = document.getElementById("pass")
-	var clientNum = document.getElementById("client_number")
-	var stat = document.getElementById("stat_choice")
-	var leagueName = document.getElementById("league_name")
-	var leagueNm = document.getElementById("league_league_name")
-	var leaguePass = document.getElementById("league_pass")
-	var leagueClients = document.getElementById("league_clients")
-	var leagueStatus = document.getElementById("league_status")
-	var endDay = document.getElementById("end_day")
-	var endMonth = document.getElementById("end_month")
-	var endYear = document.getElementById("end_year")
-	var endDate = document.getElementById("league_end_date")
-	var date
+	var poolName = document.getElementById("pool_name")
+	var poolSport = document.getElementById("pool_sports")
 	
 	subBtn.addEventListener("click", function(){
 
@@ -112,26 +115,13 @@
 
 		var test = false
 
-		<% League.all.each do |l| %>
-
-			<% if l.status == "private" %>
-
-
+		<% Pool.all.each do |l| %>
 
 				passW = "<%= l.pass %>"
 
 				pass_holder.push(passW)
 
-
-			<% end %>
-
-
-
-
 		<% end %>
-
-		console.log(pass_holder)
-		console.log(pass.value)
 
 		for(i=0; i<pass_holder.length; i++){
 
@@ -141,39 +131,80 @@
 			}
 		}
 
-		console.log(test)
 
 		if (test == true){
 
-			alert("PASSWORD FOR LEAGUE IS TAKEN")
+			alert("THAT PASSWORD IS TAKEN")
 		}else{
 
 
-			date = endDay.value + " " + endMonth.value + " " + endYear.value
-
-			leagueNm.value = leagueName.value
-			leaguePass.value = pass.value
-			leagueClients.value = clientNum.value
-			leagueStatus.value = stat.value
-			endDate.value = date
-
-			new_league.submit()
+			pool_sport.value = poolSport.value
+			pool_pool_name.value = poolName.value
+			pool_pass.value = pass.value
+			
+			new_pool.submit()
 
 		}
 
-		
 
+	})
+
+
+
+
+</script>
+
+
+<%= form_for @secret do |p| %>
+
+		<%= p.text_field :pass %>
+		<%= p.text_field :kind, :value => "pool" %>
+		<%= p.text_field :user_id, :value => current_user.id %>
+		<%= p.text_field :date, :value => @my_date %>
+		<%= p.submit %>
+
+<% end %>
+
+<div id="pass_index">
+	
+	<input type="text" name="" id="pass_pool">
+	<input type="submit" value="ENTER" id="sub_pass_pool">
+
+
+
+</div>
+
+<script>
+
+	var secret = document.getElementById("pass_pool")
+	var secSub = document.getElementById("sub_pass_pool")
+	
+	secSub.addEventListener("click", function(){
+
+	secret_pass.value = secret.value
+
+	new_secret.submit()
 
 
 
 	})
+
+
+
 
 </script>
 
 
 
 
+
+
+
 	</div>
+
+</div>
+
+
 
 
 

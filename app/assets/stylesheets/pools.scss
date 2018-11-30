@@ -1,3 +1,44 @@
 // Place all the styles related to the pools controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+#pool_index_head{
+
+	height: 20%;
+	width: 20%;
+	text-align: left;
+	font-size: 25px;
+	margin: auto;
+	margin-top: 20px;
+
+
+}
+
+#pools_index_cont{
+
+	height: 100%;
+	width: 100%;
+	border: 1px solid red;
+
+}
+
+#pool_create_cont{
+
+	display: inline-block;
+	height: 100%;
+	width: 45%;
+	border: 1px solid red;
+	vertical-align: top;
+	margin-left: 100px;
+
+
+
+}
+
+#fan_rules{
+
+	height: 100%;
+	width: 45%;
+	display: inline-block;
+	font-size: 20px;
+}

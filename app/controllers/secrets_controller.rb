@@ -10,40 +10,77 @@ class SecretsController < ApplicationController
 	def create
 
 		@leagues = League.all 
-		@lg_id
+		@pools = Pool.all 
+		@page_id
 		my_bool = false
 		secret = Secret.new(secret_params)
 		@pass = secret.pass
 
-		@leagues.each do |l|
+		if secret.kind == "league"
 
-			if l.pass == @pass
+			@leagues.each do |l|
 
-				@lg_id = l.id
-				my_bool = true
+				if l.pass == @pass
 
+					@page_id = l.id
+					my_bool = true
+
+
+				end
 
 			end
 
-		end
+			if secret.save!
 
-		if secret.save!
+				if my_bool == true
 
-			if my_bool == true
+					redirect_to league_path(@page_id)
 
-				puts @lg_id
+				else
 
-				redirect_to league_path(@lg_id)
+					redirect_to leagues_path
 
+				end
+		
 			else
 
 				redirect_to leagues_path
 
 			end
-		
+
 		else
 
-			redirect_to leagues_path
+			@pools.each do |p|
+
+				if p.pass == @pass
+
+					@page_id = p.id
+					my_bool = true
+
+
+				end
+
+			end
+
+			if secret.save!
+
+				if my_bool == true
+
+
+					redirect_to pool_path(@page_id)
+
+				else
+
+					redirect_to pools_path
+
+				end
+		
+			else
+
+				redirect_to pools_path
+
+			end
+
 
 		end
 
@@ -54,7 +91,7 @@ class SecretsController < ApplicationController
 
 	def secret_params
 
-		params.require(:secret).permit(:pass, :user_id, :date)
+		params.require(:secret).permit(:pass, :user_id, :date, :kind)
 
 	end
 end
