@@ -1,75 +1,290 @@
-<div class="hide">
+<% @my_date %>
+<% self.get_time %>
+
+<div id="pool_index_head">BOOKIE WARS</div>
+
+<div id="pools_index_cont">
 	
-	<%= form_for @secret do |s| %>
+	<div id="fan_rules">
+		
+		<div id="rules_head">GAME RULES</div>
 
-		<%= s.text_field :pass %>
-		<%= s.submit %>
+		<div id="rules_text">
+			
+			<p>Bookie Wars is a sports betting game where the contestants book the wagers of their client roster.  Bookie Wars is played in a league format.  All leagues have a start date and an end date.</p>
 
+
+			<p>All contestatents are issued the same number of clients at the start of a league.  Leagues can have three, six or nine clients.  </p>
+
+			<p>Contestants are in charge of the attributes of their clients.  Each client has four different attributes that has multiple option settings. These attributes are: Sport, Stakes, Frequency, and Type.</p>
+
+			<p>A running tally of profit is kept on each sports book in the league and standings are kept.</p>
+
+			<p>You can only book your new days action once the previous night's action is graded.  The BOOK and GRADE controls are found on the league's home page.</p>
+
+			<p>The last day of a league is the end date that was set by the commissioner.
+
+			<p>You can play in as many leagues as you want at the same time.</p>
+
+
+
+
+		</div>
+
+
+
+
+
+
+
+	</div>
+
+	<div class = "hide">
+	
+	<%= form_for @league do |l| %>
+		
+		<div>League Name: <%= l.text_field :league_name %></div>
+		<div>Password: <%= l.text_field :pass %></div>
+		<div># Of Clients: <%= l.text_field :clients %></div>
+		<div>Status: <%= l.text_field :status %></div>
+		<div>END DATE: <%= l.text_field :end_date %></div>
+		<%= l.submit %>
+		
 	<% end %>
 
 </div>
 
-
-	<div id="info_wrapper">
-
-		<div id="index_label">LEAGUE PLAY</div>
 		
-		<p>
+	<div id="pool_create_cont">
+
+		<div id="create_pool_label">CREATE NEW LEAGUE</div>
+
+		<div class="pool_fields">
 			
-			TO JOIN A PUBLIC LEAGUE, CLICK ON THE LEAGUE NAME BELOW.  TO JOIN A PRIVATE LEAGUE, ENTER THE PASSWORD TO THE LEAGUE YOU WISH TO JOIN.
+			Password: <input type="text" name="password" id="pass">
 
 
-		</p>
-
-
-	</div>
-
-	<div id="priv_wrapper">
+		</div>
 		
-		<div id="priv_pass_label">PRIVATE LEAGUE PASSWORD</div>
-
-
-		<div id="priv_pass"><input type="text" name="private_pass" id="private_p"></div>
-		<div id="priv_sub"><input type="submit" value="ENTER" id="pass_sub"></div>
-
-
-
-
-
-
-	</div>
-
-
-	<div id="pub_wrapper">
-		
-		<div id= "pub_label">PUBLIC LEAGUES</div>
-
-		<div id= "public">
-			<% @leagues.each do |l| %>
-
-				<% if l.status == "public" %>
-
-					<div class="pub_league_names"><%= link_to l.league_name, league_path(l.id), class: 'link_tabs'  %></div>
-
-				<% end %>
-
-			<% end %>
+		<div class = "pool_fields">
+			
+			Password: <input type="text" name="password" id="pass">
 
 		</div>
 
+		<div class = "pool_fields">
+			
+		<label># Of Clients:
+			<input list="client_num" name="client_num" id="client_number" /></label>
+	
+			<datalist id="client_num">
+		  		<option value= "3">
+		  		<option value="6">
+		  		<option value="9">
+	  
+			</datalist>
+			
+
+		</div>
+
+		<div class = "pool_fields">
+			
+		<label>END DAY:
+		<input list="day" name="day" id="end_day" /></label>
+	
+		<datalist id="day">
+	  		
+	  		<option value="01">
+	  		<option value="02">
+	  		<option value="03">
+	  		<option value="04">
+	  		<option value="05">
+	  		<option value="06">
+	  		<option value="07">
+	  		<option value="08">
+	  		<option value="09">
+	  		<option value="10">
+	  		<option value="11">
+	  		<option value="12">
+	  		<option value="13">
+	  		<option value="14">
+	  		<option value="15">
+	  		<option value="16">
+	  		<option value="17">
+	  		<option value="18">
+	  		<option value="19">
+	  		<option value="20">
+	  		<option value="21">
+	  		<option value="22">
+	  		<option value="23">
+	  		<option value="24">
+	  		<option value="25">
+	  		<option value="26">
+	  		<option value="27">
+	  		<option value="28">
+	  		<option value="29">
+	  		<option value="30">
+	  		<option value="31">
+	  
+		</datalist>
+
+
+
+
+
+		</div>
+
+		<div class = "pool_fields">
+
+		<label>END MONTH:
+		<input list="month" name="month" id="end_month" /></label>
+	
+		<datalist id="month">
+	  		
+	  		<option value="Jan">
+	  		<option value="Feb">
+	  		<option value="Mar">
+	  		<option value="Apr">
+	  		<option value="May">
+	  		<option value="Jun">
+	  		<option value="Jul">
+	  		<option value="Aug">
+	  		<option value="Sep">
+	  		<option value="Oct">
+	  		<option value="Nov">
+	  		<option value="Dec">
+	  
+		</datalist>
+
+		</div>
+
+		<div class = "pool_fields">
+			
+			<label>END YEAR:
+			<input list="year" name="year" id="end_year" /></label>
+		
+			<datalist id="year">
+		  		
+		  		<option value="2018">
+		  		<option value="2019">
+		  		<option value="2020">
+		  		<option value="2021">
+		  
+			</datalist>
+
+
+
+
+		</div>
+		
+
+		<input type="submit" name="" value="Create League" id="sub_btn">
+
+
+	<script>
+
+		var subBtn = document.getElementById("sub_btn")
+		var pass = document.getElementById("pass")
+		var poolName = document.getElementById("pool_name")
+		var poolSport = document.getElementById("pool_sports")
+		
+		subBtn.addEventListener("click", function(){
+
+			var pass_holder = []
+
+			var passW = " "
+
+			var test = false
+
+			<% Pool.all.each do |l| %>
+
+					passW = "<%= l.pass %>"
+
+					pass_holder.push(passW)
+
+			<% end %>
+
+			for(i=0; i<pass_holder.length; i++){
+
+				if (pass_holder[i] == pass.value){
+
+					test = true
+				}
+			}
+
+
+			if (test == true){
+
+				alert("THAT PASSWORD IS TAKEN")
+			}else{
+
+
+				pool_sport.value = poolSport.value
+				pool_pool_name.value = poolName.value
+				pool_pass.value = pass.value
+				
+				new_pool.submit()
+
+			}
+
+
+		})
+
+
+
+
+	</script>
+
+	<div class="hide">
+
+
+		<%= form_for @secret do |p| %>
+
+				<%= p.text_field :pass %>
+				<%= p.text_field :kind, :value => "pool" %>
+				<%= p.text_field :user_id, :value => current_user.id %>
+				<%= p.text_field :date, :value => @my_date %>
+				<%= p.submit %>
+
+		<% end %>
+
+	</div>
+
+<div id="pass_index">
+
+	<div id="pass_text">
+		
+		<p> If you are entering a new pool for the first time, enter that Pool's password in the box below...</p>
+
+
+
+
+
+
+	</div>
+
+	<div id="pass_btns">
+	
+		PASSWORD: <input type="text" name="" id="pass_pool">
+		<input type="submit" value="ENTER" id="sub_pass_pool">
+
 	</div>
 
 
+
+</div>
+
 <script>
+
+	var secret = document.getElementById("pass_pool")
+	var secSub = document.getElementById("sub_pass_pool")
 	
-	var privPass = document.getElementById("private_p")
-	var privSub = document.getElementById("pass_sub")
+	secSub.addEventListener("click", function(){
 
-	privSub.addEventListener("click", function(){
+	secret_pass.value = secret.value
 
-		secret_pass.value = privPass.value
+	new_secret.submit()
 
-		new_secret.submit()
 
 
 	})
@@ -77,9 +292,18 @@
 
 
 
-
 </script>
 
+
+
+
+
+
+
+	</div>
+
+</div>
+</div>
 
 
 

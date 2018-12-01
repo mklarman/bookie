@@ -31,6 +31,8 @@ class LeaguesController < ApplicationController
 
 		@leagues = League.all
 
+		@league = League.new
+
 
 
 	end
