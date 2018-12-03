@@ -591,7 +591,7 @@ for Leagues once it has started, it is easy it keeps going until the serial chec
 
 for Pools, first you see how many players left, if more than 1 then have to see if selections need grading.  if they do, then can't put the selections in yet and can't make a group.  If all selections are up to date the commish can generate a player group, once a group exists then the controls to create one disappear, just work it by the date, if a group exists then the link doesn't appear.  Once selections are opened then people can click on the player they wish.  Once they make a selection, then they get to see how many people have picked each person in the group.
 
-
+So the cycle is group creation, selections, grade selections.
 
 
 
