@@ -3,7 +3,8 @@ class CreateLeagues < ActiveRecord::Migration[5.1]
     create_table :leagues do |t|
 
     	t.string :league_name
-    	t.integer :clients
+      t.integer :clients
+    	t.integer :start_date
     	t.string :end_date
     	t.string :status
     	t.string :pass

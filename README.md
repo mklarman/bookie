@@ -583,6 +583,16 @@ About Us Page:  Describe our mission and our motive, describe the games and how 
 
 Create a trash wire?  A place people can talk trash either to a group or to an individual.  Something to think about.
 
+Pools will have a start date, Leagues will have a start and an end date.
+
+The first if statement then is if the pool has started or it has not, if it has not we have the pre start screen, a message letting them know the pool has not started yet and a list of the entrants so far, maybe a mock up of the pool or league controls, then if it is the start day or later go into an else statement that will handle the logistics of the pool/league.
+
+for Leagues once it has started, it is easy it keeps going until the serial check is greater than the end date, if leagues are in go mode then it is just a cycle of setting the client roster, booking the action, grading the action.
+
+for Pools, first you see how many players left, if more than 1 then have to see if selections need grading.  if they do, then can't put the selections in yet and can't make a group.  If all selections are up to date the commish can generate a player group, once a group exists then the controls to create one disappear, just work it by the date, if a group exists then the link doesn't appear.  Once selections are opened then people can click on the player they wish.  Once they make a selection, then they get to see how many people have picked each person in the group.
+
+
+
 
 
 
