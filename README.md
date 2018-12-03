@@ -591,10 +591,30 @@ for Leagues once it has started, it is easy it keeps going until the serial chec
 
 for Pools, first you see how many players left, if more than 1 then have to see if selections need grading.  if they do, then can't put the selections in yet and can't make a group.  If all selections are up to date the commish can generate a player group, once a group exists then the controls to create one disappear, just work it by the date, if a group exists then the link doesn't appear.  Once selections are opened then people can click on the player they wish.  Once they make a selection, then they get to see how many people have picked each person in the group.
 
-So the cycle is group creation, selections, grade selections.
+So the cycle is group creation(by commish), selections(by all), grade selections(by commish).
+
+For Bookie Wars:
+
+I generate matchups.  These matchups are sorted by sport and then by wager type, MLB and NHL can not appear in teasers. They are ready to go as far as being used in wagers.  The user now gets to set their client roster and select the betting options they wish.  Once they do, then they can generate wagers using the matchups.  Wagers are placed by randomly selecting an applicable client from their list and generating a wager based on their attributes.  Once all action is in then they can see the action open by the whole league.  Then I edit the matchup forms and then the action can be graded the next day by the user.  Once they have no wagers to be gradeded then they can set their roster again.
+
+Al this is in place, most of it anyway.  All the elements having to do with matchups and wagers is all their and the grading scale and the standings are there too.  Have to set it up inside of its if statements for start date and end date.
+
+For Faniside Pools:
+
+I generate player tickets, these tickets are sorted by sport.  From these arrays of players random groups are formed and saved.  Entrants then make a selection from the group which is saved.  Have to set it up inside of its if statements.
+
+This week, my goal is to get Bookie Wars in tip-top shape.  Get a good trial version of the game going. Next week nail down faniside pools, get the trial version debugged and working.  Then wireframe the pool show pages and enter the functionality into the design.
+
+Then have to create the user profile page, which will house the links to all the leagues and pools they are in.
+
+Navbar for users: Faniside Home, Bookie Wars Home, user-profile, sign out, payout explanantions.
+
+I will need to create at least 5 matchups in each available sport if applicable, nights where there is only a few games then enter them all.  On Sunday try to enter all the NFL. You are looking at 12 - 15, up to 20 maybe with the fantasy matchups. matchups per day.  That may take 20 - 25  minutes.  Gonna have to create 15 ticktes and maybe some new players every night.  That may take 20 min.  You will need to also fill in the matchup forms from the previous day, that's 10 minutes and the tickets from the previous day that's 5 - 10 minutes.  So, going to need an hour in the morning.
+
+Also going to need to take matchups and tickets off the board.  Use display for matchup and started for tickets.  Need to know if all games have been updated.  Use the updated fields for each form.  Run an updated check to see if all have been updated, if they have switch a boolean from false to true.  If all have been updated then selections or betting action can be graded.  
 
 
-
+so, in two weeks have both games done.  Then the next week set up a basic design for the key pages you have left.  Once that is done launch through heroku at the end of the third week, holdiays coming so lets say by Jan 4th be live and start running test pools and leagues with friends and get some feedback. Tweak for a week after we see what being in a league is like, make sure standings and computations have zero bugs.  Once that is set, get strangers to try them and start getting leagues off the ground.
 
 
 

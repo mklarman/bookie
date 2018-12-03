@@ -6,7 +6,10 @@ class CreateTickets < ActiveRecord::Migration[5.1]
 		t.string :player_id
 		t.string :name
 		t.string :sport
+		t.string :started, default: false
 		t.string :score
+		t.string :updated, default: false
+
 
       t.timestamps
     end

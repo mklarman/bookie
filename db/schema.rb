@@ -66,6 +66,7 @@ ActiveRecord::Schema.define(version: 20181119153728) do
   create_table "leagues", force: :cascade do |t|
     t.string "league_name"
     t.integer "clients"
+    t.integer "start_date"
     t.string "end_date"
     t.string "status"
     t.string "pass"
@@ -118,7 +119,6 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.string "spread"
     t.string "opp"
     t.string "total"
-    t.string "start_time"
     t.string "home_line"
     t.string "opp_line"
     t.string "over_line"
@@ -140,9 +140,9 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.string "player_id"
     t.string "name"
     t.string "sport"
-    t.string "def_rating"
-    t.string "pitcher"
+    t.string "started", default: "f"
     t.string "score"
+    t.string "updated", default: "f"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

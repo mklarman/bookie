@@ -47,7 +47,7 @@ class TicketsController < ApplicationController
 
 	def ticket_params
 
-		params.require(:ticket).permit(:date, :player_id, :name, :rating, :sport, :def_rating, :pitcher, :score)
+		params.require(:ticket).permit(:date, :player_id, :name, :rating, :sport, :score, :updated, :started)
 
 	end
 end
