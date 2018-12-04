@@ -4,9 +4,8 @@ class CreateLeagues < ActiveRecord::Migration[5.1]
 
     	t.string :league_name
       t.integer :clients
-    	t.integer :start_date
+    	t.string :start_date
     	t.string :end_date
-    	t.string :status
     	t.string :pass
     	
       t.timestamps

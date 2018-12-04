@@ -66,9 +66,8 @@ ActiveRecord::Schema.define(version: 20181119153728) do
   create_table "leagues", force: :cascade do |t|
     t.string "league_name"
     t.integer "clients"
-    t.integer "start_date"
+    t.string "start_date"
     t.string "end_date"
-    t.string "status"
     t.string "pass"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -107,7 +106,6 @@ ActiveRecord::Schema.define(version: 20181119153728) do
     t.string "pool_id"
     t.string "selection"
     t.string "result", default: "none"
-    t.string "display", default: "off"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

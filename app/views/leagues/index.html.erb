@@ -182,54 +182,54 @@
 
 			</div>
 
-			<div class="end_date">PICK THE END DATE</div>
+		<div class="end_date">PICK THE END DATE</div>
 
-		<div class = "pool_fields">
+			<div class = "pool_fields">
 			
-		<label>DAY:
-		<input list="day" name="day" id="end_day" /></label>
-	
-		<datalist id="day">
-	  		
-	  		<option value="01">
-	  		<option value="02">
-	  		<option value="03">
-	  		<option value="04">
-	  		<option value="05">
-	  		<option value="06">
-	  		<option value="07">
-	  		<option value="08">
-	  		<option value="09">
-	  		<option value="10">
-	  		<option value="11">
-	  		<option value="12">
-	  		<option value="13">
-	  		<option value="14">
-	  		<option value="15">
-	  		<option value="16">
-	  		<option value="17">
-	  		<option value="18">
-	  		<option value="19">
-	  		<option value="20">
-	  		<option value="21">
-	  		<option value="22">
-	  		<option value="23">
-	  		<option value="24">
-	  		<option value="25">
-	  		<option value="26">
-	  		<option value="27">
-	  		<option value="28">
-	  		<option value="29">
-	  		<option value="30">
-	  		<option value="31">
-	  
-		</datalist>
+				<label>DAY:
+				<input list="day" name="day" id="end_day" /></label>
+			
+				<datalist id="day">
+			  		
+			  		<option value="01">
+			  		<option value="02">
+			  		<option value="03">
+			  		<option value="04">
+			  		<option value="05">
+			  		<option value="06">
+			  		<option value="07">
+			  		<option value="08">
+			  		<option value="09">
+			  		<option value="10">
+			  		<option value="11">
+			  		<option value="12">
+			  		<option value="13">
+			  		<option value="14">
+			  		<option value="15">
+			  		<option value="16">
+			  		<option value="17">
+			  		<option value="18">
+			  		<option value="19">
+			  		<option value="20">
+			  		<option value="21">
+			  		<option value="22">
+			  		<option value="23">
+			  		<option value="24">
+			  		<option value="25">
+			  		<option value="26">
+			  		<option value="27">
+			  		<option value="28">
+			  		<option value="29">
+			  		<option value="30">
+			  		<option value="31">
+			  
+				</datalist>
 
 
 
 
 
-		</div>
+			</div>
 
 		<div class = "pool_fields">
 
@@ -276,16 +276,11 @@
 
 		<input type="submit" name="" value="Create League" id="sub_btn">
 
-	</div>
-		
-
-		
-
 		<div id="pass_index">
 
 			<div id="pass_text">
 		
-				<p> If you are entering a new league for the first time, enter that Pool's password in the box below...</p>
+				<p> If you are entering a new league for the first time, enter that League's password in the box below...</p>
 
 
 
@@ -300,6 +295,13 @@
 			<input type="submit" value="ENTER" id="sub_pass_pool">
 
 			</div>
+
+	</div>
+		
+
+		
+
+		
 
 
 
@@ -319,9 +321,12 @@
 		
 		sub_btn.addEventListener("click", function(){
 
+
 			var endDate = end_day.value + " " + end_month.value + " " + end_year.value
 
 			var startDate = start_day.value + " " + start_month.value + " " + start_year.value
+
+			console.log(startDate)
 
 			var pass_holder = []
 
