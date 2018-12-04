@@ -48,6 +48,7 @@
 		<div># Of Clients: <%= l.text_field :clients %></div>
 		<div>Status: <%= l.text_field :status %></div>
 		<div>END DATE: <%= l.text_field :end_date %></div>
+		<div>START DATE: <%= l.text_field :start_date %></div>
 		<%= l.submit %>
 		
 	<% end %>
@@ -87,7 +88,101 @@
 
 		</div>
 
-		<div id="end_date">PICK THE END DATE</div>
+		<div id="start_date">START DATE: </div>
+
+			<div class = "pool_fields">
+			
+				<label>DAY:
+				<input list="day" name="day" id="start_day" /></label>
+			
+				<datalist id="day">
+			  		
+			  		<option value="01">
+			  		<option value="02">
+			  		<option value="03">
+			  		<option value="04">
+			  		<option value="05">
+			  		<option value="06">
+			  		<option value="07">
+			  		<option value="08">
+			  		<option value="09">
+			  		<option value="10">
+			  		<option value="11">
+			  		<option value="12">
+			  		<option value="13">
+			  		<option value="14">
+			  		<option value="15">
+			  		<option value="16">
+			  		<option value="17">
+			  		<option value="18">
+			  		<option value="19">
+			  		<option value="20">
+			  		<option value="21">
+			  		<option value="22">
+			  		<option value="23">
+			  		<option value="24">
+			  		<option value="25">
+			  		<option value="26">
+			  		<option value="27">
+			  		<option value="28">
+			  		<option value="29">
+			  		<option value="30">
+			  		<option value="31">
+			  
+				</datalist>
+
+			</div>
+
+
+
+
+
+
+
+			<div class = "pool_fields">
+
+				<label>MONTH:
+				<input list="month" name="month" id="start_month" /></label>
+	
+				<datalist id="month">
+	  		
+			  		<option value="Jan">
+			  		<option value="Feb">
+			  		<option value="Mar">
+			  		<option value="Apr">
+			  		<option value="May">
+			  		<option value="Jun">
+			  		<option value="Jul">
+			  		<option value="Aug">
+			  		<option value="Sep">
+			  		<option value="Oct">
+			  		<option value="Nov">
+			  		<option value="Dec">
+			  
+				</datalist>
+
+			</div>
+
+			<div class = "pool_fields">
+			
+				<label>YEAR:
+				<input list="year" name="year" id="start_year" /></label>
+			
+				<datalist id="year">
+			  		
+			  		<option value="2018">
+			  		<option value="2019">
+			  		<option value="2020">
+			  		<option value="2021">
+			  
+				</datalist>
+
+
+
+
+			</div>
+
+			<div class="end_date">PICK THE END DATE</div>
 
 		<div class = "pool_fields">
 			
@@ -178,19 +273,55 @@
 
 
 		</div>
-		
 
 		<input type="submit" name="" value="Create League" id="sub_btn">
+
+	</div>
+		
+
+		
+
+		<div id="pass_index">
+
+			<div id="pass_text">
+		
+				<p> If you are entering a new league for the first time, enter that Pool's password in the box below...</p>
+
+
+
+
+
+
+			</div>
+
+			<div id="pass_btns">
+	
+			PASSWORD: <input type="text" name="" id="pass_pool">
+			<input type="submit" value="ENTER" id="sub_pass_pool">
+
+			</div>
+
+
+
+		</div>
 
 
 	<script>
 
-		var subBtn = document.getElementById("sub_btn")
-		var pass = document.getElementById("pass")
-		var poolName = document.getElementById("pool_name")
-		var poolSport = document.getElementById("pool_sports")
 		
-		subBtn.addEventListener("click", function(){
+
+		
+
+		var sub_btn = document.getElementById("sub_btn")
+
+		var pass = document.getElementById("pass")
+		
+		
+		sub_btn.addEventListener("click", function(){
+
+			var endDate = end_day.value + " " + end_month.value + " " + end_year.value
+
+			var startDate = start_day.value + " " + start_month.value + " " + start_year.value
 
 			var pass_holder = []
 
@@ -198,7 +329,7 @@
 
 			var test = false
 
-			<% Pool.all.each do |l| %>
+			<% League.all.each do |l| %>
 
 					passW = "<%= l.pass %>"
 
@@ -221,11 +352,13 @@
 			}else{
 
 
-				pool_sport.value = poolSport.value
-				pool_pool_name.value = poolName.value
-				pool_pass.value = pass.value
+				league_league_name.value = league_name.value
+				league_pass.value = pass.value
+				league_clients.value = client_number.value
+				league_end_date.value = endDate
+				league_start_date.value = startDate
 				
-				new_pool.submit()
+				new_league.submit()
 
 			}
 
@@ -243,7 +376,7 @@
 		<%= form_for @secret do |p| %>
 
 				<%= p.text_field :pass %>
-				<%= p.text_field :kind, :value => "pool" %>
+				<%= p.text_field :kind, :value => "league" %>
 				<%= p.text_field :user_id, :value => current_user.id %>
 				<%= p.text_field :date, :value => @my_date %>
 				<%= p.submit %>
@@ -252,29 +385,7 @@
 
 	</div>
 
-<div id="pass_index">
 
-	<div id="pass_text">
-		
-		<p> If you are entering a new league for the first time, enter that Pool's password in the box below...</p>
-
-
-
-
-
-
-	</div>
-
-	<div id="pass_btns">
-	
-		PASSWORD: <input type="text" name="" id="pass_pool">
-		<input type="submit" value="ENTER" id="sub_pass_pool">
-
-	</div>
-
-
-
-</div>
 
 <script>
 
@@ -302,7 +413,6 @@
 
 
 
-	</div>
 
 </div>
 </div>

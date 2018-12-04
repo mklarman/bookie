@@ -346,7 +346,7 @@ module ApplicationHelper
 
 			year = date[7] << date[8] << date[9] << date[10]
 
-			@serial_num_check = day << month << year
+			@serial_num_check = year << month << day
 			@serial_num_check = @serial_num_check.to_i
 
 
@@ -411,7 +411,7 @@ module ApplicationHelper
 
 			year = date[7] << date[8] << date[9] << date[10]
 
-			@start_time = day << month << year
+			@start_time = year << month << day
 			@start_time = @start_time.to_i
 
 
@@ -476,7 +476,7 @@ module ApplicationHelper
 
 			year = date[7] << date[8] << date[9] << date[10]
 
-			@end_time = day << month << year
+			@end_time = year << month << day
 			@end_time = @end_time.to_i
 
 

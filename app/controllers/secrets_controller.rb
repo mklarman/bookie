@@ -15,6 +15,9 @@ class SecretsController < ApplicationController
 		my_bool = false
 		secret = Secret.new(secret_params)
 		@pass = secret.pass
+		@current_date
+		@start_date
+		@serial_num_check
 
 		if secret.kind == "league"
 
@@ -25,6 +28,10 @@ class SecretsController < ApplicationController
 					@page_id = l.id
 					my_bool = true
 
+					convert_date(l.start_date)
+					@serial_num_check = @start_date
+					convert_date(secret.date)
+					@serial_num_check = @current_date
 
 				end
 
@@ -32,7 +39,7 @@ class SecretsController < ApplicationController
 
 			if secret.save!
 
-				if my_bool == true
+				if my_bool == true && @start_date.to_i > @current_date.to_i
 
 					redirect_to league_path(@page_id)
 
