@@ -1,5 +1,6 @@
 <% @my_date %>
 <% self.get_time %>
+<%= @my_date %>
 
 <div id="pool_index_head">BOOKIE WARS</div>
 
@@ -46,7 +47,6 @@
 		<div>League Name: <%= l.text_field :league_name %></div>
 		<div>Password: <%= l.text_field :pass %></div>
 		<div># Of Clients: <%= l.text_field :clients %></div>
-		<div>Status: <%= l.text_field :status %></div>
 		<div>END DATE: <%= l.text_field :end_date %></div>
 		<div>START DATE: <%= l.text_field :start_date %></div>
 		<%= l.submit %>

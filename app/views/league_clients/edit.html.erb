@@ -1,3 +1,23 @@
+<div class = "hide">
+
+
+	<%= form_for @client do |c| %>
+
+		TYPE: <div><%= c.text_field :bet_types, :value => @client.bet_types  %></div>
+		# OF WAGERS: <div><%= c.text_field :wager_limit, :value => @client.wager_limit  %></div>
+		SPORTS: <div><%= c.text_field :sports, :value => @client.sports  %></div>
+		STAKES: <div><%= c.text_field :stakes, :value => @client.stakes  %></div>
+		<%= c.submit %>
+
+
+
+	<% end %>
+
+
+
+</div>
+
+
 <% @leagues.each do |l| %>
 
 	<% if l.id.to_i == @client.league_id.to_i %>
@@ -94,11 +114,26 @@
 
 	edit_sub.addEventListener("click", function(){
 
+		if (cl_type.value.length != 0){
 
-		league_client_bet_types.value = cl_type.value
-		league_client_wager_limit.value = cl_quant.value
-		league_client_sports.value = cl_sports.value
-		league_client_stakes.value = cl_stakes.value
+			league_client_bet_types.value = cl_type.value
+		}
+
+		if (cl_quant.value.length != 0){
+
+			league_client_wager_limit.value = cl_quant.value
+		}
+
+		if (cl_sports.value.length != 0){
+
+			league_client_sports.value = cl_sports.value
+		}
+
+		if (cl_stakes.value.length != 0){
+
+			league_client_stakes.value = cl_stakes.value
+		}
+		
 
 		var cl_id = <%= @client.id %>
 
@@ -126,22 +161,5 @@
 
 
 
-<div class = "hide">
 
-
-	<%= form_for @client do |c| %>
-
-		TYPE: <div><%= c.text_field :bet_types %></div>
-		# OF WAGERS: <div><%= c.text_field :wager_limit %></div>
-		SPORTS: <div><%= c.text_field :sports %></div>
-		STAKES: <div><%= c.text_field :stakes %></div>
-		<%= c.submit %>
-
-
-
-	<% end %>
-
-
-
-</div>
 

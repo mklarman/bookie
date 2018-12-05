@@ -16,11 +16,11 @@ class LeagueClientsController < ApplicationController
 
 		if league_client.save
 			
-			redirect_back(fallback_location: clients_path)
+			redirect_back(fallback_location: leagues_path)
 		
 		else
 
-			render new_league_client_path
+			render leagues_path
 
 		end
 

@@ -22,11 +22,11 @@ class TeamsController < ApplicationController
 
 		if team.save
 			
-			redirect_back(fallback_location: clients_path)
+			redirect_to teams_path
 		
 		else
 
-			render users_sportsbook_path
+			render new_teams_path
 
 		end
 
@@ -46,10 +46,10 @@ class TeamsController < ApplicationController
 
 		if @team.update(team_params)
 
-			redirect_back(fallback_location: new_team_path)
+			redirect_to teams_path
 		else
 
-			render users_sportsbook_path
+			redirect_back(fallback_location: new_team_path)
 
 		end
 
@@ -60,7 +60,7 @@ class TeamsController < ApplicationController
 
 	def team_params
 
-		params.require(:team).permit(:date, :name, :sport, :spread, :opp, :total, :start_time, :home_line, :opp_line, :over_line, :under_line, :score, :opp_score, :total_points, :spread_result, :total_result, :display, :money_line)
+		params.require(:team).permit(:date, :name, :sport, :spread, :opp, :total, :home_line, :opp_line, :over_line, :under_line, :score, :opp_score, :total_points, :spread_result, :total_result, :display, :money_line)
 
 	end
 

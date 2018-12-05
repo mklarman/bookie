@@ -23,7 +23,7 @@
 
 <% User.all.each do |u| %>
 
-	 <%= u.sports_book_name %>
+	 <%= u.username %>
 
 	<% u.league_clients.each do |c| %>
 
@@ -75,7 +75,7 @@
 
 	<% end %>
 
-	<div id="league_action_heading">PLAYER: <%= p.sports_book_name.upcase %></div>
+	<div id="league_action_heading">PLAYER: <%= p.username.upcase %></div>
 
 
 <div id="master_cont">

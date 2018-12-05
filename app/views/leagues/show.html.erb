@@ -137,7 +137,7 @@ CHECK: <%= @my_date %>
 
 				<% @stand_info = Hash.new %>
 
-				<% @stand_info[:name] = s.sports_book_name %>
+				<% @stand_info[:name] = s.username %>
 
 				<% @bankroll = @sum.inject(0){|sum,x| sum + x } %>
 
