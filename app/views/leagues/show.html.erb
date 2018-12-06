@@ -16,6 +16,7 @@
 <% @client_holder = [] %>
 <% @client_result_holder = [] %>
 <% @clients_info = [] %>
+<% @start_date_ser %>
 
 <% @obj_test %>
 
@@ -29,7 +30,11 @@
 <% @month_chk = @league.end_date[3] + @league.end_date[4] + @league.end_date[5] %>
 <% @day_chk = @league.end_date[0] + @league.end_date[1] %>
 
-<% @year_chk = @league.end_date[7] + @league.end_date[8] + @league.end_date[9] + @league.end_date[10] %>]
+<% @year_chk = @league.end_date[7] + @league.end_date[8] + @league.end_date[9] + @league.end_date[10] %>
+
+<div><%= @day_chk %></div>
+<div><%= @month_chk %></div>
+<div><%= @year_chk %></div>
 
 
 <% self.check_end_date %>
@@ -38,6 +43,56 @@ END: <%=@end_date_ser %>
 
 <% self.convert_my_date %>
 CHECK: <%= @my_date %>
+
+<% self.check_start_date %>
+
+<% if @start_date_ser > @my_date %>
+
+	<% @id_holder = [] %>
+
+
+	<% @league.league_clients.each do |c| %>
+
+		<% if c.user_id.to_i == current_user.id.to_i %>
+
+			<% @id_holder.push(c.user_id) %>
+
+		<% end %>
+
+	<% end %>
+
+
+	<% if @id_holder.length < @league.clients.to_i %>
+
+		<div><%= "LOADING YOUR CLIENT ROSTER..." %></div>
+
+		<div class = "hide">
+
+			<%= render "client" %>
+
+		</div>
+
+		<script>
+			
+			new_league_client.submit()
+
+
+		</script>
+
+
+	<% end %>
+	
+
+
+<% else %>
+
+	<% if 
+
+
+
+
+
+<% end %> 
 
 <% if @end_date_ser >= @my_date %>
 
