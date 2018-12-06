@@ -369,7 +369,7 @@ module LeaguesHelper
 
 		@teams.each do |t|
 
-			if t.display == "on"
+			if t.display == "on" && t.date == @my_date
 
 				if t.sport == "NFL"
 
