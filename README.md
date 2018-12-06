@@ -616,6 +616,16 @@ Also going to need to take matchups and tickets off the board.  Use display for 
 
 so, in two weeks have both games done.  Then the next week set up a basic design for the key pages you have left.  Once that is done launch through heroku at the end of the third week, holdiays coming so lets say by Jan 4th be live and start running test pools and leagues with friends and get some feedback. Tweak for a week after we see what being in a league is like, make sure standings and computations have zero bugs.  Once that is set, get strangers to try them and start getting leagues off the ground.
 
+Leagues:
+
+if it is before the start date, load their clients and then give them a message about when their league starts and maybe what they will have to do, a mock up of the page.
+
+If it is the start date: load the clients and then produce the roster and the links.
+
+If it is past the start date but before or equal to the end date load the clients and produce the roster and links
+
+else if it is past the start date and past the end date show the final standings.
+
 
 
 
