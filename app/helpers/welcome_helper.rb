@@ -16,9 +16,9 @@ module WelcomeHelper
 
 	def get_leagues
 
-		current_user.league_wagers.each do |w|
+		current_user.secrets.each do |s|
 
-			@id_holder.push(w.league_id) unless @id_holder.include? (w.league_id)
+			@secrets_cont.push(s.pass) unless @secrets_cont.include?(s.pass)
 
 		end
 

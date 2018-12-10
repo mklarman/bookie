@@ -1,46 +1,22 @@
-<% @id_holder = [] %>
+<% @secrets_cont = [] %>
 
 <% self.get_leagues %>
-
-<div>PUBLIC LEAGUES</div>
-
-<% @id_holder.each do |id| %>
-
-	<% League.all.each do |l| %>
-
-		<% if id.to_i == l.id.to_i && l.status == "public" %>
-
-			<div><%= l.league_name %></div>
-			<div><%= link_to "LEAGUE HOME", league_path(l.id) %></div>
-
-		<% end %>
-
-
-	<% end %>
-
-
-<% end %>
-
-<br>
 
 <%= link_to "PLAY BOOKIE WARS", leagues_path %>
 <%= link_to "PLAY FANISIDE POOLS", pools_path %>
 
-PRIVATE LEAGUES
+<% League.all.each do |l| %>
 
-<% @id_holder.each do |id| %>
+	<% @secrets_cont.each do |s| %>
 
-	<% League.all.each do |l| %>
+		<% if l.pass == s %>
 
-		<% if id.to_i == l.id.to_i && l.status == "private" %>
-
-			<div><%= l.league_name %></div>
-			<div><%= link_to "LEAGUE HOME", league_path(l.id) %></div>
+			<div><%= link_to l.league_name, league_path(l.id) %></div>
 
 		<% end %>
 
 
 	<% end %>
 
-
 <% end %>
+

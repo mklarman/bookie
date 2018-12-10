@@ -32,6 +32,8 @@
 
         <%= link_to "New Team", new_team_path, class: 'link_tabs'  %>
         <%= link_to "Team List", teams_path, class: 'link_tabs'  %>
+        <%= link_to "MY PROFILE", users_profile_path, class: 'link_tabs'  %>
+
 
 
     <% else %>
@@ -45,6 +47,7 @@
       <%= link_to "NEW LC", new_league_client_path, class: 'link_tabs'  %>
       <%= link_to "NEW LW", new_league_wager_path, class: 'link_tabs'  %>
       <%= link_to "MY LEAGUES", users_profile_path, class: 'link_tabs'  %>
+      <%= link_to "MY PROFILE", users_profile_path, class: 'link_tabs'  %>
 
     <% end %>
 
