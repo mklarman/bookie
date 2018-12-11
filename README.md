@@ -627,12 +627,16 @@ If it is past the start date but before or equal to the end date load the client
 else if it is past the start date and past the end date show the final standings.
 
 
-Cycle through matchups, 
+Cycle through matchups, get all the matchups that are on and have the current date.  Call all the sorting functions.  Then bets are ready to be placed.  This is on league_clients show.
 
 
 
 
+For Bookie Wars:
 
+Create Matchups which take a date, wagers are generated and take a date.  For grading loop through ungradeded wagers, for each wager loop through teams.  Pull out all matchups that match the date on the wager, push them to an array.  end 2nd loop, outside 2nd loop: loop through the array that holds all the matchups on that date and then proceed with the grading.  Because now the array will hold all the right matchups.
+
+Have to figure out how to loop through the right matchups when looking for a match between their pick and the teams on the matchup.  Maybe collect the date at the time of the pick.  May need to rethink this process a little.  It needs streamlining.  Use the code I have but make it stronger, cut the fat and make sure it includes the variables you need.  Have to go through each function from start to finish.  This is going to take more work than I thought.  A solution is very doable and will be done.
 
 
 

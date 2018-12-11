@@ -486,245 +486,249 @@ module LeaguesHelper
 
 				@teams.each do |t|
 
-					if t.name == w.team1
+					if t.date == w.date
 
-						@selections.push(t.name)
-						@oppo_picks.push(t.opp)
+						if t.name == w.team1
 
-					elsif t.opp == w.team1
+							@selections.push(t.name)
+							@oppo_picks.push(t.opp)
 
-						@selections.push(t.opp)
-						@oppo_picks.push(t.name)
+						elsif t.opp == w.team1
 
-
-					elsif t.under_line == w.team1
-
-						@selections.push(t.under_line)
-						@oppo_picks.push(t.over_line)
+							@selections.push(t.opp)
+							@oppo_picks.push(t.name)
 
 
-					elsif t.over_line == w.team1
+						elsif t.under_line == w.team1
 
-						@selections.push(t.over_line)
-						@oppo_picks.push(t.under_line)
+							@selections.push(t.under_line)
+							@oppo_picks.push(t.over_line)
 
+
+						elsif t.over_line == w.team1
+
+							@selections.push(t.over_line)
+							@oppo_picks.push(t.under_line)
+
+
+						end
+
+						if t.name == w.team2
+
+							if @selections.include? t.name
+
+
+
+							else
+
+								@selections.push(t.name)
+								@oppo_picks.push(t.opp)
+
+							end
+
+						elsif t.opp == w.team2
+
+							if @selections.include? t.opp
+
+
+							else
+
+								@selections.push(t.opp)
+								@oppo_picks.push(t.name)
+
+							end
+
+
+						elsif t.under_line == w.team2
+
+							if @selections.include? t.under_line
+
+
+							else
+
+								@selections.push(t.under_line)
+								@oppo_picks.push(t.over_line)
+
+							end
+
+
+						elsif t.over_line == w.team2
+
+							if @selections.include? t.over_line
+
+
+							else
+
+								@selections.push(t.over_line)
+								@oppo_picks.push(t.under_line)
+
+							end
+
+						end
+
+						if t.name == w.team3
+
+							if @selections.include? t.name
+
+
+
+							else
+
+								@selections.push(t.name)
+								@oppo_picks.push(t.opp)
+
+							end
+
+						elsif t.opp == w.team3
+
+							if @selections.include? t.opp
+
+
+							else
+
+								@selections.push(t.opp)
+								@oppo_picks.push(t.name)
+
+							end
+
+
+						elsif t.under_line == w.team3
+
+							if @selections.include? t.under_line
+
+
+							else
+
+								@selections.push(t.under_line)
+								@oppo_picks.push(t.over_line)
+
+							end
+
+
+						elsif t.over_line == w.team3
+
+							if @selections.include? t.over_line
+
+
+							else
+
+								@selections.push(t.over_line)
+								@oppo_picks.push(t.under_line)
+
+							end
+
+
+						end 
+
+						if t.name == w.team4
+
+							if @selections.include? t.name
+
+
+
+							else
+
+								@selections.push(t.name)
+								@oppo_picks.push(t.opp)
+
+							end
+
+						elsif t.opp == w.team4
+
+							if @selections.include? t.opp
+
+
+							else
+
+								@selections.push(t.opp)
+								@oppo_picks.push(t.name)
+
+							end
+
+
+						elsif t.under_line == w.team4
+
+							if @selections.include? t.under_line
+
+
+							else
+
+								@selections.push(t.under_line)
+								@oppo_picks.push(t.over_line)
+
+							end
+
+
+						elsif t.over_line == w.team4
+
+							if @selections.include? t.over_line
+
+
+							else
+
+								@selections.push(t.over_line)
+								@oppo_picks.push(t.under_line)
+
+							end
+
+
+						end 
+
+						if t.name == w.team5
+
+							if @selections.include? t.name
+
+
+
+							else
+
+								@selections.push(t.name)
+								@oppo_picks.push(t.opp)
+
+							end
+
+						elsif t.opp == w.team5
+
+							if @selections.include? t.opp
+
+
+							else
+
+								@selections.push(t.opp)
+								@oppo_picks.push(t.name)
+
+							end
+
+
+						elsif t.under_line == w.team5
+
+							if @selections.include? t.under_line
+
+
+							else
+
+								@selections.push(t.under_line)
+								@oppo_picks.push(t.over_line)
+
+							end
+
+
+						elsif t.over_line == w.team5
+
+							if @selections.include? t.over_line
+
+
+							else
+
+								@selections.push(t.over_line)
+								@oppo_picks.push(t.under_line)
+
+							end
+
+
+						end 
 
 					end
-
-					if t.name == w.team2
-
-						if @selections.include? t.name
-
-
-
-						else
-
-							@selections.push(t.name)
-							@oppo_picks.push(t.opp)
-
-						end
-
-					elsif t.opp == w.team2
-
-						if @selections.include? t.opp
-
-
-						else
-
-							@selections.push(t.opp)
-							@oppo_picks.push(t.name)
-
-						end
-
-
-					elsif t.under_line == w.team2
-
-						if @selections.include? t.under_line
-
-
-						else
-
-							@selections.push(t.under_line)
-							@oppo_picks.push(t.over_line)
-
-						end
-
-
-					elsif t.over_line == w.team2
-
-						if @selections.include? t.over_line
-
-
-						else
-
-							@selections.push(t.over_line)
-							@oppo_picks.push(t.under_line)
-
-						end
-
-					end
-
-					if t.name == w.team3
-
-						if @selections.include? t.name
-
-
-
-						else
-
-							@selections.push(t.name)
-							@oppo_picks.push(t.opp)
-
-						end
-
-					elsif t.opp == w.team3
-
-						if @selections.include? t.opp
-
-
-						else
-
-							@selections.push(t.opp)
-							@oppo_picks.push(t.name)
-
-						end
-
-
-					elsif t.under_line == w.team3
-
-						if @selections.include? t.under_line
-
-
-						else
-
-							@selections.push(t.under_line)
-							@oppo_picks.push(t.over_line)
-
-						end
-
-
-					elsif t.over_line == w.team3
-
-						if @selections.include? t.over_line
-
-
-						else
-
-							@selections.push(t.over_line)
-							@oppo_picks.push(t.under_line)
-
-						end
-
-
-					end 
-
-					if t.name == w.team4
-
-						if @selections.include? t.name
-
-
-
-						else
-
-							@selections.push(t.name)
-							@oppo_picks.push(t.opp)
-
-						end
-
-					elsif t.opp == w.team4
-
-						if @selections.include? t.opp
-
-
-						else
-
-							@selections.push(t.opp)
-							@oppo_picks.push(t.name)
-
-						end
-
-
-					elsif t.under_line == w.team4
-
-						if @selections.include? t.under_line
-
-
-						else
-
-							@selections.push(t.under_line)
-							@oppo_picks.push(t.over_line)
-
-						end
-
-
-					elsif t.over_line == w.team4
-
-						if @selections.include? t.over_line
-
-
-						else
-
-							@selections.push(t.over_line)
-							@oppo_picks.push(t.under_line)
-
-						end
-
-
-					end 
-
-					if t.name == w.team5
-
-						if @selections.include? t.name
-
-
-
-						else
-
-							@selections.push(t.name)
-							@oppo_picks.push(t.opp)
-
-						end
-
-					elsif t.opp == w.team5
-
-						if @selections.include? t.opp
-
-
-						else
-
-							@selections.push(t.opp)
-							@oppo_picks.push(t.name)
-
-						end
-
-
-					elsif t.under_line == w.team5
-
-						if @selections.include? t.under_line
-
-
-						else
-
-							@selections.push(t.under_line)
-							@oppo_picks.push(t.over_line)
-
-						end
-
-
-					elsif t.over_line == w.team5
-
-						if @selections.include? t.over_line
-
-
-						else
-
-							@selections.push(t.over_line)
-							@oppo_picks.push(t.under_line)
-
-						end
-
-
-					end 
 
 
 
