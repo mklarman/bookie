@@ -8,6 +8,19 @@
 
 <% @ungraded_wagers = [] %>
 
+<% LeagueWager.all.each do |w| %>
+
+	<% if w.league_id.to_i == @league_id.to_i %>
+
+		<%= w.id %>
+
+
+	<% end %>
+
+
+
+<% end %>
+
 
 <% current_user.league_wagers.each do |w| %>
 
