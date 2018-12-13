@@ -15,7 +15,7 @@
 
 <% end %>
 
-HERE:  
+  
 
 
 <% @client_holder.each do |c| %>
@@ -118,7 +118,7 @@ HERE:
 					<% end %>
 					</div>
 
-				<div class = "hid">
+				<div class = "hide">
 
 					<%= form_for @wager do |w| %>
 
@@ -445,7 +445,7 @@ HERE:
 
 						<%= w.hidden_field :user_id, :value => current_user.id %>
 						<%= w.text_field :league_id, :value => @my_client.league_id %>
-						<%= w.text_field :client_id, :value => @my_client.id %>
+						<%= w.text_field :league_client_id, :value => @my_client.id %>
 						Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
 						Amount:<div><%= w.text_field :amount, :value => @amount %></div>
 						Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>

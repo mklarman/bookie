@@ -78,9 +78,7 @@ class LeagueWagersController < ApplicationController
 
 				redirect_to edit_league_wager_path(@edit_id[0])
 
-			end
-
-			if @edit_id.length == 0
+			else
 
 				redirect_to league_path(@wager.league_id)
 
@@ -88,7 +86,7 @@ class LeagueWagersController < ApplicationController
 
 		else
 
-			render new_league_wager_path
+			render league_path(@wager.league_id)
 
 		end
 
