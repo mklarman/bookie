@@ -322,7 +322,7 @@
 
 		<% end %>
 
-		<% if @edit_w.length == 0 %>
+		<% if @edit_w.length > 0 %>
 
 			<div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
 
@@ -335,7 +335,7 @@
 
 					<% if w.graded == false && w.date == @my_date %>
 
-						@wager_counter.push(w)
+						<% @wager_counter.push(w) %>
 
 
 					<% end %>
@@ -656,7 +656,7 @@
 
 					<% if w.graded == false && w.date == @my_date %>
 
-						@wager_counter.push(w)
+						<% @wager_counter.push(w) %>
 
 
 					<% end %>
@@ -818,38 +818,7 @@
 
 <% end %>
 
-<% @open_wagers = [] %> 
 
-<% current_user.league_wagers.each do |w| %>
-
-	<% if w.league_id.to_i == @league.id.to_i && w.graded == false %>
-
-		<% @open_wagers.push(w) %>
-
-	<% end %>
-
-
-
-
-<% end %>
-
-<% @open_wagers.each do |w| %>
-
-	<div>
-		
-		<%= w.id %>
-		<%= w.league_client_id %>
-
-
-
-
-
-
-	</div>
-
-
-
-<% end %>
 
 
 

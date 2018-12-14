@@ -103,74 +103,80 @@
 
 	<% if @bet_type == "straight" %>
 
-				<div><%= "$" + @amount.to_s %>
-					<%= @bet_type %></div>
-					<div><%= @pick1 %>
 
-					<% if @spread1 == 0 %>
+		<div id ="booking_info" class="data_display">
+					
+			<div class="data_info"><%= "$" + @amount.to_s %>
+			<%= @bet_type %></div>
+			<div><%= @pick1 %>
 
-						<%= @spread_pk %>
+				<% if @spread1 == 0 %>
 
-					<% else %>
+					<%= @spread_pk %>
 
-						<%= @spread1 %>
+				<% else %>
 
-					<% end %>
-					</div>
+					<%= @spread1 %>
 
-				<div class = "hide">
+				<% end %>
+			</div>
 
-					<%= form_for @wager do |w| %>
+		</div>
 
-					<%= w.hidden_field :user_id, :value => current_user.id %>
-					<%= w.text_field :league_id, :value => @my_client.league_id %>
-					<%= w.text_field :league_client_id, :value => @my_client.id %>
-					Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
-					Amount:<div><%= w.text_field :amount, :value => @amount %></div>
-					Team:<div><%= w.text_field :team1, :value => @pick1 %></div>
-					<div><%= w.hidden_field :team2 %></div>
-					<div><%= w.hidden_field :team3 %></div>
-					<div><%= w.hidden_field :team4 %></div>
-					<div><%= w.hidden_field :team5 %></div>
-					Spread:<div><%= w.text_field :spread1, :value => @spread1 %></div>
-					<div><%= w.hidden_field :spread2 %></div>
-					<div><%= w.hidden_field :spread3 %></div>
-					<div><%= w.hidden_field :spread4 %></div>
-					<div><%= w.hidden_field :spread5 %></div>
-					Date:<div><%= w.text_field :date, :value => @my_date %></div>
-					<div><%= w.hidden_field :net_result %></div>
-					<div><%= w.hidden_field :outcome %></div>
-					<div><%= w.hidden_field :graded %></div>
-					<div><%= w.submit %></div>
+		<div class = "hide">
 
-					<% end %>
+			<%= form_for @wager do |w| %>
 
-				</div>
+				<%= w.hidden_field :user_id, :value => current_user.id %>
+				<%= w.text_field :league_id, :value => @my_client.league_id %>
+				<%= w.text_field :league_client_id, :value => @my_client.id %>
+				Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
+				Amount:<div><%= w.text_field :amount, :value => @amount %></div>
+				Team:<div><%= w.text_field :team1, :value => @pick1 %></div>
+				<div><%= w.hidden_field :team2 %></div>
+				<div><%= w.hidden_field :team3 %></div>
+				<div><%= w.hidden_field :team4 %></div>
+				<div><%= w.hidden_field :team5 %></div>
+				Spread:<div><%= w.text_field :spread1, :value => @spread1 %></div>
+				<div><%= w.hidden_field :spread2 %></div>
+				<div><%= w.hidden_field :spread3 %></div>
+				<div><%= w.hidden_field :spread4 %></div>
+				<div><%= w.hidden_field :spread5 %></div>
+				Date:<div><%= w.text_field :date, :value => @my_date %></div>
+				<div><%= w.hidden_field :net_result %></div>
+				<div><%= w.hidden_field :outcome %></div>
+				<div><%= w.hidden_field :graded %></div>
+				<div><%= w.submit %></div>
 
 			<% end %>
 
+		</div>
+
+	<% end %>
+
 		<% if (@bet_type == "two team teaser" || @bet_type == "two team parlay" || @bet_type == "two team reverse") %>
 
+			<div class="data_display">		
+
+				<div class="data_info"><%= "$" + @amount.to_s %>
+				<%= @bet_type %></div>
+						
+				<div class="data_info"><%= @pick1 %>
 					
+					<% if @spread1 == 0 %>
 
-			<div><%= "$" + @amount.to_s %>
-			<%= @bet_type %></div>
+							<%= @spread_pk %>
+
+						<% else %>
+
+							<%= @spread1 %>
+
+						<% end %>
+				</div>
+
+				<div class="data_info"><%= @pick2 %>
 					
-			<div><%= @pick1 %>
-				
-				<% if @spread1 == 0 %>
-
-						<%= @spread_pk %>
-
-					<% else %>
-
-						<%= @spread1 %>
-
-					<% end %>
-					</div>
-
-			<div><%= @pick2 %>
-				<% if @spread2 == 0 %>
+					<% if @spread2 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -179,10 +185,13 @@
 						<%= @spread2 %>
 
 					<% end %>
-					</div>
+				
+				</div>
+
+			</div>
 
 
-			<div class = "hid">
+			<div class = "hide">
 
 				<%= form_for @wager do |w| %>
 
@@ -217,25 +226,27 @@
 		<% if (@bet_type == "three team teaser" || @bet_type == "three team parlay" || @bet_type == "three team reverse") %>
 
 
+			<div class="data_display">
 
-			<div><%= "$" + @amount.to_s %>
-				<%= @bet_type %></div>
-						
-			<div><%= @pick1 %>
-				
-				<% if @spread1 == 0 %>
+				<div class="data_info"><%= "$" + @amount.to_s %>
+					<%= @bet_type %></div>
+							
+				<div class="data_info"><%= @pick1 %>
+					
+					<% if @spread1 == 0 %>
 
-						<%= @spread_pk %>
+							<%= @spread_pk %>
 
 					<% else %>
 
-						<%= @spread1 %>
+							<%= @spread1 %>
 
 					<% end %>
-					</div>
+				</div>
 
-			<div><%= @pick2 %>
-				<% if @spread2 == 0 %>
+				<div class="data_info"><%= @pick2 %>
+					
+					<% if @spread2 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -244,21 +255,26 @@
 						<%= @spread2 %>
 
 					<% end %>
-					</div>
+				
+				</div>
 
-			<div><%= @pick3 %>
-				<% if @spread3 == 0 %>
+				<div class="data_info"><%= @pick3 %>
+					
+					<% if @spread3 == 0 %>
 
-						<%= @spread_pk %>
+							<%= @spread_pk %>
 
 					<% else %>
 
-						<%= @spread3 %>
+							<%= @spread3 %>
 
 					<% end %>
-					</div>
+				
+				</div>
 
-			<div class = "hid">
+			</div>
+
+			<div class = "hide">
 
 					<%= form_for @wager do |w| %>
 
@@ -291,6 +307,8 @@
 
 		<% if (@bet_type == "four team reverse") %>
 
+			<div class="data_display">
+
 				<div><%= "$" + @amount.to_s %>
 					<%= @bet_type %></div>
 						
@@ -305,10 +323,13 @@
 						<%= @spread1 %>
 
 					<% end %>
-					</div>
+				
+				</div>
 
-			<div><%= @pick2 %>
-				<% if @spread2 == 0 %>
+
+				<div><%= @pick2 %>
+				
+					<% if @spread2 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -317,10 +338,11 @@
 						<%= @spread2 %>
 
 					<% end %>
-					</div>
+				</div>
 
-			<div><%= @pick3 %>
-				<% if @spread3 == 0 %>
+				<div><%= @pick3 %>
+					
+					<% if @spread3 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -329,10 +351,11 @@
 						<%= @spread3 %>
 
 					<% end %>
-					</div>
+				</div>
 
-						<div><%= @pick4 %>
-				<% if @spread4 == 0 %>
+				<div><%= @pick4 %>
+					
+					<% if @spread4 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -341,44 +364,49 @@
 						<%= @spread4 %>
 
 					<% end %>
-					</div>
+				</div>
 
-					<div class = "hid">
-						<%= form_for @wager do |w| %>
+			</div>
 
-						<%= w.hidden_field :user_id, :value => current_user.id %>
-						<%= w.text_field :league_id, :value => @my_client.league_id %>
-						<%= w.text_field :league_client_id, :value => @my_client.id %>
-						Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
-						Amount:<div><%= w.text_field :amount, :value => @amount %></div>
-						Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
-						Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
-						Team3:<div><%= w.text_field :team3, :value => @pick3 %></div>
-						Team4:<div><%= w.text_field :team4, :value => @pick4 %></div>
-						<div><%= w.hidden_field :team5 %></div>
-						Spread1:<div><%= w.text_field :spread1, :value => @spread1 %></div>
-						Spread2:<div><%= w.text_field :spread2, :value => @spread2 %></div>
-						Spread3:<div><%= w.text_field :spread3, :value => @spread3 %></div>
-						Spread4:<div><%= w.text_field :spread4, :value => @spread4 %></div>
-						<div><%= w.hidden_field :spread5 %></div>
-						Date:<div><%= w.text_field :date, :value => @my_date %></div>
-						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :outcome %></div>
-						<div><%= w.hidden_field :graded %></div>
-						<div><%= w.submit %></div>
+			<div class = "hide">
+				<%= form_for @wager do |w| %>
 
-						<% end %>
+				<%= w.hidden_field :user_id, :value => current_user.id %>
+				<%= w.text_field :league_id, :value => @my_client.league_id %>
+				<%= w.text_field :league_client_id, :value => @my_client.id %>
+				Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
+				Amount:<div><%= w.text_field :amount, :value => @amount %></div>
+				Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
+				Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
+				Team3:<div><%= w.text_field :team3, :value => @pick3 %></div>
+				Team4:<div><%= w.text_field :team4, :value => @pick4 %></div>
+				<div><%= w.hidden_field :team5 %></div>
+				Spread1:<div><%= w.text_field :spread1, :value => @spread1 %></div>
+				Spread2:<div><%= w.text_field :spread2, :value => @spread2 %></div>
+				Spread3:<div><%= w.text_field :spread3, :value => @spread3 %></div>
+				Spread4:<div><%= w.text_field :spread4, :value => @spread4 %></div>
+				<div><%= w.hidden_field :spread5 %></div>
+				Date:<div><%= w.text_field :date, :value => @my_date %></div>
+				<div><%= w.hidden_field :net_result %></div>
+				<div><%= w.hidden_field :outcome %></div>
+				<div><%= w.hidden_field :graded %></div>
+				<div><%= w.submit %></div>
 
-					</div>
+				<% end %>
+
+			</div>
 
 		<% end %>
 
 		<% if (@bet_type == "five team teaser" || @bet_type == "five team parlay") %>
 
-				<div><%= "$" + @amount.to_s %>
+			<div class="data_display">
+
+				<div class="data_info"><%= "$" + @amount.to_s %>
+					
 					<%= @bet_type %></div>
 						
-				<div><%= @pick1 %>
+				<div class="data_info"><%= @pick1 %>
 				
 				<% if @spread1 == 0 %>
 
@@ -389,10 +417,11 @@
 						<%= @spread1 %>
 
 					<% end %>
-					</div>
+				</div>
 
-				<div><%= @pick2 %>
-				<% if @spread2 == 0 %>
+				<div class="data_info"><%= @pick2 %>
+					
+					<% if @spread2 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -401,10 +430,11 @@
 						<%= @spread2 %>
 
 					<% end %>
-					</div>
+				</div>
 
-				<div><%= @pick3 %>
-				<% if @spread3 == 0 %>
+				<div class="data_info"><%= @pick3 %>
+					
+					<% if @spread3 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -413,10 +443,12 @@
 						<%= @spread3 %>
 
 					<% end %>
-					</div>
+				
+				</div>
 
-				<div><%= @pick4 %>
-				<% if @spread4 == 0 %>
+				<div class="data_info"><%= @pick4 %>
+					
+					<% if @spread4 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -425,10 +457,12 @@
 						<%= @spread4 %>
 
 					<% end %>
-					</div>
+				
+				</div>
 
-				<div><%= @pick5 %>
-				<% if @spread5 == 0 %>
+				<div class="data_info"><%= @pick5 %>
+					
+					<% if @spread5 == 0 %>
 
 						<%= @spread_pk %>
 
@@ -437,50 +471,50 @@
 						<%= @spread5 %>
 
 					<% end %>
-					</div>
-
-					<div class = "hid">
-
-						<%= form_for @wager do |w| %>
-
-						<%= w.hidden_field :user_id, :value => current_user.id %>
-						<%= w.text_field :league_id, :value => @my_client.league_id %>
-						<%= w.text_field :league_client_id, :value => @my_client.id %>
-						Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
-						Amount:<div><%= w.text_field :amount, :value => @amount %></div>
-						Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
-						Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
-						Team3:<div><%= w.text_field :team3, :value => @pick3 %></div>
-						Team4:<div><%= w.text_field :team4, :value => @pick4 %></div>
-						Team5:<div><%= w.text_field :team5, :value => @pick5 %></div>
-						Spread1:<div><%= w.text_field :spread1, :value => @spread1 %></div>
-						Spread2:<div><%= w.text_field :spread2, :value => @spread2 %></div>
-						Spread3:<div><%= w.text_field :spread3, :value => @spread3 %></div>
-						Spread4:<div><%= w.text_field :spread4, :value => @spread4 %></div>
-						Spread5:<div><%= w.text_field :spread5, :value => @spread5 %></div>
-						Date:<div><%= w.text_field :date, :value => @my_date %></div>
-						<div><%= w.hidden_field :net_result %></div>
-						<div><%= w.hidden_field :outcome %></div>
-						<div><%= w.hidden_field :graded %></div>
-						<div><%= w.submit %></div>
-
-						<% end %>
-
-					</div>
-
-
-
-
-			<% end %>
-
-
-			<script>
 				
-				new_league_wager.submit()
+				</div>
+
+			</div>
+
+			<div class = "hide">
+
+				<%= form_for @wager do |w| %>
+
+				<%= w.hidden_field :user_id, :value => current_user.id %>
+				<%= w.text_field :league_id, :value => @my_client.league_id %>
+				<%= w.text_field :league_client_id, :value => @my_client.id %>
+				Type:<div><%= w.text_field :wager_type, :value => @bet_type %></div>
+				Amount:<div><%= w.text_field :amount, :value => @amount %></div>
+				Team1:<div><%= w.text_field :team1, :value => @pick1 %></div>
+				Team2:<div><%= w.text_field :team2, :value => @pick2 %></div>
+				Team3:<div><%= w.text_field :team3, :value => @pick3 %></div>
+				Team4:<div><%= w.text_field :team4, :value => @pick4 %></div>
+				Team5:<div><%= w.text_field :team5, :value => @pick5 %></div>
+				Spread1:<div><%= w.text_field :spread1, :value => @spread1 %></div>
+				Spread2:<div><%= w.text_field :spread2, :value => @spread2 %></div>
+				Spread3:<div><%= w.text_field :spread3, :value => @spread3 %></div>
+				Spread4:<div><%= w.text_field :spread4, :value => @spread4 %></div>
+				Spread5:<div><%= w.text_field :spread5, :value => @spread5 %></div>
+				Date:<div><%= w.text_field :date, :value => @my_date %></div>
+				<div><%= w.hidden_field :net_result %></div>
+				<div><%= w.hidden_field :outcome %></div>
+				<div><%= w.hidden_field :graded %></div>
+				<div><%= w.submit %></div>
+
+				<% end %>
+
+			</div>
+
+	<% end %>
+
+
+		<script>
+				
+			new_league_wager.submit()
 
 
 
-			</script>
+		</script>
 
 
 

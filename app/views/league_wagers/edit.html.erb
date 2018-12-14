@@ -70,84 +70,121 @@
 
 	<% self.score_straights %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "two team teaser" %>
 
 	<% self.two_team_teasers %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "three team teaser" %>
 
 	<% self.three_team_teasers %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "five team teaser" %>
 
 	<% self.five_team_teasers %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "two team parlay" %>
 
 	<% self.two_team_parlays %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "three team parlay" %>
 
 	<% self.three_team_parlays %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "five team parlay" %>
 
 	<% self.five_team_parlays %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "two team reverse" %>
 
 	<% self.two_team_reverses %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "three team reverse" %>
 
 	<% self.three_team_reverses %>
 
-		HERE: <%= @rev_win %>
-		<%= @rev_lose %>
+	<div class="data_display">
 
-	<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type %></div>
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% elsif @wager.wager_type == "four team reverse" %>
 
 	<% self.four_team_reverses %>
 
-	<div><%= @wager.wager_type %></div>
+	<div class="data_display">
 
-	<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.wager_type %></div>
+
+		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+
+	</div>
 
 <% end %>
 

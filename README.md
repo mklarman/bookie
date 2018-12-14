@@ -638,6 +638,8 @@ Create Matchups which take a date, wagers are generated and take a date.  For gr
 
 Have to figure out how to loop through the right matchups when looking for a match between their pick and the teams on the matchup.  Maybe collect the date at the time of the pick.  May need to rethink this process a little.  It needs streamlining.  Use the code I have but make it stronger, cut the fat and make sure it includes the variables you need.  Have to go through each function from start to finish.  This is going to take more work than I thought.  A solution is very doable and will be done.
 
+Core functionality to Bookie Wars is complete.  League_clients_show(book wagers) and League_wager_show(grade wagers) need a design.  Once that is done need to add a way to turn games off once they start, duh...
+
 
 
 
