@@ -1,4 +1,4 @@
-
+HELLO
 
 <% @my_date %>
 <% @end_date_ser %>
@@ -193,6 +193,8 @@
 
 				<% @bankroll = @sum.inject(0){|sum,x| sum + x } %>
 
+				<% @bankroll = @bankroll * -1 %>
+
 				<% @stand_info[:bank] = @bankroll %>
 
 				<% @scores.push(@stand_info) %>
@@ -324,7 +326,7 @@
 
 		<% if @edit_w.length > 0 %>
 
-			<div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
+			 <div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
 
 
 		<% else %>
@@ -645,7 +647,7 @@
 
 		<% if @edit_w.length > 0 %>
 
-			<div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
+			 <div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %> 
 
 
 		<% else %>
@@ -782,6 +784,8 @@
 				<% @stand_info[:name] = s.username %>
 
 				<% @bankroll = @sum.inject(0){|sum,x| sum + x } %>
+
+				<% @bankroll = @bankroll * -1 %>
 
 				<% @stand_info[:bank] = @bankroll %>
 
