@@ -90,7 +90,8 @@ HELLO
 
 <% else %>
 
-	<% if @start_time == @my_date %>
+	<% if @start_time.to_i == @my_date.to_i %>
+
 
 		<% @id_holder = [] %>
 
@@ -106,7 +107,7 @@ HELLO
 	<% end %>
 
 
-	<% if @id_holder.length < @league.clients.to_i %>
+	<% if @id_holder.length < @league.league_clients.to_i %>
 
 		<div><%= "LOADING CLIENTS..." %></div>
 
