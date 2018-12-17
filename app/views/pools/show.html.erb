@@ -27,6 +27,26 @@
 
 <% end %>
 
+<div>
+
+	<%= form_for @group do |g| %>
+
+		<%= g.text_field :pool_id, value: @pool.id %>
+		<%= g.text_field :date, value: @my_date %>
+		<%= g.text_field :player1 %>
+		<%= g.text_field :player2 %>
+		<%= g.text_field :player3 %>
+		<%= g.text_field :player4 %>
+		<%= g.text_field :player5 %>
+
+		<%= g.submit %>
+
+	<% end %>
+
+</div>
+
+
+
 
 
 

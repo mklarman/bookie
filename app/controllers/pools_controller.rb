@@ -44,6 +44,7 @@ class PoolsController < ApplicationController
 		@users = User.all
 		@tickets = Ticket.all
 		@groups = Group.all
+		@group = Group.new
 
 
 
