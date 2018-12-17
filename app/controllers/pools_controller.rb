@@ -13,11 +13,11 @@ class PoolsController < ApplicationController
 
 		if pool.save
 			
-			redirect_to pool_path(pool.id)
+			redirect_back(fallback_location: players_path)
 		
 		else
 
-			redirect_back(fallback_location: players_path)
+			redirect_back(fallback_location: players_path)			
 
 		end
 	

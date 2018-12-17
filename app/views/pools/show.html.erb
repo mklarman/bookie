@@ -4,107 +4,47 @@
 <% @contestants = [] %>
 <% @selection_holder = [] %>
 <% @needs_grading = false %>
-<% self.grade_check %>
-<% self.get_all_contestants %>
 <% @this_pools_groups = [] %>
 <% @recalled = [] %>
+<% @pool_players = [] %>
+<% @pool_standings = [] %>
+<% @off_stand = [] %>
+<% @sorted_standings %>
 
-<% @groups.each do |g| %>
+<% self.get_pool_players %>
+<% self.get_all_selections %>
+<% self.get_pool_standings(@pool_standings) %>
 
-	<% if g.pool_id.to_i == @pool.id.to_i && g.date != @my_date %>
+<% @off_stand.each do |st| %>
 
-		<% @this_pools_groups.push(g) %>
+	<% if st.class == Hash %>
+
+		<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
 
 	<% end %>
+
+
 
 <% end %>
 
-<% if @needs_grading == true %>
-
-
-	<% @contestants.each do |c| %>
-
-		<% @picks = [] %>
-
-		<% c.selections.each do |s| %>
-
-			<% if s.pool_id.to_i == @pool.id.to_i %>
-
-				<% @picks.push(s) %>
-
-			<% end %>
-
-
-		<% end %>
-
-		<% if @picks.length.to_i == @this_pools_groups.length.to_i %> 
-
-			<%= c.sports_book_name %>
-			<%= @picks.length %>
-
-		<% else %>
-
-			<%= c.sports_book_name %>
-			<%= @picks.length %>
-
-		<% end %> 
-
-	<% end %>
-
-	<% if @pool.commish_id.to_i == current_user.id.to_i %>
-
-		link to editig the pool selections
-
-
-	<% end %>
-
-
-<% else %>
-
-
-	<% self.get_remaining_contestants %>
-
-	<% if @players_left.length.to_i == 0 %>
-
-		<% if @pool.date == @my_date %>
-
-			This will be the code for picking a player from a group.
-
-		<% else %>
-
-			<% @contestants.each do |c| %>
-
-				<% @sel_check = [] %>
-				<% @retrieve = false %>
-
-				<% c.selections.each do |s| %>
-
-					<% if s.pool_id.to_i == @pool.id.to_i %>
-
-						<% @sel_check.push(s) %>
-
-					<% end %>
-
-
-				<% end %>
-
-				<% if @sel_check.length.to_i == @this_pools_groups.length.to_i %>
 
 
 
-				<% end %>
-
-			<% end %>
-
-		<% end %>
-
-	<% elsif @players_left.length == 1 %>
-
-	
-	<% else %>
-
-	
-	<% end %>
 
 
-<% end %>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

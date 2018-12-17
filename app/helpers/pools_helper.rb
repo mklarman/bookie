@@ -1,17 +1,25 @@
 module PoolsHelper
 
+	def get_pool_players
 
-	def get_all_contestants
+		Secret.all.each do |s|
 
-		@users.each do |u|
+			if s.pass == @pool.pass
 
-			@in_pool = false
+				 @contestants.push(s.user_id) 
 
-			u.selections.each do |s|
+	 		end  
 
-				if s.pool_id.to_i == @pool.id.to_i
 
-					@in_pool = true
+		end
+
+		@contestants.each do |c|
+
+			User.all.each do |u|
+
+				if u.id.to_i == c.to_i
+
+					@pool_players.push(u)
 
 
 				end
@@ -19,15 +27,88 @@ module PoolsHelper
 
 			end
 
-			if @in_pool == true
+		end
 
-				@contestants.push(u)
+	end
+
+	def get_all_selections
+
+		@pool_players.each do |p|
+
+			player_hash = Hash.new
+
+			counter = 0
+
+			p.selections.each do |s|
+
+				if s.pool_id.to_i == @pool.id.to_i
+
+					counter = counter + 1
+
+				end
+
+
+			end
+
+			player_hash[:name] = p.username
+			player_hash[:picks] = counter
+
+			@pool_standings.push(player_hash)
+
+		end
+
+
+	end
+
+	def get_pool_standings(array)
+
+		@bank_holder = []
+		@name_holder = []
+
+
+		array.each do |a|
+
+			if a.class == Hash 
+
+				@bank_holder.push(a[:picks])
+
+			end		
+
+		end
+
+		array.each do |a|
+
+			if a.class == Hash 
+
+				@name_holder.push(a[:name])
+
+			end
+
+		end
+
+		@sorted_standings = @bank_holder.sort {|x,y| -(x <=> y)}
+
+		@sorted_standings.each do |s|
+
+			array.each do |a|
+
+				if a.class == Hash
+
+					if s == a[:picks] 
+
+						@off_stand.push(a) unless @off_stand.include? (a)
+
+					end
+
+				end
+
 
 			end
 
 
 		end
 
+		
 	end
 
 	def get_remaining_contestants
