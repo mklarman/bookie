@@ -15,6 +15,77 @@
 <% self.get_all_selections %>
 <% self.get_pool_standings(@pool_standings) %>
 
+<div class="group">
+	
+	<script>
+
+		var player1 = ""
+		var player2 = ""
+		var player3 = ""
+		var player4 = ""
+		var player5 = ""
+		var player_holder = []
+			
+
+		<% Group.all.each do |g| %>
+
+			<% if g.pool_id.to_i == @pool.id.to_i %>
+
+				<% if g.date == @my_date %>
+
+					player1 = "<%= g.player1 %>"
+					player_holder.push(player1)
+					
+					player2 = "<%= g.player2 %>"
+					player_holder.push(player2)
+
+					<% if g.player3.length > 0 %>
+
+						player3 = "<%= g.player3 %>"
+						player_holder.push(player3)
+
+					<% end %>
+
+					<% if g.player4.length > 0 %>
+
+						player4 = "<%= g.player4 %>"
+						player_holder.push(player4)
+
+					<% end %>
+
+					<% if g.player5.length > 0 %>
+
+						player5 = "<%= g.player5 %>"
+						player_holder.push(player5)
+
+					<% end %>
+
+
+
+
+				<% end %>
+
+
+
+			<% end %>
+
+
+
+		<% end %>
+
+
+		
+
+
+
+
+
+
+
+	</script>
+
+</div>
+
 <% @off_stand.each do |st| %>
 
 	<% if st.class == Hash %>
@@ -44,6 +115,18 @@
 	<% end %>
 
 </div>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

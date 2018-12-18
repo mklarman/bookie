@@ -6,7 +6,6 @@
 		<div>League Name: <%= l.text_field :league_name %></div>
 		<div>Password: <%= l.text_field :pass %></div>
 		<div># Of Clients: <%= l.text_field :clients %></div>
-		<div>Status: <%= l.text_field :status %></div>
 		<div>END DATE: <%= l.text_field :end_date %></div>
 		<%= l.submit %>
 		
@@ -185,19 +184,9 @@
 
 		<% League.all.each do |l| %>
 
-			<% if l.status == "private" %>
+			passW = "<%= l.pass %>"
 
-
-
-				passW = "<%= l.pass %>"
-
-				pass_holder.push(passW)
-
-
-			<% end %>
-
-
-
+			pass_holder.push(passW)
 
 		<% end %>
 
