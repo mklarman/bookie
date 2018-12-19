@@ -15,7 +15,66 @@
 <% self.get_all_selections %>
 <% self.get_pool_standings(@pool_standings) %>
 
+<div>
+
+	<%= form_for @group do |g| %>
+
+		<%= g.text_field :pool_id, value: @pool.id %>
+		<%= g.text_field :date, value: @my_date %>
+		<%= g.text_field :player1 %>
+		<%= g.text_field :player2 %>
+		<%= g.text_field :player3 %>
+		<%= g.text_field :player4 %>
+		<%= g.text_field :player5 %>
+
+		<%= g.submit %>
+
+	<% end %>
+
+</div>
+
+<div>
+
+	<%= form_for @selection do |s| %>
+
+		<%= s.text_field :pool_id, value: @pool.id %>
+		<%= s.text_field :date, value: @my_date %>
+		<%= s.text_field :user_id, value: current_user.id %>
+		<%= s.text_field :selection %>
+		
+
+		<%= s.submit %>
+
+	<% end %>
+
+
+
+
+</div>
+
+<div>
+
+	<% @off_stand.each do |st| %>
+
+		<% if st.class == Hash %>
+
+			<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
+
+		<% end %>
+
+
+
+	<% end %>
+
+</div>
+
 <div class="group">
+
+	<div id="pl1" class="group_players"></div>
+	<div id="pl2" class="group_players"></div>
+	<div id="pl3" class="group_players"></div>
+	<div id="pl4" class="group_players"></div>
+	<div id="pl5" class="group_players"></div>
 	
 	<script>
 
@@ -73,12 +132,56 @@
 
 		<% end %>
 
+		pl1.innerHTML = player1
+		pl2.innerHTML = player2
+		pl3.innerHTML = player3
+		pl4.innerHTML = player4
+		pl5.innerHTML = player5
 
-		
+		pl1.addEventListener("click", function(){
+
+			selection = player1
+			selection_selection.value = selection
+			new_selection.submit()
 
 
+		})
+
+		pl2.addEventListener("click", function(){
+
+			selection = player2
+			selection_selection.value = selection
+			new_selection.submit()
 
 
+		})
+
+		pl3.addEventListener("click", function(){
+
+			selection = player3
+			selection_selection.value = selection
+			new_selection.submit()
+
+
+		})
+
+		pl4.addEventListener("click", function(){
+
+			selection = player4
+			selection_selection.value = selection
+			new_selection.submit()
+
+
+		})
+
+		pl5.addEventListener("click", function(){
+
+			selection = player5
+			selection_selection.value = selection
+			new_selection.submit()
+
+
+		})
 
 
 
@@ -86,35 +189,7 @@
 
 </div>
 
-<% @off_stand.each do |st| %>
 
-	<% if st.class == Hash %>
-
-		<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
-
-	<% end %>
-
-
-
-<% end %>
-
-<div>
-
-	<%= form_for @group do |g| %>
-
-		<%= g.text_field :pool_id, value: @pool.id %>
-		<%= g.text_field :date, value: @my_date %>
-		<%= g.text_field :player1 %>
-		<%= g.text_field :player2 %>
-		<%= g.text_field :player3 %>
-		<%= g.text_field :player4 %>
-		<%= g.text_field :player5 %>
-
-		<%= g.submit %>
-
-	<% end %>
-
-</div>
 
 
 

@@ -45,6 +45,7 @@ class PoolsController < ApplicationController
 		@tickets = Ticket.all
 		@groups = Group.all
 		@group = Group.new
+		@selection = Selection.new
 
 
 
