@@ -3,7 +3,8 @@ class CreateSelections < ActiveRecord::Migration[5.1]
     create_table :selections do |t|
 
     	t.string :date
-    	t.string :user_id
+      t.string :user_id
+    	t.string :group_id
 		  t.string :pool_id
 		  t.string :selection
 		  t.string :result, default: "none"

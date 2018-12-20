@@ -15,34 +15,18 @@
 <% @nba_tickets = [] %>
 <% @all_tickets = [] %>
 <% @group_num = [4, 3, 5, 2] %>
+<% @players_in_group = @group_num.sample %>
 <% @ply1 %>
 <% @ply2 %>
 <% @ply3 %>
 <% @ply4 %>
 <% @ply5 %>
-
-<% self.get_pool_players %>
-<% self.get_all_selections %>
-<% self.get_pool_standings(@pool_standings) %>
-
-<div>
-
-	<%= form_for @selection do |s| %>
-
-		<%= s.text_field :pool_id, value: @pool.id %>
-		<%= s.text_field :date, value: @my_date %>
-		<%= s.text_field :user_id, value: current_user.id %>
-		<%= s.text_field :selection %>
-		
-
-		<%= s.submit %>
-
-	<% end %>
-
-
-
-
-</div>
+<% @in_pool = false %>
+<% @new_pool = true %>
+<% @all_check = false %>
+<% @nfl_check = false %>
+<% @nba_check = false %>
+<% @mlb_check = false %>
 
 <% Ticket.all.each do |t| %>
 
@@ -57,313 +41,423 @@
 		<% elsif t.sport == "NBA" %>
 
 			<% @nba_tickets.push(t) %>
-		
+					
 		<% elsif t.sport == "MLB" %>
 
 			<% @mlb_tickets.push(t) %>
-		
-		<% end %>
-
-
-	<% end %>
-
-
-
-<% end %>
-
-<% @players_in_group = @group_num.sample %>
-
-<% if @pool.sport == "NFL" %>
-
-	<% if @players_in_group == 2 %>
-
-		<% @ply1 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply2) %>
-	
-	<% elsif @players_in_group == 3 %>
-
-		<% @ply1 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply2) %>
-
-		<% @ply3 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply3) %>
-	
-	<% elsif @players_in_group == 4 %>
-
-		<% @ply1 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply2) %>
-
-		<% @ply3 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply3) %>
-
-		<% @ply4 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply4) %>
-	
-	<% elsif @players_in_group == 5 %>
-
-		<% @ply1 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply2) %>
-
-		<% @ply3 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply3) %>
-
-		<% @ply4 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply4) %>
-
-		<% @ply5 = @nfl_tickets.sample %>
-		<% @nfl_tickets.delete(@ply5) %>
-
-	<% end %>
-
-
-
-<% end %>
-
-<% if @pool.sport == "NBA" %>
-
-	<% if @players_in_group == 2 %>
-
-		<% @ply1 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply2) %>
-	
-	<% elsif @players_in_group == 3 %>
-
-		<% @ply1 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply2) %>
-
-		<% @ply3 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply3) %>
-	
-	<% elsif @players_in_group == 4 %>
-
-		<% @ply1 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply2) %>
-
-		<% @ply3 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply3) %>
-
-		<% @ply4 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply4) %>
-	
-	<% elsif @players_in_group == 5 %>
-
-		<% @ply1 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply1) %>
-
-		<% @ply2 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply2) %>
-
-		<% @ply3 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply3) %>
-
-		<% @ply4 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply4) %>
-
-		<% @ply5 = @nba_tickets.sample %>
-		<% @nba_tickets.delete(@ply5) %>
-
-	<% end %>
-
-
-
-<% end %>
-
-<% if @pool.sport == "MLB" %>
-
-	<% if @players_in_group == 2 %>
-
-		<% @ply1 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply1) %>
-
-		<% @ply2 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply2) %>
-	
-	<% elsif @players_in_group == 3 %>
-
-		<% @ply1 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply1) %>
-
-		<% @ply2 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply2) %>
-
-		<% @ply3 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply3) %>
-	
-	<% elsif @players_in_group == 4 %>
-
-		<% @ply1 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply1) %>
-
-		<% @ply2 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply2) %>
-
-		<% @ply3 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply3) %>
-
-		<% @ply4 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply4) %>
-	
-	<% elsif @players_in_group == 5 %>
-
-		<% @ply1 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply1) %>
-
-		<% @ply2 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply2) %>
-
-		<% @ply3 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply3) %>
-
-		<% @ply4 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply4) %>
-
-		<% @ply5 = @mlb_tickets.sample %>
-		<% @mlb_tickets.delete(@ply5) %>
-
-	<% end %>
-
-
-
-<% end %>
-
-<div>
-
-	<%= form_for @group do |g| %>
-
-		<%= g.text_field :pool_id, value: @pool.id %>
-		<%= g.text_field :date, value: @my_date %>
-		<%= g.text_field :player1, value: @ply1.name %>
-		<%= g.text_field :player2, value: @ply2.name %>
-		
-		<% if @players_in_group == 3 %>
-
-			<% @ply4 = " " %>
-			<% @ply5 = " " %>
-			
-			<%= g.text_field :player3, value: @ply3.name %>
-			<%= g.text_field :player4, value: @ply4 %>
-			<%= g.text_field :player5, value: @ply5 %>
-
-		<% end %>
-
-		<% if @players_in_group == 4 %>
-
-			<% @ply5 = " " %>
-
-
-			<%= g.text_field :player3, value: @ply3.name %>
-			<%= g.text_field :player4, value: @ply4.name %>
-			<%= g.text_field :player5, value: @ply5 %>
-
-		<% end %>
-
-		<% if @players_in_group == 5 %>
-
-
-			<%= g.text_field :player3, value: @ply3.name %>
-			<%= g.text_field :player4, value: @ply4.name %>
-		
-			<%= g.text_field :player5, value: @ply5.name %>
-
-		<% end %>
-
-		<%= g.submit %>
-
-	<% end %>
-
-</div>
-
-<div>
-
-	<% @off_stand.each do |st| %>
-
-		<% if st.class == Hash %>
-
-			<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
-
-		<% end %>
-
-
-
-	<% end %>
-
-</div>
-
-<div class="group">
-
-	<div id="pl1" class="group_players"></div>
-	<div id="pl2" class="group_players"></div>
-	<div id="pl3" class="group_players"></div>
-	<div id="pl4" class="group_players"></div>
-	<div id="pl5" class="group_players"></div>
-	
-	<script>
-
-		var player1 = ""
-		var player2 = ""
-		var player3 = ""
-		var player4 = ""
-		var player5 = ""
-		var player_holder = []
-			
-
-		<% Group.all.each do |g| %>
-
-			<% if g.pool_id.to_i == @pool.id.to_i %>
-
-				<% if g.date == @my_date %>
-
-					player1 = " "
-					player2 = " "
-					player3 = " "
-					player4 = " "
-					player5 = " "
-
-					player1 = "<%= g.player1 %>"
-					player_holder.push(player1)
 					
-					player2 = "<%= g.player2 %>"
-					player_holder.push(player2)
+		<% end %>
 
-					<% if g.player3 != nil %>
+	<% end %>
 
-						player3 = "<%= g.player3 %>"
-						player_holder.push(player3)
+<% end %>
 
-					<% end %>
+<% if @all_tickets.length > 1 %>
 
-					<% if g.player4 != nil %>
+	<% @all_check = true %>
 
-						player4 = "<%= g.player4 %>"
-						player_holder.push(player4)
+<% end %>
 
-					<% end %>
+<% if @nfl_tickets.length > 1 %>
 
-					<% if g.player5 != nil %>
+	<% @nfl_check = true %>
 
-						player5 = "<%= g.player5 %>"
-						player_holder.push(player5)				
+<% end %>
+
+<% if @mlb_tickets.length > 1 %>
+
+	<% @mlb_check = true %>
+
+<% end %>
+
+<% if @nba_tickets.length > 1 %>
+
+	<% @nba_check = true %>
+
+<% end %>
+
+
+<% self.get_pool_players %>
+
+<% @pool.selections.each do |s| %>
+
+	<% if s.result != "none" %>
+
+		<% @new_pool = false %>
+
+	<% end %>
+
+
+<% end %>
+
+<% @pool_players.each do |p| %>
+
+	<% if p == current_user %>
+
+		<% @in_pool = true %>
+
+
+	<% end %>
+
+
+<% end %>
+
+
+
+<% if @in_pool == true %>
+
+	<% if @new_pool == true %>
+
+		<% self.get_all_selections %>
+		<% self.get_pool_standings(@pool_standings) %>
+
+		<div>
+
+			<% @off_stand.each do |st| %>
+
+				<% if st.class == Hash %>
+
+					<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
+
+				<% end %>
+
+
+
+			<% end %>
+
+		</div>
+
+		<% if @pool.groups.length == 0 %>
+
+
+
+
+
+		<% else %>
+
+			<% @pool.groups.each do |g| %>
+
+
+
+			<% end %>
+
+
+
+		<% end %>
+
+		<div>
+
+		<%= form_for @selection do |s| %>
+
+			<%= s.text_field :pool_id, value: @pool.id %>
+			<%= s.text_field :date, value: @my_date %>
+			<%= s.text_field :user_id, value: current_user.id %>
+			<%= s.text_field :selection %>
+			
+
+			<%= s.submit %>
+
+		<% end %>
+
+
+		</div>
+
+
+	<% else %>
+
+
+
+	<% end %>
+
+
+
+	
+
+	
+
+	
+
+	
+
+	<% if @pool.sport == "NFL" %>
+
+		<% if @players_in_group == 2 %>
+
+			<% @ply1 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply2) %>
+		
+		<% elsif @players_in_group == 3 %>
+
+			<% @ply1 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply2) %>
+
+			<% @ply3 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply3) %>
+		
+		<% elsif @players_in_group == 4 %>
+
+			<% @ply1 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply2) %>
+
+			<% @ply3 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply3) %>
+
+			<% @ply4 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply4) %>
+		
+		<% elsif @players_in_group == 5 %>
+
+			<% @ply1 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply2) %>
+
+			<% @ply3 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply3) %>
+
+			<% @ply4 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply4) %>
+
+			<% @ply5 = @nfl_tickets.sample %>
+			<% @nfl_tickets.delete(@ply5) %>
+
+		<% end %>
+
+
+
+	<% end %>
+
+	<% if @pool.sport == "NBA" %>
+
+		<% if @players_in_group == 2 %>
+
+			<% @ply1 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply2) %>
+		
+		<% elsif @players_in_group == 3 %>
+
+			<% @ply1 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply2) %>
+
+			<% @ply3 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply3) %>
+		
+		<% elsif @players_in_group == 4 %>
+
+			<% @ply1 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply2) %>
+
+			<% @ply3 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply3) %>
+
+			<% @ply4 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply4) %>
+		
+		<% elsif @players_in_group == 5 %>
+
+			<% @ply1 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply1) %>
+
+			<% @ply2 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply2) %>
+
+			<% @ply3 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply3) %>
+
+			<% @ply4 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply4) %>
+
+			<% @ply5 = @nba_tickets.sample %>
+			<% @nba_tickets.delete(@ply5) %>
+
+		<% end %>
+
+
+
+	<% end %>
+
+	<% if @pool.sport == "MLB" %>
+
+		<% if @players_in_group == 2 %>
+
+			<% @ply1 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply1) %>
+
+			<% @ply2 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply2) %>
+		
+		<% elsif @players_in_group == 3 %>
+
+			<% @ply1 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply1) %>
+
+			<% @ply2 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply2) %>
+
+			<% @ply3 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply3) %>
+		
+		<% elsif @players_in_group == 4 %>
+
+			<% @ply1 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply1) %>
+
+			<% @ply2 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply2) %>
+
+			<% @ply3 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply3) %>
+
+			<% @ply4 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply4) %>
+		
+		<% elsif @players_in_group == 5 %>
+
+			<% @ply1 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply1) %>
+
+			<% @ply2 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply2) %>
+
+			<% @ply3 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply3) %>
+
+			<% @ply4 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply4) %>
+
+			<% @ply5 = @mlb_tickets.sample %>
+			<% @mlb_tickets.delete(@ply5) %>
+
+		<% end %>
+
+
+
+	<% end %>
+
+	<div>
+
+		<%= form_for @group do |g| %>
+
+			<%= g.text_field :pool_id, value: @pool.id %>
+			<%= g.text_field :date, value: @my_date %>
+			<%= g.text_field :player1, value: @ply1.name %>
+			<%= g.text_field :player2, value: @ply2.name %>
+			
+			<% if @players_in_group == 3 %>
+
+				<% @ply4 = " " %>
+				<% @ply5 = " " %>
+				
+				<%= g.text_field :player3, value: @ply3.name %>
+				<%= g.text_field :player4, value: @ply4 %>
+				<%= g.text_field :player5, value: @ply5 %>
+
+			<% end %>
+
+			<% if @players_in_group == 4 %>
+
+				<% @ply5 = " " %>
+
+
+				<%= g.text_field :player3, value: @ply3.name %>
+				<%= g.text_field :player4, value: @ply4.name %>
+				<%= g.text_field :player5, value: @ply5 %>
+
+			<% end %>
+
+			<% if @players_in_group == 5 %>
+
+
+				<%= g.text_field :player3, value: @ply3.name %>
+				<%= g.text_field :player4, value: @ply4.name %>
+			
+				<%= g.text_field :player5, value: @ply5.name %>
+
+			<% end %>
+
+			<%= g.submit %>
+
+		<% end %>
+
+	</div>
+
+	
+
+	<div class="group">
+
+		<div id="pl1" class="group_players"></div>
+		<div id="pl2" class="group_players"></div>
+		<div id="pl3" class="group_players"></div>
+		<div id="pl4" class="group_players"></div>
+		<div id="pl5" class="group_players"></div>
+		
+		<script>
+
+			var player1 = ""
+			var player2 = ""
+			var player3 = ""
+			var player4 = ""
+			var player5 = ""
+			var player_holder = []
+				
+
+			<% Group.all.each do |g| %>
+
+				<% if g.pool_id.to_i == @pool.id.to_i %>
+
+					<% if g.date == @my_date %>
+
+						player1 = " "
+						player2 = " "
+						player3 = " "
+						player4 = " "
+						player5 = " "
+
+						player1 = "<%= g.player1 %>"
+						player_holder.push(player1)
+						
+						player2 = "<%= g.player2 %>"
+						player_holder.push(player2)
+
+						<% if g.player3 != nil %>
+
+							player3 = "<%= g.player3 %>"
+							player_holder.push(player3)
+
+						<% end %>
+
+						<% if g.player4 != nil %>
+
+							player4 = "<%= g.player4 %>"
+							player_holder.push(player4)
+
+						<% end %>
+
+						<% if g.player5 != nil %>
+
+							player5 = "<%= g.player5 %>"
+							player_holder.push(player5)				
+
+						<% end %>
 
 					<% end %>
 
@@ -371,67 +465,77 @@
 
 			<% end %>
 
-		<% end %>
+			pl1.innerHTML = player1
+			pl2.innerHTML = player2
+			pl3.innerHTML = player3
+			pl4.innerHTML = player4
+			pl5.innerHTML = player5
 
-		pl1.innerHTML = player1
-		pl2.innerHTML = player2
-		pl3.innerHTML = player3
-		pl4.innerHTML = player4
-		pl5.innerHTML = player5
+			console.log(player4)
+			console.log(player5)
 
-		console.log(player4)
-		console.log(player5)
+			pl1.addEventListener("click", function(){
 
-		pl1.addEventListener("click", function(){
-
-			selection = player1
-			selection_selection.value = selection
-			new_selection.submit()
+				selection = player1
+				selection_selection.value = selection
+				new_selection.submit()
 
 
-		})
+			})
 
-		pl2.addEventListener("click", function(){
+			pl2.addEventListener("click", function(){
 
-			selection = player2
-			selection_selection.value = selection
-			new_selection.submit()
-
-
-		})
-
-		pl3.addEventListener("click", function(){
-
-			selection = player3
-			selection_selection.value = selection
-			new_selection.submit()
+				selection = player2
+				selection_selection.value = selection
+				new_selection.submit()
 
 
-		})
+			})
 
-		pl4.addEventListener("click", function(){
+			pl3.addEventListener("click", function(){
 
-			selection = player4
-			selection_selection.value = selection
-			new_selection.submit()
-
-
-		})
-
-		pl5.addEventListener("click", function(){
-
-			selection = player5
-			selection_selection.value = selection
-			new_selection.submit()
+				selection = player3
+				selection_selection.value = selection
+				new_selection.submit()
 
 
-		})
+			})
+
+			pl4.addEventListener("click", function(){
+
+				selection = player4
+				selection_selection.value = selection
+				new_selection.submit()
+
+
+			})
+
+			pl5.addEventListener("click", function(){
+
+				selection = player5
+				selection_selection.value = selection
+				new_selection.submit()
+
+
+			})
 
 
 
-	</script>
+		</script>
 
-</div>
+	</div>
+
+
+<% else %>
+
+	GET THIS MESSAGE
+
+<% end %>
+
+
+
+
+
 
 
 
