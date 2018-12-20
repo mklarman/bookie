@@ -640,6 +640,20 @@ Have to figure out how to loop through the right matchups when looking for a mat
 
 Core functionality to Bookie Wars is complete.  League_clients_show(book wagers) and League_wager_show(grade wagers) need a design.  Once that is done need to add a way to turn games off once they start, duh...
 
+Have to fix the date on bookie wars, make it eastern standard time, the day is turning at 9pm my time.
+
+Have to get rid of the drops downs and make a box with 31 numbers in js, they will click on their choice.  Drop down was blocked on safari.
+
+For faniside home:
+
+What information?
+
+first, gather all secrets that match this pool's password.  These are the players.  Loop through the users pool selections, look for the pool's id and get all selections that belong to this pool.  Count the selections made by each user, this is the number of selections the player has made in the pool.  Have this list, the players with the proper amount of selections are in green, the ones who are out are red.  We'll call this the standings.
+
+We need to see the current group of players in js and each one needs to be clickable, and that click saves that player to their selection.  One selection per day.
+
+The commissioner of the leage has the controls for creating a new group, and grading selections of the pool.  If their are selections outstanding then just the grade selections link is there, and if no selections are outstanding then the generate player group is there.
+
 
 
 

@@ -3,7 +3,6 @@
 <% @players_left = [] %>
 <% @contestants = [] %>
 <% @selection_holder = [] %>
-<% @needs_grading = false %>
 <% @this_pools_groups = [] %>
 <% @recalled = [] %>
 <% @pool_players = [] %>
@@ -27,6 +26,7 @@
 <% @nfl_check = false %>
 <% @nba_check = false %>
 <% @mlb_check = false %>
+<% @needs_grading = false %>
 
 <% Ticket.all.each do |t| %>
 
