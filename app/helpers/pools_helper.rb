@@ -113,66 +113,42 @@ module PoolsHelper
 
 	def get_remaining_contestants
 
-		@group_count = 0
+		@group_count = @pool.groups.count
 
-		@groups.each do |g|
+		if @pool.groups.last.date == @my_date
 
-			if g.pool_id.to_i == @pool.id.to_i && g.date != @my_date
-
-				@group_count = @group_count + 1
-
-			end
+			@group_count = @group_count - 1
 
 
 		end
 
-		@contestants.each do |c|
+		@pool_players.each do |p|
 
-			@still_in = false
+			selec_counter = 0
 
-			c.selections.each do |s|
+			p.selections.each do |s|
 
 				if s.pool_id.to_i == @pool.id.to_i
 
-					@selection_holder.push(s)
+					selec_counter = selec_counter + 1
+
 
 				end
+
 
 			end
 
-			if @selection_holder.length.to_i == @group_count
+			if selec_counter == @group_count
 
-				@winners = []
-
-				@selections.each do |s|
-
-					if s.result == "winner"
-
-						@winners.push(s)
-
-					end
-
-				end
-
-				if @winners.length.to_i == @group_count
-
-					@still_in = true
-
-				end
-
-			end
-
-			if @still_in == true
-
-				@players_left.push(c)
+				@still_alive.push(p)
 
 			end
 
 
 		end
 
-
 	end
+		
 
 	def grade_check
 
