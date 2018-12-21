@@ -413,23 +413,23 @@
 
 								<% if s.date == @my_date %>
 
-									<% if s.selection == @pool.group.last.player1 %>
+									<% if s.selection == @pool.groups.last.player1 %>
 
 										<% @player1_count = @player1_count + 1 %>
 
-									<% elsif s.selection == @pool.group.last.player2 %>
+									<% elsif s.selection == @pool.groups.last.player2 %>
 
 										<% @player2_count = @player2_count + 1 %>
 
-									<% elsif s.selection == @pool.group.last.player3 %>
+									<% elsif s.selection == @pool.groups.last.player3 %>
 
 										<% @player3_count = @player3_count + 1 %>
 
-									<% elsif s.selection == @pool.group.last.player4 %>
+									<% elsif s.selection == @pool.groups.last.player4 %>
 
 										<% @player4_count = @player4_count + 1 %>
 
-									<% elsif s.selection == @pool.group.last.player5 %>
+									<% elsif s.selection == @pool.groups.last.player5 %>
 
 										<% @player5_count = @player5_count + 1 %>
 
@@ -443,21 +443,158 @@
 
 						<div id="data_display">
 							
-							<div><%= @pool.group.last.player1 + " " + @player1_count.to_s %></div>
+							<div><%= @pool.groups.last.player1 + " " + @player1_count.to_s %></div>
 							
-							<div><%= @pool.group.last.player2 + " " + @player2_count.to_s %></div>
+							<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
+
+							<% if @pool.groups.last.player3 %>
 							
-							<div><%= @pool.group.last.player3 + " " + @player3_count.to_s %></div>
+								<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
+
+							<% end %>
+
+							<% if @pool.groups.last.player4 %>
 							
-							<div><%= @pool.group.last.player4 + " " + @player4_count.to_s %></div>
+								<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
+
+							<% end %>
+
+							<% if @pool.groups.last.player5 %>
 							
-							<div><%= @pool.group.last.player5 + " " + @player5_count.to_s %></div>
+								<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
+
+							<% end %>
 
 						</div>
 
 					</div>
 			
 				<% else %>
+
+					<div id="group">
+
+						<div id="pl1" class="group_players"></div>
+						<div id="pl2" class="group_players"></div>
+						<div id="pl3" class="group_players"></div>
+						<div id="pl4" class="group_players"></div>
+						<div id="pl5" class="group_players"></div>
+						
+						<script>
+
+							var player1 = ""
+							var player2 = ""
+							var player3 = ""
+							var player4 = ""
+							var player5 = ""
+							var player_holder = []
+								
+
+							<% Group.all.each do |g| %>
+
+								<% if g.pool_id.to_i == @pool.id.to_i %>
+
+									<% if g.date == @my_date %>
+
+										player1 = " "
+										player2 = " "
+										player3 = " "
+										player4 = " "
+										player5 = " "
+
+										player1 = "<%= g.player1 %>"
+										player_holder.push(player1)
+										
+										player2 = "<%= g.player2 %>"
+										player_holder.push(player2)
+
+										<% if g.player3 != nil %>
+
+											player3 = "<%= g.player3 %>"
+											player_holder.push(player3)
+
+										<% end %>
+
+										<% if g.player4 != nil %>
+
+											player4 = "<%= g.player4 %>"
+											player_holder.push(player4)
+
+										<% end %>
+
+										<% if g.player5 != nil %>
+
+											player5 = "<%= g.player5 %>"
+											player_holder.push(player5)				
+
+										<% end %>
+
+									<% end %>
+
+								<% end %>
+
+							<% end %>
+
+							pl1.innerHTML = player1
+							pl2.innerHTML = player2
+							pl3.innerHTML = player3
+							pl4.innerHTML = player4
+							pl5.innerHTML = player5
+
+							console.log(player4)
+							console.log(player5)
+
+							pl1.addEventListener("click", function(){
+
+								selection = player1
+								selection_selection.value = selection
+								new_selection.submit()
+
+
+							})
+
+							pl2.addEventListener("click", function(){
+
+								selection = player2
+								selection_selection.value = selection
+								new_selection.submit()
+
+
+							})
+
+							pl3.addEventListener("click", function(){
+
+								selection = player3
+								selection_selection.value = selection
+								new_selection.submit()
+
+
+							})
+
+							pl4.addEventListener("click", function(){
+
+								selection = player4
+								selection_selection.value = selection
+								new_selection.submit()
+
+
+							})
+
+							pl5.addEventListener("click", function(){
+
+								selection = player5
+								selection_selection.value = selection
+								new_selection.submit()
+
+
+							})
+
+
+
+						</script>
+
+					</div>
+
+
 
 				
 				<% end %>
@@ -488,128 +625,7 @@
 
 			
 
-	<div class="group">
-
-		<div id="pl1" class="group_players"></div>
-		<div id="pl2" class="group_players"></div>
-		<div id="pl3" class="group_players"></div>
-		<div id="pl4" class="group_players"></div>
-		<div id="pl5" class="group_players"></div>
-		
-		<script>
-
-			var player1 = ""
-			var player2 = ""
-			var player3 = ""
-			var player4 = ""
-			var player5 = ""
-			var player_holder = []
-				
-
-			<% Group.all.each do |g| %>
-
-				<% if g.pool_id.to_i == @pool.id.to_i %>
-
-					<% if g.date == @my_date %>
-
-						player1 = " "
-						player2 = " "
-						player3 = " "
-						player4 = " "
-						player5 = " "
-
-						player1 = "<%= g.player1 %>"
-						player_holder.push(player1)
-						
-						player2 = "<%= g.player2 %>"
-						player_holder.push(player2)
-
-						<% if g.player3 != nil %>
-
-							player3 = "<%= g.player3 %>"
-							player_holder.push(player3)
-
-						<% end %>
-
-						<% if g.player4 != nil %>
-
-							player4 = "<%= g.player4 %>"
-							player_holder.push(player4)
-
-						<% end %>
-
-						<% if g.player5 != nil %>
-
-							player5 = "<%= g.player5 %>"
-							player_holder.push(player5)				
-
-						<% end %>
-
-					<% end %>
-
-				<% end %>
-
-			<% end %>
-
-			pl1.innerHTML = player1
-			pl2.innerHTML = player2
-			pl3.innerHTML = player3
-			pl4.innerHTML = player4
-			pl5.innerHTML = player5
-
-			console.log(player4)
-			console.log(player5)
-
-			pl1.addEventListener("click", function(){
-
-				selection = player1
-				selection_selection.value = selection
-				new_selection.submit()
-
-
-			})
-
-			pl2.addEventListener("click", function(){
-
-				selection = player2
-				selection_selection.value = selection
-				new_selection.submit()
-
-
-			})
-
-			pl3.addEventListener("click", function(){
-
-				selection = player3
-				selection_selection.value = selection
-				new_selection.submit()
-
-
-			})
-
-			pl4.addEventListener("click", function(){
-
-				selection = player4
-				selection_selection.value = selection
-				new_selection.submit()
-
-
-			})
-
-			pl5.addEventListener("click", function(){
-
-				selection = player5
-				selection_selection.value = selection
-				new_selection.submit()
-
-
-			})
-
-
-
-		</script>
-
-	</div>
+	
 
 
 
