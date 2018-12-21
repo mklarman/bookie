@@ -20,3 +20,26 @@
 
 <% end %>
 
+<div>
+	
+
+	<% Pool.all.each do |p| %>
+
+		<% @secrets_cont.each do |s| %>
+
+			<% if p.pass == s %>
+
+				<div><%= link_to p.pool_name, pool_path(p.id) %></div>
+
+			<% end %>
+
+
+		<% end %>
+
+	<% end %>
+
+
+</div>
+
+
+
