@@ -103,6 +103,7 @@ ActiveRecord::Schema.define(version: 20181119153728) do
   create_table "selections", force: :cascade do |t|
     t.string "date"
     t.string "user_id"
+    t.string "group_id"
     t.string "pool_id"
     t.string "selection"
     t.string "result", default: "none"

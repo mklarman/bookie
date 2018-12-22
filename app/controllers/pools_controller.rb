@@ -66,4 +66,10 @@ class PoolsController < ApplicationController
 		params.require(:secret).permit(:pass, :date, :user_id, :kind)
 
 	end
+
+	def selection_params
+
+		params.require(:selection).permit(:date, :user_id, :pool_id, :group_id, :selection, :result)
+
+	end
 end

@@ -16,7 +16,7 @@ class SelectionsController < ApplicationController
 
 		else
 
-			render users_profile_path
+			redirect_to users_profile_path
 
 		end
 
@@ -42,7 +42,7 @@ class SelectionsController < ApplicationController
 
 	def selection_params
 
-		params.require(:selection).permit(:date, :user_id, :pool_id, :selection, :result)
+		params.require(:selection).permit(:date, :user_id, :pool_id, :group_id, :selection, :result)
 
 	end
 

@@ -168,4 +168,92 @@ module PoolsHelper
 
 	end
 
+	def grade_selections
+
+		@the_group
+
+		@result = "loser"
+
+		@value = 0
+
+		@pool.groups.selections.each do |s|
+
+			if s.result == "none" && s.date != @my_date
+
+				@sorted_selections.push(s)
+
+
+			end
+
+		end
+
+		@sorted_selections.each do |s|
+
+			@pool.groups.each do |g|
+
+				if s.group_id.to_i == g.id.to_i
+
+					@the_group = g
+
+
+				end
+
+
+			end
+
+			Ticket.all.each do |t|
+
+				if t.date == @the_group.date
+
+					if t.name == @the_group.player1 || @the_group.player2 || @the_group.player3 || @the_group.player4 || @the_group.player5
+
+						@group_tickets.push(t)
+
+
+					end
+
+				end
+
+
+			end
+
+			@group_tickets.each do |t|
+
+				if t.score > @value
+
+					@value = t.score
+
+				end
+
+			end
+
+			@group_tickets.each do |t|
+
+				if t.score == @value
+
+					@winning_tickets.push(t)
+
+
+				end
+
+
+			end
+
+
+			@winning_tickets.each do |t|
+
+				if t.name == s.selection
+
+					@result = "winner"
+
+				end
+
+			end
+
+
+		end
+
+
+	end
+
 end

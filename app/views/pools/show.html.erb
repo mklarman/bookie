@@ -14,6 +14,9 @@
 <% @mlb_tickets = [] %>
 <% @nba_tickets = [] %>
 <% @all_tickets = [] %>
+<% @group_tickets = [] %>
+<% @winning_tickets = [] %>
+<% @sorted_selections = [] %>
 <% @group_num = [4, 3, 5, 2] %>
 <% @players_in_group = @group_num.sample %>
 <% @ply1 %>
@@ -36,17 +39,17 @@
 <% @player4_count = 0 %>
 <% @player5_count = 0 %>
 
-<div class = "hide">
+<div class = "hid">
 
 	<%= form_for @selection do |s| %>
 
 		<%= s.text_field :pool_id, value: @pool.id %>
 		<%= s.text_field :date, value: @my_date %>
 		<%= s.text_field :user_id, value: current_user.id %>
+		<%= s.text_field :group_id %>
 		<%= s.text_field :selection %>
 		
 
-		<%= s.submit %>
 
 	<% end %>
 
@@ -482,6 +485,7 @@
 						
 						<script>
 
+							var groupId
 							var player1 = ""
 							var player2 = ""
 							var player3 = ""
@@ -495,6 +499,8 @@
 								<% if g.pool_id.to_i == @pool.id.to_i %>
 
 									<% if g.date == @my_date %>
+
+										groupId = "<%= g.id %>"
 
 										player1 = " "
 										player2 = " "
@@ -541,12 +547,11 @@
 							pl4.innerHTML = player4
 							pl5.innerHTML = player5
 
-							console.log(player4)
-							console.log(player5)
 
 							pl1.addEventListener("click", function(){
 
 								selection = player1
+								selection_group_id.value = groupId
 								selection_selection.value = selection
 								new_selection.submit()
 
@@ -556,6 +561,7 @@
 							pl2.addEventListener("click", function(){
 
 								selection = player2
+								selection_group_id.value = groupId
 								selection_selection.value = selection
 								new_selection.submit()
 
@@ -565,6 +571,7 @@
 							pl3.addEventListener("click", function(){
 
 								selection = player3
+								selection_group_id.value = groupId
 								selection_selection.value = selection
 								new_selection.submit()
 
@@ -574,6 +581,7 @@
 							pl4.addEventListener("click", function(){
 
 								selection = player4
+								selection_group_id.value = groupId
 								selection_selection.value = selection
 								new_selection.submit()
 
@@ -583,6 +591,7 @@
 							pl5.addEventListener("click", function(){
 
 								selection = player5
+								selection_group_id.value = groupId
 								selection_selection.value = selection
 								new_selection.submit()
 
