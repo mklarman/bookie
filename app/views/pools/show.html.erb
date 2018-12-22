@@ -39,7 +39,7 @@
 <% @player4_count = 0 %>
 <% @player5_count = 0 %>
 
-<div class = "hid">
+<div class = "hide">
 
 	<%= form_for @selection do |s| %>
 
@@ -451,19 +451,19 @@
 							
 							<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
 
-							<% if @pool.groups.last.player3 %>
+							<% if @pool.groups.last.player3.length > 3  %>
 							
 								<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
 
 							<% end %>
 
-							<% if @pool.groups.last.player4 %>
+							<% if @pool.groups.last.player4.length > 3  %>
 							
 								<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
 
 							<% end %>
 
-							<% if @pool.groups.last.player5 %>
+							<% if @pool.groups.last.player5.length > 3  %>
 							
 								<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
 
@@ -684,19 +684,19 @@
 						
 						<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
 
-						<% if @pool.groups.last.player3 %>
+						<% if @pool.groups.last.player3.length > 0  %>
 						
 							<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
 
 						<% end %>
 
-						<% if @pool.groups.last.player4 %>
+						<% if @pool.groups.last.player4.length > 0 %>
 						
 							<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
 
 						<% end %>
 
-						<% if @pool.groups.last.player5 %>
+						<% if @pool.groups.last.player5.length > 0  %>
 						
 							<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
 

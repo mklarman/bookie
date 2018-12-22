@@ -195,9 +195,7 @@ module PoolsHelper
 
 					@the_group = g
 
-
 				end
-
 
 			end
 
