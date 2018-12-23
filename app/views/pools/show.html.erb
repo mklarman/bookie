@@ -17,6 +17,8 @@
 <% @group_tickets = [] %>
 <% @winning_tickets = [] %>
 <% @sorted_selections = [] %>
+<% @tied_players = [] %>
+<% @qualified_players = [] %>
 <% @group_num = [4, 3, 5, 2] %>
 <% @players_in_group = @group_num.sample %>
 <% @ply1 %>
@@ -622,6 +624,49 @@
 		<% end %>
 
 	<% else %>
+
+		<% self.grade_check %>
+
+		<% if @needs_grading == true %>
+
+			<%= link_to "GRADE SELECTIONS", edit_selection_path(@pool.selections.last.id) %>
+
+
+		<% else %>
+
+
+			<% self.get_remaining_contestants %>
+
+			<% if @still_alive.length == 0 %>
+
+				<% self.get_tied_users %>
+
+				<% @tied_players.each do |p| %>
+
+					<div><%= p.username + " tied for the win " %></div>
+
+				<% end %>
+
+			<% elsif @still_alive.length == 1 %>
+
+				<div><%= @still_alive[0].username.upcase + " has won the pool" %>
+
+			<% else %>
+
+				<% @still_alive.each do |user| %>
+
+					<% @qualified_players.push(user.id.to_i)
+
+
+				<% end %>
+
+
+			<% end %>
+
+		<% end %>
+
+		
+
 
 		<% current_user.selections.each do |s| %>
 

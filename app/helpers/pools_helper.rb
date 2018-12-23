@@ -254,4 +254,34 @@ module PoolsHelper
 
 	end
 
+	def get_tied_users
+
+		@pool_players.each do |p|
+
+			counter = 0
+
+			p.selections.each do |s|
+
+				if s.pool_id.to_i == @pool.id.to_i
+
+					counter = counter + 1
+
+
+				end
+
+
+			end
+
+			if counter == @pool.groups.length
+
+				@tied_players.push(p)
+
+			end
+
+
+		end
+
+
+	end
+
 end
