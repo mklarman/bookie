@@ -611,6 +611,250 @@
 
 			<% else %>
 
+				<% if current_user.id.to_i == @pool.commish_id.to_i %>
+
+					<% if @pool.sport == "NFL" && @nfl_check == true %>
+
+						<% if @players_in_group == 2 %>
+
+							<% @ply1 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply2) %>
+					
+						<% elsif @players_in_group == 3 %>
+
+							<% @ply1 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply2) %>
+
+							<% @ply3 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply3) %>
+					
+						<% elsif @players_in_group == 4 %>
+
+							<% @ply1 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply2) %>
+
+							<% @ply3 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply3) %>
+
+							<% @ply4 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply4) %>
+					
+						<% elsif @players_in_group == 5 %>
+
+							<% @ply1 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply2) %>
+
+							<% @ply3 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply3) %>
+
+							<% @ply4 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply4) %>
+
+							<% @ply5 = @nfl_tickets.sample %>
+							<% @nfl_tickets.delete(@ply5) %>
+
+						<% end %>
+
+					<% end %>
+
+					<% if @pool.sport == "NBA" && @nba_check == true %>
+
+						<% if @players_in_group == 2 %>
+
+							<% @ply1 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply2) %>
+					
+						<% elsif @players_in_group == 3 %>
+
+							<% @ply1 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply2) %>
+
+							<% @ply3 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply3) %>
+					
+						<% elsif @players_in_group == 4 %>
+
+							<% @ply1 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply2) %>
+
+							<% @ply3 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply3) %>
+
+							<% @ply4 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply4) %>
+					
+						<% elsif @players_in_group == 5 %>
+
+							<% @ply1 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply1) %>
+
+							<% @ply2 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply2) %>
+
+							<% @ply3 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply3) %>
+
+							<% @ply4 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply4) %>
+
+							<% @ply5 = @nba_tickets.sample %>
+							<% @nba_tickets.delete(@ply5) %>
+
+						<% end %>
+
+					<% end %>
+
+					<% if @pool.sport == "MLB" && @nba_check == true %>
+
+						<% if @players_in_group == 2 %>
+
+							<% @ply1 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply1) %>
+
+							<% @ply2 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply2) %>
+						
+						<% elsif @players_in_group == 3 %>
+
+							<% @ply1 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply1) %>
+
+							<% @ply2 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply2) %>
+
+							<% @ply3 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply3) %>
+						
+						<% elsif @players_in_group == 4 %>
+
+							<% @ply1 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply1) %>
+
+							<% @ply2 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply2) %>
+
+							<% @ply3 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply3) %>
+
+							<% @ply4 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply4) %>
+						
+						<% elsif @players_in_group == 5 %>
+
+							<% @ply1 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply1) %>
+
+							<% @ply2 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply2) %>
+
+							<% @ply3 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply3) %>
+
+							<% @ply4 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply4) %>
+
+							<% @ply5 = @mlb_tickets.sample %>
+							<% @mlb_tickets.delete(@ply5) %>
+
+						<% end %>
+
+					<% end %>
+
+					<div>
+
+						<%= form_for @group do |g| %>
+
+							<%= g.text_field :pool_id, value: @pool.id %>
+							<%= g.text_field :date, value: @my_date %>
+							<%= g.text_field :player1, value: @ply1.name %>
+							<%= g.text_field :player2, value: @ply2.name %>
+			
+							<% if @players_in_group == 3 %>
+
+								<% @ply4 = " " %>
+								<% @ply5 = " " %>
+					
+								<%= g.text_field :player3, value: @ply3.name %>
+								<%= g.text_field :player4, value: @ply4 %>
+								<%= g.text_field :player5, value: @ply5 %>
+
+							<% end %>
+
+							<% if @players_in_group == 4 %>
+
+								<% @ply5 = " " %>
+
+
+								<%= g.text_field :player3, value: @ply3.name %>
+								<%= g.text_field :player4, value: @ply4.name %>
+								<%= g.text_field :player5, value: @ply5 %>
+
+							<% end %>
+
+							<% if @players_in_group == 5 %>
+
+
+								<%= g.text_field :player3, value: @ply3.name %>
+								<%= g.text_field :player4, value: @ply4.name %>
+							
+								<%= g.text_field :player5, value: @ply5.name %>
+
+							<% end %>
+
+						<% end %>
+
+					</div>
+
+					<input type="submit" name="" value="CREATE GROUP" id="group_submit">
+
+					<script>
+
+						var groupSub = document.getElementById("group_submit")
+
+						groupSub.addEventListener("click", function(){
+
+							new_group.submit()
+
+						})
+						
+					</script>
+					
+
+				<% else %>
+
+					<div id="pool_player_box">
+
+						<p>WAITING FOR POOL COMMISSIONER TO GENERATE THE NEXT PLAYER GROUP</p>
+
+					</div>
+
+				<% end %>
+
+
+
+				<% end %>
+
 				<div id="group_waiting_mess">
 
 					<p>WAITING FOR YOUR COMMISSIONER TO GENERATE THE NEXT GROUP</p>
@@ -980,6 +1224,30 @@
 		<p>YOU ARE NOT IN THIS POOL.  SORRY...</p>	
 
 	</div>
+
+
+<% end %>
+
+<% if current_user.id.to_i == @pool.commish_id.to_i %>
+
+	<% if @needs_grading == true %>
+
+		<div><%= link_to "GRADE SELECTIONS", edit_selection_path(@pool.selections.last.id) %>
+
+	<% else %>
+
+
+		<% if @pool.groups.last.date != @my_date %>
+
+
+
+		<% end %>
+
+
+	<% end %>
+
+
+
 
 
 <% end %>
