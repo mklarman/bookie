@@ -22,16 +22,18 @@ module ApplicationHelper
 
 	def time_check
 
-			@get_hour = Time.now  
+			@get_hour = Time.now.utc
+			@get_hour = @get_hour.in_time_zone('Eastern Time (US & Canada)')
  			@hour = @get_hour.strftime("%H")
  			@min = @get_hour.strftime("%M") 
-		 	@time_check = @hour << @min 
+		 	@time_check = @hour + ":" +  @min 
 
 	end
 
 	def get_time
 
-  			 @date = Time.now 
+  			 @date = Time.now.utc
+  			 @date = @date.in_time_zone('Eastern Time (US & Canada)') 
 			 @day = @date.strftime("%d")
 			 @month = @date.strftime("%b") 
 			 @year = @date.strftime("%Y") 

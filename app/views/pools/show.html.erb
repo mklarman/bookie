@@ -725,7 +725,7 @@
 
 					<% end %>
 
-					<% if @pool.sport == "MLB" && @nba_check == true %>
+					<% if @pool.sport == "MLB" && @mlb_check == true %>
 
 						<% if @players_in_group == 2 %>
 
@@ -850,18 +850,6 @@
 					</div>
 
 				<% end %>
-
-
-
-				<% end %>
-
-				<div id="group_waiting_mess">
-
-					<p>WAITING FOR YOUR COMMISSIONER TO GENERATE THE NEXT GROUP</p>
-
-
-				</div>
-
 
 			<% end %>	
 		
@@ -1237,11 +1225,11 @@
 	<% else %>
 
 
-		<% if @pool.groups.last.date != @my_date %>
+		
 
 
 
-		<% end %>
+		
 
 
 	<% end %>
