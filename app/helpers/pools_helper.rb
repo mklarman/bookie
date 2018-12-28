@@ -286,66 +286,51 @@ module PoolsHelper
 
 	def score_selections
 
-		@pool.selections.each do |s|
+		Group.all.each do |g|
 
-			if s.result == "none" && s.date != @my_date
+			if g.id.to_i == @selection.group_id.to_i
 
-				@loaded_selections.push(s)
+				@the_group = g
 
 			end
 
 		end
 
-		@loaded_selections.each do |s|
+		Ticket.all.each do |t|
 
-			@pool.groups.each do |g|
+			if t.date == @selection.date
 
-				if s.group_id.to_i == g.id.to_i
+				if t.name == @the_group.player1 || @the_group.player2 || @the_group.player3 || @the_group.player4 || @the_group.player5
 
-					Ticket.all.each do |t|
-
-						if t.date == g.date
-
-							if t.name == g.player1 || t.name == g.player2 || t.name == g.player3 || t.name == g.player4 || t.name == g.player5
-
-								@group_tickets.push(t)
-
-							end
-
-						end
-
-					end
+					@tickets_in_group.push(t)
 
 				end
+			end
+
+		end
+
+		@tickets_in_group.each do |t|
+
+			@scores.push(t.score.to_i)
+
+		end
+
+		@scores = @scores.sort
+
+		@high_score = @scores.last
+
+		@tickets_in_group.each do |t|
+
+			if t.score.to_i == @high_score
+
+				@result = "winner"
+
+			else
+
+				@result = "loser"
 
 			end
 
-			@group_tickets.each do |t|
-
-				@group_scores.push(t.score.to_i)
-
-			end
-
-			@group_scores = @group_scores.sort
-			@winner_score = @group_scores.last
-
-			@group_tickets.each do |t|
-
-				if t.name == s.selection
-
-					if t.score.to_i == @winner_score
-
-						@selection_result == "winner"
-
-					else
-
-						@selection_result == "loser"
-
-					end
-
-				end
-
-			end
 
 		end
 

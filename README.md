@@ -654,6 +654,40 @@ We need to see the current group of players in js and each one needs to be click
 
 The commissioner of the leage has the controls for creating a new group, and grading selections of the pool.  If their are selections outstanding then just the grade selections link is there, and if no selections are outstanding then the generate player group is there.
 
+I create tickets...
+
+The tickets are sorted in the backend...
+
+groups are generated...
+
+users make their selection...
+
+I edit the tickets with the points scored by the player...
+
+I make new tickets...
+
+Selections are graded....
+
+the next group is generated...
+
+We land on Pools Show...
+
+1) qualify users
+2) see if this pool has any groups
+	
+	if no then ...
+
+		create the first group
+
+	else ...
+
+		get re
+
+		see who is qualified to make a selection and who is not.
+
+
+3)
+
 
 
 

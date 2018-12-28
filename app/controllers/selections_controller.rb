@@ -26,13 +26,47 @@ class SelectionsController < ApplicationController
 	def update
 
 		@selection = Selection.find_by_id(params[:id])
+		@pool = []
+		selections = []
+
+		Pool.all.each do |p|
+
+			if p.id.to_i == @selection.pool_id.to_i
+
+				@pool.push(p) 
+
+			end
+
+		end
+
+		@pool[0].selections.each do |s|
+
+			if s.date != @my_date && s.result == "none"
+
+				selections.push(s.id)
+
+
+			end
+
+
+		end
+
+		selections.delete(@selection.id)
 
 		if @selection.update(selection_params)
 
-			redirect_back(fallback_location: new_team_path)
+			if selections.length > 0
+
+				redirect_to edit_selection_path(selections[0])
+
+			else
+
+				redirect_to pool_path(@selection.pool_id)
+
+			end
 		else
 
-			render pools_path
+			redirect_to pool_path(@selection.pool_id)
 
 		end
 
