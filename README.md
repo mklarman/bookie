@@ -681,15 +681,21 @@ We land on Pools Show...
 
 	else ...
 
-		get re
+		run the score selections if need to, else...
+
+		get remaining contestants, if 0 this, if 1 that, if more than one...
 
 		see who is qualified to make a selection and who is not.
 
 
 3)
 
+Need code for a new pool and a pool that has started.
 
 
+Where we are:
+
+I can get faniside pools to the testing phase and debugged in a week.  I will spend a few days giving a basic style to pools show.  Then I need to stand back and take stock on where I am with both games for a day or two.  Core functionalities will be there, but will need some details added or debugged.  Once that is complete then time to look at the pages and start deeper styling, this may take a week.  By the end of January be ready to test with public.  Spend a few days uploading to heroku and then debug the heroku version of the script. Start running the pools/leagues.  We are looking 25 - 30 days.
 
 
 
