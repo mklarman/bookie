@@ -698,6 +698,177 @@ Where we are:
 I can get faniside pools to the testing phase and debugged in a week.  I will spend a few days giving a basic style to pools show.  Then I need to stand back and take stock on where I am with both games for a day or two.  Core functionalities will be there, but will need some details added or debugged.  Once that is complete then time to look at the pages and start deeper styling, this may take a week.  By the end of January be ready to test with public.  Spend a few days uploading to heroku and then debug the heroku version of the script. Start running the pools/leagues.  We are looking 25 - 30 days.
 
 
+if pools.groups.length == 0
+
+	if pool.commish_id == current_user.id
+
+		"abilty to create new group"
+
+	else "a message to notify them that the first group has not been generated yet"
+
+	end
+
+else
+
+	loop pool.selections
+
+		if s[i].result == "none" && s.date == @my_date
+
+			outstanding_selections == true
+
+		end
+
+	end
+
+	if outstanding_selections == true 
+
+		if current_user.id == pool.commish_id
+
+			code to grade selections
+
+		else
+
+			message that waiting on commissioner to grade old selections.
+
+		end
+
+	else
+
+		see how many players left and send them to an array
+
+		if players left == 0
+
+			The players with the most selections tie for the win
+
+		elseif players left == 1
+
+			if current_user.id == winner.id
+
+				message to winner
+
+			else
+
+				message to pool players
+
+			end
+
+		else
+
+			if pool.groups.last.date == @my_date
+
+				loop array
+
+					if array[i].id == current_user.id
+
+						loop pool selections
+
+							if s.user_id == current_user.id && s.date == @my_date
+
+								current_selection == true
+
+							end
+
+						end
+
+						if current_selection == true
+
+							code for metrics
+
+						else 
+
+							code for selection
+
+						end
+
+					else
+
+						code for metrcis
+
+					end
+
+				end
+			
+			else
+			
+				if current_user.id == pool.commish_id
+
+					code to form a group
+
+
+				else 
+
+					"waiting on group" message
+
+				end
+			end
+
+		end
+
+	end
+
+end
+
+			
+
+
+
+
+			
+
+
+
+
+
+
+
+
+
+
+
+
+			if current_user.id == pool.commish_id
+
+				if pool.groups.last.date != @my_date
+
+					code to generate a new group.
+
+			else
+
+				if pool.group.last.date != @my_date
+
+					message that waiting for next group
+
+				else
+
+					loop player_array
+
+						if array[i].id == current_user.id
+
+							loop pool.selections
+
+								if s.user_id == current_user.id && s.date == @my_date
+
+									
+
+
+							if current_selection == true
+
+								code for metrics
+
+							else
+
+								code for selection
+
+
+
+			
+			
+
+
+
+
+
+
 
 
 
