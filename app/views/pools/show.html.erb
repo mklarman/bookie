@@ -35,6 +35,7 @@
 <% @needs_grading = false %>
 <% @how_many_left %>
 <% @current_selection = false %>
+<% @group_ready = false %>
 <% @player1_count = 0 %>
 <% @player2_count = 0 %>
 <% @player3_count = 0 %>
@@ -85,6 +86,7 @@
 <% if @all_tickets.length > 1 %>
 
 	<% @all_check = true %>
+	<% @group_ready = true %>
 
 <% end %>
 
@@ -142,6 +144,211 @@
 		<% end %>
 
 	</div>
+
+	<% if @pool.groups.length == 0 %>
+
+		<% if current_user.id.to_s == @pool.commish_id %>
+
+			<% if @group_ready == true %>
+
+				<% if @pool.sport == "NFL" && @nfl_check == true %>
+
+					<% if @players_in_group == 2 %>
+
+						<% @ply1 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply2) %>
+			
+					<% elsif @players_in_group == 3 %>
+
+						<% @ply1 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply2) %>
+
+						<% @ply3 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply3) %>
+				
+					<% elsif @players_in_group == 4 %>
+
+						<% @ply1 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply2) %>
+
+						<% @ply3 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply3) %>
+
+						<% @ply4 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply4) %>
+				
+					<% elsif @players_in_group == 5 %>
+
+						<% @ply1 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply2) %>
+
+						<% @ply3 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply3) %>
+
+						<% @ply4 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply4) %>
+
+						<% @ply5 = @nfl_tickets.sample %>
+						<% @nfl_tickets.delete(@ply5) %>
+
+					<% end %>
+
+				<% end %>
+
+				<% if @pool.sport == "NBA" && @nba_check == true %>
+
+					<% if @players_in_group == 2 %>
+
+						<% @ply1 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply2) %>
+				
+					<% elsif @players_in_group == 3 %>
+
+						<% @ply1 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply2) %>
+
+						<% @ply3 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply3) %>
+				
+					<% elsif @players_in_group == 4 %>
+
+						<% @ply1 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply2) %>
+
+						<% @ply3 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply3) %>
+
+						<% @ply4 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply4) %>
+				
+					<% elsif @players_in_group == 5 %>
+
+						<% @ply1 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply1) %>
+
+						<% @ply2 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply2) %>
+
+						<% @ply3 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply3) %>
+
+						<% @ply4 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply4) %>
+
+						<% @ply5 = @nba_tickets.sample %>
+						<% @nba_tickets.delete(@ply5) %>
+
+					<% end %>
+
+				<% end %>
+
+				<% if @pool.sport == "MLB" && @nba_check == true %>
+
+					<% if @players_in_group == 2 %>
+
+						<% @ply1 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply1) %>
+
+						<% @ply2 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply2) %>
+					
+					<% elsif @players_in_group == 3 %>
+
+						<% @ply1 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply1) %>
+
+						<% @ply2 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply2) %>
+
+						<% @ply3 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply3) %>
+					
+					<% elsif @players_in_group == 4 %>
+
+						<% @ply1 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply1) %>
+
+						<% @ply2 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply2) %>
+
+						<% @ply3 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply3) %>
+
+						<% @ply4 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply4) %>
+					
+					<% elsif @players_in_group == 5 %>
+
+						<% @ply1 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply1) %>
+
+						<% @ply2 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply2) %>
+
+						<% @ply3 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply3) %>
+
+						<% @ply4 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply4) %>
+
+						<% @ply5 = @mlb_tickets.sample %>
+						<% @mlb_tickets.delete(@ply5) %>
+
+					<% end %>
+
+				<% end %>
+
+				<input type="submit" name="" value="CREATE GROUP" id="group_sub">
+
+			<% else %>
+
+				<div>GROUPS WILL BE ABLE TO BE FORMED BY 10am Eastern Time.</div>
+
+			<% end %>
+
+		<% else %>
+
+			<div>WAITING FOR THE POOL TO BEGIN</div>
+
+		<% end %>
+
+
+	<% else %>
+
+
+		
+
+	<% end %>
+
+
+
+<% else %>
+
+	<div>I'M SORRY BUT YOU ARE NOT IN THIS POOL</div>
+
+<% end %> 
+<div>END</div>
 
 	<% if @pool.groups.length == 0 %>
 
