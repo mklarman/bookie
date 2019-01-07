@@ -108,6 +108,135 @@
 
 <% end %>
 
+<% if @pool.sport == "NFL" && @nfl_check == true %>
+
+	<% self.form_group %>
+
+<% elsif @pool.sport == "NBA" && @nba_check == true %>
+
+	<% self.form_group %>
+
+<% elsif @pool.sport == "MLB" && @mlb_check == true %>
+
+	<% self.form_group %>
+
+<% end %>
+
+<div>
+
+	<%= form_for @group do |g| %>
+
+		<%= g.text_field :pool_id, value: @pool.id %>
+		<%= g.text_field :date, value: @my_date %>
+
+		<% if @ply1.name %>
+
+			<%= g.text_field :player1, value: @ply1.name %>
+
+		<% else %>
+
+			<%= g.text_field :player1, value: " " %>
+
+		<% end %>
+		
+		<% if @ply2.name %>
+
+			<%= g.text_field :player2, value: @ply2.name %>
+
+		<% else %>
+
+			<%= g.text_field :player2, value: " " %>
+
+		<% end %>
+
+		<% if @players_in_group == 3 %>
+
+			<% @ply4 = " " %>
+			<% @ply5 = " " %>
+
+			<%= g.text_field :player4, value: @ply4 %>
+			<%= g.text_field :player5, value: @ply5 %>
+
+			<% if @ply3.name %>
+
+				<%= g.text_field :player3, value: @ply3.name %>
+
+			<% else %>
+
+				<%= g.text_field :player3, value: " " %>
+
+			<% end %>
+
+		<% end %>
+
+		<% if @players_in_group == 4 %>
+
+			<% @ply5 = " " %>
+
+			<%= g.text_field :player5, value: @ply5 %>
+
+
+			<% if @ply3.name %>
+
+				<%= g.text_field :player3, value: @ply3.name %>
+
+			<% else %>
+
+				<%= g.text_field :player3, value: " " %>
+
+			<% end %>
+			
+			<% if @ply4.name %>
+
+				<%= g.text_field :player4, value: @ply4.name %>
+
+			<% else %>
+
+				<%= g.text_field :player4, value: " " %>
+
+			<% end %>
+			
+
+		<% end %>
+
+		<% if @players_in_group == 5 %>
+
+
+			<% if @ply3.name %>
+
+				<%= g.text_field :player3, value: @ply3.name %>
+
+			<% else %>
+
+				<%= g.text_field :player3, value: " " %>
+
+			<% end %>
+			
+			<% if @ply4.name %>
+
+				<%= g.text_field :player4, value: @ply4.name %>
+
+			<% else %>
+
+				<%= g.text_field :player4, value: " " %>
+
+			<% end %>
+		
+			<% if @ply5.name %>
+
+				<%= g.text_field :player5, value: @ply5.name %>
+
+			<% else %>
+
+				<%= g.text_field :player5, value: " " %>
+
+			<% end %>
+
+		<% end %>
+
+	<% end %>
+
+</div>
 
 <% self.get_pool_players %>
 

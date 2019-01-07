@@ -336,4 +336,177 @@ module PoolsHelper
 
 	end
 
+	def form_group
+
+		if @pool.sport == "NFL" && @nfl_check == true 
+
+			if @players_in_group == 2 
+
+				 @ply1 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply1) 
+
+				 @ply2 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply2) 
+	
+			 elsif @players_in_group == 3 
+
+				 @ply1 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply1) 
+
+				 @ply2 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply2) 
+
+				 @ply3 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply3) 
+		
+			 elsif @players_in_group == 4 
+
+				 @ply1 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply1) 
+
+				 @ply2 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply2) 
+
+				 @ply3 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply3) 
+
+				 @ply4 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply4) 
+		
+			 elsif @players_in_group == 5 
+
+				 @ply1 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply1) 
+
+				 @ply2 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply2) 
+
+				 @ply3 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply3) 
+
+				 @ply4 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply4) 
+
+				 @ply5 = @nfl_tickets.sample 
+				 @nfl_tickets.delete(@ply5) 
+
+			 end 
+
+		 end 
+
+		 if @pool.sport == "NBA" && @nba_check == true 
+
+			 if @players_in_group == 2 
+
+				 @ply1 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply1) 
+
+				 @ply2 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply2) 
+		
+			 elsif @players_in_group == 3 
+
+				 @ply1 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply1) 
+
+				 @ply2 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply2) 
+
+				 @ply3 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply3) 
+		
+			 elsif @players_in_group == 4 
+
+				 @ply1 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply1) 
+
+				 @ply2 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply2) 
+
+				 @ply3 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply3) 
+
+				 @ply4 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply4) 
+		
+			 elsif @players_in_group == 5 
+
+				 @ply1 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply1) 
+
+				 @ply2 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply2) 
+
+				 @ply3 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply3) 
+
+				 @ply4 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply4) 
+
+				 @ply5 = @nba_tickets.sample 
+				 @nba_tickets.delete(@ply5) 
+
+			 end 
+
+		 end 
+
+		 if @pool.sport == "MLB" && @nba_check == true 
+
+			 if @players_in_group == 2 
+
+				 @ply1 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply1) 
+
+				 @ply2 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply2) 
+			
+			 elsif @players_in_group == 3 
+
+				 @ply1 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply1) 
+
+				 @ply2 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply2) 
+
+				 @ply3 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply3) 
+			
+			 elsif @players_in_group == 4 
+
+				 @ply1 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply1) 
+
+				 @ply2 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply2) 
+
+				 @ply3 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply3) 
+
+				 @ply4 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply4) 
+			
+			 elsif @players_in_group == 5 
+
+				 @ply1 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply1) 
+
+				 @ply2 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply2) 
+
+				 @ply3 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply3) 
+
+				 @ply4 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply4) 
+
+				 @ply5 = @mlb_tickets.sample 
+				 @mlb_tickets.delete(@ply5) 
+
+			 end 
+
+		end 
+
+
+	end
+
 end
