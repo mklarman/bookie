@@ -868,6 +868,52 @@ end
 
 
 
+Step 1 to a page:  Do a ticket check and see of this pool is even able to generate a group.
+
+Get all pool players
+
+if in pool...
+
+	if pool.groups.lenth == 0
+
+		if current_user is the commish
+
+		else
+
+			user is not commish
+
+		end
+
+	else groups exist
+
+		see if there are outstanding selections for the pool...
+
+		if yes
+
+			link to grade old selections
+
+		if no
+
+			get remaining players
+
+			see if a group already exists for the day...
+
+			if yes
+
+				see if the user has made a selection
+
+				if yes
+
+					metrics
+
+				if no
+
+					selection form
+
+			
+
+
+
 
 
 
