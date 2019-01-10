@@ -338,7 +338,7 @@ module PoolsHelper
 
 	def form_group
 
-		if @pool.sport == "NFL" && @nfl_check == true 
+		if @pool.sport == "NFL" 
 
 			if @players_in_group == 2 
 
@@ -394,7 +394,7 @@ module PoolsHelper
 
 		 end 
 
-		 if @pool.sport == "NBA" && @nba_check == true 
+		 if @pool.sport == "NBA"  
 
 			 if @players_in_group == 2 
 
@@ -450,7 +450,7 @@ module PoolsHelper
 
 		 end 
 
-		 if @pool.sport == "MLB" && @nba_check == true 
+		 if @pool.sport == "MLB"  
 
 			 if @players_in_group == 2 
 
