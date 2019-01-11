@@ -113,34 +113,47 @@ module PoolsHelper
 
 	def get_remaining_contestants
 
-		@group_count = @pool.groups.count
+		if @pool.groups[0].date == @my_date
 
-		if @pool.groups.last.date == @my_date
+			@pool_players.each do |p|
 
-			@group_count = @group_count - 1
-
-
-		end
-
-		@pool_players.each do |p|
-
-			selec_counter = 0
-
-			p.selections.each do |s|
-
-				if s.pool_id.to_i == @pool.id.to_i
-
-					selec_counter = selec_counter + 1
-
-
-				end
+				@still_alive.push(p)
 
 
 			end
 
-			if selec_counter == @group_count
 
-				@still_alive.push(p)
+		else
+
+			@pool.selections.each do |s|
+
+				if s.result == "loser"
+
+					@eliminated.push(s.user_id.to_i)
+
+				end
+
+			end
+
+			@pool_players.each do |p|
+
+				@eliminated.each do |e|
+
+					if p.id.to_i == e
+
+						@elim = true
+
+					end
+
+
+				end
+
+				if @elim == false
+
+					@still_alive.push(p)
+
+				end
+
 
 			end
 
@@ -148,7 +161,7 @@ module PoolsHelper
 		end
 
 	end
-		
+
 
 	def grade_check
 
@@ -170,87 +183,106 @@ module PoolsHelper
 
 	def grade_selections
 
-		@the_group
+		@open_sel = []
+		the_group = []
+		@users_pick
+		score_check = 0
 
-		@result = "loser"
-
-		@value = 0
-
-		@pool.groups.selections.each do |s|
+		@pool.selections.each do |s|
 
 			if s.result == "none" && s.date != @my_date
 
-				@sorted_selections.push(s)
+				@open_sel.push(s)
 
 
 			end
 
 		end
 
-		@sorted_selections.each do |s|
+		@open_sel.each do |s|
 
 			@pool.groups.each do |g|
 
 				if s.group_id.to_i == g.id.to_i
 
-					@the_group = g
+					the_group.push(g)
+
 
 				end
+
 
 			end
 
 			Ticket.all.each do |t|
 
-				if t.date == @the_group.date
+				if t.date == the_group[0].date
 
-					if t.name == @the_group.player1 || @the_group.player2 || @the_group.player3 || @the_group.player4 || @the_group.player5
+					if t.name == the_group[0].player1
 
-						@group_tickets.push(t)
+						@group_tix.push(t)
 
+					elsif t.name == the_group[0].player2
+
+						@group_tix.push(t)
+
+					elsif the_group[0].player3 != nil
+
+						if t.name == the_group[0].player3
+
+							@group_tix.push(t)
+
+						end 
+
+					elsif the_group[0].player4 != nil
+
+						if t.name == the_group[0].player4
+
+							@group_tix.push(t)
+
+						end 
+
+					elsif the_group[0].player5 != nil
+
+						if t.name == the_group[0].player5
+
+							@group_tix.push(t)
+
+						end 
 
 					end
 
 				end
 
-
 			end
 
-			@group_tickets.each do |t|
-
-				if t.score > @value
-
-					@value = t.score
-
-				end
-
-			end
-
-			@group_tickets.each do |t|
-
-				if t.score == @value
-
-					@winning_tickets.push(t)
-
-
-				end
-
-
-			end
-
-
-			@winning_tickets.each do |t|
+			@group_tix.each do |t|
 
 				if t.name == s.selection
 
-					@result = "winner"
+					@users_pick = t
 
 				end
+
+				if t.score.to_i > score_check
+
+					score_check = t.score.to_i
+
+				end
+
+			end
+
+			if @users_pick.score.to_i == score_check
+
+				@result = "winner"
+
+			else
+
+				@result = "loser"
 
 			end
 
 
 		end
-
 
 	end
 

@@ -19,6 +19,7 @@
 <% @sorted_selections = [] %>
 <% @tied_players = [] %>
 <% @qualified_players = [] %>
+<% @eliminated = [] %>
 <% @group_num = [4, 3, 5, 2] %>
 <% @players_in_group = @group_num.sample %>
 <% @ply1 = " " %>
@@ -26,6 +27,7 @@
 <% @ply3 = " " %>
 <% @ply4 = " " %>
 <% @ply5 = " " %>
+<% @how_many_left %>
 <% @in_pool = false %>
 <% @new_pool = true %>
 <% @all_check = false %>
@@ -33,11 +35,11 @@
 <% @nba_check = false %>
 <% @mlb_check = false %>
 <% @needs_grading = false %>
-<% @how_many_left %>
 <% @current_selection = false %>
 <% @group_ready = false %>
 <% @qualified_player = false %>
 <% @grade_ready = true %>
+<% @elim = false %>
 <% @player1_count = 0 %>
 <% @player2_count = 0 %>
 <% @player3_count = 0 %>
@@ -123,7 +125,7 @@
 
 
 
-<div class ="hid">
+<div class ="hide">
 
 	<%= form_for @group do |g| %>
 
@@ -280,17 +282,25 @@
 
 			<div>COMMISIONER TOOLS
 
+				<% if @ply1.class.to_s ==  "Ticket" %>
 
-				<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
 
-				<script>
-					
-					group_formA.addEventListener("click", function(){
+					<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
 
-						new_group.submit()
+					<script>
+						
+						group_formA.addEventListener("click", function(){
 
-					})
-				</script>
+							new_group.submit()
+
+						})
+					</script>
+
+				<% else %>
+
+					<div>UPLOADING PLAYERS....</div>
+
+				<% end %>
 
 			</div>
 
@@ -482,19 +492,19 @@
 								
 								<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
 
-								<% if @pool.groups.last.player3.length > 3  %>
+								<% if @pool.groups.last.player3 != nil %>
 								
 									<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
 
 								<% end %>
 
-								<% if @pool.groups.last.player4.length > 3  %>
+								<% if @pool.groups.last.player4 != nil  %>
 								
 									<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
 
 								<% end %>
 
-								<% if @pool.groups.last.player5.length > 3  %>
+								<% if @pool.groups.last.player5 != nil  %>
 								
 									<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
 
@@ -730,14 +740,14 @@
 
 	<% end %>
 
-
 <% else %>
+
 
 	<div>I'M SORRY BUT YOU ARE NOT IN THIS POOL</div>
 
 <% end %> 
 
-HERE: <%= @ply1 %>
+
 
 
 	

@@ -22,6 +22,12 @@ class TicketsController < ApplicationController
 
 	end
 
+	def edit
+
+		@ticket = Ticket.find_by_id(params[:id])
+
+	end
+
 	def index
 
 		@tickets = Ticket.all
@@ -34,7 +40,7 @@ class TicketsController < ApplicationController
 
 		if @ticket.update(ticket_params)
 
-			redirect_to players_path
+			redirect_to tickets_path
 		else
 
 			redirect_back(fallback_location: new_team_path)

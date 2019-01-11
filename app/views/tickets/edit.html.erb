@@ -1,0 +1,9 @@
+<%= form_for @ticket do |t| %>
+
+	<%= t.text_field :name, value: @ticket.name %>
+	<%= t.text_field :score %>
+	<%= t.hidden_field :updated, value: true %>
+	<%= t.submit %>
+
+
+<% end %>

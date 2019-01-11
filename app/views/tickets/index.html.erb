@@ -1,0 +1,22 @@
+<% @my_date %>
+<% self.get_time %>
+
+
+
+<% @tickets.each do |t| %>
+
+
+	<% if t.updated == "f" && t.date != @my_date %>
+
+		<div>
+			
+			<%= t.name %>
+			<%= t.date %>
+			<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+		</div>
+
+	<% end %>
+
+
+<% end %>
