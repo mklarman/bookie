@@ -1,8 +1,36 @@
+<% @my_date %>
+<% self.get_time %>
 <% @the_group %>
-<% @tickets_in_group %>
-<% @scores %>
-<% @high_score %>
+<% @tickets_in_group = [] %>
+<% @scores = [] %>
+<% @high_score = [] %>
+<% @open_selec = [] %>
 <% @result %>
+<% @pool %>
+
+<% Pool.all.each do |p| %>
+
+	<% if p.id.to_i == @selection.pool_id.to_i %>
+
+		<% @pool = p %>
+
+	<% end %>
+
+<% end %>
+
+<% @pool.selections.each do |s| %>
+	
+	<% if s.result == "none" && s.date != @my_date %>
+
+		<% @open_selec.push(s.id) %>
+
+	<% end %>
+
+<% end %>
+
+<% @open_selec = @open_selec.sort %>
+
+<% self.score_selections %>
 
 
 <%= form_for @selection do |s| %>
@@ -16,5 +44,37 @@
 		
 
 <% end %>
+
+<%= @open_selec %>
+<%= @selection.id %>
+
+<script>
+
+	var openSelec = <%= @open_selec %>
+
+	console.log(openSelec)
+
+	var cssID = "edit_selection_" + "<%= @selection.id %>"
+
+	var subSelect = document.getElementById(cssID)
+
+	console.log(subSelect)
+
+	subSelect.submit()
+
+	
+
+	
+
+
+
+	
+
+
+
+
+</script>
+
+
 
 

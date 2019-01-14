@@ -20,6 +20,7 @@
 <% @tied_players = [] %>
 <% @qualified_players = [] %>
 <% @eliminated = [] %>
+<% @op_sel = [] %>
 <% @group_num = [4, 3, 5, 2] %>
 <% @players_in_group = @group_num.sample %>
 <% @ply1 = " " %>
@@ -317,11 +318,15 @@
 
 			<% if s.result == "none" && s.date != @my_date %>
 
-				<% @needs_grading == true %>
+				<% @op_sel.push(s.id) %>
+
+				<% @needs_grading = true %>
 
 			<% end %>
 
 		<% end %>
+
+		<% @op_sel = @op_sel.sort %>
 
 		<% if @needs_grading == true %>
 
@@ -333,7 +338,7 @@
 
 				<% end %>
 
-			<% end %> 
+			<% end %>
 
 			<% if current_user.id == @pool.commish_id.to_i %>
 				
@@ -342,7 +347,7 @@
 					<% if @grade_ready == true %>
 
 
-						<div><%= link_to "GRADE SELECTIONS", edit_selection_path(@pool.selections.last.id) %></div>
+						<div><%= link_to "GRADE SELECTIONS", edit_selection_path(@op_sel.last) %></div>
 
 					<% else %>
 
@@ -746,6 +751,7 @@
 	<div>I'M SORRY BUT YOU ARE NOT IN THIS POOL</div>
 
 <% end %> 
+
 
 
 

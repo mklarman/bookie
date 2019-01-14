@@ -22,6 +22,13 @@ class SelectionsController < ApplicationController
 
 	end
 
+	def edit
+
+		@selection = Selection.find_by_id(params[:id])
+
+
+	end
+
 
 	def update
 
@@ -57,18 +64,20 @@ class SelectionsController < ApplicationController
 
 			if selections.length > 0
 
-				redirect_to edit_selection_path(selections[0])
+				redirect_to edit_selection_path(selections.last)
 
 			else
 
 				redirect_to pool_path(@selection.pool_id)
 
 			end
+		
 		else
 
 			redirect_to pool_path(@selection.pool_id)
 
 		end
+
 
 	end
 
