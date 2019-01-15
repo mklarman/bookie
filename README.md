@@ -914,7 +914,19 @@ if in pool...
 
 
 
+Faniside pools are in testing.  Grading seems to work.  Selections are being saved and the if statement tree that works the page seems to be acting correctly.  Just put in another test group to see.
 
+After the testing is complete, then need to review both games.  Make sure both work and are debugged.
+
+Then need a basic style for each of the games home pages, more for faniside pools.  Then upload to heroku and debug on heroku.
+
+Going have to replace the drop downs with js clicks, drop downs were not showing in all browswers.
+
+Once that is complete, then debug on heroku again.  And then get 10 - 20 people to play in each game.  get some feedback and debug.
+
+Set-up the mobile and tablet versions.  upload to heroku.  final debugging on heroku.
+
+Run the first real pool.
 
 
 
