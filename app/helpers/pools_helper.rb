@@ -43,7 +43,11 @@ module PoolsHelper
 
 				if s.pool_id.to_i == @pool.id.to_i
 
-					counter = counter + 1
+					if s.result == "winner"
+
+						counter = counter + 1
+
+					end
 
 				end
 
@@ -113,46 +117,42 @@ module PoolsHelper
 
 	def get_remaining_contestants
 
-		if @pool.groups[0].date == @my_date
+		@pool_players.each do |p|
 
-			@pool_players.each do |p|
+			@still_in = true
 
-				@still_alive.push(p)
-
-
-			end
-
-
-		else
+			@player_selec = []
 
 			@pool.selections.each do |s|
 
-				if s.result == "loser"
+				if s.user_id.to_i == p.id
 
-					@eliminated.push(s.user_id.to_i)
+					@player_selec.push(s)
 
 				end
 
 			end
 
-			@pool_players.each do |p|
+			@player_selec.each do |s|
 
-				@eliminated.each do |e|
+				if s.result == "loser"
 
-					if p.id.to_i == e
-
-						@elim = true
-
-					end
-
+					@still_in = false
 
 				end
 
-				if @elim == false
 
-					@still_alive.push(p)
 
-				end
+			end
+
+			if @still_in == false
+
+				@eliminated.push(p)
+
+
+			else
+
+				@still_alive.push(p)
 
 
 			end
@@ -181,110 +181,6 @@ module PoolsHelper
 
 	end
 
-	def grade_selections
-
-		@open_sel = []
-		the_group = []
-		@users_pick
-		score_check = 0
-
-		@pool.selections.each do |s|
-
-			if s.result == "none" && s.date != @my_date
-
-				@open_sel.push(s)
-
-
-			end
-
-		end
-
-		@open_sel.each do |s|
-
-			@pool.groups.each do |g|
-
-				if s.group_id.to_i == g.id.to_i
-
-					the_group.push(g)
-
-
-				end
-
-
-			end
-
-			Ticket.all.each do |t|
-
-				if t.date == the_group[0].date
-
-					if t.name == the_group[0].player1
-
-						@group_tix.push(t)
-
-					elsif t.name == the_group[0].player2
-
-						@group_tix.push(t)
-
-					elsif the_group[0].player3 != nil
-
-						if t.name == the_group[0].player3
-
-							@group_tix.push(t)
-
-						end 
-
-					elsif the_group[0].player4 != nil
-
-						if t.name == the_group[0].player4
-
-							@group_tix.push(t)
-
-						end 
-
-					elsif the_group[0].player5 != nil
-
-						if t.name == the_group[0].player5
-
-							@group_tix.push(t)
-
-						end 
-
-					end
-
-				end
-
-			end
-
-			@group_tix.each do |t|
-
-				if t.name == s.selection
-
-					@users_pick = t
-
-				end
-
-				if t.score.to_i > score_check
-
-					score_check = t.score.to_i
-
-				end
-
-			end
-
-			if @users_pick.score.to_i == score_check
-
-				@result = "winner"
-
-			else
-
-				@result = "loser"
-
-			end
-
-
-		end
-
-	end
 
 	def get_tied_users
 

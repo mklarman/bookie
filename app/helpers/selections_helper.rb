@@ -53,24 +53,26 @@ module SelectionsHelper
 
 			@scores.push(t.score.to_i)
 
+			if t.name == @selection.selection
+
+				@users_pick = t
+
+			end
+
 		end
+
 
 		@scores = @scores.sort
 
 		@high_score = @scores.last
 
-		@tickets_in_group.each do |t|
+		if @users_pick.score.to_i == @high_score
 
-			if t.score.to_i == @high_score
+			@result = "winner"
 
-				@result = "winner"
+		else
 
-			else
-
-				@result = "loser"
-
-			end
-
+			@result = "loser"
 
 		end
 
