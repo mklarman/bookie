@@ -41,235 +41,209 @@
 <% @qualified_player = false %>
 <% @grade_ready = true %>
 <% @elim = false %>
+<% @create_ready = false %>
+<% @commish = false %>
 <% @player1_count = 0 %>
 <% @player2_count = 0 %>
 <% @player3_count = 0 %>
 <% @player4_count = 0 %>
 <% @player5_count = 0 %>
 
-<div class = "hide">
+<% if current_user.id.to_s == @pool.commish_id %>
 
-	<%= form_for @selection do |s| %>
-
-		<%= s.text_field :pool_id, value: @pool.id %>
-		<%= s.text_field :date, value: @my_date %>
-		<%= s.text_field :user_id, value: current_user.id %>
-		<%= s.text_field :group_id %>
-		<%= s.text_field :selection %>
-		
-
-
-	<% end %>
-
-
-</div>
-
-<% Ticket.all.each do |t| %>
-
-	<% if t.date == @my_date %>
-
-		<% @all_tickets.push(t) %>
-
-		<% if t.sport == "NFL" %>
-
-			<% @nfl_tickets.push(t) %>
-
-		<% elsif t.sport == "NBA" %>
-
-			<% @nba_tickets.push(t) %>
-					
-		<% elsif t.sport == "MLB" %>
-
-			<% @mlb_tickets.push(t) %>
-					
-		<% end %>
-
-	<% end %>
-
-<% end %>
-
-<% if @pool.sport == "NFL" %>
-
-	<% if @nfl_tickets.length > 1 %>
-
-		<% @group_ready = true %>
-
-	<% end %>
-
-<% end %>
-
-<% if @pool.sport == "NBA" %>
-
-	<% if @nba_tickets.length > 1 %>
-
-		<% @group_ready = true %>
-
-	<% end %>
-
-<% end %>
-
-<% if @pool.sport == "MLB" %>
-
-	<% if @mlb_tickets.length > 1 %>
-
-		<% @group_ready = true %>
-
-	<% end %>
-
-<% end %>
-
-<% if @group_ready == true %>
-
-	<% self.form_group %>
+	<% @commish = true %>
 
 <% end %>
 
 
+	<div class = "hide">
 
-<div class ="hide">
+		<%= form_for @selection do |s| %>
 
-	<%= form_for @group do |g| %>
+			<%= s.text_field :pool_id, value: @pool.id %>
+			<%= s.text_field :date, value: @my_date %>
+			<%= s.text_field :user_id, value: current_user.id %>
+			<%= s.text_field :group_id %>
+			<%= s.text_field :selection %>
+			
 
-		<%= g.text_field :pool_id, value: @pool.id %>
-		<%= g.text_field :date, value: @my_date %>
-
-		<% if @ply1.class.to_s == "Ticket" %>
-
-			<%= g.text_field :player1, value: @ply1.name %>
-
-		<% else %>
-
-			<%= g.text_field :player1, value: " " %>
-
-		<% end %>
-		
-		<% if @ply2.class.to_s == "Ticket" %>
-
-			<%= g.text_field :player2, value: @ply2.name %>
-
-		<% else %>
-
-			<%= g.text_field :player2, value: " " %>
 
 		<% end %>
 
-		<% if @players_in_group == 3 %>
 
-			<% @ply4 = " " %>
-			<% @ply5 = " " %>
+	</div>
 
-			<%= g.text_field :player4, value: @ply4 %>
-			<%= g.text_field :player5, value: @ply5 %>
+	<% Ticket.all.each do |t| %>
 
-			<% if @ply3.class.to_s == "Ticket" %>
+		<% if t.date == @my_date %>
 
-				<%= g.text_field :player3, value: @ply3.name %>
+			<% @all_tickets.push(t) %>
 
-			<% else %>
+			<% if t.sport == "NFL" %>
 
-				<%= g.text_field :player3, value: " " %>
+				<% @nfl_tickets.push(t) %>
 
+			<% elsif t.sport == "NBA" %>
+
+				<% @nba_tickets.push(t) %>
+						
+			<% elsif t.sport == "MLB" %>
+
+				<% @mlb_tickets.push(t) %>
+						
 			<% end %>
 
 		<% end %>
 
-		<% if @players_in_group == 4 %>
+	<% end %>
 
-			<% @ply5 = " " %>
+	<% if @pool.sport == "NFL" %>
 
-			<%= g.text_field :player5, value: @ply5 %>
+		<% if @nfl_tickets.length > 1 %>
+
+			<% @group_ready = true %>
+
+		<% end %>
+
+	<% end %>
+
+	<% if @pool.sport == "NBA" %>
+
+		<% if @nba_tickets.length > 1 %>
+
+			<% @group_ready = true %>
+
+		<% end %>
+
+	<% end %>
+
+	<% if @pool.sport == "MLB" %>
+
+		<% if @mlb_tickets.length > 1 %>
+
+			<% @group_ready = true %>
+
+		<% end %>
+
+	<% end %>
+
+	<% if @group_ready == true %>
+
+		<% self.form_group %>
+
+	<% end %>
 
 
-			<% if @ply3.class.to_s == "Ticket" %>
 
-				<%= g.text_field :player3, value: @ply3.name %>
+	<div class ="hide">
+
+		<%= form_for @group do |g| %>
+
+			<%= g.text_field :pool_id, value: @pool.id %>
+			<%= g.text_field :date, value: @my_date %>
+
+			<% if @ply1.class.to_s == "Ticket" %>
+
+				<%= g.text_field :player1, value: @ply1.name %>
 
 			<% else %>
 
-				<%= g.text_field :player3, value: " " %>
+				<%= g.text_field :player1, value: " " %>
 
 			<% end %>
 			
-			<% if @ply4.class.to_s == "Ticket" %>
+			<% if @ply2.class.to_s == "Ticket" %>
 
-				<%= g.text_field :player4, value: @ply4.name %>
+				<%= g.text_field :player2, value: @ply2.name %>
 
 			<% else %>
 
-				<%= g.text_field :player4, value: " " %>
+				<%= g.text_field :player2, value: " " %>
 
 			<% end %>
+
+			<% if @players_in_group == 3 %>
+
+				<% @ply4 = " " %>
+				<% @ply5 = " " %>
+
+				<%= g.text_field :player4, value: @ply4 %>
+				<%= g.text_field :player5, value: @ply5 %>
+
+				<% if @ply3.class.to_s == "Ticket" %>
+
+					<%= g.text_field :player3, value: @ply3.name %>
+
+				<% else %>
+
+					<%= g.text_field :player3, value: " " %>
+
+				<% end %>
+
+			<% end %>
+
+			<% if @players_in_group == 4 %>
+
+				<% @ply5 = " " %>
+
+				<%= g.text_field :player5, value: @ply5 %>
+
+
+				<% if @ply3.class.to_s == "Ticket" %>
+
+					<%= g.text_field :player3, value: @ply3.name %>
+
+				<% else %>
+
+					<%= g.text_field :player3, value: " " %>
+
+				<% end %>
+				
+				<% if @ply4.class.to_s == "Ticket" %>
+
+					<%= g.text_field :player4, value: @ply4.name %>
+
+				<% else %>
+
+					<%= g.text_field :player4, value: " " %>
+
+				<% end %>
+				
+
+			<% end %>
+
+			<% if @players_in_group == 5 %>
+
+
+				<% if @ply3.class.to_s == "Ticket" %>
+
+					<%= g.text_field :player3, value: @ply3.name %>
+
+				<% else %>
+
+					<%= g.text_field :player3, value: " " %>
+
+				<% end %>
+				
+				<% if @ply4.class.to_s == "Ticket" %>
+
+					<%= g.text_field :player4, value: @ply4.name %>
+
+				<% else %>
+
+					<%= g.text_field :player4, value: " " %>
+
+				<% end %>
 			
+				<% if @ply5.class.to_s == "Ticket" %>
 
-		<% end %>
+					<%= g.text_field :player5, value: @ply5.name %>
 
-		<% if @players_in_group == 5 %>
+				<% else %>
 
+					<%= g.text_field :player5, value: " " %>
 
-			<% if @ply3.class.to_s == "Ticket" %>
-
-				<%= g.text_field :player3, value: @ply3.name %>
-
-			<% else %>
-
-				<%= g.text_field :player3, value: " " %>
-
-			<% end %>
-			
-			<% if @ply4.class.to_s == "Ticket" %>
-
-				<%= g.text_field :player4, value: @ply4.name %>
-
-			<% else %>
-
-				<%= g.text_field :player4, value: " " %>
-
-			<% end %>
-		
-			<% if @ply5.class.to_s == "Ticket" %>
-
-				<%= g.text_field :player5, value: @ply5.name %>
-
-			<% else %>
-
-				<%= g.text_field :player5, value: " " %>
-
-			<% end %>
-
-		<% end %>
-
-	<% end %>
-
-</div>
-
-<% self.get_pool_players %>
-
-
-<% @pool_players.each do |p| %>
-
-	<% if p.id.to_i == current_user.id.to_i %>
-
-		<% @in_pool = true %>
-
-	<% end %>
-
-
-<% end %>
-
-
-
-<% if @in_pool == true %>
-
-	<div id="pool_stand">
-
-		<% self.get_all_selections %>
-		<% self.get_pool_standings(@pool_standings) %>
-
-		<% @off_stand.each do |st| %>
-
-			<% if st.class == Hash %>
-
-				<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
+				<% end %>
 
 			<% end %>
 
@@ -277,175 +251,104 @@
 
 	</div>
 
-	<% if @pool.groups.length == 0 %>
+	<% self.get_pool_players %>
 
-		<% if current_user.id.to_s == @pool.commish_id %>
 
-			<div>COMMISIONER TOOLS
+	<% @pool_players.each do |p| %>
+
+		<% if p.id.to_i == current_user.id.to_i %>
+
+			<% @in_pool = true %>
+
+		<% end %>
+
+
+	<% end %>
+
+	<% if @in_pool == true %>
+
+		<% if @pool.groups.length == 0 %>
+
+			<% @many_groups = false %>
+
+			<% if current_user.id.to_s == @pool.commish_id %>
 
 				<% if @ply1.class.to_s ==  "Ticket" %>
 
+					<% @create_ready = true %>
 
-					<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
+				<% end %>
 
-					<script>
-						
-						group_formA.addEventListener("click", function(){
+			<% end %>
 
-							new_group.submit()
+		<% else %>
 
-						})
-					</script>
+			<% @pool.selections.each do |s| %>
+
+				<% if s.result == "none" && s.date != @my_date %>
+
+					<% @op_sel.push(s.id) %>
+
+					<% @needs_grading = true %>
+
+				<% end %>
+
+			<% end %>
+
+			<% @op_sel = @op_sel.sort %>
+
+			<% if @needs_grading == true %>
+
+
+			<% else %>
+
+				<% self.get_remaining_contestants %>
+
+				<% if @still_alive.length == 0 %>
+
+					<% self.get_tied_users %>
+
+					<% @tied_players.each do |p| %>
+
+						<div><%= p.username + " tied for the win " %></div>
+
+					<% end %>
+
+				<% elsif @still_alive.length == 1 %>
+
+					<div><%= @still_alive[0].username.upcase + " has won the pool" %>
 
 				<% else %>
 
-					<div>UPLOADING PLAYERS....</div>
+					<% if current_user.id.to_s == @pool.commish_id %>
 
-				<% end %>
+						<% if @pool.groups.last.date != @my_date %>
 
-			</div>
+							<% if @group_ready == true %>
 
-		<% else %>
-
-			<div>WAITING FOR THE POOL COMMISIONER TO GENERATE GROUP 1.</div>
-
-		<% end %>
+								<div>COMMISIONER TOOLS
 
 
-	<% else %>
+									<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
 
-		<% @pool.selections.each do |s| %>
-
-			<% if s.result == "none" && s.date != @my_date %>
-
-				<% @op_sel.push(s.id) %>
-
-				<% @needs_grading = true %>
-
-			<% end %>
-
-		<% end %>
-
-		<% @op_sel = @op_sel.sort %>
-
-		<% if @needs_grading == true %>
-
-			<% Ticket.all.each do |t| %>
-
-				<% if t.updated == false %>
-
-					<% @grade_ready = false %>
-
-				<% end %>
-
-			<% end %>
-
-			<% if current_user.id == @pool.commish_id.to_i %>
-				
-				<div>COMMISIONER TOOLS
-
-					<% if @grade_ready == true %>
-
-
-						<div><%= link_to "GRADE SELECTIONS", edit_selection_path(@op_sel.last) %></div>
-
-					<% else %>
-
-						<div> UPLOADING PLAYER POINTS.  CHECK BACK SOON.</div>
-
-					<% end %>
-
-				</div>
-
-			<% else %>
-
-				<div>WAITING FOR COMMISSIONER TO SUBMIT RESULTS</div>
-
-			<% end %>
-
-		<% else %>
-
-			<% self.get_remaining_contestants %>
-
-			<% if @still_alive.length == 0 %>
-
-				<% self.get_tied_users %>
-
-				<% @tied_players.each do |p| %>
-
-					<div><%= p.username + " tied for the win " %></div>
-
-				<% end %>
-
-			<% elsif @still_alive.length == 1 %>
-
-				<div><%= @still_alive[0].username.upcase + " has won the pool" %>
-
-			<% else %>
-
-				<% if current_user.id.to_s == @pool.commish_id %>
-
-					<% if @pool.groups.last.date != @my_date %>
-
-						<% if @group_ready == true %>
-
-							<div>COMMISIONER TOOLS
-
-
-								<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
-
-								<script>
-							
-									group_formA.addEventListener("click", function(){
-
-										new_group.submit()
-
-									})
-								</script>
-
-							</div>
-
-						<% else %>
-
-							<div>COMMISIONER TOOLS
+									<script>
 								
-								<div>UPLOADING PLAYERS.  CHECK BACK AFTER 10am EASTERN.</div>
+										group_formA.addEventListener("click", function(){
 
-							</div>
+											new_group.submit()
 
-						<% end %>
+										})
+									</script>
 
-					<% end %>
+								</div>
 
-				<% end %>
+							<% else %>
 
-				<% @still_alive.each do |user| %>
+								<div>COMMISIONER TOOLS
+									
+									<div>UPLOADING PLAYERS.  CHECK BACK AFTER 10am EASTERN.</div>
 
-					<% @qualified_players.push(user.id.to_i) %>
-
-
-				<% end %>
-
-				<% @qualified_players.each do |p| %>
-
-					<% if p == current_user.id.to_i %>
-
-						<% @qualified_player = true %>
-
-					<% end %>
-
-				<% end %>
-
-				<% if @qualified_player == true %>
-
-					<% current_user.selections.each do |s| %>
-
-						<% if s.date == @my_date %>
-
-							<% if s.pool_id.to_i == @pool.id.to_i %>
-
-								<% @current_selection = true %>
-
+								</div>
 
 							<% end %>
 
@@ -453,10 +356,261 @@
 
 					<% end %>
 
-					<% if @current_selection == true %>
+					<% @still_alive.each do |user| %>
+
+						<% @qualified_players.push(user.id.to_i) %>
+
+
+					<% end %>
+
+					<% @qualified_players.each do |p| %>
+
+						<% if p == current_user.id.to_i %>
+
+							<% @qualified_player = true %>
+
+						<% end %>
+
+					<% end %>
+
+					<% if @qualified_player == true %>
+
+						<% current_user.selections.each do |s| %>
+
+							<% if s.date == @my_date %>
+
+								<% if s.pool_id.to_i == @pool.id.to_i %>
+
+									<% @current_selection = true %>
+
+
+								<% end %>
+
+							<% end %>
+
+						<% end %>
+
+						<% if @current_selection == true %>
+
+							<div id="metta data">
+							
+								<% Selection.all.each do |s| %>
+
+									<% if s.pool_id.to_i == @pool.id.to_i %>
+
+										<% if s.date == @my_date %>
+
+											<% if s.selection == @pool.groups.last.player1 %>
+
+												<% @player1_count = @player1_count + 1 %>
+
+											<% elsif s.selection == @pool.groups.last.player2 %>
+
+												<% @player2_count = @player2_count + 1 %>
+
+											<% elsif s.selection == @pool.groups.last.player3 %>
+
+												<% @player3_count = @player3_count + 1 %>
+
+											<% elsif s.selection == @pool.groups.last.player4 %>
+
+												<% @player4_count = @player4_count + 1 %>
+
+											<% elsif s.selection == @pool.groups.last.player5 %>
+
+												<% @player5_count = @player5_count + 1 %>
+
+											<% end %>
+
+										<% end %>
+
+									<% end %>
+
+								<% end %>
+
+								<div id="data_display">
+									
+									<div><%= @pool.groups.last.player1 + " " + @player1_count.to_s %></div>
+									
+									<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
+
+									<% if @pool.groups.last.player3.length != 1 %>
+									
+										<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
+
+									<% end %>
+
+									<% if @pool.groups.last.player4.length != 1  %>
+									
+										<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
+
+									<% end %>
+
+									<% if @pool.groups.last.player5.length != 1  %>
+									
+										<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
+
+									<% end %>
+
+								</div>
+
+							</div>
+
+
+						<% else %>
+
+							<% if @pool.groups.last.date == @my_date %>
+
+								<div id="group">
+
+									<div id="pl1" class="group_players"></div>
+									<div id="pl2" class="group_players"></div>
+									<div id="pl3" class="group_players"></div>
+									<div id="pl4" class="group_players"></div>
+									<div id="pl5" class="group_players"></div>
+									
+									<script>
+
+										var groupId
+										var player1 = ""
+										var player2 = ""
+										var player3 = ""
+										var player4 = ""
+										var player5 = ""
+										var player_holder = []
+											
+
+										<% Group.all.each do |g| %>
+
+											<% if g.pool_id.to_i == @pool.id.to_i %>
+
+												<% if g.date == @my_date %>
+
+													groupId = "<%= g.id %>"
+
+													player1 = " "
+													player2 = " "
+													player3 = " "
+													player4 = " "
+													player5 = " "
+
+													player1 = "<%= g.player1 %>"
+													player_holder.push(player1)
+													
+													player2 = "<%= g.player2 %>"
+													player_holder.push(player2)
+
+													<% if g.player3 != nil %>
+
+														player3 = "<%= g.player3 %>"
+														player_holder.push(player3)
+
+													<% end %>
+
+													<% if g.player4 != nil %>
+
+														player4 = "<%= g.player4 %>"
+														player_holder.push(player4)
+
+													<% end %>
+
+													<% if g.player5 != nil %>
+
+														player5 = "<%= g.player5 %>"
+														player_holder.push(player5)				
+
+													<% end %>
+
+												<% end %>
+
+											<% end %>
+
+										<% end %>
+
+										pl1.innerHTML = player1
+										pl2.innerHTML = player2
+										pl3.innerHTML = player3
+										pl4.innerHTML = player4
+										pl5.innerHTML = player5
+
+
+										pl1.addEventListener("click", function(){
+
+											selection = player1
+											selection_group_id.value = groupId
+											selection_selection.value = selection
+											new_selection.submit()
+
+
+										})
+
+										pl2.addEventListener("click", function(){
+
+											selection = player2
+											selection_group_id.value = groupId
+											selection_selection.value = selection
+											new_selection.submit()
+
+
+										})
+
+										pl3.addEventListener("click", function(){
+
+											selection = player3
+											selection_group_id.value = groupId
+											selection_selection.value = selection
+											new_selection.submit()
+
+
+										})
+
+										pl4.addEventListener("click", function(){
+
+											selection = player4
+											selection_group_id.value = groupId
+											selection_selection.value = selection
+											new_selection.submit()
+
+
+										})
+
+										pl5.addEventListener("click", function(){
+
+											selection = player5
+											selection_group_id.value = groupId
+											selection_selection.value = selection
+											new_selection.submit()
+
+
+										})
+
+
+
+									</script>
+
+								</div>
+
+							<% else %>
+
+								<div><p>
+								
+									WAITING FOR YOUR COMMISSIONER TO GENERATE THE NEXT GROUP.
+
+
+
+								</p></div>
+
+
+							<% end %>
+
+
+						<% end %>
+
+
+					<% else %>
 
 						<div id="metta data">
-						
+							
 							<% Selection.all.each do |s| %>
 
 								<% if s.pool_id.to_i == @pool.id.to_i %>
@@ -497,19 +651,19 @@
 								
 								<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
 
-								<% if @pool.groups.last.player3 != nil %>
+								<% if @pool.groups.last.player3.length != 1  %>
 								
 									<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
 
 								<% end %>
 
-								<% if @pool.groups.last.player4 != nil  %>
+								<% if @pool.groups.last.player4.length != 1  %>
 								
 									<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
 
 								<% end %>
 
-								<% if @pool.groups.last.player5 != nil  %>
+								<% if @pool.groups.last.player5.length != 1  %>
 								
 									<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
 
@@ -520,237 +674,151 @@
 						</div>
 
 
-					<% else %>
-
-						<% if @pool.groups.last.date == @my_date %>
-
-							<div id="group">
-
-								<div id="pl1" class="group_players"></div>
-								<div id="pl2" class="group_players"></div>
-								<div id="pl3" class="group_players"></div>
-								<div id="pl4" class="group_players"></div>
-								<div id="pl5" class="group_players"></div>
-								
-								<script>
-
-									var groupId
-									var player1 = ""
-									var player2 = ""
-									var player3 = ""
-									var player4 = ""
-									var player5 = ""
-									var player_holder = []
-										
-
-									<% Group.all.each do |g| %>
-
-										<% if g.pool_id.to_i == @pool.id.to_i %>
-
-											<% if g.date == @my_date %>
-
-												groupId = "<%= g.id %>"
-
-												player1 = " "
-												player2 = " "
-												player3 = " "
-												player4 = " "
-												player5 = " "
-
-												player1 = "<%= g.player1 %>"
-												player_holder.push(player1)
-												
-												player2 = "<%= g.player2 %>"
-												player_holder.push(player2)
-
-												<% if g.player3 != nil %>
-
-													player3 = "<%= g.player3 %>"
-													player_holder.push(player3)
-
-												<% end %>
-
-												<% if g.player4 != nil %>
-
-													player4 = "<%= g.player4 %>"
-													player_holder.push(player4)
-
-												<% end %>
-
-												<% if g.player5 != nil %>
-
-													player5 = "<%= g.player5 %>"
-													player_holder.push(player5)				
-
-												<% end %>
-
-											<% end %>
-
-										<% end %>
-
-									<% end %>
-
-									pl1.innerHTML = player1
-									pl2.innerHTML = player2
-									pl3.innerHTML = player3
-									pl4.innerHTML = player4
-									pl5.innerHTML = player5
-
-
-									pl1.addEventListener("click", function(){
-
-										selection = player1
-										selection_group_id.value = groupId
-										selection_selection.value = selection
-										new_selection.submit()
-
-
-									})
-
-									pl2.addEventListener("click", function(){
-
-										selection = player2
-										selection_group_id.value = groupId
-										selection_selection.value = selection
-										new_selection.submit()
-
-
-									})
-
-									pl3.addEventListener("click", function(){
-
-										selection = player3
-										selection_group_id.value = groupId
-										selection_selection.value = selection
-										new_selection.submit()
-
-
-									})
-
-									pl4.addEventListener("click", function(){
-
-										selection = player4
-										selection_group_id.value = groupId
-										selection_selection.value = selection
-										new_selection.submit()
-
-
-									})
-
-									pl5.addEventListener("click", function(){
-
-										selection = player5
-										selection_group_id.value = groupId
-										selection_selection.value = selection
-										new_selection.submit()
-
-
-									})
-
-
-
-								</script>
-
-							</div>
-
-						<% else %>
-
-							<div><p>
-							
-								WAITING FOR YOUR COMMISSIONER TO GENERATE THE NEXT GROUP.
-
-
-
-							</p></div>
-
-
-						<% end %>
-
-
 					<% end %>
-
-
-				<% else %>
-
-					<div id="metta data">
-						
-						<% Selection.all.each do |s| %>
-
-							<% if s.pool_id.to_i == @pool.id.to_i %>
-
-								<% if s.date == @my_date %>
-
-									<% if s.selection == @pool.groups.last.player1 %>
-
-										<% @player1_count = @player1_count + 1 %>
-
-									<% elsif s.selection == @pool.groups.last.player2 %>
-
-										<% @player2_count = @player2_count + 1 %>
-
-									<% elsif s.selection == @pool.groups.last.player3 %>
-
-										<% @player3_count = @player3_count + 1 %>
-
-									<% elsif s.selection == @pool.groups.last.player4 %>
-
-										<% @player4_count = @player4_count + 1 %>
-
-									<% elsif s.selection == @pool.groups.last.player5 %>
-
-										<% @player5_count = @player5_count + 1 %>
-
-									<% end %>
-
-								<% end %>
-
-							<% end %>
-
-						<% end %>
-
-						<div id="data_display">
-							
-							<div><%= @pool.groups.last.player1 + " " + @player1_count.to_s %></div>
-							
-							<div><%= @pool.groups.last.player2 + " " + @player2_count.to_s %></div>
-
-							<% if @pool.groups.last.player3.length > 3  %>
-							
-								<div><%= @pool.groups.last.player3 + " " + @player3_count.to_s %></div>
-
-							<% end %>
-
-							<% if @pool.groups.last.player4.length > 3  %>
-							
-								<div><%= @pool.groups.last.player4 + " " + @player4_count.to_s %></div>
-
-							<% end %>
-
-							<% if @pool.groups.last.player5.length > 3  %>
-							
-								<div><%= @pool.groups.last.player5 + " " + @player5_count.to_s %></div>
-
-							<% end %>
-
-						</div>
-
-					</div>
-
 
 				<% end %>
 
-			<% end %>
+			<% end %>		
 
-		<% end %>		
+		<% end %>
+
+	<% else %>
+
+
+		<div>I'M SORRY BUT YOU ARE NOT IN THIS POOL</div>
 
 	<% end %>
 
-<% else %>
+
+	<div id="main_cont_pool">
+	
+	<div id="pool_standings">
+	
+		<% if @in_pool == true %>
+
+			<div id="pool_stand">
+
+				<% self.get_all_selections %>
+				<% self.get_pool_standings(@pool_standings) %>
+
+				<% @off_stand.each do |st| %>
+
+					<% if st.class == Hash %>
+
+						<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
+
+					<% end %>
+
+				<% end %>
+
+			</div>
+
+		<% end %>
+
+	</div>
+
+	<div id="group_display">
+
+		<% if @create_ready == true and @pool.groups.last.date != @my_date %>
+
+			<div class="action_message">
+
+				WAITING ON YOUR COMMISSIONER TO GENERATE THE NEXT GROUP
+
+			</div>
+
+		<% end %>
+		
+		<div class="players_name"> ANTONIO BROWN </div>
+		<div class="players_name"> ANTONIO BROWN </div>
+		<div class="players_name"> ANTONIO BROWN </div>
+		<div class="players_name"> ANTONIO BROWN </div>
 
 
-	<div>I'M SORRY BUT YOU ARE NOT IN THIS POOL</div>
 
-<% end %> 
+	</div>
+
+	<div id="pool_info">
+
+		<div>MY PICKS</div>
+
+			<div>TOM BRADY winner</div>
+			<div>TOM BRADY winner</div>
+			<div>TOM BRADY winner</div>
+			<div>TOM BRADY winner</div>
+
+
+	</div>
+
+
+</div>
+
+<div id="commisioner_tools">
+
+	<% if @create_ready == true and @many_groups == false %>
+
+		<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
+
+		<script>
+			
+			group_formA.addEventListener("click", function(){
+
+				new_group.submit()
+
+			})
+		</script>
+
+	<% else %>
+
+		<% if @commish == true && @create_ready == false %>
+
+			<div>UPLOADING PLAYERS....</div>
+
+		<% end %>
+
+	<% end %>
+
+	<% if @needs_grading == true %>
+
+		<% Ticket.all.each do |t| %>
+
+			<% if t.updated == "f" && t.date != @my_date %>
+
+				<% @grade_ready = false %>
+
+			<% end %>
+
+		<% end %>
+
+		<% if current_user.id == @pool.commish_id.to_i %>
+
+			<% if @grade_ready == true %>
+
+
+				<div><%= link_to "GRADE SELECTIONS", edit_selection_path(@op_sel.last) %></div>
+
+			<% else %>
+
+				<div> UPLOADING PLAYER POINTS.  CHECK BACK SOON.</div>
+
+			<% end %>
+
+		<% end %>
+
+	<% end %>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
 
 
 
