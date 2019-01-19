@@ -65,8 +65,6 @@
 			<%= s.text_field :user_id, value: current_user.id %>
 			<%= s.text_field :group_id %>
 			<%= s.text_field :selection %>
-			
-
 
 		<% end %>
 
@@ -755,29 +753,6 @@
 
 <div id="commisioner_tools">
 
-	<% if @create_ready == true and @many_groups == false %>
-
-		<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
-
-		<script>
-			
-			group_formA.addEventListener("click", function(){
-
-				new_group.submit()
-
-			})
-		</script>
-
-	<% else %>
-
-		<% if @commish == true && @create_ready == false %>
-
-			<div>UPLOADING PLAYERS....</div>
-
-		<% end %>
-
-	<% end %>
-
 	<% if @needs_grading == true %>
 
 		<% Ticket.all.each do |t| %>
@@ -805,10 +780,49 @@
 
 		<% end %>
 
+	
+
+	<% elsif @create_ready == true and @many_groups == false %>
+
+		<div><input type="submit" name="" value="CREATE GROUP" id="group_formA" class="group_button"></div>
+
+		<script>
+			
+			group_formA.addEventListener("click", function(){
+
+				new_group.submit()
+
+			})
+		</script>
+
+	<% else %>
+
+		<% if @commish == true && @create_ready == false %>
+
+			<div>UPLOADING PLAYERS....</div>
+
+		<% end %>
+
 	<% end %>
 
 </div>
 
+<%= @pool.groups.last.player1 %>
+<%= @pool.groups.last.player2 %>
+<%= @pool.groups.last.player3 %>
+<%= @pool.groups.last.player4 %>
+
+
+<% @tied_players.each do |p| %>
+	
+
+	<div>
+		<%= p.username %>
+		<%= p.selections.last.id %>
+
+	</div>
+
+<% end %>
 
 
 
