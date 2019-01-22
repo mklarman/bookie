@@ -117,46 +117,61 @@ module PoolsHelper
 
 	def get_remaining_contestants
 
-		@pool_players.each do |p|
+		@groups_total = @pool.groups.count
 
-			@still_in = true
+		if @groups_total != 0
 
-			@player_selec = []
+			if @pool.groups.last.date == @my_date
 
-			@pool.selections.each do |s|
+				@groups_total = @groups_total - 1
 
-				if s.user_id.to_i == p.id
+			end
 
-					@player_selec.push(s)
+		end
+
+			@pool_players.each do |p|
+
+				@still_in = true
+
+				@player_selec = []
+
+				@pool.selections.each do |s|
+
+					if s.user_id.to_i == p.id
+
+						@player_selec.push(s)
+
+					end
 
 				end
 
-			end
+				@player_selec.each do |s|
 
-			@player_selec.each do |s|
+					if s.result == "loser"
 
-				if s.result == "loser"
+						@still_in = false
 
-					@still_in = false
+					end
+
+					if @player_selec.length != @groups_total
+
+						@still_in = false
+
+					end
 
 				end
 
+				if @still_in == false
+
+					@eliminated.push(p) unless @eliminated.include?(p)
 
 
-			end
+				else
 
-			if @still_in == false
-
-				@eliminated.push(p)
+					@still_alive.push(p) unless @still_alive.include?(p)
 
 
-			else
-
-				@still_alive.push(p)
-
-
-			end
-
+				end
 
 		end
 
