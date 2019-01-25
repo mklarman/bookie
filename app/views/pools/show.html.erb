@@ -384,7 +384,31 @@
 
 				<% else %>
 
-					<% @design_9 = true %>
+					<% if @pool.groups.last.date == @my_date %>
+
+						<% if @current_selection == true %>
+
+							<% @design_9 = true %>
+
+						<% else %>
+
+							<% @design_10 = true %>
+
+						<% end %>
+
+					<% else %>
+
+						<% if @group_ready == true %>
+
+							<% @design_11 = true %>
+
+						<% else %>
+
+							<% @design_12 = true %>
+
+						<% end %>
+
+					<% end %>
 
 				<% end %>
 
