@@ -429,7 +429,7 @@
 
 		<div id="main_cont_pool">
 			
-			<div id="pool_standings"><div>CORRECT SELECTIONS</div>
+			<div id="pool_standings"><div>PLAYERS \ WINNING SELECTIONS</div>
 
 				
 				<% self.get_all_selections %>
@@ -497,7 +497,7 @@
 				<% elsif @design_5 == true || @design_9 == true %>
 
 
-					<div id="metta data"> CURRENT PICKS
+					<div id="metta data"> GROUP METRICS
 								
 						<% Selection.all.each do |s| %>
 
@@ -787,7 +787,7 @@
 
 			</div>
 
-			<div id="pool_info">
+			<div id="pool_info"><div class="results_pick">MY PICKS</div><div class="results_pick">RESULT</div>
 
 				<% @selection_info = [] %>
 				
@@ -803,7 +803,7 @@
 
 				<% @selection_info.each do |s| %>
 
-					<div id="s_info"><%= s.selection + " " + s.result %>
+					<div id="s_info"><%= s.selection + ".........." + s.result %>
 
 				<% end %>
 
