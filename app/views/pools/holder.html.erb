@@ -1160,19 +1160,7 @@
 
 					</div>
 
-					<input type="submit" name="" value="CREATE GROUP" id="group_submit">
-
-					<script>
-
-						var groupSub = document.getElementById("group_submit")
-
-						groupSub.addEventListener("click", function(){
-
-							new_group.submit()
-
-						})
-						
-					</script>
+					
 					
 
 				<% else %>
@@ -2451,5 +2439,58 @@
 	Set-up the mobile and tablet versions.  upload to heroku.  final debugging on heroku.
 
 	Run the first real pool.
+
+	ariable scheme, Group Form, Selection Form, create a group if possible, if not possible turn a value false.
+
+Get the players in the pool, turn in_pool true on them.
+
+needs grading
+group ready
+current_selection
+
+
+if @in_pool == true
+
+	if needsgreeding == true
+
+		@needs_grading == true
+
+		need to loop selections and also capture all selections with none
+
+	elsif @pool.groups.length == 0
+
+		@pool_groups_zero == true
+
+	elsif @pools.groups.length == 1 && nogradedselections == true
+
+		@new_pool == true
+
+	else
+
+		@running_pool == true
+
+else
+
+	YOU ARE NOT IN THIS POOL
+
+
+
+end
+
+if needs_grading == false && @ply1.class.to_s == "Ticket"
+
+	@group_ready == true
+
+elsif needs_grading == true
+
+Faniside pools is ready to test. Need to get as many people as possible.  Run it in NBA.  One thing for faniside pools is to make sure grade selections does not show up unless old tickets are updated.
+
+Have to go over bookie wars again and make sure it is working correctly.  Run a test in that as well.  Work on design a little for the show pages and the grading pages.  Bookie wars needs a once over to make it flow like faniside pools.
+
+Once that is complete in about two - three weeks...  
+
+So the next step is to upload to the heroku platform and debug after bookie wars and faniside pools get a once over to get rid of any last bugs, then upload to heroku and debug for their platform.
+
+March 1st have the soft launch.  
 
 </div>
