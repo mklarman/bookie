@@ -1,6 +1,8 @@
-HELLO Yes
+
 
 <% @my_date %>
+<% @contestants = [] %>
+<% @league_players = [] %>
 <% @end_date_ser %>
 <% @nfl_games %>
 <% @fan_games %>
@@ -22,7 +24,12 @@ HELLO Yes
 <% @start_time %>
 <% @edit_w = [] %>
 <% @wager_counter = [] %>
+<% @in_league = false %>
 <% @cl_wager_counter = 0 %>
+<% @league_status %>
+<% @month_chk %>
+<% @day_chk %>
+<% @year_chk %>
 
 <% @obj_test %>
 
@@ -31,7 +38,7 @@ HELLO Yes
 
 <% self.get_time %>
 
-<% @month_chk %>
+
 
 <% @month_chk = @league.end_date[3] + @league.end_date[4] + @league.end_date[5] %>
 <% @day_chk = @league.end_date[0] + @league.end_date[1] %>
@@ -47,11 +54,34 @@ HELLO Yes
 	
 <%= @start_time %>
 
-
 <% if @start_time > @my_date %>
 
-	<% @id_holder = [] %>
+	<% @league_status = "early" %>
 
+<% elsif @start_time =< @my_date && @my_date > @end_date_ser %>
+
+	<% @league_status = "active" %>
+
+<% else %>
+
+	<% @league_status = "complete" %>
+
+<% end %>
+
+<% self.get_league_players %>
+
+<% @league_players.each do |p| %>
+
+	<% if p == current_user %>
+
+		<% @in_league = true %>
+
+	<% end %>
+
+
+<% end %>
+
+<% if @in_league == true %>
 
 	<% @league.league_clients.each do |c| %>
 
@@ -62,7 +92,6 @@ HELLO Yes
 		<% end %>
 
 	<% end %>
-
 
 	<% if @id_holder.length < @league.clients.to_i %>
 
@@ -84,7 +113,48 @@ HELLO Yes
 
 	<% end %>
 
-	<div id="league_start_date"><%= "YOUR LEAGE STARTS ON" + " " + @league.start_date %></div>
+	<% if @league_status == "early" %>
+
+		<div id="league_start_date"><%= "YOUR LEAGE STARTS ON" + " " + @league.start_date %></div>
+
+	<% elsif @league_status == "active" %>
+
+
+	<% elsif @league_status == "complete" %>
+
+
+	<% end %>
+		
+
+<% else %>
+
+	<div class = "league_message">
+
+		YOU ARE NOT IN THIS LEAGUE.
+
+
+	</div>
+
+<% end %>
+
+
+<% if @start_time > @my_date %>
+
+	<% @id_holder = [] %>
+
+
+	<% @league.league_clients.each do |c| %>
+
+		<% if c.user_id.to_i == current_user.id.to_i %>
+
+			<% @id_holder.push(c.user_id) %>
+
+		<% end %>
+
+	<% end %>
+
+
+	
 	
 
 
