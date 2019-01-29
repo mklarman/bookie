@@ -8653,6 +8653,37 @@ end
 
 	end
 
+	def get_league_players
+
+		Secret.all.each do |s|
+
+			if s.pass == @league.pass
+
+				 @contestants.push(s.user_id) 
+
+	 		end  
+
+
+		end
+
+		@contestants.each do |c|
+
+			User.all.each do |u|
+
+				if u.id == c.to_i
+
+					@league_players.push(u)
+
+
+				end
+
+
+			end
+
+		end
+
+	end
+
 	
 
 	
