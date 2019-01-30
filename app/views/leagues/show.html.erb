@@ -36,6 +36,8 @@
 
 <% @obj_test %>
 
+<div id="league_heading"><%= @league.league_name.upcase %></div>
+
 
 
 
@@ -79,7 +81,7 @@
 
 <% self.convert_start_time(@league.start_date) %>
 	
-<%= @start_time %>
+
 
 <% if @start_time > @my_date %>
 
@@ -213,7 +215,7 @@
 
 			</div>
 
-			<div id="roster_cont">
+			<div id="roster_cont"><div id="roster_label">MY ROSTER</div>
 
 				<% @league.league_clients.each do |c| %>
 
@@ -221,11 +223,11 @@
 
 						<div class="rost_cont">
 
-							<div class="roster_info", id="lg_nm"> <%= c.league_name %></div>
-							<div class="roster_info">Stakes: <%= c.stakes %></div>
-							<div class="roster_info">Bet Type: <%= c.bet_types %></div>
-							<div class="roster_info">Bet Quant: <%= c.wager_limit %></div>
-							<div class="roster_info">Sports: <%= c.sports %></div>
+							<div class="roster_info" id="lg_nm"> <%= c.league_name %></div>
+							<div class="roster_info" id="lg_st">Stakes: <%= c.stakes %></div>
+							<div class="roster_info" id="lg_bet">Bet Type: <%= c.bet_types %></div>
+							<div class="roster_info" id="lg_qu">Bet Quant: <%= c.wager_limit %></div>
+							<div class="roster_info" id="lg_sp">Sports: <%= c.sports %></div>
 
 
 							<div class="roster_links"><%= link_to "CHANGE SETTINGS", edit_league_client_path(c.id) %></div>
@@ -240,7 +242,7 @@
 
 			</div>
 
-			<div id="league_client_stats">
+			<div id="league_client_stats">CLIENT / FIGURE
 
 				<% current_user.league_clients.each do |l| %>
 
@@ -290,7 +292,7 @@
 
 		</div>
 
-		<div id="link_holder">
+		<div id="link_holder"><div>GRADE, BOOK, OR VIEW ACTION</div>
 
 			<% self.get_time %>
 

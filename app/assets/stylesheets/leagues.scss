@@ -40,7 +40,6 @@
 
 	height: 100%;
 	width: 32.74%;
-	border: 1px solid red;
 	vertical-align: top;
 	display: inline-block;
 	
@@ -58,8 +57,9 @@
 
 	height: 138px;
 	width: 150px;
-	border: 1px solid red;
+	border: 1px solid black;
 	display: inline-block;
+	color: red;
 }
 
 #lg_nm{
@@ -67,6 +67,7 @@
 	margin-left: 30px;
 	font-size: 20px;
 	margin-bottom: 5px;
+	color: black;
 
 }
 
@@ -146,9 +147,13 @@
 	height: 100%;
 	width: 15%;
 	font-size: 18px;
-	border: 1px solid red;
+	border: 1px solid black;
 	vertical-align: top;
 	display: inline-block;
+	background: gray;
+	color: white;
+	margin-top: 18px;
+	margin-right: 0px;
 	
 	
 }
@@ -167,10 +172,13 @@
 
 	height: 50%;
 	width: 15%;
-	border: 1px solid red;
+	border: 1px solid black;
 	font-size: 20px;
 	vertical-align: top;
 	display: inline-block;
+	margin-top: 18px;
+	background: CornflowerBlue;
+	color: white;
 	
 }
 
@@ -178,9 +186,10 @@
 
 	height: 100%;
 	width: 100%;
-	border: 1px solid red;
-	margin: auto;
+	
 	text-align: center;
+	margin-top: 30px;
+	
 	
 }
 
@@ -201,11 +210,10 @@
 
 #link_holder{
 
-	height: 30px;
-	width: 600px;
-	border: 1px solid red;
-	margin: auto;
+	height: 100%;
+	width: 100%;
 	text-align: center;
+	margin-top: 20px;
 }
 
 .links{
@@ -227,6 +235,42 @@
 	margin-left: 110px;
 
 }
+
+#league_heading{
+
+	font-size: 25px;
+	height: 100%;
+	width: 100%;
+	text-align: center;
+	margin-left: 0%;
+
+}
+
+#lg_st{
+
+	color: green;
+
+}
+
+#lg_bet{
+
+	color: blue;
+
+}
+
+#lg_qu{
+
+	color: slateBlue;
+
+}
+
+#lg_sp{
+
+	
+
+}
+
+
 
 
 
