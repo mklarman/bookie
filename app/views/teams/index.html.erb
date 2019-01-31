@@ -5,20 +5,22 @@
 		NFL MATCHUPS
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "NFL" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "NFL" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
 
+					</div>
+
+				<% end %>
 			<% end %>
-
 
 		<% end %>
 
@@ -29,17 +31,21 @@
 		CFB MATCHUPS
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "CFB" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "CFB" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+					</div>
+
+				<% end %>
 
 			<% end %>
 
@@ -53,17 +59,21 @@
 		NBA MATCHUPS
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "NBA" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "NBA" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+					</div>
+
+				<% end %>
 
 			<% end %>
 
@@ -77,17 +87,21 @@
 		CBB MATCHUPS
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "CBB" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "CBB" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+					</div>
+
+				<% end %>
 
 			<% end %>
 
@@ -101,17 +115,21 @@
 		FAN MATCHUPS
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "FAN" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "FAN" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+					</div>
+
+				<% end %>
 
 			<% end %>
 
@@ -126,17 +144,21 @@
 
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "NHL" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "NHL" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+					</div>
+
+				<% end %>
 
 			<% end %>
 
@@ -148,17 +170,21 @@
 		MLB MATCHUPS
 		<% @teams.each do |t| %>
 
-			<% if t.sport == "MLB" %>
+			<% if t.updated == "f" %>
 
-				<div>
+				<% if t.sport == "MLB" %>
 
-					<br>
+					<div>
 
-					<div><%=t.name + "/" + t.opp + " " + t.date %></div>
+						<br>
 
-					<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+						<div><%=t.name + "/" + t.opp + " " + t.date %></div>
 
-				</div>
+						<div><%= link_to "Update Team", edit_team_path(t.id), class: 'link_tabs'  %></div>
+
+					</div>
+
+				<% end %>
 
 			<% end %>
 
@@ -168,6 +194,8 @@
 	</div>
 
 </div>
+
+
 
 
 

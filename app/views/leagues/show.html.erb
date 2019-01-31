@@ -53,7 +53,7 @@
 
 	<% if t.date != @my_date %>
 
-		<% if t.updated != true %>
+		<% if t.updated == "f" %>
 
 			<% @grade_ready = false %>
 
@@ -407,6 +407,10 @@
 	</div>
 
 <% end %>
+
+
+
+
 
 
 
