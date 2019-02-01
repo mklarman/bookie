@@ -195,7 +195,13 @@
 
 </div>
 
+<% Team.all.each do |t| %>
 
+	<div><%= t.date %> <%= link_to "EDIT", edit_team_path(t.id) %></div>
+	<%= t.name %>
+
+
+<% end %>
 
 
 
