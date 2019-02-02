@@ -1,6 +1,8 @@
 <% @my_date %>
 <% self.get_time %>
 
+<% @league %>
+
 <% @league_id = @wager.league_id %>
 <% @player_ids = [] %>
 <% @spread1 %>
@@ -20,28 +22,47 @@
 <% @league_players = [] %>
 <% @player = false %>
 
+<% @league_id = @wager.league_id %>
 
-<% User.all.each do |u| %>
+<% League.all.each do |l| %>
 
-	 <%= u.username %>
+	<% if l.id == @league_id.to_i %>
 
-	<% u.league_clients.each do |c| %>
-
-		<% if c.league_id.to_i == @league_id.to_i %>
-
-			<% @player = true %>
-
-		<% end %>
+		<% @league = l %>
 
 	<% end %>
 
-	<% if @player == true %>
 
-		<% @league_players.push(u) %>
+
+<% end %>
+
+<% Secret.all.each do |s| %>
+
+	<% if s.pass == @league.pass %>
+
+		<% @player_ids.push(s.user_id) %>
+
 
 	<% end %>
 
 <% end %>
+
+<% @player_ids.each do |p| %>
+
+	<% User.all.each do |u| %>
+
+		<% if u.id === p.to_i %>
+
+			<% @league_players.push(u) %>
+
+		<% end %>
+
+
+	<% end %>
+
+
+<% end %>
+
 
 <div id="page_heading">OPEN LEAGUE ACTION</div>
 
