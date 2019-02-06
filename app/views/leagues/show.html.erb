@@ -315,7 +315,7 @@
 
 			<% if @edit_w.length > 0 && @grade_ready == true %>
 
-				 <div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %>
+				 <div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %></div>
 
 
 			<% else %>
@@ -391,6 +391,107 @@
 
 	<% elsif @league_status == "complete" %>
 
+		<% current_user.league_wagers.each do |w| %>
+
+				<% if w.league_id.to_i == @league.id.to_i %>
+
+					<% if w.graded == false %>
+
+						<% if w.date != @my_date %>
+
+							<% @edit_w.push(w) %>
+
+
+						<% end %>
+
+					<% end %>
+
+				<% end %>
+
+			<% end %>
+
+		<% if @grade_ready == true && @edit_w.length > 0 %>
+
+			<div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %></div>
+			
+
+		<% else %>
+
+			<div id="final_standings">
+
+				<div id="standings_container">STANDINGS
+
+					<% @league_players.each do |s| %>
+
+						<% @sum = [] %>
+
+						<% @bankroll = 0 %>
+
+						<% s.league_wagers.each do |w| %>
+
+							<% if w.league_id.to_i == @league_id.to_i %>
+
+								<% if w.graded == true %>
+
+									<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+										<% @sum.push(w.net_result.to_i) %>
+
+									<% end %>
+
+
+								<% end %>
+
+
+							<% end %>
+
+						<% end %>
+
+						<% @stand_info = Hash.new %>
+
+						<% @stand_info[:name] = s.username %>
+
+						<% @bankroll = (@sum.inject(0){|sum,x| sum + x }) * -1 %>
+
+						<% @stand_info[:bank] = @bankroll %>
+
+						<% @scores.push(@stand_info) %>
+
+					<% end %>
+
+
+					<% self.get_standings(@scores) %>
+
+					<% @off_stand.each do |st| %>
+
+						<% if st.class == Hash %>
+
+							<% if st[:bank].to_i > 0 %>
+
+								<% st[:bank] = "+" + st[:bank].to_s %>
+
+							<% end %>
+
+							<div class="player_standings"><%= st[:name].to_s + " " + st[:bank].to_s %></div>
+
+						<% end %>
+
+
+
+					<% end %>
+
+				</div>
+
+
+
+			</div>
+
+
+
+
+
+		<% end %>
+
 
 	<% end %>
 		
@@ -406,8 +507,10 @@
 
 <% end %>
 
-<%= @edit_w.length %>
-<%= @grade_ready %>
+
+
+
+
 
 
 
