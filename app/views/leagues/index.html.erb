@@ -127,7 +127,7 @@
 				
 				<div class="hide"><input name="month" id="start_month"></div>
 
-				<div id="month_cont">
+				<div class="month_cont">
 
 					<div id="month1" class="all_months"></div>
 					<div id="month2" class="all_months"></div>
@@ -319,7 +319,7 @@
 				<div>Day:</div>
 				<div class="hide"><input name="day" id="start_day" ></div>
 
-				<div id="day_cont">
+				<div class="day_cont">
 
 					<div id="day1" class="all_days"></div>
 					<div id="day2" class="all_days"></div>
@@ -743,17 +743,52 @@
 
 			<div class = "pool_fields">
 			
-				<label>YEAR:
-				<input list="year" name="year" id="start_year" /></label>
+				<div>YEAR:
+				<div class = "hide"><input list="year" name="year" id="start_year" /></div>
+
+				<div class="year_cont">
 			
-				<datalist id="year">
-			  		
-			  		<option value="2018">
-			  		<option value="2019">
-			  		<option value="2020">
-			  		<option value="2021">
-			  
-				</datalist>
+					<div id="year1" class="all_years"></div>
+					<div id="year2" class="all_years"></div>
+
+				</div>
+
+				<script>
+					
+					var year1 = document.getElementById("year1")
+					var year2 = document.getElementById("year2")
+
+					var allYears = document.getElementsByClassName("all_years")
+
+					year1.innerHTML = "2019"
+					year2.innerHTML = "2020"
+
+					year1.style.color = "blue"
+					year2.style.color = "blue"
+
+					year1.addEventListener("click", function(){
+
+						start_year.value = "2019"
+
+						turnBlue(allYears)
+
+						year1.style.color = "gray"
+
+					})
+
+					year2.addEventListener("click", function(){
+
+						start_year.value = "2020"
+
+						turnBlue(allYears)
+
+						year2.style.color = "gray"
+
+					})
+
+
+
+				</script>
 
 
 
@@ -764,88 +799,681 @@
 
 			<div class = "pool_fields">
 			
-				<label>DAY:
-				<input list="day" name="day" id="end_day" /></label>
-			
-				<datalist id="day">
-			  		
-			  		<option value="01">
-			  		<option value="02">
-			  		<option value="03">
-			  		<option value="04">
-			  		<option value="05">
-			  		<option value="06">
-			  		<option value="07">
-			  		<option value="08">
-			  		<option value="09">
-			  		<option value="10">
-			  		<option value="11">
-			  		<option value="12">
-			  		<option value="13">
-			  		<option value="14">
-			  		<option value="15">
-			  		<option value="16">
-			  		<option value="17">
-			  		<option value="18">
-			  		<option value="19">
-			  		<option value="20">
-			  		<option value="21">
-			  		<option value="22">
-			  		<option value="23">
-			  		<option value="24">
-			  		<option value="25">
-			  		<option value="26">
-			  		<option value="27">
-			  		<option value="28">
-			  		<option value="29">
-			  		<option value="30">
-			  		<option value="31">
-			  
-				</datalist>
+				<div>MONTH</div>
+				
+				<div class="hide"><input name="month" id="end_month"></div>
 
+				<div class="month_cont">
+
+					<div id="emonth1" class="eall_months"></div>
+					<div id="emonth2" class="eall_months"></div>
+					<div id="emonth3" class="eall_months"></div>
+					<div id="emonth4" class="eall_months"></div>
+					<div id="emonth5" class="eall_months"></div>
+					<div id="emonth6" class="eall_months"></div>
+					<div id="emonth7" class="eall_months"></div>
+					<div id="emonth8" class="eall_months"></div>
+					<div id="emonth9" class="eall_months"></div>
+					<div id="emonth10" class="eall_months"></div>
+					<div id="emonth11" class="eall_months"></div>
+					<div id="emonth12" class="eall_months"></div>
+
+				</div>
+				
+			</div>
+
+			<script>
+
+				var eallMonths = document.getElementsByClassName("eall_months")
+				console.log(eallMonths)
+				
+				
+				var month1E = document.getElementById("emonth1")
+				var month2E = document.getElementById("emonth2")
+				var month3E = document.getElementById("emonth3")
+				var month4E = document.getElementById("emonth4")
+				var month5E = document.getElementById("emonth5")
+				var month6E = document.getElementById("emonth6")
+				var month7E = document.getElementById("emonth7")
+				var month8E = document.getElementById("emonth8")
+				var month9E = document.getElementById("emonth9")
+				var month10E = document.getElementById("emonth10")
+				var month11E = document.getElementById("emonth11")
+				var month12E = document.getElementById("emonth12")
+
+				function turnBlue(array){
+
+					for (i = 0; i<array.length; i++) {
+
+						array[i].style.color = "blue"
+			
+					}
+				}
+
+				month1E.innerHTML = "Jan"
+				month2E.innerHTML = "Feb"
+				month3E.innerHTML = "Mar"
+				month4E.innerHTML = "Apr"
+				month5E.innerHTML = "May"
+				month6E.innerHTML = "Jun"
+				month7E.innerHTML = "Jul"
+				month8E.innerHTML = "Aug"
+				month9E.innerHTML = "Sep"
+				month10E.innerHTML = "Oct"
+				month11E.innerHTML = "Nov"
+				month12E.innerHTML = "Dec"
+
+				turnBlue(eallMonths)
+
+				month1E.addEventListener("click", function(){
+
+					end_month.value = "Jan"
+
+					turnBlue(eallMonths)
+
+					month1E.style.color = "gray"
+
+
+
+
+				})
+
+				month2E.addEventListener("click", function(){
+
+					end_month.value = "Feb"
+
+					turnBlue(eallMonths)
+
+					month2E.style.color = "gray"
+
+				})
+
+				month3E.addEventListener("click", function(){
+
+					end_month.value = "Mar"
+
+					turnBlue(eallMonths)
+
+					month3E.style.color = "gray"
+
+				})
+
+				month4E.addEventListener("click", function(){
+
+					end_month.value = "Apr"
+
+					turnBlue(eallMonths)
+
+					month4E.style.color = "gray"
+
+				})
+
+				month5E.addEventListener("click", function(){
+
+					end_month.value = "May"
+
+					turnBlue(eallMonths)
+
+					month5E.style.color = "gray"
+
+				})
+
+				month6E.addEventListener("click", function(){
+
+					end_month.value = "Jun"
+
+					turnBlue(eallMonths)
+
+					month6E.style.color = "gray"
+
+				})
+
+				month7E.addEventListener("click", function(){
+
+					end_month.value = "Jul"
+
+					turnBlue(eallMonths)
+
+					month7E.style.color = "gray"
+
+				})
+
+				month8E.addEventListener("click", function(){
+
+					end_month.value = "Aug"
+
+					turnBlue(eallMonths)
+
+					month8E.style.color = "gray"
+
+				})
+
+				month9E.addEventListener("click", function(){
+
+					end_month.value = "Sep"
+
+					turnBlue(eallMonths)
+
+					month9E.style.color = "gray"
+
+				})
+
+				month10E.addEventListener("click", function(){
+
+					end_month.value = "Oct"
+
+					turnBlue(eallMonths)
+
+					month10E.style.color = "gray"
+
+				})
+
+				month11E.addEventListener("click", function(){
+
+					end_month.value = "Nov"
+
+					turnBlue(eallMonths)
+
+					month11E.style.color = "gray"
+
+				})
+
+				month12E.addEventListener("click", function(){
+
+					end_month.value = "Dec"
+
+					turnBlue(eallMonths)
+
+					month12E.style.color = "gray"
+
+				})
+
+
+			</script>
+
+
+			<div class = "pool_fields">
+
+				<div>Day:</div>
+				<div class="hide"><input name="day" id="end_day" ></div>
+
+				<div class="day_cont">
+
+					<div id="eday1" class="eall_days"></div>
+					<div id="eday2" class="eall_days"></div>
+					<div id="eday3" class="eall_days"></div>
+					<div id="eday4" class="eall_days"></div>
+					<div id="eday5" class="eall_days"></div>
+					<div id="eday6" class="eall_days"></div>
+					<div id="eday7" class="eall_days"></div>
+					<div id="eday8" class="eall_days"></div>
+					<div id="eday9" class="eall_days"></div>
+					<div id="eday10" class="eall_days"></div>
+					<div id="eday11" class="eall_days"></div>
+					<div id="eday12" class="eall_days"></div>
+					<div id="eday13" class="eall_days"></div>
+					<div id="eday14" class="eall_days"></div>
+					<div id="eday15" class="eall_days"></div>
+					<div id="eday16" class="eall_days"></div>
+					<div id="eday17" class="eall_days"></div>
+					<div id="eday18" class="eall_days"></div>
+					<div id="eday19" class="eall_days"></div>
+					<div id="eday20" class="eall_days"></div>
+					<div id="eday21" class="eall_days"></div>
+					<div id="eday22" class="eall_days"></div>
+					<div id="eday23" class="eall_days"></div>
+					<div id="eday24" class="eall_days"></div>
+					<div id="eday25" class="eall_days"></div>
+					<div id="eday26" class="eall_days"></div>
+					<div id="eday27" class="eall_days"></div>
+					<div id="eday28" class="eall_days"></div>
+					<div id="eday29" class="eall_days"></div>
+					<div id="eday30" class="eall_days"></div>
+					<div id="eday31" class="eall_days"></div>
+					
+				</div>
+
+				<script>
+
+					var eallDays = document.getElementsByClassName("eall_days")
+					
+					var eday1 = document.getElementById("eday1")
+					var eday2 = document.getElementById("eday2")
+					var eday3 = document.getElementById("eday3")
+					var eday4 = document.getElementById("eday4")
+					var eday5 = document.getElementById("eday5")
+					var eday6 = document.getElementById("eday6")
+					var eday7 = document.getElementById("eday7")
+					var eday8 = document.getElementById("eday8")
+					var eday9 = document.getElementById("eday9")
+					var eday10 = document.getElementById("eday10")
+					var eday11 = document.getElementById("eday11")
+					var eday12 = document.getElementById("eday12")
+					var eday13 = document.getElementById("eday13")
+					var eday14 = document.getElementById("eday14")
+					var eday15 = document.getElementById("eday15")
+					var eday16 = document.getElementById("eday16")
+					var eday17 = document.getElementById("eday17")
+					var eday18 = document.getElementById("eday18")
+					var eday19 = document.getElementById("eday19")
+					var eday20 = document.getElementById("eday20")
+					var eday21 = document.getElementById("eday21")
+					var eday22 = document.getElementById("eday22")
+					var eday23 = document.getElementById("eday23")
+					var eday24 = document.getElementById("eday24")
+					var eday25 = document.getElementById("eday25")
+					var eday26 = document.getElementById("eday26")
+					var eday27 = document.getElementById("eday27")
+					var eday28 = document.getElementById("eday28")
+					var eday29 = document.getElementById("eday29")
+					var eday30 = document.getElementById("eday30")
+					var eday31 = document.getElementById("eday31")
+
+					turnBlue(eallDays)
+
+					eday1.innerHTML = "1"
+					eday2.innerHTML = "2"
+					eday3.innerHTML = "3"
+					eday4.innerHTML = "4"
+					eday5.innerHTML = "5"
+					eday6.innerHTML = "6"
+					eday7.innerHTML = "7"
+					eday8.innerHTML = "8"
+					eday9.innerHTML = "9"
+					eday10.innerHTML = "10"
+					eday11.innerHTML = "11"
+					eday12.innerHTML = "12"
+					eday13.innerHTML = "13"
+					eday14.innerHTML = "14"
+					eday15.innerHTML = "15"
+					eday16.innerHTML = "16"
+					eday17.innerHTML = "17"
+					eday18.innerHTML = "18"
+					eday19.innerHTML = "19"
+					eday20.innerHTML = "20"
+					eday21.innerHTML = "21"
+					eday22.innerHTML = "22"
+					eday23.innerHTML = "23"
+					eday24.innerHTML = "24"
+					eday25.innerHTML = "25"
+					eday26.innerHTML = "26"
+					eday27.innerHTML = "27"
+					eday28.innerHTML = "28"
+					eday29.innerHTML = "29"
+					eday30.innerHTML = "30"
+					eday31.innerHTML = "31"
+
+					eday1.addEventListener("click", function(){
+
+						end_day.value = "1"
+
+						turnBlue(eallDays)
+
+						eday1.style.color = "red"
+
+					})
+
+					eday2.addEventListener("click", function(){
+
+						end_day.value = "2"
+
+						turnBlue(allDays)
+
+						eday2.style.color = "red"
+
+					})
+
+					eday3.addEventListener("click", function(){
+
+						end_day.value = "3"
+
+						turnBlue(allDays)
+
+						eday3.style.color = "red"
+
+					})
+
+					eday4.addEventListener("click", function(){
+
+						end_day.value = "4"
+
+						turnBlue(allDays)
+
+						eday4.style.color = "red"
+
+					})
+
+					eday5.addEventListener("click", function(){
+
+						end_day.value = "5"
+
+						turnBlue(allDays)
+
+						eday5.style.color = "red"
+
+					})
+
+					eday6.addEventListener("click", function(){
+
+						end_day.value = "6"
+
+						turnBlue(allDays)
+
+						eday6.style.color = "red"
+
+					})
+
+					eday7.addEventListener("click", function(){
+
+						end_day.value = "7"
+
+						turnBlue(allDays)
+
+						eday7.style.color = "red"
+
+					})
+
+					eday8.addEventListener("click", function(){
+
+						end_day.value = "8"
+
+						turnBlue(allDays)
+
+						eday8.style.color = "red"
+
+					})
+
+					eday9.addEventListener("click", function(){
+
+						end_day.value = "9"
+
+						turnBlue(allDays)
+
+						eday9.style.color = "red"
+
+					})
+
+					eday10.addEventListener("click", function(){
+
+						end_day.value = "10"
+
+						turnBlue(allDays)
+
+						eday10.style.color = "red"
+
+					})
+
+					eday11.addEventListener("click", function(){
+
+						end_day.value = "11"
+
+						turnBlue(allDays)
+
+						eday11.style.color = "red"
+
+					})
+
+					eday12.addEventListener("click", function(){
+
+						end_day.value = "12"
+
+						turnBlue(allDays)
+
+						eday12.style.color = "red"
+
+					})
+
+					eday13.addEventListener("click", function(){
+
+						end_day.value = "13"
+
+						turnBlue(allDays)
+
+						eday13.style.color = "red"
+
+					})
+
+					eday14.addEventListener("click", function(){
+
+						end_day.value = "14"
+
+						turnBlue(allDays)
+
+						eday14.style.color = "red"
+
+					})
+
+					eday15.addEventListener("click", function(){
+
+						end_day.value = "15"
+
+						turnBlue(allDays)
+
+						eday15.style.color = "red"
+
+					})
+
+					eday16.addEventListener("click", function(){
+
+						end_day.value = "16"
+
+						turnBlue(allDays)
+
+						eday16.style.color = "red"
+
+					})
+
+					eday17.addEventListener("click", function(){
+
+						end_day.value = "17"
+
+						turnBlue(allDays)
+
+						eday17.style.color = "red"
+
+					})
+
+					eday18.addEventListener("click", function(){
+
+						end_day.value = "18"
+
+						turnBlue(allDays)
+
+						eday18.style.color = "red"
+
+					})
+
+
+					eday19.addEventListener("click", function(){
+
+						end_day.value = "19"
+
+						turnBlue(allDays)
+
+						eday19.style.color = "red"
+
+					})
+
+					eday20.addEventListener("click", function(){
+
+						end_day.value = "20"
+
+						turnBlue(allDays)
+
+						eday20.style.color = "red"
+
+					})
+
+					eday21.addEventListener("click", function(){
+
+						end_day.value = "21"
+
+						turnBlue(allDays)
+
+						eday21.style.color = "red"
+
+					})
+
+					eday22.addEventListener("click", function(){
+
+						end_day.value = "22"
+
+						turnBlue(allDays)
+
+						eday22.style.color = "red"
+
+					})
+
+					eday23.addEventListener("click", function(){
+
+						end_day.value = "23"
+
+						turnBlue(allDays)
+
+						eday23.style.color = "red"
+
+					})
+
+					eday24.addEventListener("click", function(){
+
+						end_day.value = "24"
+
+						turnBlue(allDays)
+
+						eday24.style.color = "red"
+
+					})
+
+					eday25.addEventListener("click", function(){
+
+						end_day.value = "25"
+
+						turnBlue(allDays)
+
+						eday25.style.color = "red"
+
+					})
+
+					eday26.addEventListener("click", function(){
+
+						end_day.value = "26"
+
+						turnBlue(allDays)
+
+						eday26.style.color = "red"
+
+					})
+
+					eday27.addEventListener("click", function(){
+
+						end_day.value = "27"
+
+						turnBlue(allDays)
+
+						eday27.style.color = "red"
+
+					})
+
+					eday28.addEventListener("click", function(){
+
+						end_day.value = "28"
+
+						turnBlue(allDays)
+
+						eday28.style.color = "red"
+
+					})
+
+					eday29.addEventListener("click", function(){
+
+						end_day.value = "29"
+
+						turnBlue(allDays)
+
+						eday29.style.color = "red"
+
+					})
+
+					eday30.addEventListener("click", function(){
+
+						end_day.value = "30"
+
+						turnBlue(allDays)
+
+						eday30.style.color = "red"
+
+					})
+
+					eday31.addEventListener("click", function(){
+
+						end_day.value = "31"
+
+						turnBlue(allDays)
+
+						eday31.style.color = "red"
+
+					})
+
+
+				</script>
+	
+				
+
+			</div>
+
+			<div class = "pool_fields">
+			
+				<div>YEAR:
+				<div class = "hide"><input list="year" name="year" id="end_year" /></div>
+
+				<div class="year_cont">
+			
+					<div id="eyear1" class="eall_years"></div>
+					<div id="eyear2" class="eall_years"></div>
+
+				</div>
+
+				<script>
+					
+					var eyear1 = document.getElementById("eyear1")
+					var eyear2 = document.getElementById("eyear2")
+
+					var eallYears = document.getElementsByClassName("eall_years")
+
+					eyear1.innerHTML = "2019"
+					eyear2.innerHTML = "2020"
+
+					eyear1.style.color = "blue"
+					eyear2.style.color = "blue"
+
+					eyear1.addEventListener("click", function(){
+
+						end_year.value = "2019"
+
+						turnBlue(allYears)
+
+						eyear1.style.color = "gray"
+
+					})
+
+					year2.addEventListener("click", function(){
+
+						end_year.value = "2020"
+
+						turnBlue(allYears)
+
+						year2.style.color = "gray"
+
+					})
+
+
+
+				</script>
 
 
 
 
 			</div>
-
-		<div class = "pool_fields">
-
-		<label>MONTH:
-		<input list="month" name="month" id="end_month" /></label>
-	
-		<datalist id="month">
-	  		
-	  		<option value="Jan">
-	  		<option value="Feb">
-	  		<option value="Mar">
-	  		<option value="Apr">
-	  		<option value="May">
-	  		<option value="Jun">
-	  		<option value="Jul">
-	  		<option value="Aug">
-	  		<option value="Sep">
-	  		<option value="Oct">
-	  		<option value="Nov">
-	  		<option value="Dec">
-	  
-		</datalist>
-
-		</div>
-
-		<div class = "pool_fields">
-			
-			<label>YEAR:
-			<input list="year" name="year" id="end_year" /></label>
-		
-			<datalist id="year">
-		  		
-		  		<option value="2018">
-		  		<option value="2019">
-		  		<option value="2020">
-		  		<option value="2021">
-		  
-			</datalist>
 
 
 
