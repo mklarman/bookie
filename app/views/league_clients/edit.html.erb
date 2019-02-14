@@ -1,3 +1,25 @@
+
+
+<script>
+	
+	var wagerType = "<%= @client.bet_types %>"
+	var stakes = "<%= @client.stakes %>"
+	var wagerLimit = "<%= @client.wager_limit %>"
+	var sports = "<%= @client.sports %>"
+
+	function turnBlue(array){
+
+		for(i=0; i<array.length; i++){
+
+			array[i].style.color = "blue"
+		}
+	}
+
+
+
+</script>
+
+
 <div class = "hide">
 
 
@@ -39,10 +61,579 @@
 
 <div id="edit_cont">
 
-	<div class = "edit_cl">
+
+	<div class= "top_fields">
+
+		<div class = "hide"><input list="stakes" name="stakes" id="cl_stakes" ></div>
+		
+		<div>STAKES:
+
+			<div id="stakes_1" class="all_stakes"></div>
+			<div id="stakes_2" class="all_stakes"></div>
+			<div id="stakes_3" class="all_stakes"></div>
+
+			<script>
+				
+				var stakes1 = document.getElementById("stakes_1")
+				var stakes2 = document.getElementById("stakes_2")
+				var stakes3 = document.getElementById("stakes_3")
+				var allStakes = document.getElementsByClassName("all_stakes")
+
+				stakes1.innerHTML = "small timer"
+				stakes2.innerHTML = "pay dumper"
+				stakes3.innerHTML = "whale"
+
+				if(stakes == "small timer"){
+
+					stakes1.style.color = "red"
+
+				}else{
+
+					stakes1.style.color = "blue"
+
+
+				}
+
+				if(stakes == "pay dumper"){
+
+					stakes2.style.color = "red"
+
+				}else{
+
+					stakes2.style.color = "blue"
+
+
+				}
+
+				if(stakes == "whale"){
+
+					stakes3.style.color = "red"
+
+				}else{
+
+					stakes3.style.color = "blue"
+
+
+				}
+
+				stakes1.addEventListener("click", function(){
+
+					cl_stakes.value = "small timer"
+
+					stakes2.style.color = "blue"
+					stakes3.style.color = "blue"
+					
+					stakes1.style.color = "red"
+
+
+				})
+
+				stakes2.addEventListener("click", function(){
+
+					cl_stakes.value = "pay dumper"
+
+					stakes1.style.color = "blue"
+					stakes3.style.color = "blue"
+					
+					stakes2.style.color = "red"
+
+
+				})
+
+				stakes3.addEventListener("click", function(){
+
+					cl_stakes.value = "whale"
+
+					stakes2.style.color = "blue"
+					stakes1.style.color = "blue"
+					
+					stakes3.style.color = "red"
+
+
+				})
+
+
+			</script>
+
+
+
+		</div>
+
+
+
+
+	</div>
+
+	<div class="top_fields">WAGERS PLACED:
+
+		<div class = "hide"><input list="quant" name="quant" id="cl_quant"></div> 
+		
+		<div id="quant1" class = "all_quants"></div>
+		<div id="quant2" class = "all_quants"></div>
+		<div id="quant3" class = "all_quants"></div>
+
+		<script>
+			
+			var quant1 = document.getElementById("quant1")
+			var quant2 = document.getElementById("quant2")
+			var quant3 = document.getElementById("quant3")
+
+			quant1.innerHTML = "1"
+			quant2.innerHTML = "3"
+			quant3.innerHTML = "5"
+
+			if (wagerLimit == "1") {
+
+				quant1.style.color = "red"
+
+			}else{
+
+				quant1.style.color = "blue"
+
+			}
+
+			if (wagerLimit == "3") {
+
+				quant2.style.color = "red"
+
+			}else{
+
+				quant2.style.color = "blue"
+
+			}
+
+			if (wagerLimit == "5") {
+
+				quant3.style.color = "red"
+
+			}else{
+
+				quant3.style.color = "blue"
+
+			}
+
+			quant1.addEventListener("click", function(){
+
+				cl_quant.value = "1"
+
+				quant2.style.color = "blue"
+				quant3.style.color = "blue"
+				quant1.style.color = "red"
+
+
+
+			})
+
+			quant2.addEventListener("click", function(){
+
+				cl_quant.value = "3"
+
+				quant1.style.color = "blue"
+				quant3.style.color = "blue"
+				quant2.style.color = "red"
+
+
+
+			})
+
+			quant3.addEventListener("click", function(){
+
+				cl_quant.value = "5"
+
+				quant1.style.color = "blue"
+				quant2.style.color = "blue"
+				quant3.style.color = "red"
+
+
+
+			})
+
+
+		</script>
+
+
+	</div>
+
+	<div class = "top_fields">WAGER TYPE: 
+		
+		<div class = "hide"><input list="type" name="type" id="cl_type" ></div>
+
+		<div id="type1" class = "all_types"></div>
+		<div id="type2" class = "all_types"></div>
+		<div id="type3" class = "all_types"></div>
+
+		<script>
+			
+			var type1 = document.getElementById("type1")
+			var type2 = document.getElementById("type2")
+			var type3 = document.getElementById("type3")
+
+			type1.innerHTML = "Straight"
+			type2.innerHTML = "Exotics"
+			type3.innerHTML = "All"
+
+			if(wagerType == "Straight"){
+
+				type1.style.color = "red"
+			
+			}else{
+
+				type1.style.color = "blue"
+
+			}
+
+			if(wagerType == "Exotics"){
+
+				type2.style.color = "red"
+			
+			}else{
+
+				type2.style.color = "blue"
+
+			}
+
+			if(wagerType == "All"){
+
+				type3.style.color = "red"
+			
+			}else{
+
+				type3.style.color = "blue"
+
+			}
+
+			type1.addEventListener("click", function(){
+
+				cl_type.value = "Straight"
+				type2.style.color = "blue"
+				type3.style.color = "blue"
+				type1.style.color = "red"
+
+
+
+			})
+
+			type2.addEventListener("click", function(){
+
+				cl_type.value = "Exotics"
+				type1.style.color = "blue"
+				type3.style.color = "blue"
+				type2.style.color = "red"
+
+
+
+
+			})
+
+			type3.addEventListener("click", function(){
+
+				cl_type.value = "All"
+				type2.style.color = "blue"
+				type1.style.color = "blue"
+				type3.style.color = "red"
+
+
+
+
+			})
+
+
+
+
+
+		</script>
+
+
+	</div>
+
+	<div class = "top_fields">SPORT:
+
+		<div class = "hide"><input list="sports" name="sports" id="cl_sports" ></div>
+		
+
+		<div id = "sport1" class = "all_sports"></div>
+		<div id = "sport2" class = "all_sports"></div>
+		<div id = "sport3" class = "all_sports"></div>
+		<div id = "sport4" class = "all_sports"></div>
+		<div id = "sport5" class = "all_sports"></div>
+		<div id = "sport6" class = "all_sports"></div>
+		<div id = "sport7" class = "all_sports"></div>
+		<div id = "sport8" class = "all_sports"></div>
+
+		<script>
+			
+			var sport1 = document.getElementById("sport1")
+			var sport2 = document.getElementById("sport2")
+			var sport3 = document.getElementById("sport3")
+			var sport4 = document.getElementById("sport4")
+			var sport5 = document.getElementById("sport5")
+			var sport6 = document.getElementById("sport6")
+			var sport7 = document.getElementById("sport7")
+			var sport8 = document.getElementById("sport8")
+
+			var allSports = document.getElementsByClassName("all_sports")
+
+			sport1.innerHTML = "NFL"
+			sport2.innerHTML = "MLB"
+			sport3.innerHTML = "NHL"
+			sport4.innerHTML = "CFB"
+			sport5.innerHTML = "CBB"
+			sport6.innerHTML = "NBA"
+			sport7.innerHTML = "FAN"
+			sport8.innerHTML = "All"
+
+			if(sports == "NFL"){
+
+				sport1.style.color = "red"
+
+
+			}else{
+
+				sport1.style.color = "blue"
+
+			}
+
+			if(sports == "MLB"){
+
+				sport2.style.color = "red"
+
+
+			}else{
+
+				sport2.style.color = "blue"
+
+			}
+
+			if(sports == "NHL"){
+
+				sport3.style.color = "red"
+
+
+			}else{
+
+				sport3.style.color = "blue"
+
+			}
+
+			if(sports == "CFB"){
+
+				sport4.style.color = "red"
+
+
+			}else{
+
+				sport4.style.color = "blue"
+
+			}
+
+			if(sports == "CBB"){
+
+				sport5.style.color = "red"
+
+
+			}else{
+
+				sport5.style.color = "blue"
+
+			}
+
+			if(sports == "NBA"){
+
+				sport6.style.color = "red"
+
+
+			}else{
+
+				sport6.style.color = "blue"
+
+			}
+
+			if(sports == "FAN"){
+
+				sport7.style.color = "red"
+
+
+			}else{
+
+				sport7.style.color = "blue"
+
+			}
+
+			if(sports == "All"){
+
+				sport8.style.color = "red"
+
+
+			}else{
+
+				sport8.style.color = "blue"
+
+			}
+
+			sport1.addEventListener("click", function(){
+
+				cl_sports.value = sport1.innerHTML
+
+				turnBlue(allSports)
+
+				sport1.style.color = "red"
+
+
+
+			})
+
+			sport2.addEventListener("click", function(){
+
+				cl_sports.value = sport2.innerHTML
+
+				turnBlue(allSports)
+
+				sport2.style.color = "red"
+
+
+
+			})
+
+			sport3.addEventListener("click", function(){
+
+				cl_sports.value = sport3.innerHTML
+
+				turnBlue(allSports)
+
+				sport3.style.color = "red"
+
+
+
+			})
+
+			sport4.addEventListener("click", function(){
+
+				cl_sports.value = sport4.innerHTML
+
+				turnBlue(allSports)
+
+				sport4.style.color = "red"
+
+
+
+			})
+
+			sport5.addEventListener("click", function(){
+
+				cl_sports.value = sport5.innerHTML
+
+				turnBlue(allSports)
+
+				sport5.style.color = "red"
+
+
+
+			})
+
+			sport6.addEventListener("click", function(){
+
+				cl_sports.value = sport6.innerHTML
+
+				turnBlue(allSports)
+
+				sport6.style.color = "red"
+
+
+
+			})
+
+			sport7.addEventListener("click", function(){
+
+				cl_sports.value = sport7.innerHTML
+
+				turnBlue(allSports)
+
+				sport7.style.color = "red"
+
+
+
+			})
+
+			sport8.addEventListener("click", function(){
+
+				cl_sports.value = sport8.innerHTML
+
+				turnBlue(allSports)
+
+				sport8.style.color = "red"
+
+
+
+			})
+
+
+
+		</script>
+
+
+
+	</div>
+
+	<input type="submit" name="" value="Set Client", id="edit_sub">
+
+	<script>
+	
+		var cl_type = document.getElementById("cl_type")
+		var cl_quant = document.getElementById("cl_quant")
+		var cl_sports = document.getElementById("cl_sports")
+		var cl_stakes = document.getElementById("cl_stakes")
+		var edit_sub = document.getElementById("edit_sub")
+
+		edit_sub.addEventListener("click", function(){
+
+			if (cl_type.value.length != 0){
+
+				league_client_bet_types.value = cl_type.value
+			}
+
+			if (cl_quant.value.length != 0){
+
+				league_client_wager_limit.value = cl_quant.value
+			}
+
+			if (cl_sports.value.length != 0){
+
+				league_client_sports.value = cl_sports.value
+			}
+
+			if (cl_stakes.value.length != 0){
+
+				league_client_stakes.value = cl_stakes.value
+			}
+			
+
+			var cl_id = <%= @client.id %>
+
+			cl_id = cl_id.toString()
+
+			var label = "edit_league_client_" + cl_id
+
+			var editForm = document.getElementById(label)
+
+			editForm.submit()
+
+
+
+		})
+
+
+
+
+	</script> 
+
+
+
+</div>
+
+	<!-- <div class = "edit_cl">
 	
 	<label>WAGER TYPES:
-		<input list="type" name="type" id="cl_type" /></label>
+		</label>
 	
 		<datalist id="type">
 	  		<option value= "Exotics">
@@ -56,7 +647,7 @@
 	<div class = "edit_cl">
 
 		<label># OF WAGERS PLACED:
-		<input list="quant" name="quant" id="cl_quant" /></label>
+		</label>
 	
 		<datalist id="quant">
 	  		<option value= "1">
@@ -70,7 +661,7 @@
 	<div class = "edit_cl">
 
 		<label>SPORTS:
-		<input list="sports" name="sports" id="cl_sports" /></label>
+		</label>
 	
 		<datalist id="sports">
 	  		
@@ -90,7 +681,7 @@
 	<div class = "edit_cl">
 
 		<label>STAKES:
-		<input list="stakes" name="stakes" id="cl_stakes" /></label>
+		</label>
 	
 		<datalist id="stakes">
 	  		<option value= "small timer">
@@ -101,7 +692,7 @@
 
 	</div>
 
-	<input type="submit" name="" value="Set Client", id="edit_sub">
+	
 
 </div>
 <script>
@@ -152,7 +743,7 @@
 
 
 
-</script>
+</script> -->
 
 
 
