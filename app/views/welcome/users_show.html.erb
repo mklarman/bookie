@@ -1,9 +1,35 @@
+
 <% @secrets_cont = [] %>
+
+<% @users_leagues = [] %>
+<% @users_pools = [] %>
+<% @completed_pools = [] %>
+<% @completed_leagues = [] %>
+<% @active_leagues = [] %>
+<% @active_pools = [] %>
+<% @contestants = [] %>
+<% @pool_players = [] %>
+<% @pool_standings = [] %>
+<% @eliminated = [] %>
+<% @still_alive = [] %>
+<% @winners = [] %>
+<% @losers = [] %>
+<% @wager_total = 0 %>
+<% @my_date %>
+<% @serial_num_check %>
 
 <% self.get_leagues %>
 
-<%= link_to "PLAY BOOKIE WARS", leagues_path %>
-<%= link_to "PLAY FANISIDE POOLS", pools_path %>
+<% self.get_time %>
+
+<% self.convert_date(@my_date) %>
+
+<% @my_date = @serial_num_check %>
+
+
+
+
+
 
 <% League.all.each do |l| %>
 
@@ -11,7 +37,8 @@
 
 		<% if l.pass == s %>
 
-			<div><%= link_to l.league_name, league_path(l.id) %></div>
+			<% @users_leagues.push(l) %>
+
 
 		<% end %>
 
@@ -29,7 +56,7 @@
 
 			<% if p.pass == s %>
 
-				<div><%= link_to p.pool_name, pool_path(p.id) %></div>
+				<% @users_pools.push(p) %>			
 
 			<% end %>
 
@@ -40,6 +67,135 @@
 
 
 </div>
+
+<div>
+
+	<% @users_leagues.each do |l| %>
+
+		<% self.convert_date(l.end_date) %>
+
+		<% if @serial_num_check < @my_date %>
+
+			<% @completed_leagues.push(l) %>
+
+		<% else %>
+
+			<% @active_leagues.push(l) %>
+
+		<% end %>
+
+	<% end %>
+
+	<% @users_pools.each do |p| %>
+
+		<% @pool = p %>
+
+		<% self.get_pool_players %>
+		<% self.get_all_selections %>
+		<% self.get_remaining_contestants %>
+
+		<% if @still_alive.length > 1 %>
+
+			<% @active_pools.push(p) %>
+
+
+		<% else %>
+
+			<% @completed_pools.push(p) %>
+
+		<% end %>
+
+
+	<% end %>
+
+
+	
+
+
+</div>
+
+<div style="display:inline-block; vertical-align: top; margin: auto; margin-top: 100px;">ACTIVE LEAGUES 
+
+	<% @active_leagues.each do |l| %>
+
+		<div><%=link_to l.league_name.upcase, league_path(l.id) %></div>
+
+	<% end %>
+
+
+</div>
+
+<div style="display:inline-block; vertical-align: top; margin: auto; margin-top: 100px;">ACTIVE POOLS
+
+	<% @active_pools.each do |p| %>
+
+		<div><%=link_to p.pool_name.upcase, pool_path(p.id) %></div>
+
+	<% end %>
+
+</div>
+
+<% current_user.selections.each do |s| %>
+	
+	<% if s.result == "winner" %>
+
+		<% @winners.push(s) %>
+
+	<% elsif s.result == "loser" %>
+
+		<% @losers.push(s) %>
+
+	<% end %>
+
+<% end %>
+
+
+
+<% @wins = @winners.length %>
+<% @total = @losers.length + @winners.length %>
+
+
+
+
+
+<% @percentage = @wins.to_f/@total.to_f * 100 %>
+
+<%= @percentage.to_s + "%" %>
+
+<div>
+	
+	<% current_user.league_wagers.each do |w| %>
+
+
+		<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+			<% @total = @total + (w.net_result.to_i * -1) %>
+
+		<% end %>
+
+
+
+	<% end %>
+
+	<% if @total > 0 %>
+
+
+	<% @total = "+" + @total.to_s %>
+
+	<% end %>
+
+	<%= @total %>
+
+
+
+
+
+
+</div>
+
+
+
+
 
 
 

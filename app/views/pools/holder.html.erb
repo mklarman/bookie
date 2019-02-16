@@ -1623,52 +1623,7 @@
 
 			<div class = "pool_fields">
 			
-				<div>YEAR:
-				<div class = "hide"><input list="year" name="year" id="end_year" /></div>
-
-				<div class="year_cont">
-			
-					<div id="eyear1" class="eall_years"></div>
-					<div id="eyear2" class="eall_years"></div>
-
-				</div>
-
-				<script>
-					
-					var eyear1 = document.getElementById("eyear1")
-					var eyear2 = document.getElementById("eyear2")
-
-					var eallYears = document.getElementsByClassName("eall_years")
-
-					eyear1.innerHTML = "2019"
-					eyear2.innerHTML = "2020"
-
-					eyear1.style.color = "blue"
-					eyear2.style.color = "blue"
-
-					eyear1.addEventListener("click", function(){
-
-						end_year.value = "2019"
-
-						turnBlue(eallYears)
-
-						eyear1.style.color = "gray"
-
-					})
-
-					eyear2.addEventListener("click", function(){
-
-						end_year.value = "2020"
-
-						turnBlue(eallYears)
-
-						eyear2.style.color = "gray"
-
-					})
-
-
-
-				</script>
+				
 
 
 
