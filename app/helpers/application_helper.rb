@@ -491,32 +491,201 @@ module ApplicationHelper
 
 				if w.wager_type == "straight"
 
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@straight_results.push(w.net_result.to_i)
+
+
+					end
+
 					@straight_bets = @straight_bets + 1
 
 				elsif w.wager_type == "two team teaser"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@two_t_results.push(w.net_result.to_i)
+
+
+					end
 
 					@teaser_bets = @teaser_bets + 1
 					@two_team_teaser_bets = @two_team_teaser_bets + 1
 
 				elsif w.wager_type == "three team teaser"
 
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@three_t_results.push(w.net_result.to_i)
+
+
+					end
+
 					@teaser_bets = @teaser_bets + 1
 					@three_team_teaser_bets = @three_team_teaser_bets + 1
 
 				elsif w.wager_type == "five team teaser"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@five_t_results.push(w.net_result.to_i)
+
+
+					end
 
 					@teaser_bets = @teaser_bets + 1
 					@five_team_teaser_bets = @five_team_teaser_bets + 1
 
 				elsif w.wager_type == "two team parlay"
 
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@two_p_results.push(w.net_result.to_i)
+
+
+					end
+
 					@parlay_bets = @parlay_bets + 1
 					@two_team_parlay_bets = @two_team_parlay_bets + 1
+
+				elsif w.wager_type == "three team parlay"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@three_p_results.push(w.net_result.to_i)
+
+
+					end
+
+					@parlay_bets = @parlay_bets + 1
+					@three_team_parlay_bets = @three_team_parlay_bets + 1
+
+				elsif w.wager_type == "five team parlay"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@five_p_results.push(w.net_result.to_i)
+
+
+					end
+
+					@parlay_bets = @parlay_bets + 1
+					@five_team_parlay_bets = @five_team_parlay_bets + 1
+
+				elsif w.wager_type == "two team reverse"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@two_r_results.push(w.net_result.to_i)
+
+
+					end
+
+					@reverse_bets = @reverse_bets + 1
+					@two_team_reverse_bets = @two_team_reverse_bets + 1
+
+				elsif w.wager_type == "three team reverse"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@three_r_results.push(w.net_result.to_i)
+
+
+					end
+
+					@reverse_bets = @reverse_bets + 1
+					@three_team_reverse_bets = @three_team_reverse_bets + 1
+
+				elsif w.wager_type == "four team reverse"
+
+					if w.net_result.to_i > 0 || w.net_result.to_i < 0
+
+						@four_r_results.push(w.net_result.to_i)
+
+
+					end
+
+					@reverse_bets = @reverse_bets + 1
+					@four_team_reverse_bets = @four_team_reverse_bets + 1
 
 				end
 
 
 			end
+
+			@str_sum = @straight_results.inject(0){|sum,x| sum + x } * -1
+			@two_p_sum = @two_p_results.inject(0){|sum,x| sum + x } * -1
+			@three_p_sum = @three_p_results.inject(0){|sum,x| sum + x } * -1
+			@five_p_sum = @five_p_results.inject(0){|sum,x| sum + x } * -1
+			@two_t_sum = @two_t_results.inject(0){|sum,x| sum + x } * -1
+			@three_t_sum = @three_t_results.inject(0){|sum,x| sum + x } * -1
+			@five_t_sum = @five_t_results.inject(0){|sum,x| sum + x } * -1
+			@two_r_sum = @two_r_results.inject(0){|sum,x| sum + x } * -1
+			@three_r_sum = @three_r_results.inject(0){|sum,x| sum + x } * -1
+			@four_r_sum = @four_r_results.inject(0){|sum,x| sum + x } * -1
+
+			if @str_sum > 0
+
+				@str_sum = "+" + @str_sum.to_s
+
+			end
+
+			if @two_t_sum > 0
+
+				@two_t_sum = "+" + @two_t_sum.to_s
+
+			end
+
+			if @three_t_sum > 0
+
+				@three_t_sum = "+" + @three_t_sum.to_s
+
+			end
+
+			if @five_t_sum > 0
+
+				@five_t_sum = "+" + @five_t_sum.to_s
+
+			end
+
+			if @two_p_sum > 0
+
+				@two_p_sum = "+" + @two_p_sum.to_s
+
+			end
+
+			if @three_p_sum > 0
+
+				@three_p_sum = "+" + @three_p_sum.to_s
+
+			end
+
+			if @five_p_sum > 0
+
+				@five_p_sum = "+" + @five_p_sum.to_s
+
+			end
+
+			if @two_r_sum > 0
+
+				@two_r_sum = "+" + @two_r_sum.to_s
+
+			end
+
+			if @three_r_sum > 0
+
+				@three_r_sum = "+" + @three_r_sum.to_s
+
+			end
+
+			if @four_r_sum > 0
+
+				@four_r_sum = "+" + @four_r_sum.to_s
+
+			end
+
+			
+
 
 
 		end

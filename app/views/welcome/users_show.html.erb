@@ -19,6 +19,40 @@
 <% @serial_num_check %>
 <% @wagers_backed = current_user.league_wagers.count %>
 <% @total = 0 %>
+<% @straight_bets = 0 %>
+<% @parlay_bets = 0 %>
+<% @two_team_parlay_bets = 0 %>
+<% @three_team_parlay_bets = 0 %>
+<% @five_team_parlay_bets = 0 %>
+<% @teaser_bets = 0 %>
+<% @two_team_teaser_bets = 0 %>
+<% @three_team_teaser_bets = 0 %>
+<% @five_team_teaser_bets = 0 %>
+<% @reverse_bets = 0 %>
+<% @two_team_reverse_bets = 0 %>
+<% @three_team_reverse_bets = 0 %>
+<% @four_team_reverse_bets = 0 %>
+<% @straight_results = [] %>
+<% @two_t_results = [] %>
+<% @three_t_results = [] %>
+<% @five_t_results = [] %>
+<% @two_p_results = [] %>
+<% @three_p_results = [] %>
+<% @five_p_results = [] %>
+<% @two_r_results = [] %>
+<% @three_r_results = [] %>
+<% @four_r_results = [] %>
+<% @str_sum %>
+<% @two_p_sum %>
+<% @three_p_sum %>
+<% @five_p_sum %>
+<% @two_t_sum %>
+<% @three_t_sum %>
+<% @five_t_sum %>
+<% @two_r_sum %>
+<% @three_r_sum %>
+<% @four_r_sum %>
+
 
 <% self.get_leagues %>
 
@@ -111,7 +145,7 @@
 	<% end %>
 
 
-	
+	<% self.get_wager_types %>
 
 
 </div>
@@ -150,8 +184,35 @@
 
 			<% end %>
 
-			<div>Total Profit: <%= @total %></div>
-			<div>Wagers Backed: <%= @wagers_backed %></div>
+			<div id="num_cont">
+
+				
+				<div>Wagers Backed: <%= @wagers_backed %></div>
+				
+				<div>Straight Wagers: <%= @straight_results.length %> booked.  <%= @str_sum %> net profit. </div>
+
+				<div>Two Team Parlays: <%= @two_p_results.length %> booked.  <%= @two_p_sum %> net profit. </div>
+
+				<div>Three Team Parlays: <%= @three_p_results.length %> booked.  <%= @three_p_sum %> net profit. </div>
+
+				<div>Five Team Parlays: <%= @five_p_results.length %> booked.  <%= @five_p_sum %> net profit. </div>
+
+				<div>Two Team Teasers: <%= @two_t_results.length %> booked.  <%= @two_t_sum %> net profit. </div>
+
+				<div>Three Team Teasers: <%= @three_t_results.length %> booked.  <%= @three_t_sum %> net profit. </div>
+
+				<div>Five Team Teasers: <%= @five_t_results.length %> booked.  <%= @five_t_sum %> net profit. </div>
+
+				<div>Two Team Reverses: <%= @two_r_results.length %> booked.  <%= @two_r_sum %> net profit. </div>
+
+				<div>Three Team Reverses: <%= @three_r_results.length %> booked.  <%= @three_r_sum %> net profit. </div>
+
+				<div>Four Team Reverses: <%= @four_r_results.length %> booked.  <%= @four_r_sum %> net profit. </div>
+
+				<div id="prof_total">Total Profit: <%= @total %></div>
+
+			</div>
+
 
 		</div>
 
@@ -160,6 +221,51 @@
 
 	<div id="profile_pools" class="prof_cont">
 
+		<div id="active_pools"><div class = "prof_label">ACTIVE POOLS</div>
+
+			<% @active_pools.each do |p| %>
+
+				<div class="pool_links"><%=link_to p.pool_name.upcase, pool_path(p.id) %></div>
+
+			<% end %>
+
+		</div>
+
+		<div id="pool_stats"><div class = "prof_label">POOL STATS</div>
+
+			<% current_user.selections.each do |s| %>
+	
+				<% if s.result == "winner" %>
+
+					<% @winners.push(s) %>
+
+				<% elsif s.result == "loser" %>
+
+					<% @losers.push(s) %>
+
+				<% end %>
+
+			<% end %>
+
+			<% @wins = @winners.length %>
+			<% @total = @losers.length + @winners.length %>
+
+			<% @percentage = @wins.to_f/@total.to_f * 100 %>
+
+
+
+			<div>Selections Made: <%= @total %></div>
+
+			<div>Wins: <%= @wins %></div>
+			<div>Losses: <%= @losers.length %></div>
+
+			<div>Percentage: <%= @percentage.to_s + "%" %></div>
+
+
+		</div>
+
+		
+
 
 
 	</div>
@@ -169,50 +275,6 @@
 
 </div>
 
-<div class="hide">
-	
-		<% @active_pools.each do |p| %>
-
-		<div><%=link_to p.pool_name.upcase, pool_path(p.id) %></div>
-
-	<% end %>
-
-
-<% current_user.selections.each do |s| %>
-	
-	<% if s.result == "winner" %>
-
-		<% @winners.push(s) %>
-
-	<% elsif s.result == "loser" %>
-
-		<% @losers.push(s) %>
-
-	<% end %>
-
-<% end %>
-
-
-
-<% @wins = @winners.length %>
-<% @total = @losers.length + @winners.length %>
-
-
-
-
-
-<% @percentage = @wins.to_f/@total.to_f * 100 %>
-
-<%= @percentage.to_s + "%" %>
-
-	
-	
-
-	<%= current_user.league_wagers.count %>
-
-
-
-</div>
 
 
 
