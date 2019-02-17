@@ -17,6 +17,8 @@
 <% @wager_total = 0 %>
 <% @my_date %>
 <% @serial_num_check %>
+<% @wagers_backed = current_user.league_wagers.count %>
+<% @total = 0 %>
 
 <% self.get_leagues %>
 
@@ -114,26 +116,67 @@
 
 </div>
 
-<div style="display:inline-block; vertical-align: top; margin: auto; margin-top: 100px;">ACTIVE LEAGUES 
+<div id="profile_cont">
+	
+	<div id="profile_leagues" class="prof_cont">
 
-	<% @active_leagues.each do |l| %>
+		<div id="active_leagues"><div class="prof_label">ACTIVE LEAGUES</div>
 
-		<div><%=link_to l.league_name.upcase, league_path(l.id) %></div>
+				<% @active_leagues.each do |l| %>
 
-	<% end %>
+					<div class="prof_links"><%=link_to l.league_name.upcase, league_path(l.id) %></div>
+
+				<% end %>
+
+		</div>
+
+		<div id="league_stats"><div class = "prof_label">LEAGUE STATS</div>
+
+			<% current_user.league_wagers.each do |w| %>
+
+
+				<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+					<% @total = @total + (w.net_result.to_i * -1) %>
+
+				<% end %>
+
+			<% end %>
+
+			<% if @total > 0 %>
+
+
+				<% @total = "+" + @total.to_s %>
+
+			<% end %>
+
+			<div>Total Profit: <%= @total %></div>
+			<div>Wagers Backed: <%= @wagers_backed %></div>
+
+		</div>
+
+
+	</div>
+
+	<div id="profile_pools" class="prof_cont">
+
+
+
+	</div>
+
+
 
 
 </div>
 
-<div style="display:inline-block; vertical-align: top; margin: auto; margin-top: 100px;">ACTIVE POOLS
-
-	<% @active_pools.each do |p| %>
+<div class="hide">
+	
+		<% @active_pools.each do |p| %>
 
 		<div><%=link_to p.pool_name.upcase, pool_path(p.id) %></div>
 
 	<% end %>
 
-</div>
 
 <% current_user.selections.each do |s| %>
 	
@@ -162,36 +205,29 @@
 
 <%= @percentage.to_s + "%" %>
 
-<div>
 	
-	<% current_user.league_wagers.each do |w| %>
+	
 
-
-		<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
-
-			<% @total = @total + (w.net_result.to_i * -1) %>
-
-		<% end %>
-
-
-
-	<% end %>
-
-	<% if @total > 0 %>
-
-
-	<% @total = "+" + @total.to_s %>
-
-	<% end %>
-
-	<%= @total %>
-
-
-
+	<%= current_user.league_wagers.count %>
 
 
 
 </div>
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
 
 
 

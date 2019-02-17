@@ -485,6 +485,42 @@ module ApplicationHelper
 
 		end
 
+		def get_wager_types
+
+			current_user.league_wagers.each do |w|
+
+				if w.wager_type == "straight"
+
+					@straight_bets = @straight_bets + 1
+
+				elsif w.wager_type == "two team teaser"
+
+					@teaser_bets = @teaser_bets + 1
+					@two_team_teaser_bets = @two_team_teaser_bets + 1
+
+				elsif w.wager_type == "three team teaser"
+
+					@teaser_bets = @teaser_bets + 1
+					@three_team_teaser_bets = @three_team_teaser_bets + 1
+
+				elsif w.wager_type == "five team teaser"
+
+					@teaser_bets = @teaser_bets + 1
+					@five_team_teaser_bets = @five_team_teaser_bets + 1
+
+				elsif w.wager_type == "two team parlay"
+
+					@parlay_bets = @parlay_bets + 1
+					@two_team_parlay_bets = @two_team_parlay_bets + 1
+
+				end
+
+
+			end
+
+
+		end
+
 		
 
 
