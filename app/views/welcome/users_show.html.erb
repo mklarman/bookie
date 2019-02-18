@@ -122,13 +122,24 @@
 
 	<% end %>
 
+	<% self.get_time %>
+
 	<% @users_pools.each do |p| %>
 
+		<% @still_alive = [] %>
+		<% @pool_players = [] %>
+		<% @pool_standings = [] %>
+		<% @eliminated = [] %>
+		<% @contestants = [] %>
+		<% @still_in %>
+
 		<% @pool = p %>
+
 
 		<% self.get_pool_players %>
 		<% self.get_all_selections %>
 		<% self.get_remaining_contestants %>
+
 
 		<% if @still_alive.length > 1 %>
 
@@ -150,6 +161,7 @@
 
 </div>
 
+
 <div id="profile_cont">
 	
 	<div id="profile_leagues" class="prof_cont">
@@ -158,7 +170,7 @@
 
 				<% @active_leagues.each do |l| %>
 
-					<div class="prof_links"><%=link_to l.league_name.upcase, league_path(l.id) %></div>
+					<div class="pool_links"><%=link_to l.league_name.upcase, league_path(l.id) %></div>
 
 				<% end %>
 
@@ -274,6 +286,7 @@
 
 
 </div>
+
 
 
 
