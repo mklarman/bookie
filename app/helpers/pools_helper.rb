@@ -41,7 +41,7 @@ module PoolsHelper
 
 			p.selections.each do |s|
 
-				if s.pool_id.to_i == @pool.id.to_i
+				if s.pool_id.to_i == @pool.id
 
 					if s.result == "winner"
 
@@ -117,6 +117,8 @@ module PoolsHelper
 
 	def get_remaining_contestants
 
+		@new_pool = false
+
 		@groups_total = @pool.groups.count
 
 		if @groups_total != 0
@@ -129,49 +131,61 @@ module PoolsHelper
 
 		end
 
-			@pool_players.each do |p|
+		if @pool.groups.count == 1 && @pool.groups.last.date == @my_date
 
-				@still_in = true
+			@new_pool = true
 
-				@player_selec = []
+		end
 
-				@pool.selections.each do |s|
+		@pool_players.each do |p|
 
-					if s.user_id.to_i == p.id
+			@still_in = true
 
-						@player_selec.push(s)
+			@player_selec = []
 
-					end
+			@pool.selections.each do |s|
 
-				end
+				if s.user_id.to_i == p.id
 
-				@player_selec.each do |s|
-
-					if s.result == "loser"
-
-						@still_in = false
-
-					end
-
-					if @player_selec.length != @groups_total
-
-						@still_in = false
-
-					end
+					@player_selec.push(s)
 
 				end
 
-				if @still_in == false
+			end
 
-					@eliminated.push(p) unless @eliminated.include?(p)
+			@player_selec.each do |s|
 
+				if s.result == "loser"
 
-				else
-
-					@still_alive.push(p) unless @still_alive.include?(p)
-
+					@still_in = false
 
 				end
+
+				if @player_selec.length != @groups_total
+
+					@still_in = false
+
+				end
+
+			end
+
+			if @still_in == false
+
+				@eliminated.push(p) unless @eliminated.include?(p)
+
+
+			else
+
+				@still_alive.push(p) unless @still_alive.include?(p)
+
+
+			end
+
+			if @new_pool == true
+
+				@still_alive.push(p) unless @still_alive.include?(p)
+
+			end
 
 		end
 
