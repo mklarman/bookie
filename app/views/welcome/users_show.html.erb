@@ -160,7 +160,7 @@
 
 		<% if @still_alive.length > 1 %>
 
-			<% @active_pools.push(p) %>
+			<% @active_pools.push(p) unless @active_pools.include?(p) %>
 
 
 		<% else %>
