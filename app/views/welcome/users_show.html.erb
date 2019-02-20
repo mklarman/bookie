@@ -143,7 +143,12 @@
 	
 			<% @new_pool = true %>
 
+		<% elsif @pool.groups.count == 0 %>
+
+			<% @new_pool = true %>
+
 		<% end %>
+
 
 
 		<% if @new_pool == true %>
@@ -151,6 +156,13 @@
 			<% @active_pools.push(p) unless @active_pools.include?(p) %>
 
 		<% end %>
+
+		<div>
+
+			<%= @new_pool %>
+			<%= @pool.pool_name %>
+
+		</div>
 
 
 		<% self.get_pool_players %>
