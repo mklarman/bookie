@@ -54,11 +54,6 @@
 <% @four_r_sum %>
 <% @new_pool = false %>
 
-<% if @pool.group.count == 1 && @pool.group.last.date == @my_date %>
-	
-	<% @new_pool = true %>
-
-<% end %>
 
 
 <% self.get_leagues %>
@@ -143,6 +138,12 @@
 		<% @still_in %>
 
 		<% @pool = p %>
+
+		<% if @pool.group.count == 1 && @pool.group.last.date == @my_date %>
+	
+			<% @new_pool = true %>
+
+		<% end %>
 
 
 		<% self.get_pool_players %>
