@@ -52,6 +52,13 @@
 <% @two_r_sum %>
 <% @three_r_sum %>
 <% @four_r_sum %>
+<% @new_pool = false %>
+
+<% if @pool.group.count == 1 && @pool.group.last.date == @my_date %>
+	
+	<% @new_pool = true %>
+
+<% end %>
 
 
 <% self.get_leagues %>
@@ -143,7 +150,7 @@
 		<% self.get_remaining_contestants %>
 
 
-		<% if @still_alive.length > 1 %>
+		<% if @still_alive.length > 1 || @new_pool == true %>
 
 			<% @active_pools.push(p) %>
 
