@@ -137,56 +137,66 @@ module PoolsHelper
 
 		end
 
-		@pool_players.each do |p|
+		if @new_pool == true
 
-			@still_in = true
+			@pool_players.each do |p|
 
-			@player_selec = []
+				@still_alive.push(p)
 
-			@pool.selections.each do |s|
+			end 
 
-				if s.user_id.to_i == p.id
 
-					@player_selec.push(s)
+		else
+
+			@pool_players.each do |p|
+
+				@still_in = true
+
+				@player_selec = []
+
+				@pool.selections.each do |s|
+
+					if s.user_id.to_i == p.id
+
+						if s.result != "none"
+
+							@player_selec.push(s)
+
+						end
+
+					end
+
+				end
+
+				@player_selec.each do |s|
+
+					if s.result == "loser"
+
+						@still_in = false
+
+					end
+
+					if @player_selec.length != @groups_total
+
+						@still_in = false
+
+					end
+
+				end
+
+				if @still_in == false
+
+					@eliminated.push(p) unless @eliminated.include?(p)
+
+
+				else
+
+					@still_alive.push(p) unless @still_alive.include?(p)
+
 
 				end
 
 			end
-
-			@player_selec.each do |s|
-
-				if s.result == "loser"
-
-					@still_in = false
-
-				end
-
-				if @player_selec.length != @groups_total
-
-					@still_in = false
-
-				end
-
-			end
-
-			if @still_in == false
-
-				@eliminated.push(p) unless @eliminated.include?(p)
-
-
-			else
-
-				@still_alive.push(p) unless @still_alive.include?(p)
-
-
-			end
-
-			if @new_pool == true
-
-				@still_alive.push(p) unless @still_alive.include?(p)
-
-			end
-
 		end
 
 	end
@@ -468,3 +478,5 @@ module PoolsHelper
 
 
 end
+
+

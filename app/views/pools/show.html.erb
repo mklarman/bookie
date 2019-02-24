@@ -390,9 +390,19 @@
 
 					<% end %>
 
+					<% current_user.selections.each do |s| %>
+
+						<% if s.date == @my_date && s.pool_id.to_i == @pool.id %>
+
+							<% @current_selection = true %>
+						
+						<% end %>
+
+					<% end %>
+
 					<% if @pool.groups.last.date == @my_date %>
 
-						<% if @current_selection == true %>
+						<% if @current_selection == true || @qualified_player == false %>
 
 							<% @design_9 = true %>
 
@@ -497,6 +507,8 @@
 				<% elsif @design_5 == true || @design_9 == true %>
 
 
+
+
 					<div id="metta data"> GROUP METRICS
 								
 						<% Selection.all.each do |s| %>
@@ -580,6 +592,7 @@
 					</div>
 
 				<% elsif @design_6 == true || @design_10 == true %>
+
 
 					<% if @pool.groups.last.date == @my_date %>
 
@@ -803,7 +816,7 @@
 
 				<% @selection_info.each do |s| %>
 
-					<div id="s_info"><%= s.selection + ".........." + s.result %>
+					<div id="s_info"><%= s.selection + ".........." + s.result %></div>
 
 				<% end %>
 
@@ -811,9 +824,12 @@
 			</div>
 
 		</div>
+	
+	</div>
 
 
 
+	<div>
 		<% if @commish == true %>
 
 			<div id="commish_tools">
@@ -860,8 +876,9 @@
 
 </div>
 
-<%= @still_alive.length %>
-<%= @pool.id %>
+
+
+
 
 	
 
