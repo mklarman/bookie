@@ -29,7 +29,7 @@ class SecretsController < ApplicationController
 
 		@leagues = League.all 
 		@pools = Pool.all 
-		@page_id
+		@page_id = nil
 		secret = Secret.new(secret_params)
 		@pass = secret.pass
 
@@ -70,7 +70,15 @@ class SecretsController < ApplicationController
 
 			if secret.save!
 
-				redirect_to pool_path(@page_id)
+				if @page_id != nil
+
+					redirect_to pool_path(@page_id)
+
+				else 
+
+					redirect_to pools_path
+
+				end
 
 			else
 
