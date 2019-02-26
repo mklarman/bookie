@@ -26,6 +26,8 @@
  	border: 1px solid red;
  	text-align: center;
  	font-size: 25px;
+ 	background: black;
+ 	color: white;
  }
 
  #home_container{
@@ -138,6 +140,27 @@
 	text-align: right;
 	font-size: 20px;
 	margin-top: 10px;
+
+
+}
+
+#navbar{
+
+	height: 100%;
+	width: 100%;
+	border: 1px solid red;
+	font-size: 20px;
+	text-align: center;
+
+
+
+}
+
+.nav_links{
+
+	display: inline-block;
+	margin-right: 18px;
+
 
 
 }
