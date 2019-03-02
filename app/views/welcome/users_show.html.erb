@@ -54,6 +54,7 @@
 	<% @four_r_sum %>
 	<% @new_pool = false %>
 	<% @id_holder = [] %>
+	<% @pool_id_holder = [] %>
 
 
 
@@ -275,6 +276,8 @@
 				<div id="centering_box">
 
 					<% current_user.selections.each do |s| %>
+
+						<% @pool_id_holder.push(s.pool_id) unless @pool_id_holder.include?(s.pool_id) %>
 			
 						<% if s.result == "winner" %>
 
@@ -294,7 +297,7 @@
 					<% @percentage = @wins.to_f/@total.to_f * 100 %>
 
 
-
+					<div> Pools Played In: <%= @pool_id_holder.length %></div>
 					<div>Selections Made: <%= @total %></div>
 
 					<div>Wins: <%= @wins %></div>
