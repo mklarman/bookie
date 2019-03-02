@@ -1,313 +1,324 @@
+<div id="styling_background">
+	<% @secrets_cont = [] %>
 
-<% @secrets_cont = [] %>
-
-<% @users_leagues = [] %>
-<% @users_pools = [] %>
-<% @completed_pools = [] %>
-<% @completed_leagues = [] %>
-<% @active_leagues = [] %>
-<% @active_pools = [] %>
-<% @contestants = [] %>
-<% @pool_players = [] %>
-<% @pool_standings = [] %>
-<% @eliminated = [] %>
-<% @still_alive = [] %>
-<% @winners = [] %>
-<% @losers = [] %>
-<% @wager_total = 0 %>
-<% @my_date %>
-<% @serial_num_check %>
-<% @wagers_backed = current_user.league_wagers.count %>
-<% @total = 0 %>
-<% @straight_bets = 0 %>
-<% @parlay_bets = 0 %>
-<% @two_team_parlay_bets = 0 %>
-<% @three_team_parlay_bets = 0 %>
-<% @five_team_parlay_bets = 0 %>
-<% @teaser_bets = 0 %>
-<% @two_team_teaser_bets = 0 %>
-<% @three_team_teaser_bets = 0 %>
-<% @five_team_teaser_bets = 0 %>
-<% @reverse_bets = 0 %>
-<% @two_team_reverse_bets = 0 %>
-<% @three_team_reverse_bets = 0 %>
-<% @four_team_reverse_bets = 0 %>
-<% @straight_results = [] %>
-<% @two_t_results = [] %>
-<% @three_t_results = [] %>
-<% @five_t_results = [] %>
-<% @two_p_results = [] %>
-<% @three_p_results = [] %>
-<% @five_p_results = [] %>
-<% @two_r_results = [] %>
-<% @three_r_results = [] %>
-<% @four_r_results = [] %>
-<% @str_sum %>
-<% @two_p_sum %>
-<% @three_p_sum %>
-<% @five_p_sum %>
-<% @two_t_sum %>
-<% @three_t_sum %>
-<% @five_t_sum %>
-<% @two_r_sum %>
-<% @three_r_sum %>
-<% @four_r_sum %>
-<% @new_pool = false %>
-
-
-
-<% self.get_leagues %>
-
-<% self.get_time %>
-
-<% self.convert_date(@my_date) %>
-
-<% @my_date = @serial_num_check %>
+	<% @users_leagues = [] %>
+	<% @users_pools = [] %>
+	<% @completed_pools = [] %>
+	<% @completed_leagues = [] %>
+	<% @active_leagues = [] %>
+	<% @active_pools = [] %>
+	<% @contestants = [] %>
+	<% @pool_players = [] %>
+	<% @pool_standings = [] %>
+	<% @eliminated = [] %>
+	<% @still_alive = [] %>
+	<% @winners = [] %>
+	<% @losers = [] %>
+	<% @wager_total = 0 %>
+	<% @my_date %>
+	<% @serial_num_check %>
+	<% @wagers_backed = current_user.league_wagers.count %>
+	<% @total = 0 %>
+	<% @straight_bets = 0 %>
+	<% @parlay_bets = 0 %>
+	<% @two_team_parlay_bets = 0 %>
+	<% @three_team_parlay_bets = 0 %>
+	<% @five_team_parlay_bets = 0 %>
+	<% @teaser_bets = 0 %>
+	<% @two_team_teaser_bets = 0 %>
+	<% @three_team_teaser_bets = 0 %>
+	<% @five_team_teaser_bets = 0 %>
+	<% @reverse_bets = 0 %>
+	<% @two_team_reverse_bets = 0 %>
+	<% @three_team_reverse_bets = 0 %>
+	<% @four_team_reverse_bets = 0 %>
+	<% @straight_results = [] %>
+	<% @two_t_results = [] %>
+	<% @three_t_results = [] %>
+	<% @five_t_results = [] %>
+	<% @two_p_results = [] %>
+	<% @three_p_results = [] %>
+	<% @five_p_results = [] %>
+	<% @two_r_results = [] %>
+	<% @three_r_results = [] %>
+	<% @four_r_results = [] %>
+	<% @str_sum %>
+	<% @two_p_sum %>
+	<% @three_p_sum %>
+	<% @five_p_sum %>
+	<% @two_t_sum %>
+	<% @three_t_sum %>
+	<% @five_t_sum %>
+	<% @two_r_sum %>
+	<% @three_r_sum %>
+	<% @four_r_sum %>
+	<% @new_pool = false %>
+	<% @id_holder = [] %>
 
 
 
-
-
-
-<% League.all.each do |l| %>
-
-	<% @secrets_cont.each do |s| %>
-
-		<% if l.pass == s %>
-
-			<% @users_leagues.push(l) %>
-
-
-		<% end %>
-
-
-	<% end %>
-
-<% end %>
-
-<div>
-	
-
-	<% Pool.all.each do |p| %>
-
-		<% @secrets_cont.each do |s| %>
-
-			<% if p.pass == s %>
-
-				<% @users_pools.push(p) %>			
-
-			<% end %>
-
-
-		<% end %>
-
-	<% end %>
-
-
-</div>
-
-
-
-<div>
-
-	<% @users_leagues.each do |l| %>
-
-		<% self.convert_date(l.end_date) %>
-
-		<% if @serial_num_check < @my_date %>
-
-			<% @completed_leagues.push(l) %>
-
-		<% else %>
-
-			<% @active_leagues.push(l) %>
-
-		<% end %>
-
-	<% end %>
+	<% self.get_leagues %>
 
 	<% self.get_time %>
 
-	<% @users_pools.each do |p| %>
+	<% self.convert_date(@my_date) %>
 
-		<% @still_alive = [] %>
-		<% @pool_players = [] %>
-		<% @pool_standings = [] %>
-		<% @eliminated = [] %>
-		<% @contestants = [] %>
-		<% @still_in %>
+	<% @my_date = @serial_num_check %>
 
-		<% @pool = p %>
 
-		<% if @pool.groups.count == 1 && @pool.groups.last.date == @my_date %>
-	
-			<% @new_pool = true %>
 
-		<% elsif @pool.groups.count == 0 %>
 
-			<% @new_pool = true %>
+
+
+	<% League.all.each do |l| %>
+
+		<% @secrets_cont.each do |s| %>
+
+			<% if l.pass == s %>
+
+				<% @users_leagues.push(l) %>
+
+
+			<% end %>
+
 
 		<% end %>
-
-
-
-		<% if @new_pool == true %>
-
-			<% @active_pools.push(p) unless @active_pools.include?(p) %>
-
-		<% end %>
-
-
-		<% self.get_pool_players %>
-		<% self.get_all_selections %>
-		<% self.get_remaining_contestants %>
-
-
-		<% if @still_alive.length > 1 %>
-
-			<% @active_pools.push(p) unless @active_pools.include?(p) %>
-
-
-		<% else %>
-
-			<% @completed_pools.push(p) %>
-
-		<% end %>
-
 
 	<% end %>
 
+	<div>
+		
 
-	<% self.get_wager_types %>
+		<% Pool.all.each do |p| %>
 
+			<% @secrets_cont.each do |s| %>
 
-</div>
+				<% if p.pass == s %>
 
-
-<div id="profile_cont">
-	
-	<div id="profile_leagues" class="prof_cont">
-
-		<div id="active_leagues"><div class="prof_label">ACTIVE LEAGUES</div>
-
-				<% @active_leagues.each do |l| %>
-
-					<div class="pool_links"><%=link_to l.league_name.upcase, league_path(l.id) %></div>
+					<% @users_pools.push(p) %>			
 
 				<% end %>
 
-		</div>
 
-		<div id="league_stats"><div class = "prof_label">LEAGUE STATS</div>
+			<% end %>
 
-			<% current_user.league_wagers.each do |w| %>
+		<% end %>
 
 
-				<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+	</div>
 
-					<% @total = @total + (w.net_result.to_i * -1) %>
+
+
+	<div>
+
+		<% @users_leagues.each do |l| %>
+
+			<% self.convert_date(l.end_date) %>
+
+			<% if @serial_num_check < @my_date %>
+
+				<% @completed_leagues.push(l) %>
+
+			<% else %>
+
+				<% @active_leagues.push(l) %>
+
+			<% end %>
+
+		<% end %>
+
+		<% self.get_time %>
+
+		<% @users_pools.each do |p| %>
+
+			<% @still_alive = [] %>
+			<% @pool_players = [] %>
+			<% @pool_standings = [] %>
+			<% @eliminated = [] %>
+			<% @contestants = [] %>
+			<% @still_in %>
+
+			<% @pool = p %>
+
+			<% if @pool.groups.count == 1 && @pool.groups.last.date == @my_date %>
+		
+				<% @new_pool = true %>
+
+			<% elsif @pool.groups.count == 0 %>
+
+				<% @new_pool = true %>
+
+			<% end %>
+
+
+
+			<% if @new_pool == true %>
+
+				<% @active_pools.push(p) unless @active_pools.include?(p) %>
+
+			<% end %>
+
+
+			<% self.get_pool_players %>
+			<% self.get_all_selections %>
+			<% self.get_remaining_contestants %>
+
+
+			<% if @still_alive.length > 1 %>
+
+				<% @active_pools.push(p) unless @active_pools.include?(p) %>
+
+
+			<% else %>
+
+				<% @completed_pools.push(p) %>
+
+			<% end %>
+
+
+		<% end %>
+
+
+		<% self.get_wager_types %>
+
+
+	</div>
+
+
+	<div id="profile_cont">
+		
+		<div id="profile_leagues" class="prof_cont">
+
+			<div id="active_leagues"><div class="prof_label" id="league_label">ACTIVE LEAGUES</div>
+
+					<% @active_leagues.each do |l| %>
+
+						<div class="pool_links"><%=link_to l.league_name.upcase, league_path(l.id) %></div>
+
+					<% end %>
+
+			</div>
+
+			<div id="league_stats"><div class = "prof_label" id="league_stats">LEAGUE STATS</div>
+
+				<% current_user.league_wagers.each do |w| %>
+
+					<% @id_holder.push(w.league_id) unless @id_holder.include?(w.league_id) %>
+
+
+					<% if w.net_result.to_i > 0 || w.net_result.to_i < 0 %>
+
+						<% @total = @total + (w.net_result.to_i * -1) %>
+
+					<% end %>
 
 				<% end %>
 
-			<% end %>
-
-			<% if @total > 0 %>
+				<% if @total > 0 %>
 
 
-				<% @total = "+" + @total.to_s %>
+					<% @total = "+" + @total.to_s %>
 
-			<% end %>
+				<% end %>
 
-			<div id="num_cont">
+				<div id="num_cont">
 
-				
-				<div>Wagers Backed: <%= @wagers_backed %></div>
-				
-				<div>Straight Wagers: <%= @straight_results.length %> booked.  <%= @str_sum %> net profit. </div>
+					<div>Leagues Played In: <%= @id_holder.length %></div>
 
-				<div>Two Team Parlays: <%= @two_p_results.length %> booked.  <%= @two_p_sum %> net profit. </div>
+					
+					<div>Wagers Backed: <%= @wagers_backed %></div>
+					
+					<div>Straight Wagers: <%= @straight_results.length %> booked.  <%= @str_sum %> net profit. </div>
 
-				<div>Three Team Parlays: <%= @three_p_results.length %> booked.  <%= @three_p_sum %> net profit. </div>
+					<div>Two Team Parlays: <%= @two_p_results.length %> booked.  <%= @two_p_sum %> net profit. </div>
 
-				<div>Five Team Parlays: <%= @five_p_results.length %> booked.  <%= @five_p_sum %> net profit. </div>
+					<div>Three Team Parlays: <%= @three_p_results.length %> booked.  <%= @three_p_sum %> net profit. </div>
 
-				<div>Two Team Teasers: <%= @two_t_results.length %> booked.  <%= @two_t_sum %> net profit. </div>
+					<div>Five Team Parlays: <%= @five_p_results.length %> booked.  <%= @five_p_sum %> net profit. </div>
 
-				<div>Three Team Teasers: <%= @three_t_results.length %> booked.  <%= @three_t_sum %> net profit. </div>
+					<div>Two Team Teasers: <%= @two_t_results.length %> booked.  <%= @two_t_sum %> net profit. </div>
 
-				<div>Five Team Teasers: <%= @five_t_results.length %> booked.  <%= @five_t_sum %> net profit. </div>
+					<div>Three Team Teasers: <%= @three_t_results.length %> booked.  <%= @three_t_sum %> net profit. </div>
 
-				<div>Two Team Reverses: <%= @two_r_results.length %> booked.  <%= @two_r_sum %> net profit. </div>
+					<div>Five Team Teasers: <%= @five_t_results.length %> booked.  <%= @five_t_sum %> net profit. </div>
 
-				<div>Three Team Reverses: <%= @three_r_results.length %> booked.  <%= @three_r_sum %> net profit. </div>
+					<div>Two Team Reverses: <%= @two_r_results.length %> booked.  <%= @two_r_sum %> net profit. </div>
 
-				<div>Four Team Reverses: <%= @four_r_results.length %> booked.  <%= @four_r_sum %> net profit. </div>
+					<div>Three Team Reverses: <%= @three_r_results.length %> booked.  <%= @three_r_sum %> net profit. </div>
 
-				<div id="prof_total">Total Profit: <%= @total %></div>
+					<div>Four Team Reverses: <%= @four_r_results.length %> booked.  <%= @four_r_sum %> net profit. </div>
+
+					<div id="prof_total">Total Profit: <%= @total %></div>
+
+				</div>
+
 
 			</div>
 
 
 		</div>
 
+		<div id="profile_pools" class="prof_cont">
 
-	</div>
+			<div id="active_pools"><div class = "prof_label" id="pool_label">ACTIVE POOLS</div>
 
-	<div id="profile_pools" class="prof_cont">
+				<% @active_pools.each do |p| %>
 
-		<div id="active_pools"><div class = "prof_label">ACTIVE POOLS</div>
-
-			<% @active_pools.each do |p| %>
-
-				<div class="pool_links"><%=link_to p.pool_name.upcase, pool_path(p.id) %></div>
-
-			<% end %>
-
-		</div>
-
-		<div id="pool_stats"><div class = "prof_label">POOL STATS</div>
-
-			<% current_user.selections.each do |s| %>
-	
-				<% if s.result == "winner" %>
-
-					<% @winners.push(s) %>
-
-				<% elsif s.result == "loser" %>
-
-					<% @losers.push(s) %>
+					<div class="pool_links"><%=link_to p.pool_name.upcase, pool_path(p.id) %></div>
 
 				<% end %>
 
-			<% end %>
+			</div>
 
-			<% @wins = @winners.length %>
-			<% @total = @losers.length + @winners.length %>
+			<div id="pool_stats"><div class = "prof_label" id="pool_st">POOL STATS</div>
 
-			<% @percentage = @wins.to_f/@total.to_f * 100 %>
+				<div id="centering_box">
+
+					<% current_user.selections.each do |s| %>
+			
+						<% if s.result == "winner" %>
+
+							<% @winners.push(s) %>
+
+						<% elsif s.result == "loser" %>
+
+							<% @losers.push(s) %>
+
+						<% end %>
+
+					<% end %>
+
+					<% @wins = @winners.length %>
+					<% @total = @losers.length + @winners.length %>
+
+					<% @percentage = @wins.to_f/@total.to_f * 100 %>
 
 
 
-			<div>Selections Made: <%= @total %></div>
+					<div>Selections Made: <%= @total %></div>
 
-			<div>Wins: <%= @wins %></div>
-			<div>Losses: <%= @losers.length %></div>
+					<div>Wins: <%= @wins %></div>
+					<div>Losses: <%= @losers.length %></div>
 
-			<div>Percentage: <%= @percentage.to_s + "%" %></div>
+					<div>Percentage: <%= @percentage.to_s + "%" %></div>
+
+				</div>
+
+
+			</div>
+
+			
+
 
 
 		</div>
 
-		
 
 
 
 	</div>
-
-
-
-
 </div>
+
 
 
 

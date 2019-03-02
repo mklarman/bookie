@@ -2,6 +2,15 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+body{
+
+	background: gray;
+}
+
+
+
+
+
 
 #action{
 
@@ -266,7 +275,7 @@
 
 	height: 100%;
 	width: 100%;
-	border: 1px solid red;
+
 	margin-top: 50px;
 }
 
@@ -276,6 +285,7 @@
 	height: 50%;
 	width: 40%;
 	vertical-align: top;
+
 	
 }
 
@@ -288,7 +298,7 @@
 
 .prof_label{
 
-	border: 1px solid red;
+	
 	height: 10%;
 	width: 100%;
 	text-align: center;
@@ -307,7 +317,21 @@
 
 	height: 100%;
 	width: 100%;
-	border: 1px solid red;
+	margin-bottom: 10px;
+
+	
+}
+
+#league_label{
+
+	background: blue;
+	color: white;
+}
+
+#league_stats{
+
+	background: red;
+	color: white;
 }
 
 #num_cont{
@@ -330,7 +354,7 @@
 
 	height: 10%;
 	width: 100%;
-	border: 1px solid red;
+	
 
 
 }
@@ -350,7 +374,30 @@
 	margin-top: 10px;
 
 	height: 100%;
-	width: 60%;
+	width: 100%;
 
 	font-size: 20px;
+	background: orange;
+	color: white;
+	
+}
+
+#pool_label{
+
+	background: green;
+	color: white;
+}
+
+#pool_st{
+
+	width: 100%;
+	background: orange;
+}
+
+#centering_box{
+
+	margin: auto;
+	height: 100%;
+	width: 50%;
+
 }

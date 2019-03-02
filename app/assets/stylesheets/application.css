@@ -35,6 +35,7 @@
  	height: 100%;
  	width: 100%;
  	text-align: center;
+ 	margin-top: 20px;
 
 
  }
@@ -70,6 +71,9 @@
  #ct-head{
 
  	font-size: 20px;
+ 	background: red;
+ 	margin-top: 0%;
+ 	color: white;
  }
 
  #js_form_home{
@@ -151,6 +155,7 @@
 	border: 1px solid red;
 	font-size: 20px;
 	text-align: center;
+	background: white;
 
 
 
@@ -164,6 +169,21 @@
 
 
 }
+
+#ls-head{
+
+	background: blue
+	color: white;
+	margin-top: 0px;
+}
+
+#left_side{
+
+	
+	
+}
+
+
 
 
  
