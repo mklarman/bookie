@@ -1,11 +1,10 @@
 <% @my_date %>
 <% self.get_time %>
-<%= @my_date %>
 <% @serial_num_check %>
 
 <% self.convert_date(@my_date) %>
 
-<%= @serial_num_check %>
+
 
 <div id="pool_index_head">FANICIDE POOLS</div>
 
@@ -84,18 +83,51 @@
 
 		</div>
 
-		<div class = "pool_fields">
+		<div class = "pool_fields">SPORT:
+
+			<div class = "hide"><input id="pool_sports" /></div>
 			
-			<label>SPORT:
-			<input list="client_num" name="client_num" id="pool_sports" /></label>
-		
-			<datalist id="client_num">
-		  		<option value= NFL>
-		  		<option value="NBA">
-		  		<option value="MLB">
-		  		<option value="ALL">
-		  
-			</datalist>
+			<div class = "sport_choice" id="NFL_sp">NFL</div>
+			<div class = "sport_choice" id="NBA_sp">NBA</div>
+			<div class = "sport_choice" id="MLB_sp">MLB</div>
+
+			<script>
+				
+				var nflSP = document.getElementById("NFL_sp")
+				var nbaSP = document.getElementById("NBA_sp")
+				var mlbSP = document.getElementById("MLB_sp")
+
+				nflSP.addEventListener("click", function(){
+
+					pool_sports.value = "NFL"
+					nflSP.style.color = "green"
+					nbaSP.style.color = "red"
+					mlbSP.style.color = "red"
+
+				})
+
+				nbaSP.addEventListener("click", function(){
+
+					pool_sports.value = "NBA"
+					nbaSP.style.color = "green"
+					nflSP.style.color = "red"
+					mlbSP.style.color = "red"
+
+				})
+
+				mlbSP.addEventListener("click", function(){
+
+					pool_sports.value = "MLB"
+					mlbSP.style.color = "green"
+					nflSP.style.color = "red"
+					nbaSP.style.color = "red"
+
+				})
+
+
+
+
+			</script>
 			
 
 		</div>
