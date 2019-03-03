@@ -6,7 +6,7 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-config.assets.initialize_on_precompile = false
+
 
 module Bookie
   class Application < Rails::Application
@@ -17,4 +17,6 @@ module Bookie
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
   end
+
+  config.assets.initialize_on_precompile = false
 end
