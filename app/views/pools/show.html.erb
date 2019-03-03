@@ -437,9 +437,9 @@
 
 		<% end %>
 
-		<div id="main_cont_pool">
+		<div id="main_cont_pool" >
 			
-			<div id="pool_standings"><div>PLAYERS \ WINNING SELECTIONS</div>
+			<div id="pool_standings" style="background: green"><div>PLAYERS \ WINNING SELECTIONS</div>
 
 				
 				<% self.get_all_selections %>
@@ -449,7 +449,8 @@
 
 					<% if st.class == Hash %>
 
-						<div class="player_standings"><%= st[:name].to_s + " " + st[:picks].to_s %></div>
+						<div class="player_standings"><div id="st_name"><%= st[:name].to_s %></div>		<div id="st_num"><%= st[:picks].to_s %></div>
+						</div>
 
 					<% end %>
 
