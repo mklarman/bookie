@@ -184,34 +184,7 @@
 }
 
 
-@media only screen and (max-width: 600px){
 
-
-
-	#signup_link{
-
-	 	height: 100%;
-	 	width: 100%;
-	 	border: 1px solid black;
-	 	font-size: 15px;
-	 	text-align: center;
-	 }
-
-	 #email_login{
-
-	 	font-size: 10px;
-
-
-	 }
-
-	 #pass_login{
-
-	 	font-size: 10px;
-
-
-	 }
-
-}
 
 
 
