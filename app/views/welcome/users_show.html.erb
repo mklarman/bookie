@@ -341,7 +341,7 @@
 
 	<% current_user.league_wagers.each do |w| %>
 
-		<% if w.result == "none" %>
+		<% if w.graded == false %>
 
 			<% @count_up = @count_up + 1 %>
 
