@@ -1,3 +1,6 @@
+<meta name="viewport" content="width=device-width">
+
+<body>
 <% @my_date %>
 <% self.get_time %>
 <% @start_month %>
@@ -5,61 +8,9 @@
 
 <div id="pool_index_head">BOOKIE WARS</div>
 
-<div id="pools_index_cont">
-	
-	<div id="fan_rules">
-		
-		<div id="rules_head">GAME RULES</div>
+<div id="league_index_cont">
 
-		<div id="rules_text">
-			
-			<p>Bookie Wars is a sports betting fantasy game where Bookies book the wagers of AI clients.  Bookie Wars is played in a league format with a start date and an end date.  The league creator sets the league's password and shares it with those they'd like to invite to the league.  League Passwords can be entered on the Bookie Wars page.</p>
-
-
-			<p>All Bookies are issued the same number of clients at the start of a league.  That number is set by the league creator/commissioner.  </p>
-
-			<p>All clients have four attributes: Stakes, Bet Type, Frequency, and Sport.  Owners set the attributes of their client roster at anytime before they book action.  Each attribute has 3 - 5 different settings that the owner can choose from.  The team(s) in the wager though is/are chosen by the client.</p>
-
-			<p>Standings are kept based on the profit of each owner.</p>
-
-			<p>OWNER'S TOOLS</p>
-
-			<p>Book, Grade, View Action.  You can only BOOK new action, once there are no wagers outsanding(waiting to be graded).  Once you BOOK action, then you can view your action and the action of all other owners.  Owner's tools are underneath your client roster.</p>
-
-			<p>The last day to book action is the end date that was set by the commissioner, the following day owners can come back and grade that action before viewing the final standings.
-
-			<p>You can play in as many leagues as you want at the same time.</p>
-
-
-
-
-		</div>
-
-
-
-
-
-
-
-	</div>
-
-	<div class = "hide">
-	
-	<%= form_for @league do |l| %>
-		
-		<div>League Name: <%= l.text_field :league_name %></div>
-		<div>Password: <%= l.text_field :pass %></div>
-		<div># Of Clients: <%= l.text_field :clients %></div>
-		<div>END DATE: <%= l.text_field :end_date %></div>
-		<div>START DATE: <%= l.text_field :start_date %></div>
-		<%= l.submit %>
-		
-	<% end %>
-
-</div>
-
-		
-	<div id="pool_create_cont">
+	<div id="league_create_cont">
 
 		<script>
 			
@@ -76,7 +27,7 @@
 
 		</script>
 
-		<div id="create_pool_label">CREATE NEW LEAGUE</div>
+		<div id="create_league_label">CREATE NEW LEAGUE</div>
 
 		<div class = "top_fields">League Name: <input type="text" name="" id="league_name"></div>
 
@@ -1512,34 +1463,56 @@
 
 			<div id="pass_btns">
 	
-			PASSWORD: <input type="text" name="" id="pass_pool">
-			<input type="submit" value="ENTER" id="sub_pass_pool">
+				PASSWORD: <input type="text" name="" id="pass_pool">
+				<input type="submit" value="ENTER" id="sub_pass_pool">
 
 			</div>
 
+		</div>	
+
 	</div>
+
+	<div id="league_rules">
 		
+		<div id="rules_head">GAME RULES</div>
 
-		
+			<div id="rules_text">
+				
+				<p>Bookie Wars is a sports betting fantasy game where Bookies book the wagers of AI clients.  Bookie Wars is played in a league format with a start date and an end date.  The league creator sets the league's password and shares it with those they'd like to invite to the league.  League Passwords can be entered on the Bookie Wars page.</p>
 
-		
+
+				<p>All Bookies are issued the same number of clients at the start of a league.  That number is set by the league creator/commissioner.  </p>
+
+				<p>All clients have four attributes: Stakes, Bet Type, Frequency, and Sport.  Owners set the attributes of their client roster at anytime before they book action.  Each attribute has 3 - 5 different settings that the owner can choose from.  The team(s) in the wager though is/are chosen by the client.</p>
+
+				<p>Standings are kept based on the profit of each owner.</p>
+
+				<p>OWNER'S TOOLS</p>
+
+				<p>Book, Grade, View Action.  You can only BOOK new action, once there are no wagers outsanding(waiting to be graded).  Once you BOOK action, then you can view your action and the action of all other owners.  Owner's tools are underneath your client roster.</p>
+
+				<p>The last day to book action is the end date that was set by the commissioner, the following day owners can come back and grade that action before viewing the final standings.</p>
+
+				<p>You can play in as many leagues as you want at the same time.</p>
 
 
+
+
+			</div>
 
 		</div>
 
+	
 	</div>
+
+</div>
 
 
 		
 
 
 	
-	<script>
-
-		
-
-		
+	<script>	
 
 		var sub_btn = document.getElementById("sub_btn")
 
@@ -1619,132 +1592,144 @@
 
 
 
-<script>
+		<script>
 
-	var secret = document.getElementById("pass_pool")
-	var secSub = document.getElementById("sub_pass_pool")
+			var secret = document.getElementById("pass_pool")
+			var secSub = document.getElementById("sub_pass_pool")
+			
+			secSub.addEventListener("click", function(){
+
+				var myDate = "<%= @my_date %>"
+				var startDate
+
+				var pass_holder = []
+
+				var passW = " "
+
+				var test = false
+
+				<% League.all.each do |l| %>
+
+					passW = {pass: "<%= l.pass %>", date: "<%= l.start_date %>"}
+
+					pass_holder.push(passW)
+
+				<% end %>
+
+				for(i=0; i<pass_holder.length; i++){
+
+					if (pass_holder[i].pass == secret.value){
+
+						startDate = pass_holder[i].date
+					}
+				}
+
+				function serial(date){
+
+					var day = date[0] + date[1]
+					var month = date[3] + date[4] + date[5]
+					var year = date[7] + date[8] + date[9] + date[10]
+
+					if (month == "Jan"){
+
+						month = "01"
+					
+					}else if (month == "Feb"){
+
+						month = "02"
+					
+					}else if (month == "Mar"){
+
+						month = "03"
+					
+					}else if (month == "Apr"){
+
+						month = "04"
+					
+					}else if (month == "May"){
+
+						month = "05"
+					
+					}else if (month == "Jun"){
+
+						month = "06"
+					
+					}else if (month == "Jul"){
+
+						month = "07"
+					
+					}else if (month == "Aug"){
+
+						month = "08"
+					
+					}else if (month == "Sep"){
+
+						month = "09"
+					
+					}else if (month == "Oct"){
+
+						month = "10"
+					
+					}else if (month == "Nov"){
+
+						month = "11"
+					
+					}else if (month == "Dec"){
+
+						month = "12"
+					}
+
+					var serialNum = year + month + day
+					var serialNum = parseInt(serialNum)
+
+					return serialNum         
+				}
+
+				if (serial(startDate) >= serial(myDate)){
+
+					secret_pass.value = secret.value
+
+					new_secret.submit()
+
+
+
+				}else{
+
+					console.log(startDate)
+					console.log(myDate)
+
+					alert("I'M SORRY BUT THAT LEAGUE HAS STARTED")
+				
+				}
+
+
+
+			})
+
+
+		</script>
+
+	</div>
+
+	<div class = "hide">
 	
-	secSub.addEventListener("click", function(){
-
-		var myDate = "<%= @my_date %>"
-		var startDate
-
-		var pass_holder = []
-
-		var passW = " "
-
-		var test = false
-
-		<% League.all.each do |l| %>
-
-			passW = {pass: "<%= l.pass %>", date: "<%= l.start_date %>"}
-
-			pass_holder.push(passW)
-
-		<% end %>
-
-		for(i=0; i<pass_holder.length; i++){
-
-			if (pass_holder[i].pass == secret.value){
-
-				startDate = pass_holder[i].date
-			}
-		}
-
-		function serial(date){
-
-			var day = date[0] + date[1]
-			var month = date[3] + date[4] + date[5]
-			var year = date[7] + date[8] + date[9] + date[10]
-
-			if (month == "Jan"){
-
-				month = "01"
-			
-			}else if (month == "Feb"){
-
-				month = "02"
-			
-			}else if (month == "Mar"){
-
-				month = "03"
-			
-			}else if (month == "Apr"){
-
-				month = "04"
-			
-			}else if (month == "May"){
-
-				month = "05"
-			
-			}else if (month == "Jun"){
-
-				month = "06"
-			
-			}else if (month == "Jul"){
-
-				month = "07"
-			
-			}else if (month == "Aug"){
-
-				month = "08"
-			
-			}else if (month == "Sep"){
-
-				month = "09"
-			
-			}else if (month == "Oct"){
-
-				month = "10"
-			
-			}else if (month == "Nov"){
-
-				month = "11"
-			
-			}else if (month == "Dec"){
-
-				month = "12"
-			}
-
-			var serialNum = year + month + day
-			var serialNum = parseInt(serialNum)
-
-			return serialNum         
-		}
-
-		if (serial(startDate) >= serial(myDate)){
-
-			secret_pass.value = secret.value
-
-			new_secret.submit()
-
-
-
-		}else{
-
-			console.log(startDate)
-			console.log(myDate)
-
-			alert("I'M SORRY BUT THAT LEAGUE HAS STARTED")
+	<%= form_for @league do |l| %>
 		
-		}
-
-
-
-	})
-
-
-</script>
-
-
-
-
-
-
-
+		<div>League Name: <%= l.text_field :league_name %></div>
+		<div>Password: <%= l.text_field :pass %></div>
+		<div># Of Clients: <%= l.text_field :clients %></div>
+		<div>END DATE: <%= l.text_field :end_date %></div>
+		<div>START DATE: <%= l.text_field :start_date %></div>
+		<%= l.submit %>
+		
+	<% end %>
 
 </div>
-</div>
+
+		
+	
+</body>
+
 
 
 
