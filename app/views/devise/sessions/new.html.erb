@@ -60,10 +60,13 @@
           EMAIL: <input type="text" name="" id="email_login">
           <div>PASSWORD: <input type="text" name="" id="pass_login"></div>
           <div id="sub_log"><input type="submit" name="" value="LOGIN" id="sub_login"></div>
+
           
 
 
         </div>
+
+        <div id="dev_link"><%= render "devise/shared/links" %></div>
 
 
       </div>
@@ -75,7 +78,7 @@
          <div id="signup_link"><p><%= link_to "SIGN UP", new_user_registration_path %></p></div>
 
 
-          <div id="dev_link"><%= render "devise/shared/links" %></div>
+
 
 
       </div>

@@ -130,7 +130,7 @@
  	height: 100%;
  	width: 100%;
  	border: 1px solid black;
- 	margin-top: 20px;
+ 	margin-top: 40px;
  	font-size: 20px;
  	text-align: center;
 
@@ -208,6 +208,12 @@
 	width: 100%;
 	font-size: 15px;
 	
+}
+
+#log_message{
+
+	margin-top: 3%;
+	border: 1px solid red;
 }
 
 
