@@ -188,7 +188,6 @@
 
 	height: 100%;
 	width: 100%;
-	border: 1px solid red;
 	margin-top: 3%;
 	margin-bottom: 3%;
 }
@@ -196,11 +195,19 @@
 #sub_log{
 
 	height: 100%;
-	width: 15%;
-	border: 1px solid red;
+	width: 100%;
+
 	margin: auto;
 	margin-top: 1%;
 	margin-bottom: 1%;
+}
+
+#input_boxes{
+
+	height: 100%;
+	width: 100%;
+	font-size: 15px;
+	
 }
 
 
