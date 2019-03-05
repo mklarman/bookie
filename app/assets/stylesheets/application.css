@@ -188,7 +188,7 @@
 
 	height: 100%;
 	width: 100%;
-	margin-top: 3%;
+	margin-top: 2%;
 	margin-bottom: 3%;
 }
 
@@ -212,8 +212,8 @@
 
 #log_message{
 
-	margin-top: 3%;
-	border: 1px solid red;
+	margin-top: 10%;
+	
 }
 
 
