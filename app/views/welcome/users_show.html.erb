@@ -324,7 +324,7 @@
 
 <div>
 	
-	<% current_user.admin == true %>
+	<% if current_user.admin == true %>
 
 		<%= User.all.count %>
 
