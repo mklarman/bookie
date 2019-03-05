@@ -335,6 +335,28 @@
 
 </div>
 
+<% @count_up = 0 %>
+
+<div>
+
+	<% current_user.league_wagers.each do |w| %>
+
+		<% if w.result == "none" %>
+
+			<% @count_up = @count_up + 1 %>
+
+		<% end %>
+
+
+
+	<% end %>
+
+	<%= @count_up %>
+
+
+
+</div>
+
 
 
 
