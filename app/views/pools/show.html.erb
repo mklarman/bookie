@@ -21,6 +21,7 @@
 <% @qualified_players = [] %>
 <% @eliminated = [] %>
 <% @op_sel = [] %>
+<% @pl_hold = [] %>
 <% @groups_total %>
 <% @group_num = [4, 3, 5, 2] %>
 <% @players_in_group = @group_num.sample %>
@@ -49,6 +50,7 @@
 <% @show_standings = false %>
 <% @create_group = false %>
 <% @all_new_selections = true %>
+<% @games_started = false %>
 <% @design_1 = false %>
 <% @design_2 = false %>
 <% @design_3 = false %>
@@ -439,7 +441,7 @@
 
 		<div id="main_cont_pool" >
 			
-			<div id="pool_standings" style="background: green"><div>PLAYERS \ WINNING SELECTIONS</div>
+			<div id="pool_standings" style="background: green;"><div>PLAYERS \ WINNING SELECTIONS</div>
 
 				
 				<% self.get_all_selections %>
@@ -594,66 +596,114 @@
 
 				<% elsif @design_6 == true || @design_10 == true %>
 
-
 					<% if @pool.groups.last.date == @my_date %>
 
-						<div id="group">PLAYERS
+						<% @pl_hold.push(@pool.groups.last.player1) %>
+						<% @pl_hold.push(@pool.groups.last.player2) %>
 
-							<div id="pl1" class="group_players"></div>
-							<div id="pl2" class="group_players"></div>
-							<div id="pl3" class="group_players"></div>
-							<div id="pl4" class="group_players"></div>
-							<div id="pl5" class="group_players"></div>
-							
-							<script>
+						<% if @pool.groups.last.player3 != nil && @pool.groups.last.player3.length > 3 %>
 
-								var groupId
-								var player1 = ""
-								var player2 = ""
-								var player3 = ""
-								var player4 = ""
-								var player5 = ""
-								var player_holder = []
-									
+							<% @pl_hold.push(@pool.groups.last.player3) %>
 
-								<% Group.all.each do |g| %>
+						<% end %>
 
-									<% if g.pool_id.to_i == @pool.id.to_i %>
+						<% if @pool.groups.last.player4 != nil && @pool.groups.last.player4.length > 3 %>
 
-										<% if g.date == @my_date %>
+							<% @pl_hold.push(@pool.groups.last.player4) %>
 
-											groupId = "<%= g.id %>"
+						<% end %>
 
-											player1 = " "
-											player2 = " "
-											player3 = " "
-											player4 = " "
-											player5 = " "
+						<% if @pool.groups.last.player5 != nil && @pool.groups.last.player5.length > 3 %>
 
-											player1 = "<%= g.player1 %>"
-											player_holder.push(player1)
-											
-											player2 = "<%= g.player2 %>"
-											player_holder.push(player2)
+							<% @pl_hold.push(@pool.groups.last.player5) %>
 
-											<% if g.player3 != nil %>
+						<% end %>
 
-												player3 = "<%= g.player3 %>"
-												player_holder.push(player3)
+						<% @tickets.all.each do |t| %>
 
-											<% end %>
+							<% if t.date == @my_date %>
 
-											<% if g.player4 != nil %>
+								<% @pl_hold.each do |pl| %>
 
-												player4 = "<%= g.player4 %>"
-												player_holder.push(player4)
+									<% if pl == t.name %>
 
-											<% end %>
+										<% if t.started == "true" %>
 
-											<% if g.player5 != nil %>
+											<% @games_started = true %>
 
-												player5 = "<%= g.player5 %>"
-												player_holder.push(player5)				
+										<% end %>
+
+
+									<% end %>
+
+								<% end %>
+
+							<% end %>
+
+
+						<% end %>
+
+						<% if @games_started == false %>
+
+							<div id="group">PLAYERS
+
+								<div id="pl1" class="group_players"></div>
+								<div id="pl2" class="group_players"></div>
+								<div id="pl3" class="group_players"></div>
+								<div id="pl4" class="group_players"></div>
+								<div id="pl5" class="group_players"></div>
+								
+								<script>
+
+									var groupId
+									var player1 = ""
+									var player2 = ""
+									var player3 = ""
+									var player4 = ""
+									var player5 = ""
+									var player_holder = []
+										
+
+									<% Group.all.each do |g| %>
+
+										<% if g.pool_id.to_i == @pool.id.to_i %>
+
+											<% if g.date == @my_date %>
+
+												groupId = "<%= g.id %>"
+
+												player1 = " "
+												player2 = " "
+												player3 = " "
+												player4 = " "
+												player5 = " "
+
+												player1 = "<%= g.player1 %>"
+												player_holder.push(player1)
+												
+												player2 = "<%= g.player2 %>"
+												player_holder.push(player2)
+
+												<% if g.player3 != nil %>
+
+													player3 = "<%= g.player3 %>"
+													player_holder.push(player3)
+
+												<% end %>
+
+												<% if g.player4 != nil %>
+
+													player4 = "<%= g.player4 %>"
+													player_holder.push(player4)
+
+												<% end %>
+
+												<% if g.player5 != nil %>
+
+													player5 = "<%= g.player5 %>"
+													player_holder.push(player5)				
+
+												<% end %>
 
 											<% end %>
 
@@ -661,143 +711,147 @@
 
 									<% end %>
 
-								<% end %>
-
-								pl1.innerHTML = player1
-								pl2.innerHTML = player2
-								pl3.innerHTML = player3
-								pl4.innerHTML = player4
-								pl5.innerHTML = player5
+									pl1.innerHTML = player1
+									pl2.innerHTML = player2
+									pl3.innerHTML = player3
+									pl4.innerHTML = player4
+									pl5.innerHTML = player5
 
 
-								pl1.addEventListener("click", function(){
+									pl1.addEventListener("click", function(){
 
-									selection = player1
-									selection_group_id.value = groupId
-									selection_selection.value = selection
-									new_selection.submit()
-
-
-								})
-
-								pl2.addEventListener("click", function(){
-
-									selection = player2
-									selection_group_id.value = groupId
-									selection_selection.value = selection
-									new_selection.submit()
+										selection = player1
+										selection_group_id.value = groupId
+										selection_selection.value = selection
+										new_selection.submit()
 
 
-								})
+									})
 
-								pl3.addEventListener("click", function(){
+									pl2.addEventListener("click", function(){
 
-									selection = player3
-									selection_group_id.value = groupId
-									selection_selection.value = selection
-									new_selection.submit()
-
-
-								})
-
-								pl4.addEventListener("click", function(){
-
-									selection = player4
-									selection_group_id.value = groupId
-									selection_selection.value = selection
-									new_selection.submit()
+										selection = player2
+										selection_group_id.value = groupId
+										selection_selection.value = selection
+										new_selection.submit()
 
 
-								})
+									})
 
-								pl5.addEventListener("click", function(){
+									pl3.addEventListener("click", function(){
 
-									selection = player5
-									selection_group_id.value = groupId
-									selection_selection.value = selection
-									new_selection.submit()
+										selection = player3
+										selection_group_id.value = groupId
+										selection_selection.value = selection
+										new_selection.submit()
 
 
-								})
+									})
+
+									pl4.addEventListener("click", function(){
+
+										selection = player4
+										selection_group_id.value = groupId
+										selection_selection.value = selection
+										new_selection.submit()
+
+
+									})
+
+									pl5.addEventListener("click", function(){
+
+										selection = player5
+										selection_group_id.value = groupId
+										selection_selection.value = selection
+										new_selection.submit()
+
+
+									})
 
 
 
-							</script>
+								</script>
 
-						</div>
+							</div>
+
+						<% else %>
+
+							<div class="action_message">TODAY'S GAMES HAVE STARTED.  IF YOU FAILED TO MAKE A SELECTION THEN YOU ARE ELIMINATED.</div>
+
+						<% end %>
 
 					<% else %>
 
 
-						<% if @group_ready == false %>
+							<% if @group_ready == false %>
 
-							<% if @commish == true %>
+								<% if @commish == true %>
 
-								<div class="action_message">UPLOADING PLAYERS FOR TODAY.  CHECK BACK AFTER 10AM EASTERN.</div>
+									<div class="action_message">UPLOADING PLAYERS FOR TODAY.  CHECK BACK AFTER 10AM EASTERN.</div>
 
-							<% else %>
+								<% else %>
 
-								<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
+									<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
 
-							<% end %>
-
-						<% else %>
-
-							<% if @commish == true %>
-
-								<div class="action_message">CREATE THE NEXT GROUP WHEN READY.</div>
+								<% end %>
 
 							<% else %>
 
-								<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
+								<% if @commish == true %>
+
+									<div class="action_message">CREATE THE NEXT GROUP WHEN READY.</div>
+
+								<% else %>
+
+									<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
+
+								<% end %>
 
 							<% end %>
 
 						<% end %>
 
-					<% end %>
 
+					<% elsif @design_7 == true %>
 
-				<% elsif @design_7 == true %>
+						<% @tied_players.each do |p| %>
 
-					<% @tied_players.each do |p| %>
+							<div><%= p.username.upcase + " has tied for the win " %></div>
 
-						<div><%= p.username.upcase + " has tied for the win " %></div>
+						<% end %>
 
-					<% end %>
+					<% elsif @design_8 == true %>
 
-				<% elsif @design_8 == true %>
+						<div><%= @still_alive[0].username.upcase + " has won the pool" %></div>
 
-					<div><%= @still_alive[0].username.upcase + " has won the pool" %></div>
+					<% elsif @design_11 == true %>
 
-				<% elsif @design_11 == true %>
+						<% if @commish == true %>
 
-					<% if @commish == true %>
+							<div class="action_message">CREATE THE NEXT GROUP WHEN READY.</div>
 
-						<div class="action_message">CREATE THE NEXT GROUP WHEN READY.</div>
+						<% else %>
 
-					<% else %>
+							<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
 
-						<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
+						<% end %>
 
-					<% end %>
-
-					
-
-				<% else %>
-
-					<% if @commish == true %>
-
-						<div class="action_message">UPLOADING PLAYER POINTS.  CHECK BACK AFTER 10AM EASTERN TIME.</div>
+						
 
 					<% else %>
 
-						<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
+						<% if @commish == true %>
+
+							<div class="action_message">UPLOADING PLAYER POINTS.  CHECK BACK AFTER 10AM EASTERN TIME.</div>
+
+						<% else %>
+
+							<div class="action_message">WAITING ON THE COMMISSIONER TO GENERATE THE NEXT GROUP.</div>
+
+						<% end %>
+						
 
 					<% end %>
-					
-
-				<% end %>
 
 
 			</div>
@@ -898,6 +952,7 @@
 
 
 </div>
+
 
 
 

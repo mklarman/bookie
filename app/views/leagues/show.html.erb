@@ -529,7 +529,7 @@
 
 			<% c.league_wagers.each do |w| %>
 
-				<%= w.net_result %>
+				<%= w.net_result.to_s + w.wager_type  %>
 
 			<% end %>
 

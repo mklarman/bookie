@@ -1,7 +1,7 @@
 <% @my_date %>
 <% self.get_time %>
 
-
+<div>TICKETS TO BE UPDATED</div>
 
 <% @tickets.each do |t| %>
 
@@ -15,6 +15,25 @@
 			<%= link_to "EDIT", edit_ticket_path(t.id) %>
 
 		</div>
+
+	<% end %>
+
+
+<% end %>
+
+<div>TODAY'S GAMES</div>
+
+<% @tickets.each do |t| %>
+
+	<% if t.date == @my_date %>
+
+		<div>
+			
+			<%= t.name %>
+			<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+		</div>
+
 
 	<% end %>
 

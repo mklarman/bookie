@@ -1,4 +1,19 @@
-<%= form_for @ticket do |t| %>
+<% @my_date %>
+<% self.get_time %>
+
+<% if @ticket.date == @my_date %>
+	
+	<%= form_for @ticket do |t| %>
+
+		<%= t.text_field :started %>
+		<%= t.submit %>
+
+
+	<% end %>
+
+<% else %>
+
+	<%= form_for @ticket do |t| %>
 
 	<%= t.text_field :name, value: @ticket.name %>
 	<%= t.text_field :score %>
@@ -6,4 +21,9 @@
 	<%= t.submit %>
 
 
+	<% end %>
+
+
+
 <% end %>
+
