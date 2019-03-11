@@ -476,6 +476,53 @@ module PoolsHelper
 
 	end
 
+	def sort_tickets
+
+		Ticket.all.each do |t|
+
+			if t.sport == "NFL"
+
+				@nfl_tick.push(t)
+
+
+			end
+
+			if t.sport == "NBA"
+
+				@nba_tick.push(t)
+
+
+			end
+
+			if t.sport == "MLB"
+
+				@mlb_tick.push(t)
+
+			end
+
+
+		end
+
+
+	end
+
+	def check_start(tick_array)
+
+		tick_array.each do |t|
+
+			if t.started == "true"
+
+				@games_started = true
+
+
+			end
+
+
+		end
+
+
+	end
+
 
 end
 

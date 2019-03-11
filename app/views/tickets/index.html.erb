@@ -1,42 +1,231 @@
 <% @my_date %>
 <% self.get_time %>
 
-<div>TICKETS TO BE UPDATED</div>
+<div id="tick_index_cont">
 
-<% @tickets.each do |t| %>
+	<div style="display: inline-block; vertical-align: top; margin-right: 10%; height: 100%; width: 40%;">
+
+		<div id="t_label" style="font-size: 150%; margin-bottom: 10%; margin-right: 10%">NEEDS UPDATING</div>
+
+		<div style="display: inline-block; margin-right: 5%; margin-bottom: 5%; vertical-align: top;">
+
+			<div id="sport_label">NFL</div>
+
+			<div class="ticket_info">
+
+				<% @tickets.each do |t| %>
 
 
-	<% if t.updated == "f" && t.date != @my_date %>
+					<% if t.updated == "f" && t.date != @my_date %>
 
-		<div>
+						<% if t.sport == "NFL" %>
+
+							<div>
+				
+								<%= t.name %>
+								<%= t.date %>
+								<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+							</div>
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+
+			</div>
 			
-			<%= t.name %>
-			<%= t.date %>
-			<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+		</div>
+			
+
+		<div style="display: inline-block; margin-right: 5%; margin-bottom: 5%; vertical-align: top;">
+
+			<div id="sport_label">NBA</div>
+
+			<div class="ticket_info">
+
+				<% @tickets.each do |t| %>
+
+
+					<% if t.updated == "f" && t.date != @my_date %>
+
+						<% if t.sport == "NBA" %>
+
+							<div>
+				
+								<%= t.name %>
+								<%= t.date %>
+								<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+							</div>
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+
+			</div>
+			
+			
+		</div>
+
+		<div style="display: inline-block; margin-right: 5%; margin-bottom: 5%; vertical-align: top;">
+
+			<div id="sport_label">MLB</div>
+
+			<div class="ticket_info">
+
+				<% @tickets.each do |t| %>
+
+
+					<% if t.updated == "f" && t.date != @my_date %>
+
+						<% if t.sport == "MLB" %>
+
+							<div>
+				
+								<%= t.name %>
+								<%= t.date %>
+								<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+							</div>
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+
+			</div>
+			
+			
+		</div>
+
+	</div>
+
+	<div style="display: inline-block; vertical-align: top;">
+
+		<div id="t_label" style="font-size: 150%; margin-bottom: 10%; margin-right: 10%">TODAY'S TICKETS</div>
+
+		<div style="display: inline-block; margin-right: 5%; margin-bottom: 5%; vertical-align: top;">
+
+			<div id="sport_label">NFL</div>
+
+			<div class="ticket_info">
+
+				<% @tickets.each do |t| %>
+
+
+					<% if t.date == @my_date %>
+
+						<% if t.sport == "NFL" %>
+
+							<div>
+				
+								<%= t.name %>
+								<%= t.date %>
+								<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+							</div>
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+
+			</div>
+			
 
 		</div>
 
-	<% end %>
+		<div style="display: inline-block; margin-right: 5%; margin-bottom: 5%; vertical-align: top;">
+
+			<div id="sport_label">NBA</div>
+
+			<div class="ticket_info">
+
+				<% @tickets.each do |t| %>
 
 
-<% end %>
+					<% if t.date == @my_date %>
 
-<div>TODAY'S GAMES</div>
+						<% if t.sport == "NBA" %>
 
-<% @tickets.each do |t| %>
+							<div>
+				
+								<%= t.name %>
+								<%= t.date %>
+								<%= link_to "EDIT", edit_ticket_path(t.id) %>
 
-	<% if t.date == @my_date %>
+							</div>
 
-		<div>
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+
+			</div>
 			
-			<%= t.name %>
-			<%= link_to "EDIT", edit_ticket_path(t.id) %>
+			
+		</div>
 
+		<div style="display: inline-block; margin-right: 5%; margin-bottom: 5%; vertical-align: top;">
+
+			<div id="sport_label">MLB</div>
+
+			<div class="ticket_info">
+
+				<% @tickets.each do |t| %>
+
+
+					<% if t.date == @my_date %>
+
+						<% if t.sport == "MLB" %>
+
+							<div>
+				
+								<%= t.name %>
+								<%= t.date %>
+								<%= link_to "EDIT", edit_ticket_path(t.id) %>
+
+							</div>
+
+						<% end %>
+
+
+					<% end %>
+
+				<% end %>
+
+
+			</div>
+			
+			
 		</div>
 
 
-	<% end %>
+	</div>
+		
+
+</div>
+
+	
 
 
-<% end %>
+
 

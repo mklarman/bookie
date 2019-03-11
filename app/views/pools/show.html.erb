@@ -22,6 +22,9 @@
 <% @eliminated = [] %>
 <% @op_sel = [] %>
 <% @pl_hold = [] %>
+<% @nfl_tick = [] %>
+<% @nba_tick = [] %>
+<% @mlb_tick = [] %>
 <% @groups_total %>
 <% @group_num = [4, 3, 5, 2] %>
 <% @players_in_group = @group_num.sample %>
@@ -595,6 +598,23 @@
 					</div>
 
 				<% elsif @design_6 == true || @design_10 == true %>
+
+					<% self.sort_tickets %>
+
+					<% if @pool.sport == "NFL" %>
+
+						<% self.check_start(@nfl_tick) %>
+
+					<% elsif @pool.sport == "NBA" %>
+
+						<% self.check_start(@nbs_tick) %>
+
+					<% elsif @pool.sport == "MLB" %>
+
+						<% self.check_start(@mlb_tick) %>
+
+
+					<% end %>
 
 					<% if @pool.groups.last.date == @my_date %>
 
