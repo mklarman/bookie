@@ -71,9 +71,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.id %></div>
 
 	</div>
 
@@ -83,21 +84,23 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.id %></div>
 
 	</div>
 
-<% elsif @wager.wager_type == "three team teaser" %>
+<% elsif @wager.wager_type.upcase == "three team teaser" %>
 
 	<% self.three_team_teasers %>
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+		<div><%= @wager.id %></div>
 
 	</div>
 
@@ -107,9 +110,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
@@ -119,9 +123,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
@@ -131,9 +136,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
@@ -143,9 +149,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
@@ -155,9 +162,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
@@ -167,9 +175,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
@@ -179,9 +188,10 @@
 
 	<div class="data_display">
 
-		<div><%= @wager.wager_type %></div>
+		<div><%= @wager.wager_type.upcase %></div>
 
 		<div><%= "NET RESULT: " + @net_p_l.to_s %>
+			<div><%= @wager.id %></div>
 
 	</div>
 
