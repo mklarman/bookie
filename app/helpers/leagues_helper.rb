@@ -3666,7 +3666,7 @@ end
 
 					end
 
-				elsif @winners.length == 2
+				elsif @winners.length > 1
 
 					@ml_counter = 0
 
@@ -5930,7 +5930,7 @@ end
 
 							else
 
-								@rev_win.push(t.name)
+								@rev_win.push(t.name) unless @rev_win.include?(t.name)
 
 							end
 
@@ -5947,13 +5947,13 @@ end
 
 							else
 
-								@rev_lose.push(t.name)
+								@rev_lose.push(t.name) unless @rev_lose.include?(t.name)
 
 							end
 
 						elsif t.spread_result == "push"
 
-							@rev_push.push(t.name)
+							@rev_push.push(t.name) unless @rev_push.include?(t.name)
 
 						end
 
@@ -5972,7 +5972,7 @@ end
 
 							else
 
-								@rev_lose.push(t.opp)
+								@rev_lose.push(t.opp) unless @rev_lose.include?(t.opp)
 
 							end
 
@@ -5990,13 +5990,13 @@ end
 
 							else
 
-								@rev_win.push(t.opp)
+								@rev_win.push(t.opp) unless @rev_win.include?(t.opp)
 
 							end
 
 						elsif t.spread_result == "push"
 
-							@rev_push.push(t.opp)
+							@rev_push.push(t.opp) unless @rev_push.include?(t.opp)
 
 						end
 
@@ -6004,15 +6004,15 @@ end
 
 						if t.total_result == "over"
 
-							@rev_win.push(t.over_line)
+							@rev_win.push(t.over_line) unless @rev_win.include?(t.over_line)
 
 						elsif t.total_result == "under"
 
-							@rev_lose.push(t.over_line)
+							@rev_lose.push(t.over_line) unless @rev_lose.include?(t.over_line)
 
 						elsif t.total_result == "push"
 
-							@rev_push.push(t.over_line)
+							@rev_push.push(t.over_line) unless @rev_push.include?(t.over_line)
 
 						end
 
@@ -6020,15 +6020,15 @@ end
 
 						if t.total_result == "over"
 
-							@rev_lose.push(t.under_line)
+							@rev_lose.push(t.under_line) unless @rev_lose.include?(t.under_line)
 
 						elsif t.total_result == "under"
 
-							@rev_win.push(t.under_line)
+							@rev_win.push(t.under_line) unless @rev_win.include?(t.under_line)
 
 						elsif t.total_result == "push"
 
-							@rev_push.push(t.under_line)
+							@rev_push.push(t.over_line) unless @rev_push.include?(t.over_line)
 
 						end
 
@@ -6049,7 +6049,7 @@ end
 
 							else
 
-								@rev_win.push(t.name)
+								@rev_win.push(t.name) unless @rev_win.include?(t.name)
 
 							end
 
@@ -6066,13 +6066,13 @@ end
 
 							else
 
-								@rev_lose.push(t.name)
+								@rev_lose.push(t.name) unless @rev_lose.include?(t.name)
 
 							end
 
 						elsif t.spread_result == "push"
 
-							@rev_push.push(t.name)
+							@rev_push.push(t.name) unless @rev_push.include?(t.name)
 
 						end
 
@@ -6091,7 +6091,7 @@ end
 
 							else
 
-								@rev_lose.push(t.opp)
+								@rev_lose.push(t.opp) unless @rev_lose.include?(t.opp)
 
 							end
 
@@ -6108,14 +6108,14 @@ end
 
 							else
 
-								@rev_win.push(t.opp)
+								@rev_win.push(t.opp) unless @rev_win.include?(t.opp)
 
 							end
 
 
 						elsif t.spread_result == "push"
 
-							@rev_push.push(t.opp)
+							@rev_push.push(t.opp) unless @rev_push.include?(t.opp)
 
 						end
 
@@ -6123,15 +6123,15 @@ end
 
 						if t.total_result == "over"
 
-							@rev_win.push(t.over_line)
+							@rev_win.push(t.over_line) unless @rev_win.include?(t.over_line)
 
 						elsif t.total_result == "under"
 
-							@rev_lose.push(t.over_line)
+							@rev_lose.push(t.over_line) unless @rev_lose.include?(t.over_line)
 
 						elsif t.total_result == "push"
 
-							@rev_push.push(t.over_line)
+							@rev_push.push(t.over_line) unless @rev_push.include?(t.over_line)
 
 						end
 
@@ -6139,15 +6139,15 @@ end
 
 						if t.total_result == "over"
 
-							@rev_lose.push(t.under_line)
+							@rev_lose.push(t.under_line) unless @rev_lose.include?(t.under_line)
 
 						elsif t.total_result == "under"
 
-							@rev_win.push(t.under_line)
+							@rev_win.push(t.under_line) unless @rev_win.include?(t.under_line)
 
 						elsif t.total_result == "push"
 
-							@rev_push.push(t.under_line)
+							@rev_push.push(t.under_line) unless @rev_push.include?(t.under_line)
 
 						end
 

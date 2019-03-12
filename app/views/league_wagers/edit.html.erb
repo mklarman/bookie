@@ -1,25 +1,15 @@
 <% @wager_id = @wager.id %>
 <% @league_id = @wager.league_id %>
 
+
+
+
 <% @my_date %>
 <% self.get_time %>
 
 <% @cl_id = @wager.league_client_id %>
 
 <% @ungraded_wagers = [] %>
-
-<% LeagueWager.all.each do |w| %>
-
-	<% if w.league_id.to_i == @league_id.to_i %>
-
-
-
-	<% end %>
-
-
-
-<% end %>
-
 
 <% current_user.league_wagers.each do |w| %>
 
@@ -43,6 +33,7 @@
 
 <% @winners %>
 <% @losers %>
+<% @pushes %>
 <% @parlay_one %>
 <% @parlay_two %>
 <% @parlay_three %>
@@ -62,7 +53,6 @@
 <% @rev_win %>
 <% @rev_lose %>
 <% @rev_push %>
-
 
 
 <% if @wager.wager_type == "straight" %>
@@ -91,7 +81,9 @@
 
 	</div>
 
-<% elsif @wager.wager_type.upcase == "three team teaser" %>
+<% elsif @wager.wager_type == "three team teaser" %>
+
+	<%= "HERE" %>
 
 	<% self.three_team_teasers %>
 
@@ -119,7 +111,9 @@
 
 <% elsif @wager.wager_type == "two team parlay" %>
 
+
 	<% self.two_team_parlays %>
+
 
 	<div class="data_display">
 
@@ -157,6 +151,7 @@
 	</div>
 
 <% elsif @wager.wager_type == "two team reverse" %>
+	
 
 	<% self.two_team_reverses %>
 
@@ -196,6 +191,7 @@
 	</div>
 
 <% end %>
+
 
 <div class = "hide">
 
@@ -253,3 +249,8 @@
 </script>
 
 <script src="/assets/grade_wager.js"></script>
+
+
+
+
+

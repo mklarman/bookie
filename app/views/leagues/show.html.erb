@@ -55,6 +55,11 @@
 
 		<% if t.updated == "f" %>
 
+			ID: <%= t.id %>
+			SP: <%= t.sport %>
+			D: <%= t.date %>
+			<%= link_to "EDIT", edit_team_path(t.id) %>
+
 			<% @grade_ready = false %>
 
 		<% end %>
@@ -529,7 +534,7 @@
 
 			<% c.league_wagers.each do |w| %>
 
-				<%= w.net_result.to_s + w.wager_type  %>
+				<%= w.net_result.to_s + w.wager_type + w.id.to_s  %>
 
 			<% end %>
 
@@ -542,6 +547,8 @@
 
 
 </div>
+
+
 
 
 
