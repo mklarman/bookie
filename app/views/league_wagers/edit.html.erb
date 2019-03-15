@@ -29,6 +29,14 @@
 <% @client_results = [] %>
 <% @user_results = [] %>
 <% @current_br  %>
+<% @half_point = false %>
+<% @total_half_point = false %>
+<% @total %>
+<% @spread1 %>
+<% @spread2 %>
+<% @spread3 %>
+<% @spread4 %>
+<% @spread5 %>
 
 
 <% @winners %>
@@ -53,6 +61,8 @@
 <% @rev_win %>
 <% @rev_lose %>
 <% @rev_push %>
+
+
 
 
 <% if @wager.wager_type == "straight" %>
@@ -82,8 +92,6 @@
 	</div>
 
 <% elsif @wager.wager_type == "three team teaser" %>
-
-	<%= "HERE" %>
 
 	<% self.three_team_teasers %>
 
@@ -223,6 +231,7 @@
 	<% end %>
 
 </div>
+
 
 <script>
 

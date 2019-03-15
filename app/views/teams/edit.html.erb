@@ -1,3 +1,6 @@
+<% @half_point = false %>
+<% @spread %>
+
 <%= form_for @team do |t| %>
 
 	Date:<div><%= t.text_field :date %></div>
@@ -24,6 +27,35 @@
 
 
 <% end %>
+
+<% self.convert_spread(@team.spread) %>
+
+<% if @half_point == true %>
+
+	<% @spread = @team.spread.to_i %>
+
+	<% @spread = @spread.to_f %>
+
+	<% if @spread < 0 %>
+
+		<% @spread = @spread - 0.5 %>
+
+	<% else %>
+
+		<% @spread = @spread + 0.5 %>
+
+	<% end %>
+	
+
+
+<% else %>
+
+	<% @spread = @team.spread.to_i %>
+
+
+<% end %>
+
+
 
 
 

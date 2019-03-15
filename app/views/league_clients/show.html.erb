@@ -15,6 +15,9 @@
 
 <% end %>
 
+
+
+
   
 
 
@@ -76,6 +79,8 @@
 	<% @pick3 %>
 	<% @pick4 %>
 	<% @pick5 %>
+	<% @spread %>
+	<% @total %>
 	<% @spread1 %>
 	<% @spread2 %>
 	<% @spread3 %>
@@ -85,6 +90,9 @@
 	<% @pick_hashes = [] %>
 	<% @teaser_choices = [] %>
 	<% @my_client = @qualified_clients[0] %>
+	<% @total_half_point = false %>
+	<% @half_point = false %>
+	
 
 	<% self.sort_teams_for_leagues %>
 	<% self.get_picks(@my_client) %>
@@ -97,7 +105,6 @@
 	<% self.create_avail_picks %>
 	<% self.fill_league_wagers %>
 
-	<%= @my_date %>
 
 
 
@@ -116,6 +123,8 @@
 
 				<% else %>
 
+					
+					<% @spread1 = @spread1.to_i %>
 					<%= @spread1 %>
 
 				<% end %>
@@ -519,6 +528,8 @@
 
 
 <% end %>
+
+
 
 
 
