@@ -5,6 +5,40 @@
 
 <% @qualified_clients = [] %>
 
+<% @nfl_games = [] %>
+<% @fan_games = [] %>
+<% @nba_games = [] %>
+<% @cfb_games = [] %>
+<% @cbb_games = [] %>
+<% @mlb_games = [] %>
+<% @nhl_games = [] %>
+<% @teaser_options %>
+<% @all_other_options %>
+<% @bet_type %>
+<% @amount %>
+<% @selections = [] %>
+<% @oppo_picks = [] %>
+<% @pick_hashes = [] %>
+<% @client_picks = [] %>
+<% @avail_picks = [] %>
+<% @pick1  %>
+<% @pick2 %>
+<% @pick3 %>
+<% @pick4 %>
+<% @pick5 %>
+<% @spread %>
+<% @total %>
+<% @spread1 %>
+<% @spread2 %>
+<% @spread3 %>
+<% @spread4 %>
+<% @spread5 %>
+<% @spread_pk = "PK" %>
+<% @pick_hashes = [] %>
+<% @teaser_choices = [] %>
+<% @total_half_point = false %>
+<% @half_point = false %>
+
 <% current_user.league_clients.each do |c| %>
 
 	<% if c.league_id.to_i == @league_id.to_i %>
@@ -14,11 +48,7 @@
 	<% end %>
 
 <% end %>
-
-
-
-
-  
+ 
 
 
 <% @client_holder.each do |c| %>
@@ -58,43 +88,10 @@
 
 <% else %>
 
-	<% @nfl_games = [] %>
-	<% @fan_games = [] %>
-	<% @nba_games = [] %>
-	<% @cfb_games = [] %>
-	<% @cbb_games = [] %>
-	<% @mlb_games = [] %>
-	<% @nhl_games = [] %>
-	<% @teaser_options %>
-	<% @all_other_options %>
-	<% @bet_type %>
-	<% @amount %>
-	<% @selections = [] %>
-	<% @oppo_picks = [] %>
-	<% @pick_hashes = [] %>
-	<% @client_picks = [] %>
-	<% @avail_picks = [] %>
-	<% @pick1  %>
-	<% @pick2 %>
-	<% @pick3 %>
-	<% @pick4 %>
-	<% @pick5 %>
-	<% @spread %>
-	<% @total %>
-	<% @spread1 %>
-	<% @spread2 %>
-	<% @spread3 %>
-	<% @spread4 %>
-	<% @spread5 %>
-	<% @spread_pk = "PK" %>
-	<% @pick_hashes = [] %>
-	<% @teaser_choices = [] %>
 	<% @my_client = @qualified_clients[0] %>
-	<% @total_half_point = false %>
-	<% @half_point = false %>
 	
-
 	<% self.sort_teams_for_leagues %>
+
 	<% self.get_picks(@my_client) %>
 	<% self.count_options(@my_client) %>
 	<% self.create_league_wager(@my_client) %>
@@ -117,14 +114,12 @@
 			<%= @bet_type %></div>
 			<div><%= @pick1 %>
 
-				<% if @spread1 == 0 %>
+				<% if @spread1.to_i == 0 %>
 
 					<%= @spread_pk %>
 
 				<% else %>
 
-					
-					<% @spread1 = @spread1.to_i %>
 					<%= @spread1 %>
 
 				<% end %>
@@ -528,6 +523,10 @@
 
 
 <% end %>
+
+
+
+
 
 
 

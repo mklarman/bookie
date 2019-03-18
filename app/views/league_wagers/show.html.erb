@@ -632,126 +632,65 @@
 			<% s.league_wagers.each do |w| %>
 
 				<% if w.date == @my_date %>
-
-					<% if w.team1.length >= 11 %>
-
-						<% @spread1 = w.spread1 %>
-
-					<% else %>
-
-						<% if w.spread1.to_i > 0 %>
-
-							<% @spread1 = "+" + w.spread1.to_s %>
-
-						<% else %>
-
-							<% @spread1 = w.spread1 %>
-
-						<% end %>
-
-					<% end %>
-
-					<% if w.team2.length >= 11 %>
-
-						<% @spread2 = w.spread2 %>
-
-					<% else %>
-
-						<% if w.spread2.to_i > 0 %>
-
-							<% @spread2 = "+" + w.spread2.to_s %>
-
-						<% else %>
-
-							<% @spread2 = w.spread2 %>
-
-						<% end %>
-
-					<% end %>
-
-					<% if w.team3.length >= 11 %>
-
-						<% @spread3 = w.spread3 %>
-
-					<% else %>
-
-						<% if w.spread3.to_i > 0 %>
-
-							<% @spread3 = "+" + w.spread3.to_s %>
-
-						<% else %>
-
-							<% @spread3 = w.spread3 %>
-
-						<% end %>
-
-					<% end %>
-
-					<% if w.team4.length >= 11 %>
-
-						<% @spread4 = w.spread4 %>
-
-					<% else %>
-
-						<% if w.spread4.to_i > 0 %>
-
-							<% @spread4 = "+" + w.spread4.to_s %>
-
-						<% else %>
-
-							<% @spread4 = w.spread4 %>
-
-						<% end %>
-
-					<% end %>
-
-					<% if w.team5.length >= 11 %>
-
-						<% @spread5 = w.spread5 %>
-
-					<% else %>
-
-						<% if w.spread5.to_i > 0 %>
-
-							<% @spread5 = "+" + w.spread5.to_s %>
-
-						<% else %>
-
-							<% @spread5 = w.spread5 %>
-
-						<% end %>
-
-					<% end %>
+		
+					<% @spread1 = w.spread1 %>
+					<%= @spread1 %>
+					<%= w.league_client_id %>
 
 					<% if w.spread1.to_i == 0 %>
 
 						<% @spread1 = "PK" %>
 
-					<% end %>
+					<% end %>	
 
-					<% if w.spread2.to_i == 0 %>
+					<% if w.team2.length > 3  %>
 
-						<% @spread2 = "PK" %>
+						<% @spread2 = w.spread2 %>
 
-					<% end %>
+						<% if w.spread2.to_i == 0 %>
 
-					<% if w.spread3.to_i == 0 %>
+							<% @spread2 = "PK" %>
 
-						<% @spread3 = "PK" %>
-
-					<% end %>
-
-					<% if w.spread4.to_i == 0 %>
-
-						<% @spread4 = "PK" %>
+						<% end %>
 
 					<% end %>
 
-					<% if w.spread5.to_i == 0 %>
+					<% if w.team3.length > 3  %>
 
-						<% @spread5 = "PK" %>
+						<% @spread3 = w.spread3 %>
+
+						<% if w.spread3.to_i == 0 %>
+
+							<% @spread3 = "PK" %>
+
+						<% end %>
 
 					<% end %>
+
+					<% if w.team4.length > 3  %>
+
+						<% @spread4 = w.spread4 %>
+
+						<% if w.spread4.to_i == 0 %>
+
+							<% @spread4 = "PK" %>
+
+						<% end %>
+
+					<% end %>
+
+					<% if w.team5.length > 3  %>
+
+						<% @spread5 = w.spread5 %>
+
+						<% if w.spread5.to_i == 0 %>
+
+							<% @spread5 = "PK" %>
+
+						<% end %>
+
+					<% end %>
+
 
 					<% if w.wager_type == "straight" %>
 
@@ -866,7 +805,7 @@
 
 				<% end %>
 
-				<% end %>
+			<% end %>
 
 			<% end %>
 
