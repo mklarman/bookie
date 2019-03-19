@@ -5671,7 +5671,7 @@ end
 						@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four * @parlay_five
 
 						@net_p_l = @net_p_l.to_f
-						
+
 						@wager.net_result = @net_p_l
 						
 						@wager.outcome = "win"
@@ -5688,6 +5688,8 @@ end
 
 	def two_team_teasers
 
+		@half_point = false
+
 		@winners = []
 		@losers = []
 		
@@ -5699,7 +5701,16 @@ end
 			if @half_point == true
 
 				@spread1 = @wager.spread1.to_i
-				@spread1 = @spread1.to_f + 0.5
+
+				if @spread1 > 0
+				
+					@spread1 = @spread1.to_f + 0.5
+
+				elsif @spread1 < 0 
+
+					@spread1 = @spread1.to_f - 0.5
+
+				end
 
 			else
 
@@ -5712,12 +5723,21 @@ end
 
 			if @half_point == true
 
-				@spread2 = @wager.spread2.to_i
-				@spread2 = @spread2.to_f + 0.5
+				@spread1 = @wager.spread1.to_i
+
+				if @spread1 > 0
+				
+					@spread1 = @spread1.to_f + 0.5
+
+				elsif @spread1 < 0 
+
+					@spread1 = @spread1.to_f - 0.5
+
+				end
 
 			else
 
-				@spread2 = @wager.spread2.to_i
+				@spread1 = @wager.spread1.to_i
 
 
 			end
@@ -5883,7 +5903,16 @@ end
 			if @half_point == true
 
 				@spread1 = @wager.spread1.to_i
-				@spread1 = @spread1.to_f + 0.5
+
+				if @spread1 > 0
+				
+					@spread1 = @spread1.to_f + 0.5
+
+				elsif @spread1 < 0 
+
+					@spread1 = @spread1.to_f - 0.5
+
+				end
 
 			else
 
@@ -5897,7 +5926,16 @@ end
 			if @half_point == true
 
 				@spread2 = @wager.spread2.to_i
-				@spread2 = @spread2.to_f + 0.5
+
+				if @spread2 > 0
+				
+					@spread2 = @spread2.to_f + 0.5
+
+				elsif @spread2 < 0 
+
+					@spread2 = @spread2.to_f - 0.5
+
+				end
 
 			else
 
@@ -5911,7 +5949,16 @@ end
 			if @half_point == true
 
 				@spread3 = @wager.spread3.to_i
-				@spread3 = @spread3.to_f + 0.5
+
+				if @spread3 > 0
+				
+					@spread3 = @spread3.to_f + 0.5
+
+				elsif @spread3 < 0 
+
+					@spread3 = @spread3.to_f - 0.5
+
+				end
 
 			else
 
@@ -6133,7 +6180,16 @@ end
 			if @half_point == true
 
 				@spread1 = @wager.spread1.to_i
-				@spread1 = @spread1.to_f + 0.5
+
+				if @spread1 > 0
+				
+					@spread1 = @spread1.to_f + 0.5
+
+				elsif @spread1 < 0 
+
+					@spread1 = @spread1.to_f - 0.5
+
+				end
 
 			else
 
@@ -6147,7 +6203,16 @@ end
 			if @half_point == true
 
 				@spread2 = @wager.spread2.to_i
-				@spread2 = @spread2.to_f + 0.5
+
+				if @spread2 > 0
+				
+					@spread2 = @spread2.to_f + 0.5
+
+				elsif @spread2 < 0 
+
+					@spread2 = @spread2.to_f - 0.5
+
+				end
 
 			else
 
@@ -6161,7 +6226,16 @@ end
 			if @half_point == true
 
 				@spread3 = @wager.spread3.to_i
-				@spread3 = @spread3.to_f + 0.5
+
+				if @spread3 > 0
+				
+					@spread3 = @spread3.to_f + 0.5
+
+				elsif @spread3 < 0 
+
+					@spread3 = @spread3.to_f - 0.5
+
+				end
 
 			else
 
@@ -6175,7 +6249,16 @@ end
 			if @half_point == true
 
 				@spread4 = @wager.spread4.to_i
-				@spread4 = @spread4.to_f + 0.5
+
+				if @spread4 > 0
+				
+					@spread4 = @spread4.to_f + 0.5
+
+				elsif @spread4 < 0 
+
+					@spread4 = @spread4.to_f - 0.5
+
+				end
 
 			else
 
@@ -6189,7 +6272,16 @@ end
 			if @half_point == true
 
 				@spread5 = @wager.spread5.to_i
-				@spread5 = @spread5.to_f + 0.5
+
+				if @spread5 > 0
+				
+					@spread5 = @spread5.to_f + 0.5
+
+				elsif @spread5 < 0 
+
+					@spread5 = @spread5.to_f - 0.5
+
+				end
 
 			else
 
@@ -6209,11 +6301,9 @@ end
 						@total = t.total_points.to_i
 						@total = @total.to_f + 0.5
 
-
 					else
 
 						@total = t.total_points.to_i
-
 
 					end
 
