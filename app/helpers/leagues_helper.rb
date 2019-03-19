@@ -4046,11 +4046,11 @@ end
 
 				if @winners.length == 0
 
-					@net_p_l = "push"
+					@net_p_l = 0
 
 					@wager.net_result = @net_p_l
 					
-					@wager.outcome = "loss"
+					@wager.outcome = "push"
 
 				elsif @winners.length == 1
 
@@ -4475,11 +4475,11 @@ end
 
 				if @winners.length == 0
 
-					@net_p_l = "push"
+					@net_p_l = 0
 
 					@wager.net_result = @net_p_l
 					
-					@wager.outcome = "loss"
+					@wager.outcome = "push"
 
 				elsif @winners.length == 1
 
@@ -4580,6 +4580,7 @@ end
 						end
 
 						@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two
+						@net_p_l = @net_p_l.to_f
 
 						@wager.net_result = @net_p_l
 						
@@ -4688,6 +4689,8 @@ end
 
 						@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three
 
+						@net_p_l = @net_p_l.to_f
+						
 						@wager.net_result = @net_p_l
 						
 						@wager.outcome = "win"
@@ -5667,6 +5670,8 @@ end
 
 						@net_p_l = @wager.amount.to_i * @parlay_one * @parlay_two * @parlay_three * @parlay_four * @parlay_five
 
+						@net_p_l = @net_p_l.to_f
+						
 						@wager.net_result = @net_p_l
 						
 						@wager.outcome = "win"
