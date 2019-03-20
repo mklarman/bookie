@@ -61,144 +61,335 @@
 <% @rev_win %>
 <% @rev_lose %>
 <% @rev_push %>
+<% @league_name %>
+<% @client_name %>
 
+<% self.get_league_info %>
 
 
 
-<% if @wager.wager_type == "straight" %>
+<div class = "bet_ticket" id = "book_ticket">
 
-	<% self.score_straights %>
+	<div id="bet_tick_label">Fanbouts.com</div>
+	<div id="bet_id">Wager ID#: <%= @wager.id %></div>
+	<div id="bet_id">League: <%= @league_name %></div>
+	<div id="bet_id">Client: <%= @client_name %></div>
 
-	<div class="data_display">
+	<% if @wager.wager_type == "straight" %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+		<% self.score_straights %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-		<div><%= @wager.id %></div>
+		<div class="data_display">
 
-	</div>
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
 
-<% elsif @wager.wager_type == "two team teaser" %>
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
 
-	<% self.two_team_teasers %>
+			<% if @net_p_l.to_i > 0 %>
 
-	<div class="data_display">
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+			<% elsif @net_p_l.to_i < 0 %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-		<div><%= @wager.id %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
 
-	</div>
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-<% elsif @wager.wager_type == "three team teaser" %>
+			<% end %>
 
-	<% self.three_team_teasers %>
+		</div>
 
-	<div class="data_display">
+	<% elsif @wager.wager_type == "two team teaser" %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+		<% self.two_team_teasers %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-		<div><%= @wager.id %></div>
+		<div class="data_display">
 
-	</div>
 
-<% elsif @wager.wager_type == "five team teaser" %>
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
 
-	<% self.five_team_teasers %>
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
 
-	<div class="data_display">
+			<% if @net_p_l.to_i > 0 %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
+			<% elsif @net_p_l.to_i < 0 %>
 
-	</div>
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
 
-<% elsif @wager.wager_type == "two team parlay" %>
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
+			<% end %>
 
-	<% self.two_team_parlays %>
+		</div>
 
+	<% elsif @wager.wager_type == "three team teaser" %>
 
-	<div class="data_display">
+		<% self.three_team_teasers %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+		<div class="data_display">
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
 
-	</div>
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team3 + " " + @wager.spread3 %></div>
 
-<% elsif @wager.wager_type == "three team parlay" %>
+			<% if @net_p_l.to_i > 0 %>
 
-	<% self.three_team_parlays %>
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<div class="data_display">
+			<% elsif @net_p_l.to_i < 0 %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	</div>
+			<% end %>
 
-<% elsif @wager.wager_type == "five team parlay" %>
+		</div>
 
-	<% self.five_team_parlays %>
+	<% elsif @wager.wager_type == "five team teaser" %>
 
-	<div class="data_display">
+		<% self.five_team_teasers %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+		<div class="data_display">
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
 
-	</div>
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team3 + " " + @wager.spread3 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team4 + " " + @wager.spread4 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team5 + " " + @wager.spread5 %></div>
 
-<% elsif @wager.wager_type == "two team reverse" %>
-	
+			<% if @net_p_l.to_i > 0 %>
 
-	<% self.two_team_reverses %>
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	<div class="data_display">
+			<% elsif @net_p_l.to_i < 0 %>
 
-		<div><%= @wager.wager_type.upcase %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	</div>
+			<% end %>
 
-<% elsif @wager.wager_type == "three team reverse" %>
+		</div>
 
-	<% self.three_team_reverses %>
+	<% elsif @wager.wager_type == "two team parlay" %>
 
-	<div class="data_display">
 
-		<div><%= @wager.wager_type.upcase %></div>
+		<% self.two_team_parlays %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
 
-	</div>
+		<div class="data_display">
 
-<% elsif @wager.wager_type == "four team reverse" %>
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
 
-	<% self.four_team_reverses %>
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
 
-	<div class="data_display">
 
-		<div><%= @wager.wager_type.upcase %></div>
+			<% if @net_p_l.to_i > 0 %>
 
-		<div><%= "NET RESULT: " + @net_p_l.to_s %>
-			<div><%= @wager.id %></div>
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
 
-	</div>
+			<% elsif @net_p_l.to_i < 0 %>
 
-<% end %>
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% end %>
+				
+
+		</div>
+
+	<% elsif @wager.wager_type == "three team parlay" %>
+
+
+
+		<% self.three_team_parlays %>
+
+		<div class="data_display">
+
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
+
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team3 + " " + @wager.spread3 %></div>
+
+			<% if @net_p_l.to_i > 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% elsif @net_p_l.to_i < 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% end %>
+				
+
+		</div>
+
+	<% elsif @wager.wager_type == "five team parlay" %>
+
+		<% self.five_team_parlays %>
+
+		<div class="data_display">
+
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
+
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team3 + " " + @wager.spread3 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team4 + " " + @wager.spread4 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team5 + " " + @wager.spread5 %></div>
+
+			<% if @net_p_l.to_i > 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% elsif @net_p_l.to_i < 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% end %>
+				
+		</div>
+
+	<% elsif @wager.wager_type == "two team reverse" %>
+		
+
+		<% self.two_team_reverses %>
+
+		<div class="data_display">
+
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
+
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+
+			<% if @net_p_l.to_i > 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% elsif @net_p_l.to_i < 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% end %>
+				
+
+		</div>
+
+	<% elsif @wager.wager_type == "three team reverse" %>
+
+		<% self.three_team_reverses %>
+
+		<div class="data_display">
+
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
+
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team3 + " " + @wager.spread3 %></div>
+
+			<% if @net_p_l.to_i > 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% elsif @net_p_l.to_i < 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% end %>
+				
+
+		</div>
+
+	<% elsif @wager.wager_type == "four team reverse" %>
+
+		<% self.four_team_reverses %>
+
+		<div class="data_display">
+
+			<div style="font-size: 20px; margin-bottom: 3%;"><%= @wager.wager_type.upcase %></div>
+
+			<div style="font-size: 17px;"> <%= @wager.team1 + " " + @wager.spread1 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team2 + " " + @wager.spread2 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team3 + " " + @wager.spread3 %></div>
+			
+			<div style="font-size: 17px;"> <%= @wager.team4 + " " + @wager.spread4 %></div>
+
+
+			<% if @net_p_l.to_i > 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: green;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% elsif @net_p_l.to_i < 0 %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: red;"><%= "NET RESULT: " + @net_p_l.to_s %>
+			
+			<% else %>
+
+				<div style="font-size: 20px; margin-top: 8%; color: black;"><%= "NET RESULT: " + @net_p_l.to_s %>
+
+			<% end %>
+				
+
+		</div>
+
+	<% end %>
+
+</div>
 
 
 <div class = "hide">

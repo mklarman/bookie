@@ -116,15 +116,19 @@
 
 		<% @users_leagues.each do |l| %>
 
-			<% self.convert_date(l.end_date) %>
+			<% if l.end_date.length == 11 %>
 
-			<% if @serial_num_check < @my_date %>
+				<% self.convert_date(l.end_date) %>
 
-				<% @completed_leagues.push(l) %>
+				<% if @serial_num_check < @my_date %>
 
-			<% else %>
+					<% @completed_leagues.push(l) %>
 
-				<% @active_leagues.push(l) %>
+				<% else %>
+
+					<% @active_leagues.push(l) %>
+
+				<% end %>
 
 			<% end %>
 
@@ -165,11 +169,33 @@
 			<% self.get_pool_players %>
 			<% self.get_all_selections %>
 			<% self.get_remaining_contestants %>
+			<% self.sort_selections %>
 
 
 			<% if @still_alive.length > 1 %>
 
 				<% @active_pools.push(p) unless @active_pools.include?(p) %>
+
+			<% elsif @still_alive.length == 1 %>
+
+				<% @selec = 0 %>
+
+				<% @pool.selections.each do |s| %>
+
+					<% if s.result != "none" %>
+
+						<% @selec = @selec + 1 %>
+
+					<% end %>
+
+
+				<% end %>
+
+				<% if @selec == 0 %>
+
+					<% @active_pools.push(p) unless @active_pools.include?(p) %>
+
+				<% end %>
 
 
 			<% else %>

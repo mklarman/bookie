@@ -664,7 +664,7 @@
 
 						<% if @games_started == false %>
 
-							<div id="group">PLAYERS
+							<div id="group">CHOOSE A PLAYER
 
 								<div id="pl1" class="group_players"></div>
 								<div id="pl2" class="group_players"></div>
@@ -891,7 +891,7 @@
 
 				<% @selection_info.each do |s| %>
 
-					<div id="s_info"><%= s.selection + ".........." + s.result %></div>
+					<div id="s_info"><%= s.selection + "........." + s.result %></div>
 
 				<% end %>
 
@@ -971,6 +971,10 @@
 
 
 </div>
+
+<%= @still_alive.length %>
+
+<%= @pool.groups.count %>
 
 
 

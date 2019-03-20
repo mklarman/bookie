@@ -5723,21 +5723,21 @@ end
 
 			if @half_point == true
 
-				@spread1 = @wager.spread1.to_i
+				@spread2 = @wager.spread2.to_i
 
-				if @spread1 > 0
+				if @spread2 > 0
 				
-					@spread1 = @spread1.to_f + 0.5
+					@spread2 = @spread2.to_f + 0.5
 
 				elsif @spread1 < 0 
 
-					@spread1 = @spread1.to_f - 0.5
+					@spread2 = @spread2.to_f - 0.5
 
 				end
 
 			else
 
-				@spread1 = @wager.spread1.to_i
+				@spread2 = @wager.spread2.to_i
 
 
 			end
@@ -6495,7 +6495,7 @@ end
 
 					elsif t.under_line == @wager.team4
 
-						if @total < @wager.spread4
+						if @total < @spread4
 
 							@winners.push(@wager.team4)
 
@@ -9365,6 +9365,45 @@ end
 
 
 			end
+
+		end
+
+	end
+
+	def sort_selections
+
+		if @pool.groups.count != 0
+
+			@pool.groups.each do |g|
+
+				graded = []
+				ungraded = []
+
+				g.selections.each do |s|
+
+					if s.result == "none"
+
+						ungraded.push(s)
+
+					else
+
+						graded.push(s)
+
+					end
+
+
+				end
+
+				if ungraded.length > 0
+
+					@active_pools.push(@pool) unless @active_pools.include?(@pool)
+
+
+				end
+
+
+			end
+
 
 		end
 

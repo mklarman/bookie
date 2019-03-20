@@ -23,4 +23,43 @@ module WelcomeHelper
 		end
 
 	end
+
+	def sort_selections
+
+		if @pool.groups.count != 0
+
+			@pool.groups.each do |g|
+
+				graded = []
+				ungraded = []
+
+				g.selections.each do |s|
+
+					if s.result == "none"
+
+						ungraded.push(s)
+
+					else
+
+						graded.push(s)
+
+					end
+
+
+				end
+
+				if ungraded.length > 0
+
+					@active_pools.push(@pool) unless @active_pools.include?(@pool)
+
+
+				end
+
+
+			end
+
+
+		end
+
+	end
 end

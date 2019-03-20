@@ -512,41 +512,7 @@
 
 <% end %>
 
-<div>
 
-	<% @client_hold = [] %>
-
-	<% current_user.league_clients.each do |c| %>
-
-		<% if c.league_id == @league.id.to_s %>
-
-			<% @client_hold.push(c) %>
-
-		<% end %>
-
-	<% end %>
-
-	<% @client_hold.each do |c| %>
-
-		<div>
-
-			<div><%= c.league_name.upcase %></div>
-
-			<% c.league_wagers.each do |w| %>
-
-				<%= w.net_result.to_s + w.wager_type + w.id.to_s  %>
-
-			<% end %>
-
-
-		</div>
-
-	<% end %>
-
-
-
-
-</div>
 
 
 
