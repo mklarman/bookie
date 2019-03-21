@@ -177,8 +177,27 @@
 				pool_sport.value = poolSport.value
 				pool_pool_name.value = poolName.value
 				pool_pass.value = pass.value
+
+				if (pool_sport.value.length == 0){
+
+					alert("PLEASE FILL IN A SPORT")
+
+				
+				}else if (pool_pool_name.value.length == 0){
+
+					alert("PLEASE FILL IN A POOL NAME")
+
+
+				}else if (pool_pass.value.length == 0){
+
+					alert("PLEASE FILL IN A PASSWORD")
+
+
+				}else{
 				
 				new_pool.submit()
+
+				}
 
 			}
 
