@@ -13,6 +13,8 @@
 <% @the_group = [] %>
 <% @users_pick %>
 <% @score_check = 0 %>
+<% @pool_name %>
+<% @username %>
 
 <% Pool.all.each do |p| %>
 
@@ -39,20 +41,57 @@
 <% self.score_selections %>
 
 
-<%= form_for @selection do |s| %>
+<div class= "hide">
+	
+	<%= form_for @selection do |s| %>
 
-	<%= s.text_field :pool_id, value: @selection.pool_id %>
-	<%= s.text_field :date, value: @selection.date %>
-	<%= s.text_field :user_id, value: @selection.user_id %>
-	<%= s.text_field :group_id, value: @selection.group_id %>
-	<%= s.text_field :selection, value: @selection.selection %>
-	<%= s.text_field :result, value: @result %>
-		
+		<%= s.text_field :pool_id, value: @selection.pool_id %>
+		<%= s.text_field :date, value: @selection.date %>
+		<%= s.text_field :user_id, value: @selection.user_id %>
+		<%= s.text_field :group_id, value: @selection.group_id %>
+		<%= s.text_field :selection, value: @selection.selection %>
+		<%= s.text_field :result, value: @result %>
+			
+
+	<% end %>
+</div>
+
+<% Pool.all.each do |p| %>
+
+	<% if p.id == @selection.pool_id.to_i %>
+
+		<% @pool_name = p.pool_name %>
+
+	<% end %>
 
 <% end %>
 
-<%= @open_selec %>
-<%= @selection.id %>
+<% User.all.each do |u| %>
+
+	<% if u.id == @selection.user_id.to_i %>
+
+		<% @username = u.username %>
+
+	<% end %>
+
+
+<% end %>
+
+<div id="sel_tick">
+	
+	<div class="sel_name">POOL: <%= @pool_name %></div>
+	<div class="sel_name">USER: <%= @username %></div>
+	<div class="sel_name">SELECTION: <%= @selection.selection %></div>
+	<div class="sel_name">RESULT: <%= @result %></div>
+
+
+
+
+
+
+</div>
+
+
 
 <script>
 
@@ -64,9 +103,10 @@
 
 	var subSelect = document.getElementById(cssID)
 
-	console.log(subSelect)
-
 	subSelect.submit()
+
+
+	
 
 	
 
