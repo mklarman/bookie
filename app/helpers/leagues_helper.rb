@@ -1333,6 +1333,12 @@ module LeaguesHelper
 
 						@spread1 = @spread
 
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						end
+
 						if @spread1.to_i == 0
 
 							@spread1 = "PK"
@@ -1342,6 +1348,12 @@ module LeaguesHelper
 					elsif t.opp == @pick1
 
 						@spread1 = @spread * -1
+
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						end
 
 						if @spread1.to_i == 0
 
@@ -9369,47 +9381,6 @@ end
 		end
 
 	end
-
-	def sort_selections
-
-		if @pool.groups.count != 0
-
-			@pool.groups.each do |g|
-
-				graded = []
-				ungraded = []
-
-				g.selections.each do |s|
-
-					if s.result == "none"
-
-						ungraded.push(s)
-
-					else
-
-						graded.push(s)
-
-					end
-
-
-				end
-
-				if ungraded.length > 0
-
-					@active_pools.push(@pool) unless @active_pools.include?(@pool)
-
-
-				end
-
-
-			end
-
-
-		end
-
-	end
-
-	
 
 	
 end
