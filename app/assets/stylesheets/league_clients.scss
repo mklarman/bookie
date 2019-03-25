@@ -10,6 +10,8 @@
 	
 	border: 1px solid red;
 	font-size: 22px;
+	background: black;
+	color: white;
 }
 
 .edit_cl{
@@ -48,10 +50,17 @@
 
 	height: 25px;
 	width: 100px;
-	background: black;
-	color: white;
-	font-size: 15px;
-	margin-right: 180px;
+	background: white;
+	color: black;
+	font-size: 18px;
+}
+
+#cl_ed_bt{
+
+	margin: auto;
+	height: 50px;
+	width: 150px;
+
 }
 
 #info_cont{

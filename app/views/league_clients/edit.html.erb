@@ -574,59 +574,61 @@
 
 	</div>
 
+</div>
+
+<div id="cl_ed_bt">
+
 	<input type="submit" name="" value="Set Client", id="edit_sub">
 
-	<script>
-	
-		var cl_type = document.getElementById("cl_type")
-		var cl_quant = document.getElementById("cl_quant")
-		var cl_sports = document.getElementById("cl_sports")
-		var cl_stakes = document.getElementById("cl_stakes")
-		var edit_sub = document.getElementById("edit_sub")
+		<script>
+		
+			var cl_type = document.getElementById("cl_type")
+			var cl_quant = document.getElementById("cl_quant")
+			var cl_sports = document.getElementById("cl_sports")
+			var cl_stakes = document.getElementById("cl_stakes")
+			var edit_sub = document.getElementById("edit_sub")
 
-		edit_sub.addEventListener("click", function(){
+			edit_sub.addEventListener("click", function(){
 
-			if (cl_type.value.length != 0){
+				if (cl_type.value.length != 0){
 
-				league_client_bet_types.value = cl_type.value
-			}
+					league_client_bet_types.value = cl_type.value
+				}
 
-			if (cl_quant.value.length != 0){
+				if (cl_quant.value.length != 0){
 
-				league_client_wager_limit.value = cl_quant.value
-			}
+					league_client_wager_limit.value = cl_quant.value
+				}
 
-			if (cl_sports.value.length != 0){
+				if (cl_sports.value.length != 0){
 
-				league_client_sports.value = cl_sports.value
-			}
+					league_client_sports.value = cl_sports.value
+				}
 
-			if (cl_stakes.value.length != 0){
+				if (cl_stakes.value.length != 0){
 
-				league_client_stakes.value = cl_stakes.value
-			}
-			
+					league_client_stakes.value = cl_stakes.value
+				}
+				
 
-			var cl_id = <%= @client.id %>
+				var cl_id = <%= @client.id %>
 
-			cl_id = cl_id.toString()
+				cl_id = cl_id.toString()
 
-			var label = "edit_league_client_" + cl_id
+				var label = "edit_league_client_" + cl_id
 
-			var editForm = document.getElementById(label)
+				var editForm = document.getElementById(label)
 
-			editForm.submit()
-
-
-
-		})
+				editForm.submit()
 
 
 
+			})
 
-	</script> 
 
 
+
+		</script> 
 
 </div>
 
