@@ -5722,6 +5722,18 @@ end
 
 					@spread1 = @spread1.to_f - 0.5
 
+				elsif @spread1.to_i == 0
+
+					if @spread1 == "+0.5"
+
+						@spread1 = 0.5
+
+					elsif @spread1 == "-0.5"
+
+						@spread1 = -0.5
+
+					end
+
 				end
 
 			else
@@ -5741,9 +5753,22 @@ end
 				
 					@spread2 = @spread2.to_f + 0.5
 
-				elsif @spread1 < 0 
+				elsif @spread2 < 0 
 
 					@spread2 = @spread2.to_f - 0.5
+
+				elsif @spread2.to_i == 0
+
+					if @spread2 == "+0.5"
+
+						@spread2 = 0.5
+
+					elsif @spread2 == "-0.5"
+
+						@spread2 = -0.5
+
+
+					end
 
 				end
 
@@ -5924,6 +5949,19 @@ end
 
 					@spread1 = @spread1.to_f - 0.5
 
+				elsif @spread1.to_i == 0
+
+					if @spread1 == "+0.5"
+
+						@spread1 = 0.5
+
+					elsif @spread1 == "-0.5"
+
+						@spread1 = -0.5
+
+
+					end
+
 				end
 
 			else
@@ -5947,6 +5985,19 @@ end
 
 					@spread2 = @spread2.to_f - 0.5
 
+				elsif @spread2.to_i == 0
+
+					if @spread2 == "+0.5"
+
+						@spread2 = 0.5
+
+					elsif @spread2 == "-0.5"
+
+						@spread2 = -0.5
+
+
+					end
+
 				end
 
 			else
@@ -5955,7 +6006,7 @@ end
 
 
 			end
-
+			
 			self.convert_spread(@wager.spread3)
 
 			if @half_point == true
@@ -5969,6 +6020,19 @@ end
 				elsif @spread3 < 0 
 
 					@spread3 = @spread3.to_f - 0.5
+
+				elsif @spread3.to_i == 0
+
+					if @spread3 == "+0.5"
+
+						@spread3 = 0.5
+
+					elsif @spread3 == "-0.5"
+
+						@spread3 = -0.5
+
+
+					end
 
 				end
 
@@ -6201,6 +6265,19 @@ end
 
 					@spread1 = @spread1.to_f - 0.5
 
+				elsif @spread1.to_i == 0
+
+					if @spread1 == "+0.5"
+
+						@spread1 = 0.5
+
+					elsif @spread1 == "-0.5"
+
+						@spread1 = -0.5
+
+
+					end
+
 				end
 
 			else
@@ -6223,6 +6300,19 @@ end
 				elsif @spread2 < 0 
 
 					@spread2 = @spread2.to_f - 0.5
+
+				elsif @spread2.to_i == 0
+
+					if @spread2 == "+0.5"
+
+						@spread2 = 0.5
+
+					elsif @spread2 == "-0.5"
+
+						@spread2 = -0.5
+
+
+					end
 
 				end
 
@@ -6247,6 +6337,19 @@ end
 
 					@spread3 = @spread3.to_f - 0.5
 
+				elsif @spread3.to_i == 0
+
+					if @spread3 == "+0.5"
+
+						@spread3 = 0.5
+
+					elsif @spread3 == "-0.5"
+
+						@spread3 = -0.5
+
+
+					end
+
 				end
 
 			else
@@ -6270,6 +6373,19 @@ end
 
 					@spread4 = @spread4.to_f - 0.5
 
+				elsif @spread4.to_i == 0
+
+					if @spread4 == "+0.5"
+
+						@spread4 = 0.5
+
+					elsif @spread4 == "-0.5"
+
+						@spread4 = -0.5
+
+
+					end
+
 				end
 
 			else
@@ -6292,6 +6408,19 @@ end
 				elsif @spread5 < 0 
 
 					@spread5 = @spread5.to_f - 0.5
+
+				elsif @spread5.to_i == 0
+
+					if @spread5 == "+0.5"
+
+						@spread5 = 0.5
+
+					elsif @spread5 == "-0.5"
+
+						@spread5 = -0.5
+
+
+					end
 
 				end
 

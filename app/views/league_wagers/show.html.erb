@@ -632,22 +632,42 @@
 			<% s.league_wagers.each do |w| %>
 
 				<% if w.date == @my_date %>
-		
-					<% @spread1 = w.spread1 %>
 
-					<% if w.spread1.to_i == 0 %>
+					<% if w.spread1 == "+0.5" %>
+
+						<% @spread1 = "+ 1/2" %>
+
+					<% elsif w.spread1 == "-0.5" %>
+
+						<% @spread1 = "- 1/2" %>
+
+					<% elsif w.spread1.to_i == 0 %>
 
 						<% @spread1 = "PK" %>
+
+					<% else %>
+
+						<% @spread1 = w.spread1 %>
 
 					<% end %>	
 
 					<% if w.team2.length > 3  %>
 
-						<% @spread2 = w.spread2 %>
+						<% if w.spread2 == "+0.5" %>
 
-						<% if w.spread2.to_i == 0 %>
+							<% @spread2 = "+ 1/2" %>
+
+						<% elsif w.spread2 == "-0.5" %>
+
+							<% @spread2 = "- 1/2" %>
+
+						<% elsif w.spread2.to_i == 0 %>
 
 							<% @spread2 = "PK" %>
+
+						<% else %>
+
+							<% @spread2 = w.spread2 %>
 
 						<% end %>
 
@@ -655,35 +675,65 @@
 
 					<% if w.team3.length > 3  %>
 
-						<% @spread3 = w.spread3 %>
+						<% if w.spread3 == "+0.5" %>
 
-						<% if w.spread3.to_i == 0 %>
+							<% @spread3 = "+ 1/2" %>
+
+						<% elsif w.spread3 == "-0.5" %>
+
+							<% @spread3 = "- 1/2" %>
+
+						<% elsif w.spread3.to_i == 0 %>
 
 							<% @spread3 = "PK" %>
 
-						<% end %>
+						<% else %>
 
+							<% @spread3 = w.spread3 %>
+
+						<% end %>
+					
 					<% end %>
 
 					<% if w.team4.length > 3  %>
 
-						<% @spread4 = w.spread4 %>
+						<% if w.spread4 == "+0.5" %>
 
-						<% if w.spread4.to_i == 0 %>
+							<% @spread4 = "+ 1/2" %>
+
+						<% elsif w.spread4 == "-0.5" %>
+
+							<% @spread4 = "- 1/2" %>
+
+						<% elsif w.spread4.to_i == 0 %>
 
 							<% @spread4 = "PK" %>
 
-						<% end %>
+						<% else %>
 
+							<% @spread4 = w.spread4 %>
+
+						<% end %>
+					
 					<% end %>
 
 					<% if w.team5.length > 3  %>
 
-						<% @spread5 = w.spread5 %>
+						<% if w.spread5 == "+0.5" %>
 
-						<% if w.spread5.to_i == 0 %>
+							<% @spread5 = "+ 1/2" %>
+
+						<% elsif w.spread5 == "-0.5" %>
+
+							<% @spread5 = "- 1/2" %>
+
+						<% elsif w.spread5.to_i == 0 %>
 
 							<% @spread5 = "PK" %>
+
+						<% else %>
+
+							<% @spread5 = w.spread5 %>
 
 						<% end %>
 

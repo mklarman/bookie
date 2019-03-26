@@ -211,4 +211,18 @@
 
 
 
+<% @teams.each do |t| %>
+
+	<% if t.name == "CHA(NBA)" || t.opp == "CHA(NBA)" %>
+
+		<div><%= t.date %></div>
+		<div><%= link_to "EDIT", edit_team_path(t.id) %></div>
+
+	<% end %>
+
+
+<% end %>
+
+
+
 
