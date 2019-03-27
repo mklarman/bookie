@@ -1,11 +1,59 @@
-<% @players.each do |p| %>
-
-	<div><%= link_to p.name, edit_player_path(p.id) %></div>
 
 
+<div id="players_cont">
+	
+	<div class="sport" id="nfl_players">NFL PLAYERS
+
+		<% @players.each do |p| %>
+
+			<% if p.sport == "NFL" %>
+
+				<div style="margin-top: 8%;"><%= link_to p.name, edit_player_path(p.id) %></div>
+
+			<% end %>
+		
+		<% end %>
+		
 
 
-<% end %>
+	</div>
+	<div class="sport" id="nba_players">NBA PLAYERS
 
-<%= link_to "NEW PLAYER", new_player_path %>
+		<% @players.each do |p| %>
 
+			<% if p.sport == "NBA" %>
+
+				<div style="margin-top: 8%;"><%= link_to p.name, edit_player_path(p.id) %></div>
+
+			<% end %>
+		
+		<% end %>
+		
+
+
+	</div>
+	<div class="sport" id="mlb_players">MLB PLAYERS
+
+		<% @players.each do |p| %>
+
+			<% if p.sport == "MLB" %>
+
+				<div style="margin-top: 8%;"><%= link_to p.name, edit_player_path(p.id) %></div>
+
+			<% end %>
+		
+		<% end %>
+		
+
+
+	</div>
+
+	<div style="display: inline-block; vertical-align: top; margin-top: 3%;"><%= link_to "NEW PLAYER", new_player_path %></div>
+
+
+
+
+
+
+
+</div>
