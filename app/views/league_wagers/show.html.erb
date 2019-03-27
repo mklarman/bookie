@@ -631,8 +631,6 @@
 
 			<% s.league_wagers.each do |w| %>
 
-				HERE:<%= w.spread1.instance_of? String %>
-
 				<% if w.date == @my_date %>
 
 					<% if w.spread1 == "+0.5" %>
@@ -863,6 +861,14 @@
 
 		</div>
 	</div>
+
+<% end %>
+
+<% Team.all.each do |t| %>
+
+	<%= t.spread %>
+
+
 
 <% end %>
 
