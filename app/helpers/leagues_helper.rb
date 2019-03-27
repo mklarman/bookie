@@ -1300,7 +1300,7 @@ module LeaguesHelper
 
 					@spread1 = @spread
 
-					if @spread1 > 0
+					if @spread1.to_i > 0
 
 						@spread1 = "+" + @spread1.to_s
 
@@ -1314,9 +1314,9 @@ module LeaguesHelper
 
 				elsif t.opp == @pick1
 
-					@spread1 = @spread * -1
+					@spread1 = t.opp_line
 
-					if @spread1 > 0
+					if t.opp_line.to_i > 0
 
 						@spread1 = "+" + @spread1.to_s
 
