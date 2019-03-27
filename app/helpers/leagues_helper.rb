@@ -1330,7 +1330,7 @@ module LeaguesHelper
 
 				elsif t.under_line == @pick1 || t.over_line == @pick1
 
-					@spread1 = @total 
+					@spread1 = t.total 
 
 				end
 
