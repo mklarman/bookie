@@ -866,7 +866,12 @@
 
 <% Team.all.each do |t| %>
 
-	<%= t.spread %>
+	<div>
+
+		<%= t.spread %>
+		<%= t.spread.instance_of? String %>
+
+	</div>
 
 
 
