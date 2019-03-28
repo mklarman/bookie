@@ -1291,46 +1291,81 @@ module LeaguesHelper
 
 				if t.date == @my_date
 
-					@spread = t.spread
+					self.convert_spread(t.spread)
+					self.convert_total(t.total)
 
-				end
+					if @half_point == true
 
+						@spread = t.spread.to_i
+						@spread = @spread.to_f
 
-				if t.name == @pick1
+						if @spread < 0
 
-					@spread1 = @spread
+							@spread = @spread - 0.5
 
-					if @spread1.to_i > 0
+						else
 
-						@spread1 = "+" + @spread1.to_s
+							@spread = @spread + 0.5
 
-					end
+						end
 
-					if @spread1.to_i == 0
+					else
 
-						@spread1 = "PK"
-
-					end
-
-				elsif t.opp == @pick1
-
-					@spread1 = t.opp_line
-
-					if t.opp_line.to_i > 0
-
-						@spread1 = "+" + @spread1.to_s
+						@spread = t.spread.to_i
 
 					end
 
-					if @spread1.to_i == 0
+					if @total_half_point == true
 
-						@spread1 = "PK"
+						@total = t.total.to_i
+						@total = @total.to_f + 0.5
+
+					else
+
+						@total = t.total.to_i
+
+
 
 					end
 
-				elsif t.under_line == @pick1 || t.over_line == @pick1
 
-					@spread1 = t.total 
+					if t.name == @pick1
+
+						@spread1 = @spread
+
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						end
+
+						if @spread1.to_i == 0
+
+							@spread1 = "PK"
+
+						end
+
+					elsif t.opp == @pick1
+
+						@spread1 = @spread * -1
+
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						end
+
+						if @spread1.to_i == 0
+
+							@spread1 = "PK"
+
+						end
+
+					elsif t.under_line == @pick1 || t.over_line == @pick1
+
+						@spread1 = @total 
+
+					end
 
 				end
 
