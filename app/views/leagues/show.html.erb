@@ -507,7 +507,20 @@
 
 <% end %>
 
+<% @league.league_clients.each do |c| %>
 
+	<% if c.league_name == "Client6" %>
+
+		<% c.league_wagers.each do |w| %>
+
+			<%= w.id.to_s + " " + w.net_result.to_s %>
+
+		<% end %>
+
+	<% end %>
+
+
+<% end %>
 
 
 
