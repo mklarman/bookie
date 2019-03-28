@@ -412,7 +412,7 @@
 
 		<% if @grade_ready == true && @edit_w.length > 0 %>
 
-			<div class="links"><%= link_to "GRADE YOUR ACTION", edit_league_wager_path(@edit_w[0]) %></div>
+			<div class="links" id="final_grade"><%= link_to "GRADE YOUR FINAL ACTION", edit_league_wager_path(@edit_w[0]) %></div>
 			
 
 		<% else %>
@@ -507,20 +507,6 @@
 
 <% end %>
 
-<% @league.league_clients.each do |c| %>
-
-	<% if c.league_name == "Client6" %>
-
-		<% c.league_wagers.each do |w| %>
-
-			<%= w.id.to_s + " " + w.net_result.to_s %>
-
-		<% end %>
-
-	<% end %>
-
-
-<% end %>
 
 
 

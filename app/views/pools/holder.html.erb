@@ -2678,7 +2678,31 @@ Next week upload new DB to heroku(first get rid of all debugging code and do las
 
 Run the friends pool: Chet, Felder, Richy, Chris, Me, Joey, Robert Eng?, Ant?, Dad?, Brian?, Dave Ex?, Sal?, Drew?, Ildar?.  3 nights.  Have them play in a faniside pool too.  Maybe limit the choices first.
 
-After friends pool, try to run pools with the public.  Reach out to Mick?  Not sure.  Where can I promote?  Where can I get people interested in testing?  Facebook?  Youtube?  Sports forums?  Fantasy forums?  Craigs List?  Where can I get fantasy players?  
+After friends pool, try to run pools with the public.  Reach out to Mick?  Not sure.  Where can I promote?  Where can I get people interested in testing?  Facebook?  Youtube?  Sports forums?  Fantasy forums?  Craigs List?  Where can I get fantasy players? 
+
+Small fixes:
+
+The half point issue when showing.  If teams are + or - 0.5 then it shows as a pick when you go to_i from string.
+
+Limit the players in a group to two early on in faniside pools.  Let lots of people advance.  Having four or five from the go thins the field very fast.  A pool of a few hundred people can be done in a few days.  Should they be quick?  Maybe not that quick.
+
+Center the last Grade wagers link.  Maybe let people know who has updated and who hasn't.  Show wagers maybe, offer link to the edit maybe.
+
+3/28
+
+I have completed testing and took care of the half point issue.  I started a new heroku DB and have tested on there.  Everything working fine.  No internal 500 errors on any of the functions.  I few things to do yet:
+
+1) Bring LeageWagers show up to date.  Small Timer and Pay Dumper have to follow whale.
+
+2) Remove all debugging code.
+
+3) Fix the pool groups for faniside.  Should only be two players.  Give people that 50/50 shot to advance.  Make the pools last longer.
+
+4) Go through the text of the site, key on buzz word and clean up descriptions and rules.
+
+5) Add a page that explains the scoring for the faniside pools.
+
+Next week, should be finished with the testing and all fixes.  Ready for friends pool.  By mid April, try to get strangers to play. 
 
 
 
