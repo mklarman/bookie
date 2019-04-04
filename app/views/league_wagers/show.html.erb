@@ -119,33 +119,37 @@
 
 			<% if w.date == @my_date %>
 
-				<% if w.team1.length >= 11 %>
+				<% if w.spread1 == "+0.5" %>
+
+					<% @spread1 = "+ 1/2" %>
+
+				<% elsif w.spread1 == "-0.5" %>
+
+					<% @spread1 = "- 1/2" %>
+
+				<% elsif w.spread1.to_i == 0 %>
+
+					<% @spread1 = "PK" %>
+
+				<% else %>
 
 					<% @spread1 = w.spread1 %>
 
-				<% else %>
+				<% end %>	
 
-					<% if w.spread1.to_i > 0 %>
+				<% if w.team2.length > 3  %>
 
-						<% @spread1 = "+" + w.spread1.to_s %>
+					<% if w.spread2 == "+0.5" %>
 
-					<% else %>
+						<% @spread2 = "+ 1/2" %>
 
-						<% @spread1 = w.spread1 %>
+					<% elsif w.spread2 == "-0.5" %>
 
-					<% end %>
+						<% @spread2 = "- 1/2" %>
 
-				<% end %>
+					<% elsif w.spread2.to_i == 0 %>
 
-				<% if w.team2.length >= 11 %>
-
-					<% @spread2 = w.spread2 %>
-
-				<% else %>
-
-					<% if w.spread2.to_i > 0 %>
-
-						<% @spread2 = "+" + w.spread2.to_s %>
+						<% @spread2 = "PK" %>
 
 					<% else %>
 
@@ -155,87 +159,69 @@
 
 				<% end %>
 
-				<% if w.team3.length >= 11 %>
+				<% if w.team3.length > 3  %>
 
-					<% @spread3 = w.spread3 %>
+					<% if w.spread3 == "+0.5" %>
 
-				<% else %>
+						<% @spread3 = "+ 1/2" %>
 
-					<% if w.spread3.to_i > 0 %>
+					<% elsif w.spread3 == "-0.5" %>
 
-						<% @spread3 = "+" + w.spread3.to_s %>
+						<% @spread3 = "- 1/2" %>
+
+					<% elsif w.spread3.to_i == 0 %>
+
+						<% @spread3 = "PK" %>
 
 					<% else %>
 
 						<% @spread3 = w.spread3 %>
 
 					<% end %>
-
+				
 				<% end %>
 
-				<% if w.team4.length >= 11 %>
+				<% if w.team4.length > 3  %>
 
-					<% @spread4 = w.spread4 %>
+					<% if w.spread4 == "+0.5" %>
 
-				<% else %>
+						<% @spread4 = "+ 1/2" %>
 
-					<% if w.spread4.to_i > 0 %>
+					<% elsif w.spread4 == "-0.5" %>
 
-						<% @spread4 = "+" + w.spread4.to_s %>
+						<% @spread4 = "- 1/2" %>
+
+					<% elsif w.spread4.to_i == 0 %>
+
+						<% @spread4 = "PK" %>
 
 					<% else %>
 
 						<% @spread4 = w.spread4 %>
 
 					<% end %>
-
+				
 				<% end %>
 
-				<% if w.team5.length >= 11 %>
+				<% if w.team5.length > 3  %>
 
-					<% @spread5 = w.spread5 %>
+					<% if w.spread5 == "+0.5" %>
 
-				<% else %>
+						<% @spread5 = "+ 1/2" %>
 
-					<% if w.spread5.to_i > 0 %>
+					<% elsif w.spread5 == "-0.5" %>
 
-						<% @spread5 = "+" + w.spread5.to_s %>
+						<% @spread5 = "- 1/2" %>
+
+					<% elsif w.spread5.to_i == 0 %>
+
+						<% @spread5 = "PK" %>
 
 					<% else %>
 
 						<% @spread5 = w.spread5 %>
 
 					<% end %>
-
-				<% end %>
-
-				<% if w.spread1.to_i == 0 %>
-
-					<% @spread1 = "PK" %>
-
-				<% end %>
-
-				<% if w.spread2.to_i == 0 %>
-
-					<% @spread2 = "PK" %>
-
-				<% end %>
-
-				<% if w.spread3.to_i == 0 %>
-
-					<% @spread3 = "PK" %>
-
-				<% end %>
-
-				<% if w.spread4.to_i == 0 %>
-
-					<% @spread4 = "PK" %>
-
-				<% end %>
-
-				<% if w.spread5.to_i == 0 %>
-
-					<% @spread5 = "PK" %>
 
 				<% end %>
 
@@ -379,33 +365,37 @@
 
 				<% if w.date == @my_date %>
 
-					<% if w.team1.length >= 11 %>
+					<% if w.spread1 == "+0.5" %>
+
+						<% @spread1 = "+ 1/2" %>
+
+					<% elsif w.spread1 == "-0.5" %>
+
+						<% @spread1 = "- 1/2" %>
+
+					<% elsif w.spread1.to_i == 0 %>
+
+						<% @spread1 = "PK" %>
+
+					<% else %>
 
 						<% @spread1 = w.spread1 %>
 
-					<% else %>
+					<% end %>	
 
-						<% if w.spread1.to_i > 0 %>
+					<% if w.team2.length > 3  %>
 
-							<% @spread1 = "+" + w.spread1.to_s %>
+						<% if w.spread2 == "+0.5" %>
 
-						<% else %>
+							<% @spread2 = "+ 1/2" %>
 
-							<% @spread1 = w.spread1 %>
+						<% elsif w.spread2 == "-0.5" %>
 
-						<% end %>
+							<% @spread2 = "- 1/2" %>
 
-					<% end %>
+						<% elsif w.spread2.to_i == 0 %>
 
-					<% if w.team2.length >= 11 %>
-
-						<% @spread2 = w.spread2 %>
-
-					<% else %>
-
-						<% if w.spread2.to_i > 0 %>
-
-							<% @spread2 = "+" + w.spread2.to_s %>
+							<% @spread2 = "PK" %>
 
 						<% else %>
 
@@ -415,87 +405,69 @@
 
 					<% end %>
 
-					<% if w.team3.length >= 11 %>
+					<% if w.team3.length > 3  %>
 
-						<% @spread3 = w.spread3 %>
+						<% if w.spread3 == "+0.5" %>
 
-					<% else %>
+							<% @spread3 = "+ 1/2" %>
 
-						<% if w.spread3.to_i > 0 %>
+						<% elsif w.spread3 == "-0.5" %>
 
-							<% @spread3 = "+" + w.spread3.to_s %>
+							<% @spread3 = "- 1/2" %>
+
+						<% elsif w.spread3.to_i == 0 %>
+
+							<% @spread3 = "PK" %>
 
 						<% else %>
 
 							<% @spread3 = w.spread3 %>
 
 						<% end %>
-
+					
 					<% end %>
 
-					<% if w.team4.length >= 11 %>
+					<% if w.team4.length > 3  %>
 
-						<% @spread4 = w.spread4 %>
+						<% if w.spread4 == "+0.5" %>
 
-					<% else %>
+							<% @spread4 = "+ 1/2" %>
 
-						<% if w.spread4.to_i > 0 %>
+						<% elsif w.spread4 == "-0.5" %>
 
-							<% @spread4 = "+" + w.spread4.to_s %>
+							<% @spread4 = "- 1/2" %>
+
+						<% elsif w.spread4.to_i == 0 %>
+
+							<% @spread4 = "PK" %>
 
 						<% else %>
 
 							<% @spread4 = w.spread4 %>
 
 						<% end %>
-
+					
 					<% end %>
 
-					<% if w.team5.length >= 11 %>
+					<% if w.team5.length > 3  %>
 
-						<% @spread5 = w.spread5 %>
+						<% if w.spread5 == "+0.5" %>
 
-					<% else %>
+							<% @spread5 = "+ 1/2" %>
 
-						<% if w.spread5.to_i > 0 %>
+						<% elsif w.spread5 == "-0.5" %>
 
-							<% @spread5 = "+" + w.spread5.to_s %>
+							<% @spread5 = "- 1/2" %>
+
+						<% elsif w.spread5.to_i == 0 %>
+
+							<% @spread5 = "PK" %>
 
 						<% else %>
 
 							<% @spread5 = w.spread5 %>
 
 						<% end %>
-
-					<% end %>
-
-					<% if w.spread1.to_i == 0 %>
-
-						<% @spread1 = "PK" %>
-
-					<% end %>
-
-					<% if w.spread2.to_i == 0 %>
-
-						<% @spread2 = "PK" %>
-
-					<% end %>
-
-					<% if w.spread3.to_i == 0 %>
-
-						<% @spread3 = "PK" %>
-
-					<% end %>
-
-					<% if w.spread4.to_i == 0 %>
-
-						<% @spread4 = "PK" %>
-
-					<% end %>
-
-					<% if w.spread5.to_i == 0 %>
-
-						<% @spread5 = "PK" %>
 
 					<% end %>
 
