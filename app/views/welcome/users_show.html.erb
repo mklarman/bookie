@@ -278,25 +278,25 @@
 					
 					<div>Wagers Backed: <%= @wagers_backed %></div>
 					
-					<div>Straight Wagers: <%= @straight_results.length %> booked.  <%= @str_sum %> net profit. </div>
+					<div>Straight Wagers: <%= @straight_results.length %> booked.  <%= @str_sum %> profit. </div>
 
-					<div>Two Team Parlays: <%= @two_p_results.length %> booked.  <%= @two_p_sum %> net profit. </div>
+					<div>Two Team Parlays: <%= @two_p_results.length %> booked.  <%= @two_p_sum %> profit. </div>
 
-					<div>Three Team Parlays: <%= @three_p_results.length %> booked.  <%= @three_p_sum %> net profit. </div>
+					<div>Three Team Parlays: <%= @three_p_results.length %> booked.  <%= @three_p_sum %> profit. </div>
 
-					<div>Five Team Parlays: <%= @five_p_results.length %> booked.  <%= @five_p_sum %> net profit. </div>
+					<div>Five Team Parlays: <%= @five_p_results.length %> booked.  <%= @five_p_sum %> profit. </div>
 
-					<div>Two Team Teasers: <%= @two_t_results.length %> booked.  <%= @two_t_sum %> net profit. </div>
+					<div>Two Team Teasers: <%= @two_t_results.length %> booked.  <%= @two_t_sum %> profit. </div>
 
-					<div>Three Team Teasers: <%= @three_t_results.length %> booked.  <%= @three_t_sum %> net profit. </div>
+					<div>Three Team Teasers: <%= @three_t_results.length %> booked.  <%= @three_t_sum %> profit. </div>
 
-					<div>Five Team Teasers: <%= @five_t_results.length %> booked.  <%= @five_t_sum %> net profit. </div>
+					<div>Five Team Teasers: <%= @five_t_results.length %> booked.  <%= @five_t_sum %> profit. </div>
 
-					<div>Two Team Reverses: <%= @two_r_results.length %> booked.  <%= @two_r_sum %> net profit. </div>
+					<div>Two Team Reverses: <%= @two_r_results.length %> booked.  <%= @two_r_sum %> profit. </div>
 
-					<div>Three Team Reverses: <%= @three_r_results.length %> booked.  <%= @three_r_sum %> net profit. </div>
+					<div>Three Team Reverses: <%= @three_r_results.length %> booked.  <%= @three_r_sum %> profit. </div>
 
-					<div>Four Team Reverses: <%= @four_r_results.length %> booked.  <%= @four_r_sum %> net profit. </div>
+					<div>Four Team Reverses: <%= @four_r_results.length %> booked.  <%= @four_r_sum %> profit. </div>
 
 					<div id="prof_total">Total Profit: <%= @total %></div>
 
@@ -377,7 +377,11 @@
 	
 	<% if current_user.admin == true %>
 
-		<%= User.all.count %>
+		<div style="margin-top: 20px; margin-bottom: 10px;">USERS: <%= User.all.count %></div>
+		
+		<div style="margin-bottom: 10px;">POOLS: <%= Pool.all.count %></div>
+		
+		<div style="margin-bottom: 10px;">LEAGUES: <%= League.all.count %></div>
 
 	<% end %>
 
