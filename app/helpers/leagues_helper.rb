@@ -111,7 +111,7 @@ module LeaguesHelper
 		end
 
 		@start_date_ser = @year_chk + @month_chk + @day_chk  
-		@start_date_ser = @end_date_ser.to_i
+		@start_date_ser = @start_date_ser.to_i
 
 
 	end
