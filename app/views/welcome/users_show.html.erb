@@ -379,6 +379,15 @@
 
 		<div style="margin-top: 20px; margin-bottom: 10px;">USERS: <%= User.all.count %></div>
 		
+		<div style="margin-top: 20px; margin-bottom: 10px;">USERS EMAILS: <% User.each.do |u| %>
+
+				<%= u.email %>
+
+			<% end %>
+			
+
+		</div>
+		
 		<div style="margin-bottom: 10px;">POOLS: <%= Pool.all.count %></div>
 		
 		<div style="margin-bottom: 10px;">LEAGUES: <%= League.all.count %></div>
