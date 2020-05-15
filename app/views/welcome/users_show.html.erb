@@ -379,7 +379,7 @@
 
 		<div style="margin-top: 20px; margin-bottom: 10px;">USERS: <%= User.all.count %></div>
 		
-		<div style="margin-top: 20px; margin-bottom: 10px;">USERS EMAILS: <% User.each do |u| %>
+		<div style="margin-top: 20px; margin-bottom: 10px;">USERS EMAILS: <% User.all.each do |u| %>
 
 				<div><%= u.email %></div>
 
