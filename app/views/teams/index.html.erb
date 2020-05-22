@@ -201,8 +201,12 @@
 
 	<% Team.all.each do |t| %>
 
-		<div><%= t.date %> <%= link_to "EDIT", edit_team_path(t.id) %></div>
-		<%= t.name %>
+		<% if t.sport == "MLB" %>
+
+			<div><%= t.date %> <%= link_to "EDIT", edit_team_path(t.id) %></div>
+			<%= t.name %>
+
+		<% end %>
 
 
 	<% end %>
@@ -211,17 +215,7 @@
 
 
 
-<% @teams.each do |t| %>
 
-	<% if t.name == "CHA(NBA)" || t.opp == "CHA(NBA)" %>
-
-		<div><%= t.date %></div>
-		<div><%= link_to "EDIT", edit_team_path(t.id) %></div>
-
-	<% end %>
-
-
-<% end %>
 
 
 

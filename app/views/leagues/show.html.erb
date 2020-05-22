@@ -203,7 +203,7 @@
 
 						<% end %>
 
-						<div class="player_standings"><%= st[:name].to_s + " " + st[:bank].to_s %></div>
+						<div class="player_standings"><%= st[:name].to_s + " " + (number_with_delimiter(st[:bank], :delimiter => ',')).to_s %></div>
 
 					<% end %>
 

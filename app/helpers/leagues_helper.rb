@@ -1347,11 +1347,31 @@ module LeaguesHelper
 
 					elsif t.opp == @pick1
 
-						@spread1 = @spread * -1
+						if t.sport == "MLB" || t.sport == "NHL"
 
-						if @spread1 > 0
+							if t.opp_line > 0
 
-							@spread1 = "+" + @spread1.to_s
+								@spread1 = "+" + t.opp_line.to_s
+
+							else
+
+								@spread1 = t.opp_line
+
+							end
+
+
+							@spread1 = t.opp_line
+
+						else
+
+							@spread1 = t.spread * -1
+
+							if @spread1 > 0
+
+								@spread1 = "+" + @spread1.to_s
+
+							end
+
 
 						end
 
@@ -2622,9 +2642,7 @@ module LeaguesHelper
 
 				if @total_half_point == true
 
-					@total = t.total.to_i
-					@total = @total.to_f + 0.5
-
+					@total = t.total.to_f
 				else
 
 					@total = t.total.to_i
