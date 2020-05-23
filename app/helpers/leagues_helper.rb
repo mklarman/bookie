@@ -1285,105 +1285,47 @@ module LeaguesHelper
 		if @bet_type == "straight"
 
 			@pick1 = @avail_picks.sample
-
+			@test1 = @avail_picks
 
 			@teams.each do |t|
 
 				if t.date == @my_date
 
-					self.convert_spread(t.spread)
-					self.convert_total(t.total)
+					if @pick1 == t.name
 
-					if @half_point == true
+						if t.spread.to_f > 0
 
-						@spread = t.spread.to_i
-						@spread = @spread.to_f
+							@spread1 = "+" + t.spread.to_s
 
-						if @spread < 0
-
-							@spread = @spread - 0.5
-
-						else
-
-							@spread = @spread + 0.5
-
-						end
-
-					else
-
-						@spread = t.spread.to_i
-
-					end
-
-					if @total_half_point == true
-
-						@total = t.total.to_i
-						@total = @total.to_f + 0.5
-
-					else
-
-						@total = t.total.to_i
-
-
-
-					end
-
-
-					if t.name == @pick1
-
-						@spread1 = @spread
-
-						if @spread1 > 0
-
-							@spread1 = "+" + @spread1.to_s
-
-						end
-
-						if @spread1.to_i == 0
+						elsif t.spread == 0
 
 							@spread1 = "PK"
 
-						end
-
-					elsif t.opp == @pick1
-
-						if t.sport == "MLB" || t.sport == "NHL"
-
-							if t.opp_line > 0
-
-								@spread1 = "+" + t.opp_line.to_s
-
-							else
-
-								@spread1 = t.opp_line
-
-							end
-
-
-							@spread1 = t.opp_line
-
 						else
 
-							@spread1 = t.spread * -1
-
-							if @spread1 > 0
-
-								@spread1 = "+" + @spread1.to_s
-
-							end
-
+							@spread1 = t.spread.to_s
 
 						end
 
-						if @spread1.to_i == 0
+					elsif @pick1 == t.opp
+
+						if t.opp_line.to_f > 0
+
+							@spread1 = "+" + t.opp_line.to_s
+
+						elsif t.opp_line == 0
 
 							@spread1 = "PK"
 
+						else
+
+							@spread1 = t.opp_line.to_s
+
 						end
 
-					elsif t.under_line == @pick1 || t.over_line == @pick1
+					elsif @pick1 == t.under_line || @pick1 == t.over_line
 
-						@spread1 = @total 
+						@spread1 = t.total.to_s
 
 					end
 
@@ -1404,269 +1346,363 @@ module LeaguesHelper
 
 				if t.date == @my_date
 
-					if t.sport == "NFL" || t.sport == "CFB"
+					if @pick1 == t.name
 
-						self.convert_spread(t.spread)
-						self.convert_total(t.total)
+						if t.sport == "NFL" || t.sport == "CFB"
 
-						if @half_point == true
+							self.convert_spread(t.spread)
 
-							@spread = t.spread.to_i
-							@spread = @spread.to_f
+							if @half_point == true
 
-							if @spread < 0
+								@spread1 = (t.spread.to_f + 6.0).to_s
+							else
 
-								@spread = @spread -0.5
+								@spread1 = (t.spread.to_i + 6).to_s
+
+							end
+
+							if @spread1.to_f > 0.5
+
+								@spread1 = "+" + @spread1
+
+							elsif @spread1.to_i == 0
+
+								@spread1 = "PK"
+
+							elsif @spread1.to_f == 0.5
+
+								@spread1 = "+1/2"
+								
+							end
+
+						elsif t.sport == "NBA" || t.sport == "CBB"
+
+							self.convert_spread(t.spread)
+
+							if @half_point == true
+
+								@spread1 = (t.spread.to_f + 4.0).to_s
+							else
+
+								@spread1 = (t.spread.to_i + 4).to_s
+
+							end
+
+							if @spread1.to_f > 0.5
+
+								@spread1 = "+" + @spread1
+
+							elsif @spread1.to_i == 0
+
+								@spread1 = "PK"
+
+							elsif @spread1.to_f == 0.5
+
+								@spread1 = "+1/2"
+								
+							end
+
+						end
+
+					elsif @pick1 == t.opp
+
+						if t.sport == "NFL" || t.sport == "CFB"
+
+							self.convert_spread(t.opp_line)
+
+							if @half_point == true
+
+								@spread1 = (t.opp_line.to_f + 6.0).to_s
+							else
+
+								@spread1 = (t.opp_line.to_i + 6).to_s
+
+							end
+
+							if @spread1.to_f > 0.5
+
+								@spread1 = "+" + @spread1
+
+							elsif @spread1.to_i == 0
+
+								@spread1 = "PK"
+
+							elsif @spread1.to_f == 0.5
+
+								@spread1 = "+1/2"
+								
+							end
+
+						elsif t.sport == "NBA" || t.sport == "CBB"
+
+							self.convert_spread(t.spread)
+
+							if @half_point == true
+
+								@spread1 = (t.opp_line.to_f + 4.0).to_s
+							else
+
+								@spread1 = (t.opp_line.to_i + 4).to_s
+
+							end
+
+							if @spread1.to_f > 0.5
+
+								@spread1 = "+" + @spread1
+
+							elsif @spread1.to_i == 0
+
+								@spread1 = "PK"
+
+							elsif @spread1.to_f == 0.5
+
+								@spread1 = "+1/2"
+								
+							end
+
+						end
+
+					elsif @pick1 == t.under_line		
+
+						self.convert_spread(t.total)
+
+						if t.sport == "NFL" || t.sport == "CBB"
+
+							if @half_point == true
+
+								@spread1 = (t.total.to_f + 6).to_s
 
 							else
 
-								@spread = @spread + 0.5
+								@spread1 = t.total.to_i + 6
 
 							end
 
 						else
 
-							@spread = t.spread.to_i
+							if @half_point == true
+
+								@spread1 = (t.total.to_f + 4).to_s
+
+							else
+
+								@spread1 = (t.total.to_i + 4).to_s
+
+							end
 
 						end
+					
 
-						if @total_half_point == true
+					elsif @pick1 == t.over_line		
 
-							@total = t.total.to_i
-							@total = @total.to_f + 0.5
+						self.convert_spread(t.total)
+
+						if t.sport == "NFL" || t.sport == "CBB"
+
+							if @half_point == true
+
+								@spread1 = (t.total.to_f - 6).to_s
+
+							else
+
+								@spread1 = (t.total.to_i - 6).to_s
+
+							end
 
 						else
 
-							@total = t.total.to_i
+							if @half_point == true
 
+								@spread1 = (t.total.to_f - 4).to_s
 
+							else
 
-						end
-
-						if t.name == @pick1
-
-							@spread1 = @spread + 6
-
-							if @spread1 > 0
-
-								@spread1 = "+" + @spread1.to_s
-
-							elsif @spread1 == 0
-
-								@spread1 = "PK"
+								@spread1 = (t.total.to_i - 4).to_s
 
 							end
 
 						end
-
-						if t.opp == @pick1
-
-							@spread1 = (@spread * -1) + 6
-
-							if @spread1 > 0
-
-								@spread1 = "+" + @spread1.to_s
-
-							elsif @spread1 == 0
-
-								@spread1 = "PK"
-
-							end
-
-						end
-
-						if t.over_line == @pick1
-
-							@spread1 = @total -6
-
-						end
-
-						if t.under_line == @pick1
-
-							@spread1 = @total + 6
-
-
-						end
-
-						if t.name == @pick2
-
-							@spread2 = @spread + 6
-
-							if @spread2 > 0
-
-								@spread2 = "+" + @spread2.to_s
-
-							elsif @spread2 == 0
-
-								@spread2 = "PK"
-
-							end
-
-						end
-
-						if t.opp == @pick2
-
-							@spread2 = (@spread * -1) + 6
-
-							if @spread2 > 0
-
-								@spread2 = "+" + @spread2.to_s
-
-							elsif @spread2 == 0
-
-								@spread2 = "PK"
-
-							end
-
-						end
-
-						if t.over_line == @pick2
-
-							@spread2 = @total - 6
-
-
-						end
-
-						if t.under_line == @pick2
-
-							@spread2 = @total + 6
-
-
-						end
-
+						
 					end
 
-					if t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
 
-						self.convert_spread(t.spread)
-						self.convert_total(t.total)
+					if @pick2 == t.name
 
-						if @half_point == true
+						if t.sport == "NFL" || t.sport == "CFB"
 
-							@spread = t.spread.to_i
-							@spread = @spread.to_f
+							self.convert_spread(t.spread)
 
-							if @spread < 0
+							if @half_point == true
 
-								@spread = @spread -0.5
+								@spread2 = (t.spread.to_f + 6.0).to_s
+							else
+
+								@spread2 = (t.spread.to_i + 6).to_s
+
+							end
+
+							if @spread2.to_f > 0.5
+
+								@spread2 = "+" + @spread2
+
+							elsif @spread2.to_i == 0
+
+								@spread2 = "PK"
+
+							elsif @spread2.to_f == 0.5
+
+								@spread2 = "+1/2"
+								
+							end
+
+						elsif t.sport == "NBA" || t.sport == "CBB"
+
+							self.convert_spread(t.spread)
+
+							if @half_point == true
+
+								@spread2 = (t.spread.to_f + 4.0).to_s
+							else
+
+								@spread2 = (t.spread.to_i + 4).to_s
+
+							end
+
+							if @spread2.to_f > 0.5
+
+								@spread2 = "+" + @spread2
+
+							elsif @spread2.to_i == 0
+
+								@spread2 = "PK"
+
+							elsif @spread1.to_f == 0.5
+
+								@spread2 = "+1/2"
+								
+							end
+
+						end
+
+					elsif @pick2 == t.opp
+
+						if t.sport == "NFL" || t.sport == "CFB"
+
+							self.convert_spread(t.opp_line)
+
+							if @half_point == true
+
+								@spread2 = (t.opp_line.to_f + 6.0).to_s
+							else
+
+								@spread2 = (t.opp_line.to_i + 6).to_s
+
+							end
+
+							if @spread2.to_f > 0.5
+
+								@spread2 = "+" + @spread2
+
+							elsif @spread1.to_i == 0
+
+								@spread1 = "PK"
+
+							elsif @spread1.to_f == 0.5
+
+								@spread1 = "+1/2"
+								
+							end
+
+						elsif t.sport == "NBA" || t.sport == "CBB"
+
+							self.convert_spread(t.spread)
+
+							if @half_point == true
+
+								@spread2 = (t.opp_line.to_f + 4.0).to_s
+							else
+
+								@spread2 = (t.opp_line.to_i + 4).to_s
+
+							end
+
+							if @spread2.to_f > 0.5
+
+								@spread2 = "+" + @spread2
+
+							elsif @spread2.to_i == 0
+
+								@spread2 = "PK"
+
+							elsif @spread2.to_f == 0.5
+
+								@spread2 = "+1/2"
+								
+							end
+
+						end
+
+					elsif @pick2 == t.under_line		
+
+						self.convert_spread(t.total)
+
+						if t.sport == "NFL" || t.sport == "CBB"
+
+							if @half_point == true
+
+								@spread2 = (t.total.to_f + 6).to_s
 
 							else
 
-								@spread = @spread + 0.5
+								@spread2 = t.total.to_i + 6
 
 							end
 
 						else
 
-							@spread = t.spread.to_i
+							if @half_point == true
+
+								@spread2 = (t.total.to_f + 4).to_s
+
+							else
+
+								@spread2 = (t.total.to_i + 4).to_s
+
+							end
 
 						end
+					
 
-						if @total_half_point == true
+					elsif @pick2 == t.over_line		
 
-							@total = t.total.to_i
-							@total = @total.to_f + 0.5
+						self.convert_spread(t.total)
+
+						if t.sport == "NFL" || t.sport == "CBB"
+
+							if @half_point == true
+
+								@spread2 = (t.total.to_f - 6).to_s
+
+							else
+
+								@spread2 = (t.total.to_i - 6).to_s
+
+							end
 
 						else
 
-							@total = t.total.to_i
+							if @half_point == true
 
+								@spread2 = (t.total.to_f - 4).to_s
 
+							else
 
-						end
-
-						if t.name == @pick1
-
-							@spread1 = @spread + 4
-
-							if @spread1 > 0
-
-								@spread1 = "+" + @spread1.to_s
-
-							elsif @spread1 == 0
-
-								@spread1 = "PK"
+								@spread2 = (t.total.to_i - 4).to_s
 
 							end
 
 						end
-
-						if t.opp == @pick1
-
-							@spread1 = (@spread * -1) + 4
-
-							if @spread1 > 0
-
-								@spread1 = "+" + @spread1.to_s
-
-							elsif @spread1 == 0
-
-								@spread1 = "PK"
-
-							end
-
-						end
-
-						if t.over_line == @pick1
-
-							@spread1 = @total - 4
-
-
-						end
-
-						if t.under_line == @pick1
-
-							@spread1 = @total + 4
-
-
-						end
-
-						if t.name == @pick2
-
-							@spread2 = @spread + 4
-
-							if @spread2 > 0
-
-								@spread2 = "+" + @spread2.to_s
-
-							elsif @spread2 == 0
-
-								@spread2 = "PK"
-
-							end
-
-						end
-
-						if t.opp == @pick2
-
-							@spread2 = (@spread * -1) + 4
-
-							if @spread2 > 0
-
-								@spread2 = "+" + @spread2.to_s
-
-							elsif @spread2 == 0
-
-								@spread2 = "PK"
-
-							end
-
-						end
-
-						if t.over_line == @pick2
-
-							@spread2 = @total - 4
-
-
-						end
-
-						if t.under_line == @pick2
-
-							@spread2 = @total + 4
-
-
-						end
-
+						
 					end
 
 				end
@@ -2647,8 +2683,6 @@ module LeaguesHelper
 
 					@total = t.total.to_i
 
-
-
 				end
 
 				if t.sport == "NFL" || t.sport == "CFB" || t.sport == "NBA" || t.sport == "CBB" || t.sport == "FAN"
@@ -2886,7 +2920,7 @@ module LeaguesHelper
 
 			if t.date == @my_date
 
-				if t.sport == "NFL" || t.sport == "CFB" || t.sport == "MLB" || t.sport == "NHL" || t.sport == "FAN" || t.sport == "NBA" || t.sport == "CBB"
+				if t.sport == "NFL" || t.sport == "CFB" || t.sport == "FAN" || t.sport == "NBA" || t.sport == "CBB"
 
 					self.convert_spread(t.spread)
 					self.convert_total(t.total)
@@ -3059,6 +3093,145 @@ module LeaguesHelper
 					if t.under_line == @pick3
 
 						@spread3 = @total
+
+
+					end
+				else
+
+					if t.name == @pick1
+
+						@spread1 = t.spread.to_i 
+
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						elsif @spread1 == 0
+
+							@spread1 = "PK"
+
+						end
+
+					end
+
+					if t.opp == @pick1
+
+						@spread1 = t.opp_line.to_i 
+
+						if @spread1 > 0
+
+							@spread1 = "+" + @spread1.to_s
+
+						elsif @spread1 == 0
+
+							@spread1 = "PK"
+
+						end
+
+					end
+
+					if t.over_line == @pick1
+
+						@spread1 = @total 
+
+
+					end
+
+					if t.under_line == @pick1
+
+						@spread1 = @total 
+
+
+					end
+
+					if t.name == @pick2
+
+						@spread2 = t.spread.to_i 
+
+						if @spread2 > 0
+
+							@spread2 = "+" + @spread2.to_s
+
+						elsif @spread2 == 0
+
+							@spread2 = "PK"
+
+						end
+
+					end
+
+					if t.opp == @pick2
+
+						@spread2 = t.opp_line.to_i
+
+						if @spread2 > 0
+
+							@spread2 = "+" + @spread2.to_s
+
+						elsif @spread2 == 0
+
+							@spread2 = "PK"
+
+						end
+
+					end
+
+					if t.over_line == @pick2
+
+						@spread2 = @total 
+
+
+					end
+
+					if t.under_line == @pick2
+
+						@spread2 = @total 
+
+
+					end
+
+					if t.name == @pick3
+
+						@spread3 = t.spread.to_i 
+
+						if @spread3 > 0
+
+							@spread3 = "+" + @spread3.to_s
+
+						elsif @spread3 == 0
+
+							@spread3 = "PK"
+
+						end
+
+					end
+
+					if t.opp == @pick3
+
+						@spread3 = t.opp_line.to_i
+
+						if @spread3 > 0
+
+							@spread3 = "+" + @spread3.to_s
+
+						elsif @spread3 == 0
+
+							@spread3 = "PK"
+
+						end
+
+					end
+
+					if t.over_line == @pick3
+
+						@spread3 = @total 
+
+
+					end
+
+					if t.under_line == @pick3
+
+						@spread3 = @total 
 
 
 					end
